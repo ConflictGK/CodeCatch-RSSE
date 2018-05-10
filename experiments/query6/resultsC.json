@@ -1,0 +1,2493 @@
+[
+  {
+    "query": "How to initialize thread",
+    "url": "https://stackoverflow.com/questions/32325627/initialization-of-threads-in-java",
+    "url position": 1,
+    "segments": [
+      {
+        "code": "public class Main {\n    public String getName() {\n        return \"Main\";\n    }\n\n    public String getId() {\n        return \"My-id\";\n    }\n\n    public String getState() {\n        return \"Good\";\n    }\n\n    public void printMe() {\n        new Thread() {\n            @Override\n            public void run() {\n                System.out.println(\"name: \" + getName() + \", id:\" + getId() + \", state:\" + getState());\n            }\n        }.start();\n    }\n\n    public static void main(String[] args) {\n        new Main().printMe();\n    }\n}\n",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": false,
+        "answer_votes": "2",
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Thread.__init__": true,
+          "Main.__init__": true
+        },
+        "APIsProjects": {
+          "Thread.__init__": 464,
+          "Main.__init__": 41
+        },
+        "APIsFiles": {
+          "Thread.__init__": 3187,
+          "Main.__init__": 107
+        },
+        "APIsSnippets": {
+          "Thread.__init__": 5242,
+          "Main.__init__": 153
+        },
+        "APIsQualifiedNames": {
+          "Thread.__init__": "java.lang.Thread.__init__",
+          "Main.__init__": "com.tizianobasile.androiddrawablefactory.gui.Main.__init__"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      },
+      {
+        "code": "public class ThreadMain {\n\n    public static void main(String[] args) {\n        //Main thread\n        System.out.println(Thread.currentThread().getName());\n\n        //Task 1 thread\n        //Using runnable\n        Thread task1 = new Thread(new Task1());\n        task1.start();\n\n        //Task 2 thread\n        //By extending Thread class\n        Thread task2 = new Task2();\n        task2.start();\n\n        //Other way is using inner class\n        Thread thread = new Thread(new Runnable() {\n            @Override\n            public void run() {\n                System.out.println(Thread.currentThread().getName());\n            }\n        });\n        thread.start();\n    }\n}\n\nclass Task1 implements Runnable {\n\n    @Override\n    public void run() {\n        System.out.println(Thread.currentThread().getName());\n    }\n}\n\nclass Task2 extends Thread {\n\n    @Override\n    public void run() {\n        System.out.println(Thread.currentThread().getName());\n    }\n}\n",
+        "in_page_order": 4,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": "0",
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Task1.__init__": false,
+          "Thread.__init__": true,
+          "Thread.start": true,
+          "Runnable.__init__": true
+        },
+        "APIsProjects": {
+          "Thread.__init__": 464,
+          "Thread.start": 326,
+          "Runnable.__init__": 544
+        },
+        "APIsFiles": {
+          "Thread.__init__": 3187,
+          "Thread.start": 1776,
+          "Runnable.__init__": 7286
+        },
+        "APIsSnippets": {
+          "Thread.__init__": 5242,
+          "Thread.start": 2947,
+          "Runnable.__init__": 17261
+        },
+        "APIsQualifiedNames": {
+          "Thread.__init__": "java.lang.Thread.__init__",
+          "Thread.start": "java.lang.Thread.start",
+          "Runnable.__init__": "org.jboss.arquillian.container.weld.ee.embedded_1_1.mock.TestContainer.Runner.Runnable.__init__"
+        },
+        "API_Ratio": 0.75,
+        "readability": true
+      }
+    ]
+  },
+  {
+    "query": "How to initialize thread",
+    "url": "https://stackoverflow.com/questions/16095965/initializing-a-thread-in-a-static-block",
+    "url position": 3,
+    "segments": [
+      {
+        "code": "public class DataLoader {\n    private Stuff data;\n    private final CountDownLatch latch = new CountDownLatch(1);\n    // start the thread, called early in main()\n    public void init() {\n        // you pass in this so it can call setData\n        DataRetrievalThread t = new DataRetrievalThread(this);\n        t.start();\n    }\n    // called from the DataRetrievalThread\n    public void setData(Stuff data) {\n        this.data = data;\n        latch.countDown();\n    }\n    public Stuff getData() {\n        if (data == null) {\n            latch.await();\n        }\n        return data;\n    }\n}\n",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": true,
+        "answer_votes": "4",
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "DataRetrievalThread.__init__": false,
+          "DataRetrievalThread.start": false,
+          "CountDownLatch.countDown": true,
+          "CountDownLatch.await": true
+        },
+        "APIsProjects": {
+          "CountDownLatch.countDown": 205,
+          "CountDownLatch.await": 201
+        },
+        "APIsFiles": {
+          "CountDownLatch.countDown": 1693,
+          "CountDownLatch.await": 1685
+        },
+        "APIsSnippets": {
+          "CountDownLatch.countDown": 4394,
+          "CountDownLatch.await": 3886
+        },
+        "APIsQualifiedNames": {
+          "CountDownLatch.countDown": "java.util.concurrent.CountDownLatch.countDown",
+          "CountDownLatch.await": "java.util.concurrent.CountDownLatch.await"
+        },
+        "API_Ratio": 0.5,
+        "readability": true
+      }
+    ]
+  },
+  {
+    "query": "How to initialize thread",
+    "url": "https://stackoverflow.com/questions/8297705/how-to-implement-thread-safe-lazy-initialization",
+    "url position": 4,
+    "segments": [
+      {
+        "code": "lazyInitializer = new LazyInitializer<Foo>() {\n\n        @Override\n        protected Foo initialize() throws ConcurrentException {\n            return new Foo();\n        }\n    };\n",
+        "in_page_order": 2,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": "31",
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Foo.__init__": true
+        },
+        "APIsProjects": {
+          "Foo.__init__": 68
+        },
+        "APIsFiles": {
+          "Foo.__init__": 281
+        },
+        "APIsSnippets": {
+          "Foo.__init__": 800
+        },
+        "APIsQualifiedNames": {
+          "Foo.__init__": "org.baeldung.persistence.model.Foo.__init__"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      },
+      {
+        "code": "Supplier<Foo> fooSupplier = Suppliers.memoize(new Supplier<Foo>() {\n    public Foo get() {\n        return new Foo();\n    }\n});\n",
+        "in_page_order": 2,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": "31",
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Foo.__init__": true,
+          "Supplier.__init__": true
+        },
+        "APIsProjects": {
+          "Foo.__init__": 68,
+          "Supplier.__init__": 30
+        },
+        "APIsFiles": {
+          "Foo.__init__": 281,
+          "Supplier.__init__": 210
+        },
+        "APIsSnippets": {
+          "Foo.__init__": 800,
+          "Supplier.__init__": 352
+        },
+        "APIsQualifiedNames": {
+          "Foo.__init__": "org.baeldung.persistence.model.Foo.__init__",
+          "Supplier.__init__": "com.google.common.base.Supplier.__init__"
+        },
+        "API_Ratio": 1.0,
+        "readability": false
+      },
+      {
+        "code": "class Foo {\n  private volatile Helper helper = null;\n  public Helper getHelper() {\n    if (helper == null) {\n      synchronized(this) {\n        if (helper == null) {\n          helper = new Helper();\n        }\n      }\n    }\n  return helper;\n}\n",
+        "in_page_order": 5,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": "2",
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Helper.__init__": true
+        },
+        "APIsProjects": {
+          "Helper.__init__": 6
+        },
+        "APIsFiles": {
+          "Helper.__init__": 35
+        },
+        "APIsSnippets": {
+          "Helper.__init__": 161
+        },
+        "APIsQualifiedNames": {
+          "Helper.__init__": "com.github.jknack.handlebars.Helper.__init__"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      },
+      {
+        "code": "import java.util.Objects;\nimport java.util.concurrent.CountDownLatch;\nimport java.util.concurrent.atomic.AtomicBoolean;\nimport java.util.concurrent.atomic.AtomicReference;\nimport java.util.function.Function;\n\n/**\n * When execute is called, it is guaranteed that the input function will be applied exactly once. \n * Further it's also guaranteed that execute will return only when the input function was applied\n * by the calling thread or some other thread OR if the calling thread is interrupted.\n */\n\npublic class OneTimeExecutor<T, R> {  \n  private final Function<T, R> function;\n  private final AtomicBoolean preGuard;\n  private final CountDownLatch postGuard;\n  private final AtomicReference<R> value;\n\n  public OneTimeExecutor(Function<T, R> function) {\n    Objects.requireNonNull(function, \"function cannot be null\");\n    this.function = function;\n    this.preGuard = new AtomicBoolean(false);\n    this.postGuard = new CountDownLatch(1);\n    this.value = new AtomicReference<R>();\n  }\n\n  public R execute(T input) throws InterruptedException {\n    if (preGuard.compareAndSet(false, true)) {\n      try {\n        value.set(function.apply(input));\n      } finally {\n        postGuard.countDown();\n      }\n    } else if (postGuard.getCount() != 0) {\n      postGuard.await();\n    }\n    return value();\n  }\n\n  public boolean executed() {\n    return (preGuard.get() && postGuard.getCount() == 0);\n  }\n\n  public R value() {\n    return value.get();\n  }\n\n}  \n",
+        "in_page_order": 6,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": "1",
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "AtomicBoolean.__init__": true,
+          "CountDownLatch.__init__": true,
+          "AtomicReference.__init__": true,
+          "AtomicBoolean.compareAndSet": true,
+          "Function.apply": true,
+          "R.set": false,
+          "CountDownLatch.countDown": true,
+          "CountDownLatch.getCount": true,
+          "CountDownLatch.await": true,
+          "R": true,
+          "R.get": false
+        },
+        "APIsProjects": {
+          "AtomicBoolean.__init__": 144,
+          "CountDownLatch.__init__": 188,
+          "AtomicReference.__init__": 133,
+          "AtomicBoolean.compareAndSet": 101,
+          "Function.apply": 65,
+          "CountDownLatch.countDown": 205,
+          "CountDownLatch.getCount": 68,
+          "CountDownLatch.await": 201,
+          "R": 40
+        },
+        "APIsFiles": {
+          "AtomicBoolean.__init__": 708,
+          "CountDownLatch.__init__": 1496,
+          "AtomicReference.__init__": 589,
+          "AtomicBoolean.compareAndSet": 372,
+          "Function.apply": 468,
+          "CountDownLatch.countDown": 1693,
+          "CountDownLatch.getCount": 207,
+          "CountDownLatch.await": 1685,
+          "R": 91
+        },
+        "APIsSnippets": {
+          "AtomicBoolean.__init__": 1178,
+          "CountDownLatch.__init__": 3879,
+          "AtomicReference.__init__": 1129,
+          "AtomicBoolean.compareAndSet": 546,
+          "Function.apply": 800,
+          "CountDownLatch.countDown": 4394,
+          "CountDownLatch.getCount": 387,
+          "CountDownLatch.await": 3886,
+          "R": 536
+        },
+        "APIsQualifiedNames": {
+          "AtomicBoolean.__init__": "java.util.concurrent.atomic.AtomicBoolean.__init__",
+          "CountDownLatch.__init__": "java.util.concurrent.CountDownLatch.__init__",
+          "AtomicReference.__init__": "java.util.concurrent.atomic.AtomicReference.__init__",
+          "AtomicBoolean.compareAndSet": "java.util.concurrent.atomic.AtomicBoolean.compareAndSet",
+          "Function.apply": "com.google.common.base.Function.apply",
+          "CountDownLatch.countDown": "java.util.concurrent.CountDownLatch.countDown",
+          "CountDownLatch.getCount": "java.util.concurrent.CountDownLatch.getCount",
+          "CountDownLatch.await": "java.util.concurrent.CountDownLatch.await",
+          "R": "org.docx4j.wml.R.R"
+        },
+        "API_Ratio": 0.8181818181818182,
+        "readability": true
+      },
+      {
+        "code": "import java.io.BufferedWriter;\nimport java.io.File;\nimport java.io.FileOutputStream;\nimport java.io.IOException;\nimport java.io.OutputStreamWriter;\nimport java.io.PrintWriter;\nimport java.nio.charset.StandardCharsets;\n\n/*\n * For the sake of this example, assume that creating a PrintWriter is a costly operation and we'd want to lazily initialize it.\n * Further assume that the cleanup/close implementation is non-idempotent. In other words, just like initialization, the \n * de-initialization should also happen once and only once.\n */\npublic class NonSingletonSampleB {\n  private final OneTimeExecutor<File, PrintWriter> initializer = new OneTimeExecutor<>(\n    (File configFile) -> {\n      try { \n        FileOutputStream fos = new FileOutputStream(configFile);\n        OutputStreamWriter osw = new OutputStreamWriter(fos, StandardCharsets.UTF_8);\n        BufferedWriter bw = new BufferedWriter(osw);\n        PrintWriter pw = new PrintWriter(bw);\n        return pw;\n      } catch (IOException e) {\n        e.printStackTrace();\n        throw new RuntimeException(e);\n      }\n    }\n  );  \n\n  private final OneTimeExecutor<Void, Void> deinitializer = new OneTimeExecutor<>(\n    (Void v) -> {\n      if (initializer.executed() && null != initializer.value()) {\n        initializer.value().close();\n      }\n      return null;\n    }\n  );  \n\n  private final File file;\n\n  public NonSingletonSampleB(File file) {\n    this.file = file;\n  }\n\n  public void doSomething() throws Exception {\n    // Create one-and-only-one instance of PrintWriter only when someone calls doSomething().  \n    PrintWriter pw = initializer.execute(file);\n\n    // Application logic goes here, say write something to the file using the PrintWriter.\n  }\n\n  public void close() throws Exception {\n    // non-idempotent close, the de-initialization lambda is invoked only once. \n    deinitializer.execute(null);\n  }\n\n}\n",
+        "in_page_order": 6,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": "1",
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "OneTimeExecutor.execute": false
+        },
+        "APIsProjects": {},
+        "APIsFiles": {},
+        "APIsSnippets": {},
+        "APIsQualifiedNames": {},
+        "API_Ratio": 0.0,
+        "readability": true
+      },
+      {
+        "code": "public synchronized Foo getInstance(){\n   if(INSTANCE == null){\n    INSTANCE = new Foo();\n  }\n\n  return INSTANCE;\n }\n",
+        "in_page_order": 9,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": "0",
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Foo.__init__": true
+        },
+        "APIsProjects": {
+          "Foo.__init__": 68
+        },
+        "APIsFiles": {
+          "Foo.__init__": 281
+        },
+        "APIsSnippets": {
+          "Foo.__init__": 800
+        },
+        "APIsQualifiedNames": {
+          "Foo.__init__": "org.baeldung.persistence.model.Foo.__init__"
+        },
+        "API_Ratio": 1.0,
+        "readability": false
+      },
+      {
+        "code": "public class LazyLoadDecorator<T> implements InvocationHandler {\n\n    private final Object syncLock = new Object();\n    protected volatile T inner;\n    private Supplier<T> supplier;\n\n    private LazyLoadDecorator(Supplier<T> supplier) {\n        this.supplier = supplier;\n    }\n\n    @Override\n    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {\n        if (inner == null) {\n            synchronized (syncLock) {\n                if (inner == null) {\n                    inner = load();\n                }\n            }\n        }\n        return method.invoke(inner, args);\n    }\n\n    protected T load() {\n        return supplier.get();\n    }\n\n    @SuppressWarnings(\"unchecked\")\n    public static <T> T create(Supplier<T> factory, Class<T> clazz) {\n        return (T) Proxy.newProxyInstance(LazyLoadDecorator.class.getClassLoader(),\n                new Class[] {clazz},\n                new LazyLoadDecorator<>(factory));\n    }\n}\n",
+        "in_page_order": 10,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": "0",
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Method.invoke": true,
+          "Supplier.get": true,
+          "LazyLoadDecorator.__init__": false
+        },
+        "APIsProjects": {
+          "Method.invoke": 386,
+          "Supplier.get": 26
+        },
+        "APIsFiles": {
+          "Method.invoke": 2275,
+          "Supplier.get": 415
+        },
+        "APIsSnippets": {
+          "Method.invoke": 5618,
+          "Supplier.get": 819
+        },
+        "APIsQualifiedNames": {
+          "Method.invoke": "java.lang.reflect.Method.invoke",
+          "Supplier.get": "com.google.common.base.Supplier.get"
+        },
+        "API_Ratio": 0.6666666666666666,
+        "readability": true
+      }
+    ]
+  },
+  {
+    "query": "How to initialize thread",
+    "url": "https://help.semmle.com/wiki/display/JAVA/Start+of+thread+in+constructor",
+    "url position": 8,
+    "segments": [
+      {
+        "code": "class Super {\n    public Super() {\n        new Thread() {\n            public void run() {\n                System.out.println(Super.this.toString());\n            }\n        }.start(); // BAD: The thread is started in the constructor of 'Super'.\n    }\n\n    public String toString() {\n        return \"hello\";\n    }\n}\n\nclass Test extends Super {\n    private String name;\n    public Test(String nm) {\n        // The thread is started before\n        // this line is run\n        this.name = nm;\n    }\n\n    public String toString() {\n        return super.toString() + \" \" + name;\n    }\n\n    public static void main(String[] args) {\n        new Test(\"my friend\");\n    }\n}",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Thread.__init__": true,
+          "String": true,
+          "Test.__init__": true
+        },
+        "APIsProjects": {
+          "Thread.__init__": 464,
+          "String": 496,
+          "Test.__init__": 23
+        },
+        "APIsFiles": {
+          "Thread.__init__": 3187,
+          "String": 5232,
+          "Test.__init__": 193
+        },
+        "APIsSnippets": {
+          "Thread.__init__": 5242,
+          "String": 7629,
+          "Test.__init__": 277
+        },
+        "APIsQualifiedNames": {
+          "Thread.__init__": "java.lang.Thread.__init__",
+          "Test.__init__": "junit.framework.Test.__init__"
+        },
+        "API_Ratio": 1.0,
+        "readability": false
+      },
+      {
+        "code": "class Super {\n    Thread thread;\n    public Super() {\n        thread = new Thread() {\n            public void run() {\n                System.out.println(Super.this.toString());\n            }\n        };\n    }\n\n    public void start() {  // good\n        thread.start();\n    }\n    \n    public String toString() {\n        return \"hello\";\n    }\n}\n\nclass Test extends Super {\n    private String name;\n    public Test(String nm) {\n        this.name = nm;\n    }\n\n    public String toString() {\n        return super.toString() + \" \" + name;\n    }\n\n    public static void main(String[] args) {\n        Test t = new Test(\"my friend\");\n        t.start();\n    }\n}",
+        "in_page_order": 2,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Thread.__init__": true,
+          "Thread.start": true,
+          "String": true,
+          "Test.__init__": true,
+          "Test.start": false
+        },
+        "APIsProjects": {
+          "Thread.__init__": 464,
+          "Thread.start": 326,
+          "String": 496,
+          "Test.__init__": 23
+        },
+        "APIsFiles": {
+          "Thread.__init__": 3187,
+          "Thread.start": 1776,
+          "String": 5232,
+          "Test.__init__": 193
+        },
+        "APIsSnippets": {
+          "Thread.__init__": 5242,
+          "Thread.start": 2947,
+          "String": 7629,
+          "Test.__init__": 277
+        },
+        "APIsQualifiedNames": {
+          "Thread.__init__": "java.lang.Thread.__init__",
+          "Thread.start": "java.lang.Thread.start",
+          "Test.__init__": "junit.framework.Test.__init__"
+        },
+        "API_Ratio": 0.8,
+        "readability": false
+      }
+    ]
+  },
+  {
+    "query": "How to initialize thread",
+    "url": "https://www.w3resource.com/java-tutorial/java-defining-instantiating-and-starting-threads.php",
+    "url position": 6,
+    "segments": [
+      {
+        "code": "MyThread thread = new MyThread();\r\n",
+        "in_page_order": 4,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": true,
+        "APIs": {
+          "MyThread.__init__": true
+        },
+        "APIsProjects": {
+          "MyThread.__init__": 7
+        },
+        "APIsFiles": {
+          "MyThread.__init__": 9
+        },
+        "APIsSnippets": {
+          "MyThread.__init__": 19
+        },
+        "APIsQualifiedNames": {},
+        "API_Ratio": 1.0,
+        "readability": true
+      },
+      {
+        "code": "MyRunnableThreadmyRunnable = new MyRunnableThread ();\r\nThread thread = new Thread(myRunnable); // Pass your Runnable to the Thread\r\n",
+        "in_page_order": 5,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "MyRunnableThread.__init__": false,
+          "Thread.__init__": true
+        },
+        "APIsProjects": {
+          "Thread.__init__": 464
+        },
+        "APIsFiles": {
+          "Thread.__init__": 3187
+        },
+        "APIsSnippets": {
+          "Thread.__init__": 5242
+        },
+        "APIsQualifiedNames": {
+          "Thread.__init__": "java.lang.Thread.__init__"
+        },
+        "API_Ratio": 0.5,
+        "readability": true
+      },
+      {
+        "code": "package mythreading;\r\npublic class TestMyRunnable {\r\n\t\tpublic static void main (String [] args) {\r\n\t\tMyRunnable myrunnable = new MyRunnable();\r\n\t\t//Passing myrunnable object to Thread class constructor\r\n\t\tThread t1 = new Thread(myrunnable);\r\n\t\tt1.setName(\"Amit-1 Thread\");\r\n\t\t//Starting Thread t1\r\n\t\tt1.start();\r\n\t\tThread t2 = new Thread(myrunnable);\r\n\t\tt2.setName(\"Amit-2 Thread\");\r\n\t\tt2.start();\r\n\t\t}\r\n\t\t\r\n}\r\n\r\n",
+        "in_page_order": 8,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "MyRunnable.__init__": true,
+          "Thread.__init__": true,
+          "Thread.setName": true,
+          "Thread.start": true
+        },
+        "APIsProjects": {
+          "MyRunnable.__init__": 4,
+          "Thread.__init__": 464,
+          "Thread.setName": 105,
+          "Thread.start": 326
+        },
+        "APIsFiles": {
+          "MyRunnable.__init__": 10,
+          "Thread.__init__": 3187,
+          "Thread.setName": 263,
+          "Thread.start": 1776
+        },
+        "APIsSnippets": {
+          "MyRunnable.__init__": 15,
+          "Thread.__init__": 5242,
+          "Thread.setName": 333,
+          "Thread.start": 2947
+        },
+        "APIsQualifiedNames": {
+          "Thread.__init__": "java.lang.Thread.__init__",
+          "Thread.setName": "java.lang.Thread.setName",
+          "Thread.start": "java.lang.Thread.start"
+        },
+        "API_Ratio": 1.0,
+        "readability": false
+      }
+    ]
+  },
+  {
+    "query": "How to initialize thread",
+    "url": "https://stackoverflow.com/questions/2469957/is-java-class-initialized-by-the-thread-which-use-it-for-the-first-time",
+    "url position": 5,
+    "segments": [
+      {
+        "code": "public class Arbit {\n    public static void main(String[] args) throws Exception{\n        B b1 = new B(\"1\");\n        B b2 = new B(\"2\");\n        B b3 = new B(\"3\");\n        b1.start();\n        b2.start();\n        b3.start();\n        b1.join();\n        b2.join();\n        b3.join();\n    }\n}\n\nclass B extends Thread{\n    B(String s){\n        setName(s);\n    }\n    @Override\n    public void run() {\n\n        try {\n            Thread.sleep(new Random().nextInt(100));\n        } catch (InterruptedException e) {\n        }\n        System.out.println(A.s);\n    }\n}\n\nclass A{\n    static String s = Thread.currentThread().getName();\n}\n",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": true,
+        "answer_votes": "4",
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "B.__init__": true,
+          "B.start": false,
+          "B.join": false,
+          "Random.__init__": true
+        },
+        "APIsProjects": {
+          "B.__init__": 36,
+          "Random.__init__": 324
+        },
+        "APIsFiles": {
+          "B.__init__": 148,
+          "Random.__init__": 2200
+        },
+        "APIsSnippets": {
+          "B.__init__": 253,
+          "Random.__init__": 3183
+        },
+        "APIsQualifiedNames": {
+          "B.__init__": "jodd.util.testdata.B.__init__",
+          "Random.__init__": "java.util.Random.__init__"
+        },
+        "API_Ratio": 0.5,
+        "readability": true
+      }
+    ]
+  },
+  {
+    "query": "How to initialize thread",
+    "url": "https://www.javaworld.com/article/2074217/java-concurrency/java-101--understanding-java-threads--part-1--introducing-threads-and-runnables.html",
+    "url position": 9,
+    "segments": [
+      {
+        "code": "// ThreadDemo.java\nclass ThreadDemo\n{\n   public static void main (String [] args)\n   {\n      MyThread mt = new MyThread ();\n      mt.start ();\n      for (int i = 0; i < 50; i++)\n           System.out.println (\"i = \" + i + \", i * i = \" + i * i);\n   }\n}\nclass MyThread extends Thread\n{\n   public void run ()\n   {\n      for (int count = 1, row = 1; row < 20; row++, count++)\n      {\n           for (int i = 0; i < count; i++)\n                System.out.print ('*');\n           System.out.print ('\\n');\n      }\n   }\n}\n",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "MyThread.__init__": true,
+          "MyThread.start": true
+        },
+        "APIsProjects": {
+          "MyThread.__init__": 7,
+          "MyThread.start": 4
+        },
+        "APIsFiles": {
+          "MyThread.__init__": 9,
+          "MyThread.start": 6
+        },
+        "APIsSnippets": {
+          "MyThread.__init__": 19,
+          "MyThread.start": 13
+        },
+        "APIsQualifiedNames": {},
+        "API_Ratio": 1.0,
+        "readability": true
+      },
+      {
+        "code": "// NameThatThread.java\nclass NameThatThread\n{\n   public static void main (String [] args)\n   {\n      MyThread mt;\n      if (args.length == 0)\n          mt = new MyThread ();\n      else\n          mt = new MyThread (args [0]);\n      mt.start ();\n   }\n}\nclass MyThread extends Thread\n{\n   MyThread ()\n   {\n      // The compiler creates the byte code equivalent of super ();\n   }\n   MyThread (String name)\n   {\n      super (name); // Pass name to Thread superclass\n   }\n   public void run ()\n   {\n      System.out.println (\"My name is: \" + getName ());\n   }\n}\n",
+        "in_page_order": 2,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "MyThread.__init__": true,
+          "MyThread.start": true
+        },
+        "APIsProjects": {
+          "MyThread.__init__": 7,
+          "MyThread.start": 4
+        },
+        "APIsFiles": {
+          "MyThread.__init__": 9,
+          "MyThread.start": 6
+        },
+        "APIsSnippets": {
+          "MyThread.__init__": 19,
+          "MyThread.start": 13
+        },
+        "APIsQualifiedNames": {},
+        "API_Ratio": 1.0,
+        "readability": true
+      },
+      {
+        "code": "// CalcPI1.java\nclass CalcPI1\n{\n   public static void main (String [] args)\n   {\n      MyThread mt = new MyThread ();\n      mt.start ();\n      try\n      {\n          Thread.sleep (10); // Sleep for 10 milliseconds\n      }\n      catch (InterruptedException e)\n      {\n      }\n      System.out.println (\"pi = \" + mt.pi);\n   }\n}\nclass MyThread extends Thread\n{\n   boolean negative = true;\n   double pi; // Initializes to 0.0, by default\n   public void run ()\n   {\n      for (int i = 3; i < 100000; i += 2)\n      {\n           if (negative)\n               pi -= (1.0 / i);\n           else\n               pi += (1.0 / i);\n           negative = !negative;\n      }\n      pi += 1.0;\n      pi *= 4.0;\n      System.out.println (\"Finished calculating PI\");\n   }\n}\n",
+        "in_page_order": 4,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "MyThread.__init__": true,
+          "MyThread.start": true
+        },
+        "APIsProjects": {
+          "MyThread.__init__": 7,
+          "MyThread.start": 4
+        },
+        "APIsFiles": {
+          "MyThread.__init__": 9,
+          "MyThread.start": 6
+        },
+        "APIsSnippets": {
+          "MyThread.__init__": 19,
+          "MyThread.start": 13
+        },
+        "APIsQualifiedNames": {},
+        "API_Ratio": 1.0,
+        "readability": true
+      }
+    ]
+  },
+  {
+    "query": "How to initialize thread",
+    "url": "http://www.wideskills.com/java-tutorial/java-threads-tutorial",
+    "url position": 7,
+    "segments": [
+      {
+        "code": "class RunnableThread implements Runnable {\n\n\tThread runner;\n\tpublic RunnableThread() {\n\t}\n\tpublic RunnableThread(String threadName) {\n\t\trunner = new Thread(this, threadName); // (1) Create a new thread.\n\t\tSystem.out.println(runner.getName());\n\t\trunner.start(); // (2) Start the thread.\n\t}\n\tpublic void run() {\n\t\t//Display info about this particular thread\n\t\tSystem.out.println(Thread.currentThread());\n\t}\n}\n\npublic class RunnableExample {\n\n\tpublic static void main(String[] args) {\n\t\tThread thread1 = new Thread(new RunnableThread(), \"thread1\");\n\t\tThread thread2 = new Thread(new RunnableThread(), \"thread2\");\n\t\tRunnableThread thread3 = new RunnableThread(\"thread3\");\n\t\t//Start the threads\n\t\tthread1.start();\n\t\tthread2.start();\n\t\ttry {\n\t\t\t//delay for one second\n\t\t\tThread.currentThread().sleep(1000);\n\t\t} catch (InterruptedException e) {\n\t\t}\n\t\t//Display info about the main thread\n\t\tSystem.out.println(Thread.currentThread());\n\t}\n}",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Thread.__init__": true,
+          "Thread.getName": true,
+          "Thread.start": true,
+          "RunnableThread.__init__": false
+        },
+        "APIsProjects": {
+          "Thread.__init__": 464,
+          "Thread.getName": 63,
+          "Thread.start": 326
+        },
+        "APIsFiles": {
+          "Thread.__init__": 3187,
+          "Thread.getName": 136,
+          "Thread.start": 1776
+        },
+        "APIsSnippets": {
+          "Thread.__init__": 5242,
+          "Thread.getName": 177,
+          "Thread.start": 2947
+        },
+        "APIsQualifiedNames": {
+          "Thread.__init__": "java.lang.Thread.__init__",
+          "Thread.start": "java.lang.Thread.start"
+        },
+        "API_Ratio": 0.75,
+        "readability": true
+      },
+      {
+        "code": "class XThread extends Thread {\n\n\tXThread() {\n\t}\n\tXThread(String threadName) {\n\t\tsuper(threadName); // Initialize thread.\n\t\tSystem.out.println(this);\n\t\tstart();\n\t}\n\tpublic void run() {\n\t\t//Display info about this particular thread\n\t\tSystem.out.println(Thread.currentThread().getName());\n\t}\n}\n\npublic class ThreadExample {\n\n\tpublic static void main(String[] args) {\n\t\tThread thread1 = new Thread(new XThread(), \"thread1\");\n\t\tThread thread2 = new Thread(new XThread(), \"thread2\");\n\t\t//\t    The below 2 threads are assigned default names\n\t\tThread thread3 = new XThread();\n\t\tThread thread4 = new XThread();\n\t\tThread thread5 = new XThread(\"thread5\");\n\t\t//Start the threads\n\t\tthread1.start();\n\t\tthread2.start();\n\t\tthread3.start();\n\t\tthread4.start();\n\t\ttry {\n\t//The sleep() method is invoked on the main thread to cause a one second delay.\n\t\t\tThread.currentThread().sleep(1000);\n\t\t} catch (InterruptedException e) {\n\t\t}\n\t\t//Display info about the main thread\n\t\tSystem.out.println(Thread.currentThread());\n\t}\n}",
+        "in_page_order": 2,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "XThread.__init__": false,
+          "Thread.__init__": true,
+          "Thread.start": true
+        },
+        "APIsProjects": {
+          "Thread.__init__": 464,
+          "Thread.start": 326
+        },
+        "APIsFiles": {
+          "Thread.__init__": 3187,
+          "Thread.start": 1776
+        },
+        "APIsSnippets": {
+          "Thread.__init__": 5242,
+          "Thread.start": 2947
+        },
+        "APIsQualifiedNames": {
+          "Thread.__init__": "java.lang.Thread.__init__",
+          "Thread.start": "java.lang.Thread.start"
+        },
+        "API_Ratio": 0.6666666666666666,
+        "readability": false
+      }
+    ]
+  },
+  {
+    "query": "How to initialize thread",
+    "url": "https://wiki.sei.cmu.edu/confluence/display/java/TSM02-J.+Do+not+use+background+threads+during+class+initialization",
+    "url position": 10,
+    "segments": [
+      {
+        "code": "public final class ConnectionFactory {\n  private static Connection dbConnection;\n  // Other fields ...\n\n  static {\n    Thread dbInitializerThread = new Thread(new Runnable() {\n        @Override public void run() {\n          // Initialize the database connection\n          try {\n            dbConnection = DriverManager.getConnection(\"connection string\");\n          } catch (SQLException e) {\n            dbConnection = null;\n          }\n        }\n    });\n\n    // Other initialization, for example, start other threads\n\n    dbInitializerThread.start();\n    try {\n      dbInitializerThread.join();\n    } catch (InterruptedException ie) {\n      throw new AssertionError(ie);\n    }\n  }\n\n  public static Connection getConnection() {\n    if (dbConnection == null) {\n      throw new IllegalStateException(\"Error initializing connection\");\n    }\n    return dbConnection;\n  }\n\n  public static void main(String[] args) {\n    // ...\n    Connection connection = getConnection();\n  }\n}\n",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "IllegalStateException.__init__": true
+        },
+        "APIsProjects": {
+          "IllegalStateException.__init__": 589
+        },
+        "APIsFiles": {
+          "IllegalStateException.__init__": 9878
+        },
+        "APIsSnippets": {
+          "IllegalStateException.__init__": 22622
+        },
+        "APIsQualifiedNames": {
+          "IllegalStateException.__init__": "org.jboss.weld.exceptions.IllegalStateException.__init__"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      },
+      {
+        "code": "public final class ConnectionFactory {\n  private static final ThreadLocal<Connection> connectionHolder\n                       = new ThreadLocal<Connection>() {\n   @Override public Connection initialValue() {\n     try {\n       Connection dbConnection =\n           DriverManager.getConnection(\"connection string\");\n       return dbConnection;\n     } catch (SQLException e) {\n       return null;\n     }\n   }\n };\n\n  // Other fields ...\n\n  static {\n    // Other initialization (do not start any threads)\n  }\n\n  public static Connection getConnection() {\n    Connection connection = connectionHolder.get();\n    if (connection == null) {\n      throw new IllegalStateException(\"Error initializing connection\");\n    }\n    return connection;\n  }\n\n  public static void main(String[] args) {\n    // ...\n    Connection connection = getConnection();\n  }\n}\n",
+        "in_page_order": 3,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "ThreadLocal.get": true,
+          "IllegalStateException.__init__": true
+        },
+        "APIsProjects": {
+          "ThreadLocal.get": 259,
+          "IllegalStateException.__init__": 589
+        },
+        "APIsFiles": {
+          "ThreadLocal.get": 1144,
+          "IllegalStateException.__init__": 9878
+        },
+        "APIsSnippets": {
+          "ThreadLocal.get": 3100,
+          "IllegalStateException.__init__": 22622
+        },
+        "APIsQualifiedNames": {
+          "IllegalStateException.__init__": "org.jboss.weld.exceptions.IllegalStateException.__init__"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      },
+      {
+        "code": "public final class ObjectPreserver implements Runnable {\n  private static final ObjectPreserver lifeLine = new ObjectPreserver();\n\n  private ObjectPreserver() {\n    Thread thread = new Thread(this);\n    thread.setDaemon(true);\n    thread.start(); // Keep this object alive\n  }\n\n  // Neither this class nor HashMap will be garbage-collected.\n  // References from HashMap to other objects\n  // will also exhibit this property\n  private static final ConcurrentHashMap<Integer,Object> protectedMap\n      = new ConcurrentHashMap<Integer,Object>();\n\n  public synchronized void run() {\n    try {\n      wait();\n    } catch (InterruptedException e) {\n      Thread.currentThread().interrupt(); // Reset interrupted status\n    }\n  }\n\n  // Objects passed to this method will be preserved until\n  // the unpreserveObject() method is called\n  public static void preserveObject(Object obj) {\n    protectedMap.put(0, obj);\n  }\n\n  // Returns the same instance every time\n  public static Object getObject() {\n    return protectedMap.get(0);\n  }\n\n  // Unprotect the objects so that they can be garbage-collected\n  public static void unpreserveObject() {\n    protectedMap.remove(0);\n  }\n}\n",
+        "in_page_order": 4,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Thread.__init__": true,
+          "Thread.setDaemon": true,
+          "Thread.start": true,
+          "ConcurrentHashMap.put": true,
+          "ConcurrentHashMap.get": true,
+          "ConcurrentHashMap.remove": true
+        },
+        "APIsProjects": {
+          "Thread.__init__": 464,
+          "Thread.setDaemon": 179,
+          "Thread.start": 326,
+          "ConcurrentHashMap.put": 132,
+          "ConcurrentHashMap.get": 157,
+          "ConcurrentHashMap.remove": 114
+        },
+        "APIsFiles": {
+          "Thread.__init__": 3187,
+          "Thread.setDaemon": 538,
+          "Thread.start": 1776,
+          "ConcurrentHashMap.put": 372,
+          "ConcurrentHashMap.get": 544,
+          "ConcurrentHashMap.remove": 291
+        },
+        "APIsSnippets": {
+          "Thread.__init__": 5242,
+          "Thread.setDaemon": 654,
+          "Thread.start": 2947,
+          "ConcurrentHashMap.put": 684,
+          "ConcurrentHashMap.get": 1255,
+          "ConcurrentHashMap.remove": 530
+        },
+        "APIsQualifiedNames": {
+          "Thread.__init__": "java.lang.Thread.__init__",
+          "Thread.start": "java.lang.Thread.start",
+          "ConcurrentHashMap.put": "java.util.concurrent.ConcurrentHashMap.put",
+          "ConcurrentHashMap.get": "java.util.concurrent.ConcurrentHashMap.get",
+          "ConcurrentHashMap.remove": "java.util.concurrent.ConcurrentHashMap.remove"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      }
+    ]
+  },
+  {
+    "query": "How to initialize thread",
+    "url": "http://bruceeckel.github.io/2017/01/13/constructors-are-not-thread-safe/",
+    "url position": 14,
+    "segments": [
+      {
+        "code": "// IDChecker.java\nimport java.util.*;\nimport java.util.function.*;\nimport java.util.stream.*;\nimport java.util.concurrent.*;\nimport com.google.common.collect.Sets;\n\npublic class IDChecker {\n  public static int SIZE = 100_000;\n  static class MakeObjects\n  implements Supplier<List<Integer>> {\n    private Supplier<HasID> gen;\n    public MakeObjects(Supplier<HasID> gen) {\n      this.gen = gen;\n    }\n    @Override\n    public List<Integer> get() {\n      return\n        Stream.generate(gen)\n          .limit(SIZE)\n          .map(HasID::getID)\n          .collect(Collectors.toList());\n    }\n  }\n  public static void test(Supplier<HasID> gen) {\n    CompletableFuture<List<Integer>>\n      groupA = CompletableFuture\n        .supplyAsync(new MakeObjects(gen)),\n      groupB = CompletableFuture\n        .supplyAsync(new MakeObjects(gen));\n    groupA.thenAcceptBoth(groupB, (a, b) -> {\n      System.out.println(\n        Sets.intersection(\n          Sets.newHashSet(a),\n          Sets.newHashSet(b)).size());\n    }).join();\n  }\n}\n",
+        "in_page_order": 3,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "MakeObjects.__init__": false,
+          "CompletableFuture.thenAcceptBoth": false
+        },
+        "APIsProjects": {},
+        "APIsFiles": {},
+        "APIsSnippets": {},
+        "APIsQualifiedNames": {},
+        "API_Ratio": 0.0,
+        "readability": true
+      },
+      {
+        "code": "// SharedConstructorArgument.java\nimport java.util.concurrent.atomic.*;\n\ninterface SharedArg {\n  int get();\n}\n\nclass Unsafe implements SharedArg {\n  private int i = 0;\n  public int get() { return i++; }\n}\n\nclass Safe implements SharedArg {\n  private static AtomicInteger counter =\n    new AtomicInteger();\n  public int get() {\n    return counter.getAndAdd(1);\n  }\n}\n\nclass SharedUser implements HasID {\n  private final int id;\n  public SharedUser(SharedArg sa) {\n    id = sa.get();\n  }\n  @Override\n  public int getID() { return id; }\n}\n\npublic class SharedConstructorArgument {\n  public static void main(String[] args) {\n    Unsafe unsafe = new Unsafe();\n    IDChecker.test(() -> new SharedUser(unsafe));\n    Safe safe = new Safe();\n    IDChecker.test(() -> new SharedUser(safe));\n  }\n}\n/* Output:\n0\n*/\n",
+        "in_page_order": 6,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "AtomicInteger.getAndAdd": true,
+          "SharedArg.get": false,
+          "Unsafe.__init__": false,
+          "SharedUser.__init__": false,
+          "Safe.__init__": false
+        },
+        "APIsProjects": {
+          "AtomicInteger.getAndAdd": 21
+        },
+        "APIsFiles": {
+          "AtomicInteger.getAndAdd": 27
+        },
+        "APIsSnippets": {
+          "AtomicInteger.getAndAdd": 39
+        },
+        "APIsQualifiedNames": {
+          "AtomicInteger.getAndAdd": "java.util.concurrent.atomic.AtomicInteger.getAndAdd"
+        },
+        "API_Ratio": 0.2,
+        "readability": true
+      },
+      {
+        "code": "// SynchronizedConstructor.java\nimport java.util.concurrent.atomic.*;\n\nclass SyncConstructor implements HasID {\n  private final int id;\n  private static Object constructorLock = new Object();\n  public SyncConstructor(SharedArg sa) {\n    synchronized(constructorLock) {\n      id = sa.get();\n    }\n  }\n  @Override\n  public int getID() { return id; }\n}\n\npublic class SynchronizedConstructor {\n  public static void main(String[] args) {\n    Unsafe unsafe = new Unsafe();\n    IDChecker.test(() -> new SyncConstructor(unsafe));\n  }\n}\n/* Output:\n*/\n",
+        "in_page_order": 7,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "SharedArg.get": false,
+          "Unsafe.__init__": false,
+          "SyncConstructor.__init__": false
+        },
+        "APIsProjects": {},
+        "APIsFiles": {},
+        "APIsSnippets": {},
+        "APIsQualifiedNames": {},
+        "API_Ratio": 0.0,
+        "readability": true
+      },
+      {
+        "code": "// SynchronizedFactory.java\nimport java.util.concurrent.atomic.*;\n\nclass SyncFactory implements HasID {\n  private final int id;\n  private SyncFactory(SharedArg sa) {\n    id = sa.get();\n  }\n  @Override\n  public int getID() { return id; }\n  public static synchronized\n  SyncFactory factory(SharedArg sa) {\n    return new SyncFactory(sa);\n  }\n}\n\npublic class SynchronizedFactory {\n  public static void main(String[] args) {\n    Unsafe unsafe = new Unsafe();\n    IDChecker.test(() ->\n      SyncFactory.factory(unsafe));\n  }\n}\n/* Output:\n*/\n",
+        "in_page_order": 8,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "SharedArg.get": false,
+          "SyncFactory.__init__": false,
+          "Unsafe.__init__": false
+        },
+        "APIsProjects": {},
+        "APIsFiles": {},
+        "APIsSnippets": {},
+        "APIsQualifiedNames": {},
+        "API_Ratio": 0.0,
+        "readability": true
+      }
+    ]
+  },
+  {
+    "query": "How to initialize thread",
+    "url": "https://docs.oracle.com/javase/tutorial/java/javaOO/anonymousclasses.html",
+    "url position": 16,
+    "segments": [
+      {
+        "code": "\n\npublic class HelloWorldAnonymousClasses {\n  \n    interface HelloWorld {\n        public void greet();\n        public void greetSomeone(String someone);\n    }\n  \n    public void sayHello() {\n        \n        class EnglishGreeting implements HelloWorld {\n            String name = \"world\";\n            public void greet() {\n                greetSomeone(\"world\");\n            }\n            public void greetSomeone(String someone) {\n                name = someone;\n                System.out.println(\"Hello \" + name);\n            }\n        }\n      \n        HelloWorld englishGreeting = new EnglishGreeting();\n        \n        HelloWorld frenchGreeting = new HelloWorld() {\n            String name = \"tout le monde\";\n            public void greet() {\n                greetSomeone(\"tout le monde\");\n            }\n            public void greetSomeone(String someone) {\n                name = someone;\n                System.out.println(\"Salut \" + name);\n            }\n        };\n        \n        HelloWorld spanishGreeting = new HelloWorld() {\n            String name = \"mundo\";\n            public void greet() {\n                greetSomeone(\"mundo\");\n            }\n            public void greetSomeone(String someone) {\n                name = someone;\n                System.out.println(\"Hola, \" + name);\n            }\n        };\n        englishGreeting.greet();\n        frenchGreeting.greetSomeone(\"Fred\");\n        spanishGreeting.greet();\n    }\n\n    public static void main(String... args) {\n        HelloWorldAnonymousClasses myApp =\n            new HelloWorldAnonymousClasses();\n        myApp.sayHello();\n    }            \n}\n",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "HelloWorld.__init__": true,
+          "HelloWorld.greet": false,
+          "HelloWorld.greetSomeone": false,
+          "HelloWorldAnonymousClasses.__init__": false,
+          "HelloWorldAnonymousClasses.sayHello": false
+        },
+        "APIsProjects": {
+          "HelloWorld.__init__": 6
+        },
+        "APIsFiles": {
+          "HelloWorld.__init__": 6
+        },
+        "APIsSnippets": {
+          "HelloWorld.__init__": 6
+        },
+        "APIsQualifiedNames": {
+          "HelloWorld.__init__": "com.google.sitebricks.example.HelloWorld.__init__"
+        },
+        "API_Ratio": 0.2,
+        "readability": true
+      },
+      {
+        "code": "        HelloWorld frenchGreeting = new HelloWorld() {\n            String name = \"tout le monde\";\n            public void greet() {\n                greetSomeone(\"tout le monde\");\n            }\n            public void greetSomeone(String someone) {\n                name = someone;\n                System.out.println(\"Salut \" + name);\n            }\n        };",
+        "in_page_order": 2,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "HelloWorld.__init__": true
+        },
+        "APIsProjects": {
+          "HelloWorld.__init__": 6
+        },
+        "APIsFiles": {
+          "HelloWorld.__init__": 6
+        },
+        "APIsSnippets": {
+          "HelloWorld.__init__": 6
+        },
+        "APIsQualifiedNames": {
+          "HelloWorld.__init__": "com.google.sitebricks.example.HelloWorld.__init__"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      },
+      {
+        "code": "import javafx.event.ActionEvent;\nimport javafx.event.EventHandler;\nimport javafx.scene.Scene;\nimport javafx.scene.control.Button;\nimport javafx.scene.layout.StackPane;\nimport javafx.stage.Stage;\n \npublic class HelloWorld extends Application {\n    public static void main(String[] args) {\n        launch(args);\n    }\n    \n    @Override\n    public void start(Stage primaryStage) {\n        primaryStage.setTitle(\"Hello World!\");\n        Button btn = new Button();\n        btn.setText(\"Say 'Hello World'\");\n        btn.setOnAction(new EventHandler<ActionEvent>() {\n \n            @Override\n            public void handle(ActionEvent event) {\n                System.out.println(\"Hello World!\");\n            }\n        });\n        \n        StackPane root = new StackPane();\n        root.getChildren().add(btn);\n        primaryStage.setScene(new Scene(root, 300, 250));\n        primaryStage.show();\n    }\n}",
+        "in_page_order": 3,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Stage.setTitle": false,
+          "Button.__init__": true,
+          "Button.setText": true,
+          "EventHandler.__init__": true,
+          "Button.setOnAction": false,
+          "StackPane.__init__": false,
+          "StackPane.getChildren": false,
+          "Scene.__init__": true,
+          "Stage.setScene": true,
+          "Stage.show": true
+        },
+        "APIsProjects": {
+          "Button.__init__": 63,
+          "Button.setText": 100,
+          "EventHandler.__init__": 23,
+          "Scene.__init__": 7,
+          "Stage.setScene": 3,
+          "Stage.show": 3
+        },
+        "APIsFiles": {
+          "Button.__init__": 891,
+          "Button.setText": 377,
+          "EventHandler.__init__": 79,
+          "Scene.__init__": 108,
+          "Stage.setScene": 3,
+          "Stage.show": 3
+        },
+        "APIsSnippets": {
+          "Button.__init__": 1817,
+          "Button.setText": 700,
+          "EventHandler.__init__": 161,
+          "Scene.__init__": 110,
+          "Stage.setScene": 3,
+          "Stage.show": 3
+        },
+        "APIsQualifiedNames": {
+          "Button.__init__": "org.spoutcraft.api.gui.Button.__init__",
+          "Button.setText": "android.widget.Button.setText",
+          "EventHandler.__init__": "javafx.event.EventHandler.__init__",
+          "Scene.__init__": "javafx.scene.Scene.__init__",
+          "Stage.setScene": "javafx.stage.Stage.setScene",
+          "Stage.show": "javafx.stage.Stage.show"
+        },
+        "API_Ratio": 0.6,
+        "readability": true
+      },
+      {
+        "code": "import javafx.application.Application;\nimport javafx.event.ActionEvent;\nimport javafx.event.EventHandler;\nimport javafx.geometry.Insets;\nimport javafx.scene.Group;\nimport javafx.scene.Scene;\nimport javafx.scene.control.*;\nimport javafx.scene.layout.GridPane;\nimport javafx.scene.layout.HBox;\nimport javafx.stage.Stage;\n\npublic class CustomTextFieldSample extends Application {\n    \n    final static Label label = new Label();\n \n    @Override\n    public void start(Stage stage) {\n        Group root = new Group();\n        Scene scene = new Scene(root, 300, 150);\n        stage.setScene(scene);\n        stage.setTitle(\"Text Field Sample\");\n \n        GridPane grid = new GridPane();\n        grid.setPadding(new Insets(10, 10, 10, 10));\n        grid.setVgap(5);\n        grid.setHgap(5);\n \n        scene.setRoot(grid);\n        final Label dollar = new Label(\"$\");\n        GridPane.setConstraints(dollar, 0, 0);\n        grid.getChildren().add(dollar);\n        \n        final TextField sum = new TextField() {\n            @Override\n            public void replaceText(int start, int end, String text) {\n                if (!text.matches(\"[a-z, A-Z]\")) {\n                    super.replaceText(start, end, text);                     \n                }\n                label.setText(\"Enter a numeric value\");\n            }\n \n            @Override\n            public void replaceSelection(String text) {\n                if (!text.matches(\"[a-z, A-Z]\")) {\n                    super.replaceSelection(text);\n                }\n            }\n        };\n \n        sum.setPromptText(\"Enter the total\");\n        sum.setPrefColumnCount(10);\n        GridPane.setConstraints(sum, 1, 0);\n        grid.getChildren().add(sum);\n        \n        Button submit = new Button(\"Submit\");\n        GridPane.setConstraints(submit, 2, 0);\n        grid.getChildren().add(submit);\n        \n        submit.setOnAction(new EventHandler<ActionEvent>() {\n            @Override\n            public void handle(ActionEvent e) {\n                label.setText(null);\n            }\n        });\n        \n        GridPane.setConstraints(label, 0, 1);\n        GridPane.setColumnSpan(label, 3);\n        grid.getChildren().add(label);\n        \n        scene.setRoot(grid);\n        stage.show();\n    }\n \n    public static void main(String[] args) {\n        launch(args);\n    }\n}",
+        "in_page_order": 4,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Group.__init__": true,
+          "Scene.__init__": true,
+          "Stage.setScene": true,
+          "Stage.setTitle": false,
+          "GridPane.__init__": false,
+          "Insets.__init__": true,
+          "GridPane.setPadding": false,
+          "GridPane.setVgap": false,
+          "GridPane.setHgap": false,
+          "Scene.setRoot": false,
+          "Label.__init__": true,
+          "GridPane.getChildren": false,
+          "Label.setText": true,
+          "TextField.__init__": true,
+          "TextField.setPromptText": false,
+          "TextField.setPrefColumnCount": false,
+          "Button.__init__": true,
+          "EventHandler.__init__": true,
+          "Button.setOnAction": false,
+          "Stage.show": true
+        },
+        "APIsProjects": {
+          "Group.__init__": 56,
+          "Scene.__init__": 7,
+          "Stage.setScene": 3,
+          "Insets.__init__": 34,
+          "Label.__init__": 78,
+          "Label.setText": 26,
+          "TextField.__init__": 23,
+          "Button.__init__": 63,
+          "EventHandler.__init__": 23,
+          "Stage.show": 3
+        },
+        "APIsFiles": {
+          "Group.__init__": 193,
+          "Scene.__init__": 108,
+          "Stage.setScene": 3,
+          "Insets.__init__": 618,
+          "Label.__init__": 1384,
+          "Label.setText": 134,
+          "TextField.__init__": 575,
+          "Button.__init__": 891,
+          "EventHandler.__init__": 79,
+          "Stage.show": 3
+        },
+        "APIsSnippets": {
+          "Group.__init__": 501,
+          "Scene.__init__": 110,
+          "Stage.setScene": 3,
+          "Insets.__init__": 1853,
+          "Label.__init__": 4398,
+          "Label.setText": 310,
+          "TextField.__init__": 1306,
+          "Button.__init__": 1817,
+          "EventHandler.__init__": 161,
+          "Stage.show": 3
+        },
+        "APIsQualifiedNames": {
+          "Group.__init__": "com.taobao.metamorphosis.tools.domain.Group.__init__",
+          "Scene.__init__": "javafx.scene.Scene.__init__",
+          "Stage.setScene": "javafx.stage.Stage.setScene",
+          "Insets.__init__": "java.awt.Insets.__init__",
+          "Label.__init__": "org.objectweb.asm.Label.__init__",
+          "Label.setText": "org.spoutcraft.api.gui.Label.setText",
+          "TextField.__init__": "org.spoutcraft.api.gui.TextField.__init__",
+          "Button.__init__": "org.spoutcraft.api.gui.Button.__init__",
+          "EventHandler.__init__": "javafx.event.EventHandler.__init__",
+          "Stage.show": "javafx.stage.Stage.show"
+        },
+        "API_Ratio": 0.5,
+        "readability": true
+      }
+    ]
+  },
+  {
+    "query": "How to initialize thread",
+    "url": "https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/Semaphore.html",
+    "url position": 15,
+    "segments": [
+      {
+        "code": "\n class Pool {\n   private static final int MAX_AVAILABLE = 100;\n   private final Semaphore available = new Semaphore(MAX_AVAILABLE, true);\n\n   public Object getItem() throws InterruptedException {\n     available.acquire();\n     return getNextAvailableItem();\n   }\n\n   public void putItem(Object x) {\n     if (markAsUnused(x))\n       available.release();\n   }\n\n   // Not a particularly efficient data structure; just for demo\n\n   protected Object[] items = ... whatever kinds of items being managed\n   protected boolean[] used = new boolean[MAX_AVAILABLE];\n\n   protected synchronized Object getNextAvailableItem() {\n     for (int i = 0; i < MAX_AVAILABLE; ++i) {\n       if (!used[i]) {\n          used[i] = true;\n          return items[i];\n       }\n     }\n     return null; // not reached\n   }\n\n   protected synchronized boolean markAsUnused(Object item) {\n     for (int i = 0; i < MAX_AVAILABLE; ++i) {\n       if (item == items[i]) {\n          if (used[i]) {\n            used[i] = false;\n            return true;\n          } else\n            return false;\n       }\n     }\n     return false;\n   }\n\n }\n ",
+        "in_page_order": 2,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Semaphore.acquire": true,
+          "Object": true,
+          "Semaphore.release": true
+        },
+        "APIsProjects": {
+          "Semaphore.acquire": 75,
+          "Object": 332,
+          "Semaphore.release": 96
+        },
+        "APIsFiles": {
+          "Semaphore.acquire": 159,
+          "Object": 2508,
+          "Semaphore.release": 255
+        },
+        "APIsSnippets": {
+          "Semaphore.acquire": 301,
+          "Object": 10088,
+          "Semaphore.release": 667
+        },
+        "APIsQualifiedNames": {
+          "Semaphore.acquire": "java.util.concurrent.Semaphore.acquire",
+          "Object": "static org.apache.camel.component.jms.JmsMessageType.Object.Object",
+          "Semaphore.release": "java.util.concurrent.Semaphore.release"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      }
+    ]
+  },
+  {
+    "query": "How to initialize thread",
+    "url": "http://antrix.net/posts/2012/java-lazy-initialization/",
+    "url position": 13,
+    "segments": [
+      {
+        "code": "class Demo {\n\n    private Collaborator collaborator = new Collaborator();\n\n    public Collaborator getCollaborator() {\n        return collaborator;\n    }\n\n    public static void main(String... args) {\n        Demo demo = new Demo();\n        Collaborator collaborator = demo.getCollaborator();\n    }\n}\n",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Demo.__init__": true,
+          "Demo.getCollaborator": false
+        },
+        "APIsProjects": {
+          "Demo.__init__": 4
+        },
+        "APIsFiles": {
+          "Demo.__init__": 5
+        },
+        "APIsSnippets": {
+          "Demo.__init__": 5
+        },
+        "APIsQualifiedNames": {},
+        "API_Ratio": 0.5,
+        "readability": true
+      },
+      {
+        "code": "class Demo {\n\n    private Collaborator collaborator;\n\n    public Collaborator getCollaborator() {\n        if (collaborator == null) {\n            collaborator = new Collaborator();\n        }\n        return collaborator;\n    }\n}\n",
+        "in_page_order": 2,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Collaborator.__init__": false
+        },
+        "APIsProjects": {},
+        "APIsFiles": {},
+        "APIsSnippets": {},
+        "APIsQualifiedNames": {},
+        "API_Ratio": 0.0,
+        "readability": true
+      },
+      {
+        "code": "class Demo {\n\n    private Collaborator collaborator;\n\n    public synchronized Collaborator getCollaborator() {\n        if (collaborator == null) {\n            collaborator = new Collaborator();\n        }\n        return collaborator;\n    }\n}\n",
+        "in_page_order": 3,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Collaborator.__init__": false
+        },
+        "APIsProjects": {},
+        "APIsFiles": {},
+        "APIsSnippets": {},
+        "APIsQualifiedNames": {},
+        "API_Ratio": 0.0,
+        "readability": true
+      },
+      {
+        "code": "class Demo {\n\n    private Collaborator collaborator;\n\n    public Collaborator getCollaborator() {\n        if (collaborator == null) {\n            synchronized(this) {\n                if (collaborator == null) {\n                    collaborator = new Collaborator();\n                }\n            }\n        }\n        return collaborator;\n    }\n}\n",
+        "in_page_order": 4,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Collaborator.__init__": false
+        },
+        "APIsProjects": {},
+        "APIsFiles": {},
+        "APIsSnippets": {},
+        "APIsQualifiedNames": {},
+        "API_Ratio": 0.0,
+        "readability": true
+      },
+      {
+        "code": "class Collaborator {\n    public Associate associate;\n\n    public Collaborator() {\n        associate = new Associate();\n    }\n}\n",
+        "in_page_order": 5,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Associate.__init__": false
+        },
+        "APIsProjects": {},
+        "APIsFiles": {},
+        "APIsSnippets": {},
+        "APIsQualifiedNames": {},
+        "API_Ratio": 0.0,
+        "readability": true
+      },
+      {
+        "code": "class Demo {\n\n    private Collaborator collaborator;\n\n    public Collaborator getCollaborator() {\n        if (collaborator == null) {\n            synchronized(this) {\n                if (collaborator == null) {\n                    // psuedo code now\n                    associate = new Associate();\n                    collaborator = new Collaborator();\n                }\n            }\n        }\n        return collaborator;\n    }\n}\n",
+        "in_page_order": 6,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Associate.__init__": false,
+          "Collaborator.__init__": false
+        },
+        "APIsProjects": {},
+        "APIsFiles": {},
+        "APIsSnippets": {},
+        "APIsQualifiedNames": {},
+        "API_Ratio": 0.0,
+        "readability": true
+      },
+      {
+        "code": "class Demo {\n\n    private volatile Collaborator collaborator;\n\n    public Collaborator getCollaborator() {\n        if (collaborator == null) {\n            synchronized(this) {\n                if (collaborator == null) {\n                    collaborator = new Collaborator();\n                }\n            }\n        }\n        return collaborator;\n    }\n}\n",
+        "in_page_order": 8,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Collaborator.__init__": false
+        },
+        "APIsProjects": {},
+        "APIsFiles": {},
+        "APIsSnippets": {},
+        "APIsQualifiedNames": {},
+        "API_Ratio": 0.0,
+        "readability": true
+      },
+      {
+        "code": "class Demo {\n\n    private volatile Collaborator collaborator;\n\n    public Collaborator getCollaborator() {\n        Collaborator tmp = collaborator;\n        if (tmp == null) {\n            synchronized(this) {\n                tmp = collaborator;\n                if (tmp == null) {\n                    tmp = new Collaborator();\n                    collaborator = tmp;\n                }\n            }\n        }\n        return tmp;\n    }\n}\n",
+        "in_page_order": 9,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Collaborator.__init__": false
+        },
+        "APIsProjects": {},
+        "APIsFiles": {},
+        "APIsSnippets": {},
+        "APIsQualifiedNames": {},
+        "API_Ratio": 0.0,
+        "readability": true
+      }
+    ]
+  },
+  {
+    "query": "How to initialize thread",
+    "url": "https://en.wikipedia.org/wiki/Singleton_pattern",
+    "url position": 25,
+    "segments": [
+      {
+        "code": "\npublic final class Singleton {\n    private static volatile Singleton instance = null;\n\n    private Singleton() {}\n\n    public static Singleton getInstance() {\n        if (instance == null) {\n            synchronized(Singleton.class) {\n                if (instance == null) {\n                    instance = new Singleton();\n                }\n            }\n        }\n        return instance;\n    }\n}\n",
+        "in_page_order": 2,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Singleton.__init__": false
+        },
+        "APIsProjects": {},
+        "APIsFiles": {},
+        "APIsSnippets": {},
+        "APIsQualifiedNames": {},
+        "API_Ratio": 0.0,
+        "readability": true
+      }
+    ]
+  },
+  {
+    "query": "How to initialize thread",
+    "url": "http://tutorials.jenkov.com/java-concurrency/creating-and-starting-threads.html",
+    "url position": 34,
+    "segments": [
+      {
+        "code": "\n  Thread thread = new Thread();\n",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": true,
+        "APIs": {
+          "Thread.__init__": true
+        },
+        "APIsProjects": {
+          "Thread.__init__": 464
+        },
+        "APIsFiles": {
+          "Thread.__init__": 3187
+        },
+        "APIsSnippets": {
+          "Thread.__init__": 5242
+        },
+        "APIsQualifiedNames": {
+          "Thread.__init__": "java.lang.Thread.__init__"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      },
+      {
+        "code": "\n  MyThread myThread = new MyThread();\n  myTread.start();\n",
+        "in_page_order": 4,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": true,
+        "APIs": {
+          "MyThread.__init__": true
+        },
+        "APIsProjects": {
+          "MyThread.__init__": 7
+        },
+        "APIsFiles": {
+          "MyThread.__init__": 9
+        },
+        "APIsSnippets": {
+          "MyThread.__init__": 19
+        },
+        "APIsQualifiedNames": {},
+        "API_Ratio": 1.0,
+        "readability": true
+      },
+      {
+        "code": "\n   Thread thread = new Thread(new MyRunnable());\n   thread.start();\n",
+        "in_page_order": 7,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": true,
+        "APIs": {
+          "MyRunnable.__init__": true,
+          "Thread.__init__": true,
+          "Thread.start": true
+        },
+        "APIsProjects": {
+          "MyRunnable.__init__": 4,
+          "Thread.__init__": 464,
+          "Thread.start": 326
+        },
+        "APIsFiles": {
+          "MyRunnable.__init__": 10,
+          "Thread.__init__": 3187,
+          "Thread.start": 1776
+        },
+        "APIsSnippets": {
+          "MyRunnable.__init__": 15,
+          "Thread.__init__": 5242,
+          "Thread.start": 2947
+        },
+        "APIsQualifiedNames": {
+          "Thread.__init__": "java.lang.Thread.__init__",
+          "Thread.start": "java.lang.Thread.start"
+        },
+        "API_Ratio": 1.0,
+        "readability": false
+      },
+      {
+        "code": "\n  Thread newThread = new Thread(MyRunnable());\n  newThread.run();  //should be start();\n",
+        "in_page_order": 9,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": true,
+        "APIs": {
+          "Thread.__init__": true,
+          "Thread.run": true
+        },
+        "APIsProjects": {
+          "Thread.__init__": 464,
+          "Thread.run": 13
+        },
+        "APIsFiles": {
+          "Thread.__init__": 3187,
+          "Thread.run": 13
+        },
+        "APIsSnippets": {
+          "Thread.__init__": 5242,
+          "Thread.run": 18
+        },
+        "APIsQualifiedNames": {
+          "Thread.__init__": "java.lang.Thread.__init__"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      },
+      {
+        "code": "\n   Thread thread = new Thread(\"New Thread\") {\n      public void run(){\n        System.out.println(\"run by: \" + getName());\n      }\n   };\n\n\n   thread.start();\n   System.out.println(thread.getName());\n",
+        "in_page_order": 10,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Thread.__init__": true,
+          "Thread.start": true,
+          "Thread.getName": true
+        },
+        "APIsProjects": {
+          "Thread.__init__": 464,
+          "Thread.start": 326,
+          "Thread.getName": 63
+        },
+        "APIsFiles": {
+          "Thread.__init__": 3187,
+          "Thread.start": 1776,
+          "Thread.getName": 136
+        },
+        "APIsSnippets": {
+          "Thread.__init__": 5242,
+          "Thread.start": 2947,
+          "Thread.getName": 177
+        },
+        "APIsQualifiedNames": {
+          "Thread.__init__": "java.lang.Thread.__init__",
+          "Thread.start": "java.lang.Thread.start"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      },
+      {
+        "code": "\n   MyRunnable runnable = new MyRunnable();\n   Thread thread = new Thread(runnable, \"New Thread\");\n\n   thread.start();\n   System.out.println(thread.getName());\n",
+        "in_page_order": 11,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "MyRunnable.__init__": true,
+          "Thread.__init__": true,
+          "Thread.start": true,
+          "Thread.getName": true
+        },
+        "APIsProjects": {
+          "MyRunnable.__init__": 4,
+          "Thread.__init__": 464,
+          "Thread.start": 326,
+          "Thread.getName": 63
+        },
+        "APIsFiles": {
+          "MyRunnable.__init__": 10,
+          "Thread.__init__": 3187,
+          "Thread.start": 1776,
+          "Thread.getName": 136
+        },
+        "APIsSnippets": {
+          "MyRunnable.__init__": 15,
+          "Thread.__init__": 5242,
+          "Thread.start": 2947,
+          "Thread.getName": 177
+        },
+        "APIsQualifiedNames": {
+          "Thread.__init__": "java.lang.Thread.__init__",
+          "Thread.start": "java.lang.Thread.start"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      }
+    ]
+  },
+  {
+    "query": "How to initialize thread",
+    "url": "https://stackify.com/top-java-software-errors/",
+    "url position": 31,
+    "segments": [
+      {
+        "code": "<pre class=\"prettyprint\">} // ADD IT HERE\n\n       public void newShape(String shape) {\n\n        switch (shape) {\n            case \"Line\":\n                Shape line = new Line(startX, startY, endX, endY);\n            shapes.add(line);\n            break;\n                case \"Oval\":\n            Shape oval = new Oval(startX, startY, endX, endY);\n            shapes.add(oval);\n            break;\n            case \"Rectangle\":\n            Shape rectangle = new Rectangle(startX, startY, endX, endY);\n            shapes.add(rectangle);\n            break;\n            default:\n            System.out.println(\"ERROR. Check logic.\");\n        }\n        }\n    } // REMOVE IT FROM HERE\n    }\n</pre>",
+        "in_page_order": 3,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": false,
+        "APIs": {
+          "Shape.__init__": true
+        },
+        "APIsProjects": {
+          "Shape.__init__": 11
+        },
+        "APIsFiles": {
+          "Shape.__init__": 33
+        },
+        "APIsSnippets": {
+          "Shape.__init__": 79
+        },
+        "APIsQualifiedNames": {
+          "Shape.__init__": "android.graphics.drawable.shapes.Shape.__init__"
+        },
+        "API_Ratio": 1.0,
+        "readability": false
+      },
+      {
+        "code": "<pre class=\"prettyprint\">package javaapplication3;  \n   \n \n  public class Robot {  \n        int xlocation;  \n        int ylocation;  \n        String name;  \n        static int ccount = 0;  \n           \n        public Robot(int xxlocation, int yylocation, String nname) {  \n            xlocation = xxlocation;  \n            ylocation = yylocation;  \n            name = nname;  \n            ccount++;         \n        } \n  }\n         \n  public class JavaApplication1 { \n       \n       \n       \n    public static void main(String[] args) {  \n           \n        robot firstRobot = new Robot(34,51,\"yossi\");  \n        System.out.println(\"numebr of robots is now \" + Robot.ccount);  \n    }\n  }\n</pre>",
+        "in_page_order": 4,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": false,
+        "APIs": {
+          "robot.__init__": false
+        },
+        "APIsProjects": {},
+        "APIsFiles": {},
+        "APIsSnippets": {},
+        "APIsQualifiedNames": {},
+        "API_Ratio": 0.0,
+        "readability": true
+      },
+      {
+        "code": "<pre class=\"prettyprint\">public class mod_MyMod extends BaseMod\npublic String Version()\n{\n     return \"1.2_02\";\n}\npublic void AddRecipes(CraftingManager recipes)\n{\n   recipes.addRecipe(new ItemStack(Item.diamond), new Object[] {\n      \"#\", Character.valueOf('#'), Block.dirt\n   });\n}\n</pre>",
+        "in_page_order": 9,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": false,
+        "APIs": {
+          "ItemStack.__init__": true,
+          "CraftingManager.addRecipe": false
+        },
+        "APIsProjects": {
+          "ItemStack.__init__": 13
+        },
+        "APIsFiles": {
+          "ItemStack.__init__": 191
+        },
+        "APIsSnippets": {
+          "ItemStack.__init__": 824
+        },
+        "APIsQualifiedNames": {
+          "ItemStack.__init__": "net.minecraft.item.ItemStack.__init__"
+        },
+        "API_Ratio": 0.5,
+        "readability": true
+      },
+      {
+        "code": "<pre class=\"prettyprint\">public static void move()\n{\n    System.out.println(\"What do you want to do?\");\n    Scanner scan = new Scanner(System.in);\n    int userMove = scan.nextInt();\n    return userMove;\n}\n\npublic static void usersMove(String playerName, int gesture)\n{\n    int userMove = move();\n\n    if (userMove == -1)\n    {\n        break;\n    }\n</pre>",
+        "in_page_order": 17,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": false,
+        "APIs": {
+          "Scanner.__init__": true,
+          "Scanner.nextInt": true
+        },
+        "APIsProjects": {
+          "Scanner.__init__": 123,
+          "Scanner.nextInt": 11
+        },
+        "APIsFiles": {
+          "Scanner.__init__": 290,
+          "Scanner.nextInt": 14
+        },
+        "APIsSnippets": {
+          "Scanner.__init__": 918,
+          "Scanner.nextInt": 139
+        },
+        "APIsQualifiedNames": {
+          "Scanner.__init__": "java.util.Scanner.__init__",
+          "Scanner.nextInt": "java.util.Scanner.nextInt"
+        },
+        "API_Ratio": 1.0,
+        "readability": false
+      },
+      {
+        "code": "<pre class=\"prettyprint\">public static int move()\n{\n    System.out.println(\"What do you want to do?\");\n    Scanner scan = new Scanner(System.in);\n    int userMove = scan.nextInt();\n    return userMove;\n}\n</pre>",
+        "in_page_order": 18,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": false,
+        "APIs": {
+          "Scanner.__init__": true,
+          "Scanner.nextInt": true
+        },
+        "APIsProjects": {
+          "Scanner.__init__": 123,
+          "Scanner.nextInt": 11
+        },
+        "APIsFiles": {
+          "Scanner.__init__": 290,
+          "Scanner.nextInt": 14
+        },
+        "APIsSnippets": {
+          "Scanner.__init__": 918,
+          "Scanner.nextInt": 139
+        },
+        "APIsQualifiedNames": {
+          "Scanner.__init__": "java.util.Scanner.__init__",
+          "Scanner.nextInt": "java.util.Scanner.nextInt"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      },
+      {
+        "code": "<pre class=\"prettyprint\">class A\n{\n  // some code\n}\npublic class B\n{\n    public static void main(String[] args)\n    {\n        A a = new A();\n    }\n}\n</pre>",
+        "in_page_order": 29,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": false,
+        "APIs": {
+          "A.__init__": true
+        },
+        "APIsProjects": {
+          "A.__init__": 35
+        },
+        "APIsFiles": {
+          "A.__init__": 279
+        },
+        "APIsSnippets": {
+          "A.__init__": 563
+        },
+        "APIsQualifiedNames": {
+          "A.__init__": "org.dozer.vo.A.__init__"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      },
+      {
+        "code": "<pre class=\"prettyprint\">package com;\nclass A\n{\n    int i = 10;\n}\n \nclass B extends A\n{\n    int j = 20;\n}\n \nclass C extends B\n{\n    int k = 30;\n}\n \npublic class ClassCastExceptionDemo\n{\n    public static void main(String[] args)\n    {\n        A a = new B();   //B type is auto up casted to A type\n        B b = (B) a;     //A type is explicitly down casted to B type.\n        C c = (C) b;    //Here, you will get class cast exception\n        System.out.println(c.k);\n    }\n}\n</pre>",
+        "in_page_order": 40,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": false,
+        "APIs": {
+          "A.__init__": true
+        },
+        "APIsProjects": {
+          "A.__init__": 35
+        },
+        "APIsFiles": {
+          "A.__init__": 279
+        },
+        "APIsSnippets": {
+          "A.__init__": 563
+        },
+        "APIsQualifiedNames": {
+          "A.__init__": "org.dozer.vo.A.__init__"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      },
+      {
+        "code": "<pre class=\"prettyprint\">@Override\nprotected byte[] engineWrap(Key key) throws IllegalBlockSizeException, InvalidKeyException {\ntry {\nbyte[] encoded = key.getEncoded();\nreturn engineDoFinal(encoded, 0, encoded.length);\n} catch (BadPaddingException e) {\nIllegalBlockSizeException newE = new IllegalBlockSizeException();\nnewE.initCause(e);\nthrow newE;\n}\n}\n</pre>",
+        "in_page_order": 44,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": false,
+        "APIs": {
+          "Key.getEncoded": true,
+          "IllegalBlockSizeException.__init__": false,
+          "IllegalBlockSizeException.initCause": false
+        },
+        "APIsProjects": {
+          "Key.getEncoded": 10
+        },
+        "APIsFiles": {
+          "Key.getEncoded": 34
+        },
+        "APIsSnippets": {
+          "Key.getEncoded": 82
+        },
+        "APIsQualifiedNames": {
+          "Key.getEncoded": "java.security.Key.getEncoded"
+        },
+        "API_Ratio": 0.3333333333333333,
+        "readability": true
+      },
+      {
+        "code": "<pre class=\"prettyprint\">@Override public ParcelFileDescriptor openFile(Uri uri,String mode) throws FileNotFoundException {\n  if (uri.toString().startsWith(FILE_PROVIDER_PREFIX)) {\n    int m=ParcelFileDescriptor.MODE_READ_ONLY;\n    if (mode.equalsIgnoreCase(\"rw\"))     m=ParcelFileDescriptor.MODE_READ_WRITE;\n    File f=new File(uri.getPath());\n    ParcelFileDescriptor pfd=ParcelFileDescriptor.open(f,m);\n    return pfd;\n  }\n else {\n    throw new FileNotFoundException(\"Unsupported uri: \" + uri.toString());\n  }\n}\n</pre>",
+        "in_page_order": 47,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": false,
+        "APIs": {
+          "Uri.getPath": true,
+          "File.__init__": true,
+          "Uri.toString": true,
+          "FileNotFoundException.__init__": true
+        },
+        "APIsProjects": {
+          "Uri.getPath": 51,
+          "File.__init__": 591,
+          "Uri.toString": 72,
+          "FileNotFoundException.__init__": 169
+        },
+        "APIsFiles": {
+          "Uri.getPath": 99,
+          "File.__init__": 13065,
+          "Uri.toString": 176,
+          "FileNotFoundException.__init__": 541
+        },
+        "APIsSnippets": {
+          "Uri.getPath": 156,
+          "File.__init__": 40468,
+          "Uri.toString": 283,
+          "FileNotFoundException.__init__": 987
+        },
+        "APIsQualifiedNames": {
+          "Uri.getPath": "android.net.Uri.getPath",
+          "File.__init__": "java.io.File.__init__",
+          "Uri.toString": "android.net.Uri.toString",
+          "FileNotFoundException.__init__": "java.io.FileNotFoundException.__init__"
+        },
+        "API_Ratio": 1.0,
+        "readability": false
+      },
+      {
+        "code": "<pre class=\"prettyprint\">import java.io.DataInputStream;\nimport java.io.EOFException;\nimport java.io.File;\nimport java.io.FileInputStream;\nimport java.io.IOException;\n\npublic class ExceptionExample {\n\tpublic void testMethod1(){\n\t\tFile file = new File(\"test.txt\");\n\t\tDataInputStream dataInputStream =  null;\n\t\ttry{\n\t\t\tdataInputStream = new DataInputStream(new FileInputStream(file));\n\t\t\twhile(true){\n\t\t\t\tdataInputStream.readInt();\t\n\t\t\t}\t\t\t\n\t\t}catch (EOFException e){\t\t\t\n\t\t\te.printStackTrace();\n\t\t}\n\t\tcatch (IOException e){\n\t\t\te.printStackTrace();\n\t\t}\n\t\tfinally{\n\t\t\ttry{\n\t\t\t\tif (dataInputStream != null){\n\t\t\t\t\tdataInputStream.close();\n\t\t\t\t}\n\t\t\t}catch (IOException e){\n\t\t\t\te.printStackTrace();\n\t\t\t}\n\t\t}\n\t}\n\tpublic static void main(String[] args){\n\t\tExceptionExample instance1 = new ExceptionExample();\n\t\tinstance1.testMethod1();\n\t}\n}\n</pre>",
+        "in_page_order": 48,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": false,
+        "APIs": {
+          "File.__init__": true,
+          "FileInputStream.__init__": true,
+          "DataInputStream.__init__": true,
+          "DataInputStream.readInt": true,
+          "DataInputStream.close": true,
+          "ExceptionExample.__init__": false,
+          "ExceptionExample.testMethod1": false
+        },
+        "APIsProjects": {
+          "File.__init__": 591,
+          "FileInputStream.__init__": 443,
+          "DataInputStream.__init__": 161,
+          "DataInputStream.readInt": 85,
+          "DataInputStream.close": 94
+        },
+        "APIsFiles": {
+          "File.__init__": 13065,
+          "FileInputStream.__init__": 2808,
+          "DataInputStream.__init__": 922,
+          "DataInputStream.readInt": 284,
+          "DataInputStream.close": 340
+        },
+        "APIsSnippets": {
+          "File.__init__": 40468,
+          "FileInputStream.__init__": 4023,
+          "DataInputStream.__init__": 1246,
+          "DataInputStream.readInt": 890,
+          "DataInputStream.close": 477
+        },
+        "APIsQualifiedNames": {
+          "File.__init__": "java.io.File.__init__",
+          "FileInputStream.__init__": "java.io.FileInputStream.__init__",
+          "DataInputStream.__init__": "java.io.DataInputStream.__init__",
+          "DataInputStream.readInt": "java.io.DataInputStream.readInt",
+          "DataInputStream.close": "java.io.DataInputStream.close"
+        },
+        "API_Ratio": 0.7142857142857143,
+        "readability": false
+      },
+      {
+        "code": "<pre class=\"prettyprint\">public class NoSuchElementExceptionDemo{\n\n    public static void main(String args[]) {\n        Hashtable sampleMap = new Hashtable();\n        Enumeration enumeration = sampleMap.elements();\n        enumeration.nextElement();  //java.util.NoSuchElementExcepiton here because enumeration is empty\n    }\n}\n\nOutput:\nException in thread \"main\" java.util.NoSuchElementException: Hashtable Enumerator\n        at java.util.Hashtable$EmptyEnumerator.nextElement(Hashtable.java:1084)\n        at test.ExceptionTest.main(NoSuchElementExceptionDemo.java:23)\n</pre>",
+        "in_page_order": 55,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": false,
+        "APIs": {
+          "Hashtable.__init__": true,
+          "Hashtable.elements": true,
+          "Enumeration.nextElement": true
+        },
+        "APIsProjects": {
+          "Hashtable.__init__": 116,
+          "Hashtable.elements": 15,
+          "Enumeration.nextElement": 254
+        },
+        "APIsFiles": {
+          "Hashtable.__init__": 588,
+          "Hashtable.elements": 48,
+          "Enumeration.nextElement": 1704
+        },
+        "APIsSnippets": {
+          "Hashtable.__init__": 960,
+          "Hashtable.elements": 84,
+          "Enumeration.nextElement": 3031
+        },
+        "APIsQualifiedNames": {
+          "Hashtable.__init__": "java.util.Hashtable.__init__",
+          "Hashtable.elements": "java.util.Hashtable.elements",
+          "Enumeration.nextElement": "java.util.Enumeration.nextElement"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      },
+      {
+        "code": "<pre class=\"prettyprint\">private void queueObject(ComplexDataObject obj) throws TimeoutException, InterruptedException {\n  if (!queue.offer(obj,10,TimeUnit.SECONDS)) {\n    TimeoutException ex=new TimeoutException(\"Timed out waiting for parsed elements to be processed. Aborting.\");\n    throw ex;\n  }\n}\n</pre>",
+        "in_page_order": 58,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": false,
+        "APIs": {
+          "TimeoutException.__init__": true
+        },
+        "APIsProjects": {
+          "TimeoutException.__init__": 82
+        },
+        "APIsFiles": {
+          "TimeoutException.__init__": 263
+        },
+        "APIsSnippets": {
+          "TimeoutException.__init__": 395
+        },
+        "APIsQualifiedNames": {
+          "TimeoutException.__init__": "java.util.concurrent.TimeoutException.__init__"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      }
+    ]
+  },
+  {
+    "query": "How to initialize thread",
+    "url": "https://www.ibm.com/developerworks/library/j-5things15/index.html",
+    "url position": 24,
+    "segments": [
+      {
+        "code": "package com.geeckap.atomicexample;\n\nimport java.util.concurrent.atomic.AtomicReferenceFieldUpdater;\n\n/**\n *\n * @author shaines\n */\npublic class MyObject\n{\n    private volatile Book whatImReading;\n\n    private static final AtomicReferenceFieldUpdater<MyObject,Book> updater =\n            AtomicReferenceFieldUpdater.newUpdater( \n                       MyObject.class, Book.class, \"whatImReading\" );\n\n    public Book getWhatImReading()\n    {\n        return whatImReading;\n    }\n\n    public void setWhatImReading( Book whatImReading )\n    {\n        //this.whatImReading = whatImReading;\n        updater.compareAndSet( this, this.whatImReading, whatImReading );\n    }\n}",
+        "in_page_order": 7,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "AtomicReferenceFieldUpdater.compareAndSet": true
+        },
+        "APIsProjects": {
+          "AtomicReferenceFieldUpdater.compareAndSet": 16
+        },
+        "APIsFiles": {
+          "AtomicReferenceFieldUpdater.compareAndSet": 36
+        },
+        "APIsSnippets": {
+          "AtomicReferenceFieldUpdater.compareAndSet": 71
+        },
+        "APIsQualifiedNames": {
+          "AtomicReferenceFieldUpdater.compareAndSet": "java.util.concurrent.atomic.AtomicReferenceFieldUpdater.compareAndSet"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      },
+      {
+        "code": "package com.geeckap.atomicexample;\n\nimport org.junit.Assert;\nimport org.junit.Before;\nimport org.junit.Test;\n\npublic class AtomicExampleTest\n{\n    private MyObject obj;\n\n    @Before\n    public void setUp()\n    {\n        obj = new MyObject();\n        obj.setWhatImReading( new Book( \"Java 2 From Scratch\" ) );\n    }\n\n    @Test\n    public void testUpdate()\n    {\n        obj.setWhatImReading( new Book( \n                \"Pro Java EE 5 Performance Management and Optimization\" ) );\n        Assert.assertEquals( \"Incorrect book name\", \n                \"Pro Java EE 5 Performance Management and Optimization\", \n                obj.getWhatImReading().getName() );\n    }\n\n}",
+        "in_page_order": 8,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "MyObject.__init__": true,
+          "Book.__init__": true,
+          "MyObject.setWhatImReading": false,
+          "MyObject.getWhatImReading": false
+        },
+        "APIsProjects": {
+          "MyObject.__init__": 15,
+          "Book.__init__": 23
+        },
+        "APIsFiles": {
+          "MyObject.__init__": 21,
+          "Book.__init__": 89
+        },
+        "APIsSnippets": {
+          "MyObject.__init__": 29,
+          "Book.__init__": 201
+        },
+        "APIsQualifiedNames": {
+          "MyObject.__init__": "org.jbpm.services.task.test.MyObject.__init__",
+          "Book.__init__": "eu.stratosphere.api.java.typeutils.runtime.GenericTypeSerializerTest.Book.__init__"
+        },
+        "API_Ratio": 0.5,
+        "readability": true
+      }
+    ]
+  },
+  {
+    "query": "How to initialize thread",
+    "url": "https://codereview.stackexchange.com/questions/123305/initialize-and-sum-an-array-in-java-using-threads",
+    "url position": 29,
+    "segments": [
+      {
+        "code": "static Object lock1 = new Object();\n",
+        "in_page_order": 8,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": true,
+        "APIs": {
+          "Object.__init__": true
+        },
+        "APIsProjects": {
+          "Object.__init__": 295
+        },
+        "APIsFiles": {
+          "Object.__init__": 2061
+        },
+        "APIsSnippets": {
+          "Object.__init__": 5309
+        },
+        "APIsQualifiedNames": {
+          "Object.__init__": "java.lang.Object.__init__"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      },
+      {
+        "code": "static AtomicInteger numberOfValues = new AtomicInteger(17);\n",
+        "in_page_order": 11,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": true,
+        "APIs": {
+          "AtomicInteger.__init__": true
+        },
+        "APIsProjects": {
+          "AtomicInteger.__init__": 211
+        },
+        "APIsFiles": {
+          "AtomicInteger.__init__": 996
+        },
+        "APIsSnippets": {
+          "AtomicInteger.__init__": 1709
+        },
+        "APIsQualifiedNames": {
+          "AtomicInteger.__init__": "java.util.concurrent.atomic.AtomicInteger.__init__"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      }
+    ]
+  },
+  {
+    "query": "How to initialize thread",
+    "url": "https://www.developer.com/java/other/article.php/2238491/The-Essence-of-OOP-using-Java-Static-Initializer-Blocks.htm",
+    "url position": 35,
+    "segments": [
+      {
+        "code": "    new A().showData();  }//end main}//end class Init01Listing 10",
+        "in_page_order": 20,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": true,
+        "APIs": {
+          "A.__init__": true
+        },
+        "APIsProjects": {
+          "A.__init__": 35
+        },
+        "APIsFiles": {
+          "A.__init__": 279
+        },
+        "APIsSnippets": {
+          "A.__init__": 563
+        },
+        "APIsQualifiedNames": {
+          "A.__init__": "org.dozer.vo.A.__init__"
+        },
+        "API_Ratio": 1.0,
+        "readability": false
+      }
+    ]
+  },
+  {
+    "query": "How to initialize thread",
+    "url": "https://docstore.mik.ua/orelly/java-ent/jnut/ch04_08.htm",
+    "url position": 33,
+    "segments": [
+      {
+        "code": "// Set a thread t to lower-than-normal priority\nt.setPriority(Thread.NORM_PRIORITY-1);\n\n// Set a thread to lower priority than the current thread\nt.setPriority(Thread.currentThread().getPriority() - 1);\n\n// Threads that don't pause for I/O should explicitly yield the CPU \n// to give other threads with the same priority a chance to run. \nThread t = new Thread(new Runnable() {\n  public void run() {\n    for(int i = 0; i < data.length; i++) {  // Loop through a bunch of data\n      process(data[i]);                     // Process it\n      if ((i % 10) == 0)                    // But after every 10 iterations,\n        Thread.yield();                     // pause to let other threads run. \n    }\n  }\n});",
+        "in_page_order": 2,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Runnable.__init__": true,
+          "Thread.__init__": true
+        },
+        "APIsProjects": {
+          "Runnable.__init__": 544,
+          "Thread.__init__": 464
+        },
+        "APIsFiles": {
+          "Runnable.__init__": 7286,
+          "Thread.__init__": 3187
+        },
+        "APIsSnippets": {
+          "Runnable.__init__": 17261,
+          "Thread.__init__": 5242
+        },
+        "APIsQualifiedNames": {
+          "Runnable.__init__": "org.jboss.arquillian.container.weld.ee.embedded_1_1.mock.TestContainer.Runner.Runnable.__init__",
+          "Thread.__init__": "java.lang.Thread.__init__"
+        },
+        "API_Ratio": 1.0,
+        "readability": false
+      },
+      {
+        "code": "public class Clock extends Thread {\n  java.text.DateFormat f =      // How to format the time for this locale\n    java.text.DateFormat.getTimeInstance(java.text.DateFormat.MEDIUM);\n  boolean keepRunning = true;\n\n  public Clock() {         // The constructor\n    setDaemon(true);       // Daemon thread: interpreter can exit while it runs\n    start();               // This thread starts itself\n  }\n\n  public void run() {      // The body of the thread\n    while(keepRunning) {   // This thread runs until asked to stop\n      String time = f.format(new java.util.Date()); // Current time\n      System.out.println(time);                     // Print the time\n      try { Thread.sleep(1000); }                   // Wait 1000 milliseconds\n      catch (InterruptedException e) {}             // Ignore this exception \n    }\n  }\n\n  // Ask the thread to stop running\n  public void pleaseStop() { keepRunning = false; }\n}",
+        "in_page_order": 3,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Date.__init__": true,
+          "DateFormat.format": true
+        },
+        "APIsProjects": {
+          "Date.__init__": 441,
+          "DateFormat.format": 163
+        },
+        "APIsFiles": {
+          "Date.__init__": 5276,
+          "DateFormat.format": 371
+        },
+        "APIsSnippets": {
+          "Date.__init__": 13241,
+          "DateFormat.format": 577
+        },
+        "APIsQualifiedNames": {
+          "Date.__init__": "java.util.Date.__init__",
+          "DateFormat.format": "java.text.DateFormat.format"
+        },
+        "API_Ratio": 1.0,
+        "readability": false
+      },
+      {
+        "code": "List list;  // A long list of objects to be sorted; initialized elsewhere\n\n// Define a thread to sort the list: lower its priority, so it only runs \n// when the current thread is waiting for I/O, and then start it running. \nThread sorter = new BackgroundSorter(list);               // Defined earlier\nsorter.setPriority(Thread.currentThread.getPriority()-1); // Lower priority\nsorter.start();                                           // Start sorting\n\n// Meanwhile, in this original thread, read data from a file\nbyte[] data = readData();  // Method defined elsewhere\n\n// Before we can proceed, we need the list to be fully sorted, so\n// we've got to wait for the sorter thread to exit, if it hasn't already. \nsorter.join();",
+        "in_page_order": 5,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Thread.__init__": true,
+          "Thread.setPriority": true,
+          "Thread.start": true,
+          "Thread.join": true
+        },
+        "APIsProjects": {
+          "Thread.__init__": 464,
+          "Thread.setPriority": 56,
+          "Thread.start": 326,
+          "Thread.join": 183
+        },
+        "APIsFiles": {
+          "Thread.__init__": 3187,
+          "Thread.setPriority": 150,
+          "Thread.start": 1776,
+          "Thread.join": 724
+        },
+        "APIsSnippets": {
+          "Thread.__init__": 5242,
+          "Thread.setPriority": 185,
+          "Thread.start": 2947,
+          "Thread.join": 1413
+        },
+        "APIsQualifiedNames": {
+          "Thread.__init__": "java.lang.Thread.__init__",
+          "Thread.start": "java.lang.Thread.start",
+          "Thread.join": "java.lang.Thread.join"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      },
+      {
+        "code": "// When two threads try to lock two objects, deadlock can occur unless\n// they always request the locks in the same order.\nfinal Object resource1 = new Object();   // Here are two objects to lock\nfinal Object resource2 = new Object();\nThread t1 = new Thread(new Runnable() {  // Locks resource1 then resource2\n  public void run() {\n    synchronized(resource1) { \n      synchronized(resource2) { compute(); }\n    }\n  }\n});\n\nThread t2 = new Thread(new Runnable() {  // Locks resource2 then resource1\n  public void run() {\n    synchronized(resource2) { \n      synchronized(resource1) { compute(); }\n    }\n  }\n});\n\nt1.start();  // Locks resource1\nt2.start();  // Locks resource2 and now neither thread can progress!",
+        "in_page_order": 7,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Object.__init__": true,
+          "Runnable.__init__": true,
+          "Thread.__init__": true,
+          "Thread.start": true
+        },
+        "APIsProjects": {
+          "Object.__init__": 295,
+          "Runnable.__init__": 544,
+          "Thread.__init__": 464,
+          "Thread.start": 326
+        },
+        "APIsFiles": {
+          "Object.__init__": 2061,
+          "Runnable.__init__": 7286,
+          "Thread.__init__": 3187,
+          "Thread.start": 1776
+        },
+        "APIsSnippets": {
+          "Object.__init__": 5309,
+          "Runnable.__init__": 17261,
+          "Thread.__init__": 5242,
+          "Thread.start": 2947
+        },
+        "APIsQualifiedNames": {
+          "Object.__init__": "java.lang.Object.__init__",
+          "Runnable.__init__": "org.jboss.arquillian.container.weld.ee.embedded_1_1.mock.TestContainer.Runner.Runnable.__init__",
+          "Thread.__init__": "java.lang.Thread.__init__",
+          "Thread.start": "java.lang.Thread.start"
+        },
+        "API_Ratio": 1.0,
+        "readability": false
+      },
+      {
+        "code": "/** \n * A queue. One thread calls push() to put an object on the queue. \n * Another calls pop() to get an object off the queue. If there is no\n * data, pop() waits until there is some, using wait()/notify(). \n * wait() and notify() must be used within a synchronized method or\n * block. \n */\nimport java.util.*;\n\npublic class Queue {\n  LinkedList q = new LinkedList();  // Where objects are stored\n  public synchronized void push(Object o) {\n    q.add(o);      // Append the object to the end of the list\n    this.notify(); // Tell waiting threads that data is ready\n  }\n  public synchronized Object pop() {\n    while(q.size() == 0) {\n      try { this.wait(); }\n      catch (InterruptedException e) { /* Ignore this exception */ }\n    }\n    return q.remove(0);\n  }\n}",
+        "in_page_order": 8,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "LinkedList.add": true,
+          "LinkedList.size": true,
+          "LinkedList.remove": true
+        },
+        "APIsProjects": {
+          "LinkedList.add": 214,
+          "LinkedList.size": 163,
+          "LinkedList.remove": 78
+        },
+        "APIsFiles": {
+          "LinkedList.add": 776,
+          "LinkedList.size": 488,
+          "LinkedList.remove": 158
+        },
+        "APIsSnippets": {
+          "LinkedList.add": 1732,
+          "LinkedList.size": 1022,
+          "LinkedList.remove": 258
+        },
+        "APIsQualifiedNames": {
+          "LinkedList.add": "java.util.LinkedList.add",
+          "LinkedList.size": "java.util.LinkedList.size",
+          "LinkedList.remove": "java.util.LinkedList.remove"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      }
+    ]
+  },
+  {
+    "query": "How to initialize thread",
+    "url": "https://beginnersbook.com/2014/07/final-keyword-java-final-variable-method-class/",
+    "url position": 36,
+    "segments": [
+      {
+        "code": "class Demo{  \r\n\r\n   final int MAX_VALUE=99;\r\n   void myMethod(){  \r\n      MAX_VALUE=101;\r\n   }  \r\n   public static void main(String args[]){  \r\n      Demo obj=new  Demo();  \r\n      obj.myMethod();  \r\n   }  \r\n}",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Demo.__init__": true,
+          "Demo.myMethod": false
+        },
+        "APIsProjects": {
+          "Demo.__init__": 4
+        },
+        "APIsFiles": {
+          "Demo.__init__": 5
+        },
+        "APIsSnippets": {
+          "Demo.__init__": 5
+        },
+        "APIsQualifiedNames": {},
+        "API_Ratio": 0.5,
+        "readability": false
+      },
+      {
+        "code": "class Demo{  \r\n   //Blank final variable\r\n   final int MAX_VALUE;\r\n\t \r\n   Demo(){\r\n      //It must be initialized in constructor\r\n      MAX_VALUE=100;\r\n   }\r\n   void myMethod(){  \r\n      System.out.println(MAX_VALUE);\r\n   }  \r\n   public static void main(String args[]){  \r\n      Demo obj=new  Demo();  \r\n      obj.myMethod();  \r\n   }  \r\n}",
+        "in_page_order": 3,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Demo.__init__": true,
+          "Demo.myMethod": false
+        },
+        "APIsProjects": {
+          "Demo.__init__": 4
+        },
+        "APIsFiles": {
+          "Demo.__init__": 5
+        },
+        "APIsSnippets": {
+          "Demo.__init__": 5
+        },
+        "APIsQualifiedNames": {},
+        "API_Ratio": 0.5,
+        "readability": false
+      },
+      {
+        "code": "class StudentData{  \r\n   //Blank final variable\r\n   final int ROLL_NO;\r\n\t \r\n   StudentData(int rnum){\r\n      //It must be initialized in constructor\r\n      ROLL_NO=rnum;\r\n   }\r\n   void myMethod(){  \r\n      System.out.println(\"Roll no is:\"+ROLL_NO);\r\n   }  \r\n   public static void main(String args[]){  \r\n      StudentData obj=new  StudentData(1234);  \r\n      obj.myMethod();  \r\n   }  \r\n}",
+        "in_page_order": 5,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "StudentData.__init__": false,
+          "StudentData.myMethod": false
+        },
+        "APIsProjects": {},
+        "APIsFiles": {},
+        "APIsSnippets": {},
+        "APIsQualifiedNames": {},
+        "API_Ratio": 0.0,
+        "readability": true
+      },
+      {
+        "code": "class XYZ{  \r\n   final void demo(){\r\n      System.out.println(\"XYZ Class Method\");\r\n   }  \r\n}  \r\n\t     \r\nclass ABC extends XYZ{  \r\n   void demo(){\r\n      System.out.println(\"ABC Class Method\");\r\n   }  \r\n\t     \r\n   public static void main(String args[]){  \r\n      ABC obj= new ABC();  \r\n      obj.demo();  \r\n   }  \r\n}",
+        "in_page_order": 9,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "ABC.__init__": false,
+          "ABC.demo": false
+        },
+        "APIsProjects": {},
+        "APIsFiles": {},
+        "APIsSnippets": {},
+        "APIsQualifiedNames": {},
+        "API_Ratio": 0.0,
+        "readability": false
+      },
+      {
+        "code": "class XYZ{  \r\n   final void demo(){\r\n      System.out.println(\"XYZ Class Method\");\r\n   }  \r\n}  \r\n\t     \r\nclass ABC extends XYZ{  \r\n   public static void main(String args[]){  \r\n      ABC obj= new ABC();  \r\n      obj.demo();  \r\n   }  \r\n}",
+        "in_page_order": 10,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "ABC.__init__": false,
+          "ABC.demo": false
+        },
+        "APIsProjects": {},
+        "APIsFiles": {},
+        "APIsSnippets": {},
+        "APIsQualifiedNames": {},
+        "API_Ratio": 0.0,
+        "readability": false
+      },
+      {
+        "code": "final class XYZ{  \r\n}  \r\n\t     \r\nclass ABC extends XYZ{  \r\n   void demo(){\r\n      System.out.println(\"My Method\");\r\n   }  \r\n   public static void main(String args[]){  \r\n      ABC obj= new ABC(); \r\n      obj.demo();\r\n   }  \r\n}",
+        "in_page_order": 12,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "ABC.__init__": false,
+          "ABC.demo": false
+        },
+        "APIsProjects": {},
+        "APIsFiles": {},
+        "APIsSnippets": {},
+        "APIsQualifiedNames": {},
+        "API_Ratio": 0.0,
+        "readability": false
+      }
+    ]
+  }
+]

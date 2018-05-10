@@ -1,0 +1,18 @@
+public static void main(String args[])throws Exception
+{
+   File f = new File("input.txt");
+   takeInputIn2DArray(f);
+}
+
+public static void takeInputIn2DArray(File f) throws Exception
+{
+    Scanner s = new Scanner(f);
+    int a[][] = new int[20][20];
+    for(int i=0; i20; i++)
+    {
+        for(int j=0; j20; j++)
+        {
+            a[i][j] = s.nextInt();
+        }
+    }
+}

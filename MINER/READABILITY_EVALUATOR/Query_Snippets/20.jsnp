@@ -1,0 +1,2 @@
+
+InputStream f = new FileInputStream("C:/java/hello");

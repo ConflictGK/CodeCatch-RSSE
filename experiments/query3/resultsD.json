@@ -1,0 +1,628 @@
+{
+   "num_snippets_per_cluster": [
+      7,
+      6,
+      6,
+      3
+   ],
+   "num_clusters": 4,
+   "clusters": [
+      {
+         "cluster_snippets": [
+            {
+               "Cluster": 0,
+               "Code": "import java.util.Scanner;\r\nimport java.util.StringTokenizer;\r\n\r\npublic class Main {\r\n\r\n    /**\r\n     * Utility functions for System.out.println() and System.out.print()\r\n     */\r\n    private static void print(String str) {\r\n        System.out.print(str);\r\n    }\r\n\r\n    private static void println(String str) {\r\n        System.out.println(str);\r\n    }\r\n\r\n    public static void main(String args[]) {\r\n        Scanner scanner = new Scanner(System.in);\r\n\r\n        String userInputString;\r\n\r\n        println(\"Please enter a string with multiple words : \");\r\n        userInputString = scanner.nextLine();\r\n        \r\n        StringTokenizer tokenizer = new StringTokenizer(userInputString, \" \");\r\n\r\n        while(tokenizer.hasMoreTokens())\r\n        {\r\n            print(tokenizer.countTokens() + \" words remaining to print . Current word : \");\r\n            println(tokenizer.nextToken());\r\n        }\r\n\r\n    }\r\n}\r\n",
+               "LOC": 35,
+               "Url": "http://www.codevscolor.com/2017/11/java-stringtokenizer-example-split-a-string/",
+               "Score": 1.0,
+               "API_Weights": 9.758115556,
+               "API_Qualified_Names": {
+                  "Scanner.__init__": "java.util.Scanner.__init__",
+                  "Scanner.nextLine": "java.util.Scanner.nextLine",
+                  "StringTokenizer.__init__": "java.util.StringTokenizer.__init__",
+                  "StringTokenizer.hasMoreTokens": "java.util.StringTokenizer.hasMoreTokens",
+                  "StringTokenizer.countTokens": "java.util.StringTokenizer.countTokens",
+                  "StringTokenizer.nextToken": "java.util.StringTokenizer.nextToken"
+               },
+               "Url_Position": 35,
+               "In_Page_Order": 1,
+               "Num_API_Calls": 6,
+               "Dist_Center": 0.0692822857,
+               "MethodInvocations": [
+                  "Scanner.__init__",
+                  "StringTokenizer.__init__",
+                  "Scanner.nextLine",
+                  "StringTokenizer.nextToken",
+                  "StringTokenizer.countTokens",
+                  "StringTokenizer.hasMoreTokens"
+               ]
+            },
+            {
+               "Cluster": 0,
+               "Code": "import java.util.Scanner;\r\nimport java.util.StringTokenizer;\r\n\r\npublic class Main {\r\n\r\n    /**\r\n     * Utility functions for System.out.println() and System.out.print()\r\n     */\r\n    private static void print(String str) {\r\n        System.out.print(str);\r\n    }\r\n\r\n    private static void println(String str) {\r\n        System.out.println(str);\r\n    }\r\n\r\n    public static void main(String args[]) {\r\n        Scanner scanner = new Scanner(System.in);\r\n\r\n        String userInputString;\r\n\r\n        println(\"Please enter a string with multiple words : \");\r\n        userInputString = scanner.nextLine();\r\n\r\n        StringTokenizer tokenizer = new StringTokenizer(userInputString, \"$\");\r\n\r\n        while(tokenizer.hasMoreTokens())\r\n        {\r\n            print(tokenizer.countTokens() + \" words remaining to print . Current word : \");\r\n            println(tokenizer.nextToken());\r\n        }\r\n\r\n    }\r\n}\r\n",
+               "LOC": 35,
+               "Url": "http://www.codevscolor.com/2017/11/java-stringtokenizer-example-split-a-string/",
+               "Score": 1.0,
+               "API_Weights": 9.758115556,
+               "API_Qualified_Names": {
+                  "Scanner.__init__": "java.util.Scanner.__init__",
+                  "Scanner.nextLine": "java.util.Scanner.nextLine",
+                  "StringTokenizer.__init__": "java.util.StringTokenizer.__init__",
+                  "StringTokenizer.hasMoreTokens": "java.util.StringTokenizer.hasMoreTokens",
+                  "StringTokenizer.countTokens": "java.util.StringTokenizer.countTokens",
+                  "StringTokenizer.nextToken": "java.util.StringTokenizer.nextToken"
+               },
+               "Url_Position": 35,
+               "In_Page_Order": 3,
+               "Num_API_Calls": 6,
+               "Dist_Center": 0.0692822857,
+               "MethodInvocations": [
+                  "Scanner.__init__",
+                  "StringTokenizer.__init__",
+                  "Scanner.nextLine",
+                  "StringTokenizer.nextToken",
+                  "StringTokenizer.countTokens",
+                  "StringTokenizer.hasMoreTokens"
+               ]
+            },
+            {
+               "Cluster": 0,
+               "Code": "\r\npackage com.mkyong.test\r\n\r\nimport java.util.StringTokenizer;\r\n\r\npublic class TestSplit {\r\n\r\n\tpublic static void main(String[] args) {\r\n\r\n\t\tString test = \"abc.def.123\";\r\n\r\n\t\tStringTokenizer token = new StringTokenizer(test, \".\");\r\n\r\n\t\twhile (token.hasMoreTokens()) {\r\n\t\t\tSystem.out.println(token.nextToken());\r\n\t\t}\r\n\t\t\r\n\t}\r\n\r\n}\r\n",
+               "LOC": 21,
+               "Url": "https://www.mkyong.com/java/java-how-to-split-a-string/",
+               "Score": 0.8853842041,
+               "API_Weights": 6.4771969292,
+               "API_Qualified_Names": {
+                  "StringTokenizer.__init__": "java.util.StringTokenizer.__init__",
+                  "StringTokenizer.hasMoreTokens": "java.util.StringTokenizer.hasMoreTokens",
+                  "StringTokenizer.nextToken": "java.util.StringTokenizer.nextToken"
+               },
+               "Url_Position": 9,
+               "In_Page_Order": 6,
+               "Num_API_Calls": 3,
+               "Dist_Center": 0.1083404893,
+               "MethodInvocations": [
+                  "StringTokenizer.hasMoreTokens",
+                  "StringTokenizer.__init__",
+                  "StringTokenizer.nextToken"
+               ]
+            },
+            {
+               "Cluster": 0,
+               "Code": "<pre><code>import java.util.*;  \npublic class Splitting\n{  \n   public static void main(String[] args) \n   {  \n       StringTokenizer Str = new StringTokenizer(\"004-034556\");  \n       String string1= Str.nextToken(\"-\");\n       String string2= Str.nextToken(\"-\");\n   }      \n}  \n</code></pre>",
+               "LOC": 11,
+               "Url": "https://stackoverflow.com/questions/3481828/how-to-split-a-string-in-java",
+               "Score": 0.7044512117,
+               "API_Weights": 4.7042246812,
+               "API_Qualified_Names": {
+                  "StringTokenizer.__init__": "java.util.StringTokenizer.__init__",
+                  "StringTokenizer.nextToken": "java.util.StringTokenizer.nextToken"
+               },
+               "Url_Position": 1,
+               "In_Page_Order": 19,
+               "Num_API_Calls": 2,
+               "Dist_Center": 0.1699979387,
+               "MethodInvocations": [
+                  "StringTokenizer.__init__",
+                  "StringTokenizer.nextToken"
+               ]
+            },
+            {
+               "Cluster": 0,
+               "Code": "\r\n// Reverse the words in a String using StringTokenizer\r\nimport java.util.StringTokenizer;\r\npublic class StringTokenizerTest {\r\n   public static void main(String[] args) {\r\n      String str = \"Monday Tuesday Wednesday Thursday Friday Saturday Sunday\";\r\n      String strReverse;\r\n      StringBuilder sb = new StringBuilder();\r\n      StringTokenizer st = new StringTokenizer(str);\r\n   \r\n      while (st.hasMoreTokens()) {\r\n         sb.insert(0, st.nextToken());\r\n         if (st.hasMoreTokens()) {\r\n            sb.insert(0, \" \");\r\n         }\r\n      }\r\n      strReverse = sb.toString();\r\n      System.out.println(strReverse);\r\n   }\r\n}",
+               "LOC": 20,
+               "Url": "https://www.ntu.edu.sg/home/ehchua/programming/java/J3d_String.html",
+               "Score": 0.2964472557,
+               "API_Weights": 7.8042146157,
+               "API_Qualified_Names": {
+                  "StringBuilder.__init__": "java.lang.StringBuilder.__init__",
+                  "StringTokenizer.__init__": "java.util.StringTokenizer.__init__",
+                  "StringTokenizer.hasMoreTokens": "java.util.StringTokenizer.hasMoreTokens",
+                  "StringTokenizer.nextToken": "java.util.StringTokenizer.nextToken",
+                  "StringBuilder.toString": "java.lang.StringBuilder.toString"
+               },
+               "Url_Position": 37,
+               "In_Page_Order": 15,
+               "Num_API_Calls": 6,
+               "Dist_Center": 0.3090355071,
+               "MethodInvocations": [
+                  "StringBuilder.__init__",
+                  "StringTokenizer.__init__",
+                  "StringTokenizer.nextToken",
+                  "StringBuilder.insert",
+                  "StringTokenizer.hasMoreTokens",
+                  "StringBuilder.toString"
+               ]
+            },
+            {
+               "Cluster": 0,
+               "Code": "package org.kodejava.example.util;\n\nimport java.io.File;\nimport java.io.FileNotFoundException;\nimport java.util.Scanner;\n\npublic class ScannerTokenDemo {\n    public static void main(String[] args) {\n        // This file contains some data as follow:\n        // a, b, c, d\n        // e, f, g, h\n        // i, j, k, l\n        File file = new File(\"data.txt\");\n        try {\n            // Here we use the Scanner class to read file content line-by-line.\n            Scanner scanner = new Scanner(file);\n            while (scanner.hasNextLine()) {\n                String line = scanner.nextLine();\n\n                // From the above line of code we got a line from the file\n                // content. Now we want to split the line with comma as the \n                // character delimiter.\n                Scanner lineScanner = new Scanner(line);\n                lineScanner.useDelimiter(\",\");\n                while (lineScanner.hasNext()) {\n                    // Get each splitted data from the Scanner object and print\n                    // the value.\n                    String part = lineScanner.next();\n                    System.out.print(part + \", \");\n                }                \n                System.out.println();\n            }\n        } catch (FileNotFoundException e) {\n            e.printStackTrace();\n        }\n    }\n}\n",
+               "LOC": 38,
+               "Url": "https://kodejava.org/how-do-i-split-a-string-using-scanner-class/",
+               "Score": 0.0,
+               "API_Weights": 4.3363267103,
+               "API_Qualified_Names": {
+                  "File.__init__": "java.io.File.__init__",
+                  "Scanner.__init__": "java.util.Scanner.__init__",
+                  "Scanner.hasNextLine": "java.util.Scanner.hasNextLine",
+                  "Scanner.nextLine": "java.util.Scanner.nextLine",
+                  "Scanner.useDelimiter": "java.util.Scanner.useDelimiter",
+                  "Scanner.hasNext": "java.util.Scanner.hasNext",
+                  "Scanner.next": "java.util.Scanner.next"
+               },
+               "Url_Position": 25,
+               "In_Page_Order": 1,
+               "Num_API_Calls": 7,
+               "Dist_Center": 0.4100573353,
+               "MethodInvocations": [
+                  "Scanner.__init__",
+                  "Scanner.nextLine",
+                  "Scanner.hasNextLine",
+                  "Scanner.next",
+                  "Scanner.hasNext",
+                  "File.__init__",
+                  "Scanner.useDelimiter"
+               ]
+            }
+         ],
+         "avg_cluster_api_weights": 7.139699008067658,
+         "top_apis_by_cluster": [
+            "stringtokenizer.__init__",
+            "stringtokenizer.nexttoken",
+            "stringtokenizer.hasmoretokens",
+            "scanner.nextline",
+            "scanner.__init__",
+            "stringtokenizer.counttokens",
+            "stringbuilder.insert",
+            "stringbuilder.tostring"
+         ]
+      },
+      {
+         "cluster_snippets": [
+            {
+               "Cluster": 1,
+               "Code": "import java.util.HashMap;\nimport java.util.Iterator;\nimport java.util.Set;\nimport java.util.Stack;\n\npublic class TUEFSplitter {\n\n\n    public static void main(String[] args) {\n        HashMap hm  = new HashMap();\n        String str = \"TUEF12111492911                  0000BP03251021                    100135514576830122016170412PN03N010125NAMEXXXX MIDDLEN LASTNAM0225NAMEXXXX MIDDLEN LASTNAM07082810198108012ID03I010102010210AFFPT8319BID03I0201020602126165040199789001YPT03T010108425188000302039001YPT03T02011022425188000302029001YPT03T03010842518800030203PT03T04011099877939000302019001YEM03E01010210020831102016030201SC10CIBILTUSC2010204020210030830122016040500694250220260211270205PA03A010124610  B WING   SAGAR TECH0224PLAZA ANDHERI KURLA ROAD0323SAKI NAKA JUNCTION NEAR0422BY SAKI NAKA METRO STN0506MUMBAI06022707064000720802031008280620169001YPA03A020122501-B2 EKTA SAFALE CHS0220OLD AGRA ROAD CASTLE0309NILL NAKA0505THANE0602270706400601080204100824062016PA03A030115SAKINAKA MUMBAI06022707064000700802031008310320169001YPA03A0401362B 501 EKATA SAFALE CHS BH. SAIANAND0206MUMBAI06022707064001640802021008310320169001YTL04T0010213NOT DISCLOSED040210050110808230320160908301020161108301120161205272231305272232827000000000000000000000000000300801112016310801032016IQ04I0010108281220160413NOT DISCLOSED0502050606900000IQ04I0020108231220160413NOT DISCLOSED0502050606400000IQ04I0030108251120160413NOT DISCLOSED050210060550000IQ04I0040108260820160413NOT DISCLOSED050210060550000IQ04I0050108120820160413NOT DISCLOSED0502100606100000IQ04I0060108120720160413NOT DISCLOSED050210060550000IQ04I0070108280620160413NOT DISCLOSED050210060550000IQ04I0080108240620160408RBL BANK05021006041000IQ04I0090108310320160413NOT DISCLOSED050210060550000IQ04I0100108200320160413NOT DISCLOSED05021006041000IQ04I0110108010120160413NOT DISCLOSED050210060515000ES0700016210102**\";\n        hm.put(str.substring(0,4),str.substring(4,94));\n        //System.out.println(\"original String length is \" +str.length());   \n        Stack st = new Stack();\n        st.push(\"ES07\");\n        st.push(\"DR03D0\");\n        st.push(\"IQ04I0\");\n        st.push(\"TL04T0\");\n        st.push(\"PA03A\");\n        st.push(\"SC10CIBILTUSC2\");\n        st.push(\"PI03I\");\n        st.push(\"EM03E\");\n        st.push(\"EC03C\");\n        st.push(\"PT03T\");\n        st.push(\"ID03I\");\n        spillter(str.substring(94),hm ,st);\n        System.out.println(\"Size of HashMap is \" +hm.size());\n        Set set = hm.keySet();\n        Iterator it =set.iterator();\n        while (it.hasNext()) {\n            String key = (String) it.next();\n        System.out.println(\"Keyyyy is \" +key);\n        System.out.println(\"Value is \"+hm.get(key));\n        }\n    }\n\n    static String startPoint = \"PN03N01\";\n    static void spillter(String str ,HashMap hm , Stack st)\n    {\n        if(str.contains(startPoint)){           \n            int i= 1;\n            String searchString;\n            if(st.size()>0)\n            {\n                 searchString = st.pop().toString();    \n            }\n            else\n            {\n                searchString = startPoint;\n            }\n\n            while(true)\n               {        \n                   String fsearch;\n                     if(searchString.equals(\"SC10CIBILTUSC2\") ||searchString.equals(\"ES07\") )\n                     {\n                         fsearch = searchString;\n                     }\n                     else                        \n                     {\n                         if(i<=9)\n                         {\n                             fsearch = searchString+\"0\"+i; \n                         }\n                         else\n                         {\n                             fsearch = searchString+i;   \n                         }\n\n                     }\n                  if(str.contains(fsearch))\n                   {\n                       int end = str.indexOf(fsearch);  \n                       if(end == 0)\n                       {\n                           end = str.length();\n                       }\n                       hm.put(startPoint,str.substring(startPoint.length(), end));                     \n                       str = str.substring(end);\n                       startPoint = fsearch;\n                       i++;\n                       if(fsearch.equals(\"SC10CIBILTUSC2\"))                       \n                           {\n                           spillter(str,hm,st); \n                           break;\n                           }                       \n                   }\n                   else\n                   {\n                       if(str.length()>0 && !str.isEmpty())\n                       {\n                           spillter(str,hm,st);                       \n                       }                         \n                       break;\n                   }\n               }\n            return ;\n            }\n        else\n        {\n            return ;\n        }\n\n    }\n}\n",
+               "LOC": 106,
+               "Url": "https://codereview.stackexchange.com/questions/161920/split-a-long-string-using-recursive-function",
+               "Score": 1.0,
+               "API_Weights": 10.5093577084,
+               "API_Qualified_Names": {
+                  "HashMap.__init__": "java.util.HashMap.__init__",
+                  "HashMap.put": "java.util.HashMap.put",
+                  "Stack.__init__": "java.util.Stack.__init__",
+                  "Stack.push": "java.util.Stack.push",
+                  "HashMap.size": "java.util.HashMap.size",
+                  "HashMap.keySet": "java.util.HashMap.keySet",
+                  "Set.iterator": "java.util.Set.iterator",
+                  "Iterator.hasNext": "java.util.Iterator.hasNext",
+                  "Iterator.next": "java.util.Iterator.next",
+                  "HashMap.get": "java.util.HashMap.get",
+                  "Stack.size": "java.util.Stack.size",
+                  "Stack.pop": "java.util.Stack.pop"
+               },
+               "Url_Position": 23,
+               "In_Page_Order": 1,
+               "Num_API_Calls": 12,
+               "Dist_Center": 0.1226045569,
+               "MethodInvocations": [
+                  "Stack.size",
+                  "Iterator.next",
+                  "Stack.__init__",
+                  "Stack.pop",
+                  "HashMap.get",
+                  "Set.iterator",
+                  "HashMap.keySet",
+                  "HashMap.__init__",
+                  "HashMap.size",
+                  "Iterator.hasNext",
+                  "HashMap.put",
+                  "Stack.push"
+               ]
+            },
+            {
+               "Cluster": 1,
+               "Code": "    System.out.println(\"Size of HashMap is \" +hm.size());\n    Set set = hm.keySet();\n    Iterator it =set.iterator();\n    while (it.hasNext()) {\n        String key = (String) it.next();\n        System.out.println(\"Keyyyy is \" +key);\n        System.out.println(\"Value is \"+hm.get(key));\n    }\n",
+               "LOC": 9,
+               "Url": "https://codereview.stackexchange.com/questions/161920/split-a-long-string-using-recursive-function",
+               "Score": 0.8015277908,
+               "API_Weights": 4.2411994516,
+               "API_Qualified_Names": {
+                  "Set.iterator": "java.util.Set.iterator",
+                  "Iterator.hasNext": "java.util.Iterator.hasNext",
+                  "Iterator.next": "java.util.Iterator.next"
+               },
+               "Url_Position": 23,
+               "In_Page_Order": 6,
+               "Num_API_Calls": 3,
+               "Dist_Center": 0.2043435079,
+               "MethodInvocations": [
+                  "Set.iterator",
+                  "Iterator.next",
+                  "Iterator.hasNext"
+               ]
+            },
+            {
+               "Cluster": 1,
+               "Code": "Set set = hm.keySet();\nIterator it = set.iterator();\nwhile (it.hasNext()) {\n    String key = (String) it.next();\n",
+               "LOC": 5,
+               "Url": "https://codereview.stackexchange.com/questions/161920/split-a-long-string-using-recursive-function",
+               "Score": 0.8015277907,
+               "API_Weights": 4.2411994516,
+               "API_Qualified_Names": {
+                  "Set.iterator": "java.util.Set.iterator",
+                  "Iterator.hasNext": "java.util.Iterator.hasNext",
+                  "Iterator.next": "java.util.Iterator.next"
+               },
+               "Url_Position": 23,
+               "In_Page_Order": 23,
+               "Num_API_Calls": 3,
+               "Dist_Center": 0.204343508,
+               "MethodInvocations": [
+                  "Set.iterator",
+                  "Iterator.next",
+                  "Iterator.hasNext"
+               ]
+            },
+            {
+               "Cluster": 1,
+               "Code": "private static void spillter(String str, Map<String, String> hm, Stack<String> st) {\n    if (!str.contains(startPoint)) {\n        return;\n    }\n\n    int i = 1;\n    String searchString;\n    if (st.isEmpty()) {\n        searchString = startPoint;\n    } else {\n        searchString = st.pop();\n    }\n\n    while (true) {\n        String fsearch;\n        if (SC10SOMETHING.equals(searchString) || \"ES07\".equals(searchString)) {\n            fsearch = searchString;\n        } else if (i <= 9) {\n            fsearch = searchString + \"0\" + i;\n        } else {\n            fsearch = searchString + i;\n        }\n\n        if (!str.contains(fsearch)) {\n            if (!str.isEmpty()) {\n                spillter(str, hm, st);\n            }\n            return;\n        }\n\n        int end = str.indexOf(fsearch);\n        if (end == 0) {\n            end = str.length();\n        }\n        hm.put(startPoint, str.substring(startPoint.length(), end));\n        str = str.substring(end);\n        startPoint = fsearch;\n        i++;\n        if (SC10SOMETHING.equals(fsearch)) {\n            spillter(str, hm, st);\n            return;\n        }\n    }\n}\n",
+               "LOC": 45,
+               "Url": "https://codereview.stackexchange.com/questions/161920/split-a-long-string-using-recursive-function",
+               "Score": 0.6060139948,
+               "API_Weights": 3.1752786439,
+               "API_Qualified_Names": {
+                  "Stack.isEmpty": "java.util.Stack.isEmpty",
+                  "Stack.pop": "java.util.Stack.pop",
+                  "Map.put": "java.util.Map.put"
+               },
+               "Url_Position": 23,
+               "In_Page_Order": 38,
+               "Num_API_Calls": 3,
+               "Dist_Center": 0.2848640637,
+               "MethodInvocations": [
+                  "Map.put",
+                  "Stack.pop",
+                  "Stack.isEmpty"
+               ]
+            },
+            {
+               "Cluster": 1,
+               "Code": "static void spillter(String str ,HashMap hm , Stack st)\n{\n    if(str.contains(startPoint)) {           \n        int i= 1;\n        String searchString;\n        if(st.size()>0)\n        {\n             searchString = st.pop().toString();    \n        }\n        else\n        {\n            searchString = startPoint;\n        }\n\n        while(true)\n        {        \n           String fsearch;\n           if(searchString.equals(\"SC10CIBILTUSC2\") ||searchString.equals(\"ES07\") )\n           {\n               fsearch = searchString;\n           }\n           else                        \n           {\n               if(i<=9)\n               {\n                   fsearch = searchString+\"0\"+i; \n               }\n               else\n               {\n                   fsearch = searchString+i;   \n               }\n           }\n           if(str.contains(fsearch))\n           {\n                //codes\n                if(fsearch.equals(\"SC10CIBILTUSC2\"))                       \n                {\n                    //codes\n                    break;\n                }                       \n            }\n            else\n            {\n                //codes                      \n                break;\n            }\n        }\n        return ;\n    }\n    else\n    {\n        return ;\n    }\n}\n",
+               "LOC": 55,
+               "Url": "https://codereview.stackexchange.com/questions/161920/split-a-long-string-using-recursive-function",
+               "Score": 0.4163396461,
+               "API_Weights": 3.5083319815,
+               "API_Qualified_Names": {
+                  "Stack.size": "java.util.Stack.size",
+                  "Stack.pop": "java.util.Stack.pop"
+               },
+               "Url_Position": 23,
+               "In_Page_Order": 9,
+               "Num_API_Calls": 2,
+               "Dist_Center": 0.3629796969,
+               "MethodInvocations": [
+                  "Stack.size",
+                  "Stack.pop"
+               ]
+            },
+            {
+               "Cluster": 1,
+               "Code": "static void spillter(String str ,HashMap hm , Stack st)\n{\n    if(str.contains(startPoint)) {           \n        int i = 1;\n        String searchString;\n        if(st.size()>0)\n        {\n            searchString = st.pop().toString();    \n        }\n        else\n        {\n            searchString = startPoint;\n        }\n\n        while(true)\n        {        \n            String fsearch;\n            if(searchString.equals(\"SC10CIBILTUSC2\") ||searchString.equals(\"ES07\") )\n            {\n                fsearch = searchString;\n            }\n            else if(i<=9)\n            {\n                fsearch = searchString+\"0\"+i; \n            }\n            else\n            {\n                fsearch = searchString+i;   \n            }\n            if(str.contains(fsearch))\n            {\n                int end = str.indexOf(fsearch);  \n                if(end == 0)\n                {\n                    end = str.length();\n                }\n                hm.put(startPoint,str.substring(startPoint.length(), end));                     \n                str = str.substring(end);\n                startPoint = fsearch;\n                i++;\n                if(fsearch.equals(\"SC10CIBILTUSC2\"))                       \n                {\n                    spillter(str,hm,st); \n                    break;\n                }                       \n            }\n            else\n            {\n                if(str.length()>0 && !str.isEmpty())\n                {\n                    spillter(str,hm,st);                       \n                }                         \n                break;\n            }\n        }\n    }\n}\n",
+               "LOC": 58,
+               "Url": "https://codereview.stackexchange.com/questions/161920/split-a-long-string-using-recursive-function",
+               "Score": 0.3723820675,
+               "API_Weights": 4.3603114441,
+               "API_Qualified_Names": {
+                  "HashMap.put": "java.util.HashMap.put",
+                  "Stack.size": "java.util.Stack.size",
+                  "Stack.pop": "java.util.Stack.pop"
+               },
+               "Url_Position": 23,
+               "In_Page_Order": 16,
+               "Num_API_Calls": 3,
+               "Dist_Center": 0.3810832207,
+               "MethodInvocations": [
+                  "Stack.pop",
+                  "Stack.size",
+                  "HashMap.put"
+               ]
+            },
+            {
+               "Cluster": 1,
+               "Code": "public class StringUtil {\n\n  private static final String HT = \"\\t\";\n  private static final String CRLF = \"\\r\\n\";\n\n  // This class cannot be instantiated\n  private StringUtil() {\n  }\n\n  /**\n   * Split the string into an array of strings using one of the separator in\n   * 'sep'.\n   * \n   * @param s\n   *            the string to tokenize\n   * @param sep\n   *            a list of separator to use\n   * \n   * @return the array of tokens (an array of size 1 with the original string\n   *         if no separator found)\n   */\n  public static String[] split(final String s, final String sep) {\n    // convert a String s to an Array, the elements\n    // are delimited by sep\n    final Vector<Integer> tokenIndex = new Vector<Integer>(10);\n    final int len = s.length();\n    int i;\n\n    // Find all characters in string matching one of the separators in 'sep'\n    for (i = 0; i < len; i++)\n      if (sep.indexOf(s.charAt(i)) != -1)\n        tokenIndex.addElement(new Integer(i));\n\n    final int size = tokenIndex.size();\n    final String[] elements = new String[size + 1];\n\n    // No separators: return the string as the first element\n    if (size == 0)\n      elements[0] = s;\n    else {\n      // Init indexes\n      int start = 0;\n      int end = (tokenIndex.elementAt(0)).intValue();\n      // Get the first token\n      elements[0] = s.substring(start, end);\n\n      // Get the mid tokens\n      for (i = 1; i < size; i++) {\n        // update indexes\n        start = (tokenIndex.elementAt(i - 1)).intValue() + 1;\n        end = (tokenIndex.elementAt(i)).intValue();\n        elements[i] = s.substring(start, end);\n      }\n      // Get last token\n      start = (tokenIndex.elementAt(i - 1)).intValue() + 1;\n      elements[i] = (start < s.length()) ? s.substring(start) : \"\";\n    }\n\n    return elements;\n  }\n\n}\n",
+               "LOC": 63,
+               "Url": "https://stackoverflow.com/questions/6305675/split-string-with-separator-in-java",
+               "Score": 0.0,
+               "API_Weights": 1.7320508076,
+               "API_Qualified_Names": {
+                  "Vector.__init__": "java.util.Vector.__init__",
+                  "Vector.size": "java.util.Vector.size",
+                  "Vector.elementAt": "java.util.Vector.elementAt"
+               },
+               "Url_Position": 4,
+               "In_Page_Order": 10,
+               "Num_API_Calls": 3,
+               "Dist_Center": 0.5344453447,
+               "MethodInvocations": [
+                  "Vector.elementAt",
+                  "Vector.size",
+                  "Vector.__init__"
+               ]
+            }
+         ],
+         "avg_cluster_api_weights": 4.538247069784349,
+         "top_apis_by_cluster": [
+            "stack.pop",
+            "stack.size",
+            "set.iterator",
+            "iterator.next",
+            "iterator.hasnext",
+            "hashmap.put",
+            "map.put",
+            "stack.isempty"
+         ]
+      },
+      {
+         "cluster_snippets": [
+            {
+               "Cluster": 2,
+               "Code": "\r\n// Reverse the words in a String using split() method of the String class\r\npublic class StringSplitTest {\r\n   public static void main(String[] args) {\r\n      String str = \"Monday Tuesday Wednesday Thursday Friday Saturday Sunday\";\r\n      String[] tokens = str.split(\"\\\\s\");  // white space '\\s' as delimiter\r\n      StringBuilder sb = new StringBuilder();\r\n      for (int i = 0; i < tokens.length; ++i) {\r\n         sb.insert(0, tokens[i]);\r\n         if (i < tokens.length - 1) {\r\n            sb.insert(0, \" \");\r\n         }\r\n      }\r\n      String strReverse = sb.toString();\r\n      System.out.println(strReverse);\r\n   }\r\n}",
+               "LOC": 17,
+               "Url": "https://www.ntu.edu.sg/home/ehchua/programming/java/J3d_String.html",
+               "Score": 1.0,
+               "API_Weights": 1.803053186,
+               "API_Qualified_Names": {
+                  "StringBuilder.__init__": "java.lang.StringBuilder.__init__",
+                  "StringBuilder.toString": "java.lang.StringBuilder.toString"
+               },
+               "Url_Position": 37,
+               "In_Page_Order": 17,
+               "Num_API_Calls": 2,
+               "Dist_Center": 0.1294268992,
+               "MethodInvocations": [
+                  "StringBuilder.toString",
+                  "StringBuilder.__init__"
+               ]
+            },
+            {
+               "Cluster": 2,
+               "Code": "\r\n// Reversing a long String via a String vs. a StringBuffer\r\npublic class StringsBenchMark {\r\n   public static void main(String[] args) {\r\n      long beginTime, elapsedTime;\r\n \r\n      // Build a long string\r\n      String str = \"\";\r\n      int size = 16536;\r\n      char ch = 'a';\r\n      beginTime = System.nanoTime();   // Reference time in nanoseconds\r\n      for (int count = 0; count < size; ++count) {\r\n         str += ch;\r\n         ++ch;\r\n         if (ch > 'z') {\r\n            ch = 'a';\r\n         }\r\n      }\r\n      elapsedTime = System.nanoTime() - beginTime;\r\n      System.out.println(\"Elapsed Time is \" + elapsedTime/1000 + \" usec (Build String)\");\r\n \r\n      // Reverse a String by building another String character-by-character in the reverse order\r\n      String strReverse = \"\";\r\n      beginTime = System.nanoTime();\r\n      for (int pos = str.length() - 1; pos >= 0 ; pos--) {\r\n         strReverse += str.charAt(pos);   // Concatenate\r\n      }\r\n      elapsedTime = System.nanoTime() - beginTime;\r\n      System.out.println(\"Elapsed Time is \" + elapsedTime/1000 + \" usec (Using String to reverse)\");\r\n \r\n      // Reverse a String via an empty StringBuffer by appending characters in the reverse order\r\n      beginTime = System.nanoTime();\r\n      StringBuffer sBufferReverse = new StringBuffer(size);\r\n      for (int pos = str.length() - 1; pos >= 0 ; pos--) {\r\n         sBufferReverse.append(str.charAt(pos));      // append\r\n      }\r\n      elapsedTime = System.nanoTime() - beginTime;\r\n      System.out.println(\"Elapsed Time is \" + elapsedTime/1000 + \" usec (Using StringBuffer to reverse)\");\r\n \r\n      // Reverse a String by creating a StringBuffer with the given String and invoke its reverse()\r\n      beginTime = System.nanoTime();\r\n      StringBuffer sBufferReverseMethod = new StringBuffer(str);\r\n      sBufferReverseMethod.reverse();     // use reverse() method\r\n      elapsedTime = System.nanoTime() - beginTime;\r\n      System.out.println(\"Elapsed Time is \" + elapsedTime/1000 + \" usec (Using StringBuffer's reverse() method)\");\r\n \r\n      // Reverse a String via an empty StringBuilder by appending characters in the reverse order\r\n      beginTime = System.nanoTime();\r\n      StringBuilder sBuilderReverse = new StringBuilder(size);\r\n      for (int pos = str.length() - 1; pos >= 0 ; pos--) {\r\n         sBuilderReverse.append(str.charAt(pos));\r\n      }\r\n      elapsedTime = System.nanoTime() - beginTime;\r\n      System.out.println(\"Elapsed Time is \" + elapsedTime/1000 + \" usec (Using StringBuilder to reverse)\");\r\n \r\n      // Reverse a String by creating a StringBuilder with the given String and invoke its reverse()\r\n      beginTime = System.nanoTime();\r\n      StringBuffer sBuilderReverseMethod = new StringBuffer(str);\r\n      sBuilderReverseMethod.reverse();\r\n      elapsedTime = System.nanoTime() - beginTime;\r\n      System.out.println(\"Elapsed Time is \" + elapsedTime/1000 + \" usec (Using StringBuidler's reverse() method)\");\r\n   }\r\n}",
+               "LOC": 63,
+               "Url": "https://www.ntu.edu.sg/home/ehchua/programming/java/J3d_String.html",
+               "Score": 0.2937752427,
+               "API_Weights": 2.6615166802,
+               "API_Qualified_Names": {
+                  "StringBuffer.__init__": "java.lang.StringBuffer.__init__",
+                  "StringBuilder.__init__": "java.lang.StringBuilder.__init__"
+               },
+               "Url_Position": 37,
+               "In_Page_Order": 13,
+               "Num_API_Calls": 4,
+               "Dist_Center": 0.197547593,
+               "MethodInvocations": [
+                  "long",
+                  "StringBuilder.__init__",
+                  "StringBuffer.reverse",
+                  "StringBuffer.__init__"
+               ]
+            },
+            {
+               "Cluster": 2,
+               "Code": "package de.vogella.regex.string;\n\nimport org.junit.Before;\nimport org.junit.Test;\n\nimport static org.junit.Assert.assertFalse;\nimport static org.junit.Assert.assertTrue;\n\npublic class StringMatcherTest {\n    private StringMatcher m;\n\n    @Before\n    public void setup(){\n        m = new StringMatcher();\n    }\n\n    @Test\n    public void testIsTrue() {\n        assertTrue(m.isTrue(\"true\"));\n        assertFalse(m.isTrue(\"true2\"));\n        assertFalse(m.isTrue(\"True\"));\n    }\n\n    @Test\n    public void testIsTrueVersion2() {\n        assertTrue(m.isTrueVersion2(\"true\"));\n        assertFalse(m.isTrueVersion2(\"true2\"));\n        assertTrue(m.isTrueVersion2(\"True\"));;\n    }\n\n    @Test\n    public void testIsTrueOrYes() {\n        assertTrue(m.isTrueOrYes(\"true\"));\n        assertTrue(m.isTrueOrYes(\"yes\"));\n        assertTrue(m.isTrueOrYes(\"Yes\"));\n        assertFalse(m.isTrueOrYes(\"no\"));\n    }\n\n    @Test\n    public void testContainsTrue() {\n        assertTrue(m.containsTrue(\"thetruewithin\"));\n    }\n\n    @Test\n    public void testIsThreeLetters() {\n        assertTrue(m.isThreeLetters(\"abc\"));\n        assertFalse(m.isThreeLetters(\"abcd\"));\n    }\n\n    @Test\n    public void testisNoNumberAtBeginning() {\n        assertTrue(m.isNoNumberAtBeginning(\"abc\"));\n        assertFalse(m.isNoNumberAtBeginning(\"1abcd\"));\n        assertTrue(m.isNoNumberAtBeginning(\"a1bcd\"));\n        assertTrue(m.isNoNumberAtBeginning(\"asdfdsf\"));\n    }\n\n    @Test\n    public void testisIntersection() {\n        assertTrue(m.isIntersection(\"1\"));\n        assertFalse(m.isIntersection(\"abcksdfkdskfsdfdsf\"));\n        assertTrue(m.isIntersection(\"skdskfjsmcnxmvjwque484242\"));\n    }\n\n    @Test\n    public void testLessThenThreeHundred() {\n        assertTrue(m.isLessThenThreeHundred(\"288\"));\n        assertFalse(m.isLessThenThreeHundred(\"3288\"));\n        assertFalse(m.isLessThenThreeHundred(\"328 8\"));\n        assertTrue(m.isLessThenThreeHundred(\"1\"));\n        assertTrue(m.isLessThenThreeHundred(\"99\"));\n        assertFalse(m.isLessThenThreeHundred(\"300\"));\n    }\n\n}",
+               "LOC": 75,
+               "Url": "http://www.vogella.com/tutorials/JavaRegularExpressions/article.html",
+               "Score": -2.220446049e-16,
+               "API_Weights": 3.0,
+               "API_Qualified_Names": {
+                  "StringMatcher.__init__": "org.eclipse.ui.internal.misc.StringMatcher.__init__"
+               },
+               "Url_Position": 32,
+               "In_Page_Order": 7,
+               "Num_API_Calls": 9,
+               "Dist_Center": 0.2258844266,
+               "MethodInvocations": [
+                  "StringMatcher.isLessThenThreeHundred",
+                  "StringMatcher.containsTrue",
+                  "StringMatcher.isTrueVersion2",
+                  "StringMatcher.isTrue",
+                  "StringMatcher.isThreeLetters",
+                  "StringMatcher.isTrueOrYes",
+                  "StringMatcher.__init__",
+                  "StringMatcher.isNoNumberAtBeginning",
+                  "StringMatcher.isIntersection"
+               ]
+            }
+         ],
+         "avg_cluster_api_weights": 2.488189955403852,
+         "top_apis_by_cluster": [
+            "stringbuilder.__init__",
+            "stringbuilder.tostring",
+            "stringbuffer.__init__",
+            "stringbuffer.reverse",
+            "long",
+            "stringmatcher.isnonumberatbeginning",
+            "stringmatcher.__init__",
+            "stringmatcher.containstrue"
+         ]
+      },
+      {
+         "cluster_snippets": [
+            {
+               "Cluster": 3,
+               "Code": "package de.vogella.regex.numbermatch;\nimport java.util.regex.Matcher;\nimport java.util.regex.Pattern;\n\nimport org.junit.Test;\n\nimport static org.junit.Assert.assertFalse;\nimport static org.junit.Assert.assertTrue;\n\npublic class CheckNumber {\n\n\n    @Test\n    public void testSimpleTrue() {\n        String s= \"1233\";\n        assertTrue(test(s));\n        s= \"0\";\n        assertFalse(test(s));\n        s = \"29 Kasdkf 2300 Kdsdf\";\n        assertTrue(test(s));\n        s = \"99900234\";\n        assertTrue(test(s));\n    }\n\n\n\n\n    public static boolean test (String s){\n        Pattern pattern = Pattern.compile(\"\\\\d{3}\");\n        Matcher matcher = pattern.matcher(s);\n        if (matcher.find()){\n            return true;\n        }\n        return false;\n    }\n\n}",
+               "LOC": 37,
+               "Url": "http://www.vogella.com/tutorials/JavaRegularExpressions/article.html",
+               "Score": 1.0,
+               "API_Weights": 4.6619098778,
+               "API_Qualified_Names": {
+                  "Pattern.matcher": "java.util.regex.Pattern.matcher",
+                  "Matcher.find": "java.util.regex.Matcher.find"
+               },
+               "Url_Position": 32,
+               "In_Page_Order": 11,
+               "Num_API_Calls": 2,
+               "Dist_Center": 0.0353321593,
+               "MethodInvocations": [
+                  "Matcher.find",
+                  "Pattern.matcher"
+               ]
+            },
+            {
+               "Cluster": 3,
+               "Code": "<pre><code>import java.util.regex.Matcher;\nimport java.util.regex.Pattern;\n\npublic class TrialClass\n{\n    public static void main(String[] args)\n    {\n        Pattern p=Pattern.compile(\"[0-9]+\");\n        Matcher m=p.matcher(\"004-034556\");\n\n        while(m.find())\n        {\n            System.out.println(m.group());\n        }\n    }\n}\n</code></pre>",
+               "LOC": 17,
+               "Url": "https://stackoverflow.com/questions/3481828/how-to-split-a-string-in-java",
+               "Score": 0.9259596117,
+               "API_Weights": 6.598934851,
+               "API_Qualified_Names": {
+                  "Pattern.matcher": "java.util.regex.Pattern.matcher",
+                  "Matcher.find": "java.util.regex.Matcher.find",
+                  "Matcher.group": "java.util.regex.Matcher.group"
+               },
+               "Url_Position": 1,
+               "In_Page_Order": 20,
+               "Num_API_Calls": 3,
+               "Dist_Center": 0.0562665881,
+               "MethodInvocations": [
+                  "Matcher.group",
+                  "Matcher.find",
+                  "Pattern.matcher"
+               ]
+            },
+            {
+               "Cluster": 3,
+               "Code": "package de.vogella.regex.test;\n\nimport java.util.regex.Matcher;\nimport java.util.regex.Pattern;\n\npublic class RegexTestPatternMatcher {\n    public static final String EXAMPLE_TEST = \"This is my small example string which I'm going to use for pattern matching.\";\n\n    public static void main(String[] args) {\n        Pattern pattern = Pattern.compile(\"\\\\w+\");\n        // in case you would like to ignore case sensitivity,\n        // you could use this statement:\n        // Pattern pattern = Pattern.compile(\"\\\\s+\", Pattern.CASE_INSENSITIVE);\n        Matcher matcher = pattern.matcher(EXAMPLE_TEST);\n        // check all occurance\n        while (matcher.find()) {\n            System.out.print(\"Start index: \" + matcher.start());\n            System.out.print(\" End index: \" + matcher.end() + \" \");\n            System.out.println(matcher.group());\n        }\n        // now create a new pattern and matcher to replace whitespace with tabs\n        Pattern replace = Pattern.compile(\"\\\\s+\");\n        Matcher matcher2 = replace.matcher(EXAMPLE_TEST);\n        System.out.println(matcher2.replaceAll(\"\\t\"));\n    }\n}",
+               "LOC": 26,
+               "Url": "http://www.vogella.com/tutorials/JavaRegularExpressions/article.html",
+               "Score": 0.4222390406,
+               "API_Weights": 8.0403578459,
+               "API_Qualified_Names": {
+                  "Pattern.matcher": "java.util.regex.Pattern.matcher",
+                  "Matcher.find": "java.util.regex.Matcher.find",
+                  "Matcher.start": "java.util.regex.Matcher.start",
+                  "Matcher.end": "java.util.regex.Matcher.end",
+                  "Matcher.group": "java.util.regex.Matcher.group",
+                  "Matcher.replaceAll": "java.util.regex.Matcher.replaceAll"
+               },
+               "Url_Position": 32,
+               "In_Page_Order": 8,
+               "Num_API_Calls": 6,
+               "Dist_Center": 0.1986902391,
+               "MethodInvocations": [
+                  "Matcher.replaceAll",
+                  "Matcher.group",
+                  "Pattern.matcher",
+                  "Matcher.end",
+                  "Matcher.start",
+                  "Matcher.find"
+               ]
+            },
+            {
+               "Cluster": 3,
+               "Code": "import java.util.ArrayList;\nimport java.util.HashMap;\nimport java.util.List;\nimport java.util.regex.Matcher;\nimport java.util.regex.Pattern;\n\npublic class TestRegex {\n    private static String testString = \"THAKARE0225RAJENDRA JANKIRAM THAKARE07082810198108012ID03I010102010210AFFPT8319BID03I0201020602126165040199789001YPT03T010108425188000302039001YPT03T02011022425188000302029001YPT03T03010842518800030203PT03T04011099877939000302019001YEM03E01010210020831102016030201SC10CIBILTUSC2010204020210030830122016040500694250220260211270205PA03A010124610  B WING   SAGAR TECH0224PLAZA ANDHERI KURLA ROAD0323SAKI NAKA JUNCTION NEAR0422BY SAKI NAKA METRO STN0506MUMBAI06022707064000720802031008280620169001YPA03A020122501-B2 EKTA SAFALE CHS0220OLD AGRA ROAD CASTLE0309NILL NAKA0505THANE0602270706400601080204100824062016PA03A030115SAKINAKA MUMBAI06022707064000700802031008310320169001YPA03A0401362B 501 EKATA SAFALE CHS BH. SAIANAND0206MUMBAI06022707064001640802021008310320169001YTL04T0010213NOT DISCLOSED040210050110808230320160908301020161108301120161205272231305272232827000000000000000000000000000300801112016310801032016IQ04I0010108281220160413NOT DISCLOSED0502050606900000IQ04I0020108231220160413NOT DISCLOSED0502050606400000IQ04I0030108251120160413NOT DISCLOSED050210060550000IQ04I0040108260820160413NOT DISCLOSED050210060550000IQ04I0050108120820160413NOT DISCLOSED0502100606100000IQ04I0060108120720160413NOT DISCLOSED050210060550000IQ04I0070108280620160413NOT DISCLOSED050210060550000IQ04I0080108240620160408RBL BANK05021006041000IQ04I0090108310320160413NOT DISCLOSED050210060550000IQ04I0100108200320160413NOT DISCLOSED05021006041000IQ04I0110108010120160413NOT DISCLOSED050210060515000ES0700016210102**\";\n    private static HashMap<String, List<String>> parsedMap = new HashMap<String, List<String>>();\n    public static void main(String[] args) {\n        String regex = \"(?=(((DR03D0|IQ04I0|TL04T0|PA03A|SC10CIBILTUSC2|SC10CIBILTUSC2|PI03I|EM03E|EC03C|PT03T|ID03I)(.*?|\\n.*?)(ES07|DR03D0|IQ04I0|TL04T0|PA03A|SC10CIBILTUSC2|SC10CIBILTUSC2|PI03I|EM03E|EC03C|PT03T|ID03I))|((ES07)(.*))))\";\n        Pattern pattern = Pattern.compile(regex);\n        Matcher matcher = pattern.matcher(testString);\n\n        while(matcher.find()) {\n            String key = matcher.group(3);\n            String value = matcher.group(4);\n\n            if(key == null){\n                key = matcher.group(7);\n                value = matcher.group(8);\n            }\n            System.out.println(key + \" => \" + value);\n            List<String>contentsList = parsedMap.get(key);\n            if(contentsList == null) {\n                contentsList = new ArrayList<String>();\n                parsedMap.put(key, contentsList);\n            }\n            contentsList.add(value);\n        }\n        System.out.println(parsedMap);\n        System.out.println(parsedMap.values().size());\n    }\n}\n",
+               "LOC": 35,
+               "Url": "https://codereview.stackexchange.com/questions/161920/split-a-long-string-using-recursive-function",
+               "Score": 0.3097258489,
+               "API_Weights": 9.1150742088,
+               "API_Qualified_Names": {
+                  "Pattern.matcher": "java.util.regex.Pattern.matcher",
+                  "Matcher.find": "java.util.regex.Matcher.find",
+                  "Matcher.group": "java.util.regex.Matcher.group",
+                  "HashMap.get": "java.util.HashMap.get",
+                  "List.__init__": "java.util.List.__init__",
+                  "HashMap.put": "java.util.HashMap.put",
+                  "List.add": "java.util.List.add",
+                  "HashMap.values": "java.util.HashMap.values"
+               },
+               "Url_Position": 23,
+               "In_Page_Order": 42,
+               "Num_API_Calls": 8,
+               "Dist_Center": 0.2305025979,
+               "MethodInvocations": [
+                  "List.__init__",
+                  "List.add",
+                  "Matcher.group",
+                  "HashMap.values",
+                  "Pattern.matcher",
+                  "HashMap.get",
+                  "HashMap.put",
+                  "Matcher.find"
+               ]
+            },
+            {
+               "Cluster": 3,
+               "Code": "<pre><code>import java.util.regex.Pattern;\nimport java.util.regex.Matcher;\n\nclass SplitExample\n{\n    private static Pattern twopart = Pattern.compile(\"(\\\\d+)-(\\\\d+)\");\n\n    public static void checkString(String s)\n    {\n        Matcher m = twopart.matcher(s);\n        if (m.matches()) {\n            System.out.println(s + \" matches; first part is \" + m.group(1) +\n                               \", second part is \" + m.group(2) + \".\");\n        } else {\n            System.out.println(s + \" does not match.\");\n        }\n    }\n\n    public static void main(String[] args) {\n        checkString(\"123-4567\");\n        checkString(\"foo-bar\");\n        checkString(\"123-\");\n        checkString(\"-4567\");\n        checkString(\"123-4567-890\");\n    }\n}\n</code></pre>",
+               "LOC": 27,
+               "Url": "https://stackoverflow.com/questions/3481828/how-to-split-a-string-in-java",
+               "Score": 0.2085479499,
+               "API_Weights": 5.1609512299,
+               "API_Qualified_Names": {
+                  "Pattern.matcher": "java.util.regex.Pattern.matcher",
+                  "Matcher.matches": "java.util.regex.Matcher.matches",
+                  "Matcher.group": "java.util.regex.Matcher.group"
+               },
+               "Url_Position": 1,
+               "In_Page_Order": 2,
+               "Num_API_Calls": 3,
+               "Dist_Center": 0.2591099778,
+               "MethodInvocations": [
+                  "Matcher.matches",
+                  "Matcher.group",
+                  "Pattern.matcher"
+               ]
+            },
+            {
+               "Cluster": 3,
+               "Code": "package de.vogella.regex.weblinks;\n\nimport java.io.BufferedReader;\nimport java.io.IOException;\nimport java.io.InputStreamReader;\nimport java.net.MalformedURLException;\nimport java.net.URL;\nimport java.util.ArrayList;\nimport java.util.List;\nimport java.util.regex.Matcher;\nimport java.util.regex.Pattern;\n\npublic class LinkGetter {\n    private Pattern htmltag;\n    private Pattern link;\n\n    public LinkGetter() {\n        htmltag = Pattern.compile(\"<a\\\\b[^>]*href=\\\"[^>]*>(.*?)</a>\");\n        link = Pattern.compile(\"href=\\\"[^>]*\\\">\");\n    }\n\n    public List<String> getLinks(String url) {\n        List<String> links = new ArrayList<String>();\n        try {\n            BufferedReader bufferedReader = new BufferedReader(\n                    new InputStreamReader(new URL(url).openStream()));\n            String s;\n            StringBuilder builder = new StringBuilder();\n            while ((s = bufferedReader.readLine()) != null) {\n                builder.append(s);\n            }\n\n            Matcher tagmatch = htmltag.matcher(builder.toString());\n            while (tagmatch.find()) {\n                Matcher matcher = link.matcher(tagmatch.group());\n                matcher.find();\n                String link = matcher.group().replaceFirst(\"href=\\\"\", \"\")\n                        .replaceFirst(\"\\\">\", \"\")\n                        .replaceFirst(\"\\\"[\\\\s]?target=\\\"[a-zA-Z_0-9]*\", \"\");\n                if (valid(link)) {\n                    links.add(makeAbsolute(url, link));\n                }\n            }\n        } catch (MalformedURLException e) {\n            e.printStackTrace();\n        } catch (IOException e) {\n            e.printStackTrace();\n        }\n        return links;\n    }\n\n    private boolean valid(String s) {\n        if (s.matches(\"javascript:.*|mailto:.*\")) {\n            return false;\n        }\n        return true;\n    }\n\n    private String makeAbsolute(String url, String link) {\n        if (link.matches(\"http://.*\")) {\n            return link;\n        }\n        if (link.matches(\"/.*\") && url.matches(\".*$[^/]\")) {\n            return url + \"/\" + link;\n        }\n        if (link.matches(\"[^/].*\") && url.matches(\".*[^/]\")) {\n            return url + \"/\" + link;\n        }\n        if (link.matches(\"/.*\") && url.matches(\".*[/]\")) {\n            return url + link;\n        }\n        if (link.matches(\"/.*\") && url.matches(\".*[^/]\")) {\n            return url + link;\n        }\n        throw new RuntimeException(\"Cannot make the link absolute. Url: \" + url\n                + \" Link \" + link);\n    }\n}",
+               "LOC": 78,
+               "Url": "http://www.vogella.com/tutorials/JavaRegularExpressions/article.html",
+               "Score": 1.110223025e-16,
+               "API_Weights": 10.1207831302,
+               "API_Qualified_Names": {
+                  "List.__init__": "java.util.List.__init__",
+                  "URL.__init__": "java.net.URL.__init__",
+                  "InputStreamReader.__init__": "java.io.InputStreamReader.__init__",
+                  "BufferedReader.__init__": "java.io.BufferedReader.__init__",
+                  "StringBuilder.__init__": "java.lang.StringBuilder.__init__",
+                  "BufferedReader.readLine": "java.io.BufferedReader.readLine",
+                  "StringBuilder.toString": "java.lang.StringBuilder.toString",
+                  "Pattern.matcher": "java.util.regex.Pattern.matcher",
+                  "Matcher.find": "java.util.regex.Matcher.find",
+                  "Matcher.group": "java.util.regex.Matcher.group",
+                  "List.add": "java.util.List.add",
+                  "RuntimeException.__init__": "java.lang.RuntimeException.__init__"
+               },
+               "Url_Position": 32,
+               "In_Page_Order": 12,
+               "Num_API_Calls": 12,
+               "Dist_Center": 0.3180755276,
+               "MethodInvocations": [
+                  "List.__init__",
+                  "BufferedReader.readLine",
+                  "StringBuilder.__init__",
+                  "RuntimeException.__init__",
+                  "StringBuilder.toString",
+                  "InputStreamReader.__init__",
+                  "Matcher.group",
+                  "List.add",
+                  "BufferedReader.__init__",
+                  "Pattern.matcher",
+                  "URL.__init__",
+                  "Matcher.find"
+               ]
+            }
+         ],
+         "avg_cluster_api_weights": 7.2830018572678314,
+         "top_apis_by_cluster": [
+            "pattern.matcher",
+            "matcher.find",
+            "matcher.group",
+            "matcher.matches",
+            "list.add",
+            "list.__init__",
+            "matcher.start",
+            "matcher.replaceall"
+         ]
+      }
+   ]
+}

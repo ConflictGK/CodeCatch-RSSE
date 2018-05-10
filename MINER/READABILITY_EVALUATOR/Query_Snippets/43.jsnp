@@ -1,0 +1,8 @@
+Scanner in = new Scanner(new FileReader("filename.txt"));
+StringBuilder sb = new StringBuilder();
+while(in.hasNext()) {
+    sb.append(in.next());
+}
+in.close();
+outString = sb.toString();
+new InputStreamReader(new FileInputStream(fileUtf8), StandardCharsets.UTF_8)

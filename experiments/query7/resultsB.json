@@ -1,0 +1,2423 @@
+[
+  {
+    "query": "How to connect to a JDBC database",
+    "url": "https://www.mkyong.com/jdbc/connect-to-oracle-db-via-jdbc-driver-java/",
+    "url position": 12,
+    "segments": [
+      {
+        "code": "\r\nClass.forName(\"oracle.jdbc.driver.OracleDriver\");\r\nConnection connection = null;\r\nconnection = DriverManager.getConnection(\"jdbc:oracle:thin:@localhost:1521:SID\",\"username\",\"password\");\r\nconnection.close();\r\n",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Connection.close": true
+        },
+        "APIsProjects": {
+          "Connection.close": 131
+        },
+        "APIsFiles": {
+          "Connection.close": 939
+        },
+        "APIsSnippets": {
+          "Connection.close": 2361
+        },
+        "APIsQualifiedNames": {
+          "Connection.close": "java.sql.Connection.close"
+        },
+        "API_Ratio": 1.0
+      }
+    ]
+  },
+  {
+    "query": "How to connect to a JDBC database",
+    "url": "http://www.vogella.com/tutorials/MySQLJava/article.html",
+    "url position": 11,
+    "segments": [
+      {
+        "code": "package de.vogella.mysql.first;\n\nimport java.sql.Connection;\nimport java.sql.DriverManager;\nimport java.sql.PreparedStatement;\nimport java.sql.ResultSet;\nimport java.sql.SQLException;\nimport java.sql.Statement;\nimport java.util.Date;\n\npublic class MySQLAccess {\n    private Connection connect = null;\n    private Statement statement = null;\n    private PreparedStatement preparedStatement = null;\n    private ResultSet resultSet = null;\n\n    public void readDataBase() throws Exception {\n        try {\n            // This will load the MySQL driver, each DB has its own driver\n            Class.forName(\"com.mysql.jdbc.Driver\");\n            // Setup the connection with the DB\n            connect = DriverManager\n                    .getConnection(\"jdbc:mysql://localhost/feedback?\"\n                            + \"user=sqluser&password=sqluserpw\");\n\n            // Statements allow to issue SQL queries to the database\n            statement = connect.createStatement();\n            // Result set get the result of the SQL query\n            resultSet = statement\n                    .executeQuery(\"select * from feedback.comments\");\n            writeResultSet(resultSet);\n\n            // PreparedStatements can use variables and are more efficient\n            preparedStatement = connect\n                    .prepareStatement(\"insert into  feedback.comments values (default, ?, ?, ?, ? , ?, ?)\");\n            // \"myuser, webpage, datum, summary, COMMENTS from feedback.comments\");\n            // Parameters start with 1\n            preparedStatement.setString(1, \"Test\");\n            preparedStatement.setString(2, \"TestEmail\");\n            preparedStatement.setString(3, \"TestWebpage\");\n            preparedStatement.setDate(4, new java.sql.Date(2009, 12, 11));\n            preparedStatement.setString(5, \"TestSummary\");\n            preparedStatement.setString(6, \"TestComment\");\n            preparedStatement.executeUpdate();\n\n            preparedStatement = connect\n                    .prepareStatement(\"SELECT myuser, webpage, datum, summary, COMMENTS from feedback.comments\");\n            resultSet = preparedStatement.executeQuery();\n            writeResultSet(resultSet);\n\n            // Remove again the insert comment\n            preparedStatement = connect\n            .prepareStatement(\"delete from feedback.comments where myuser= ? ; \");\n            preparedStatement.setString(1, \"Test\");\n            preparedStatement.executeUpdate();\n\n            resultSet = statement\n            .executeQuery(\"select * from feedback.comments\");\n            writeMetaData(resultSet);\n\n        } catch (Exception e) {\n            throw e;\n        } finally {\n            close();\n        }\n\n    }\n\n    private void writeMetaData(ResultSet resultSet) throws SQLException {\n        //  Now get some metadata from the database\n        // Result set get the result of the SQL query\n\n        System.out.println(\"The columns in the table are: \");\n\n        System.out.println(\"Table: \" + resultSet.getMetaData().getTableName(1));\n        for  (int i = 1; i<= resultSet.getMetaData().getColumnCount(); i++){\n            System.out.println(\"Column \" +i  + \" \"+ resultSet.getMetaData().getColumnName(i));\n        }\n    }\n\n    private void writeResultSet(ResultSet resultSet) throws SQLException {\n        // ResultSet is initially before the first data set\n        while (resultSet.next()) {\n            // It is possible to get the columns via name\n            // also possible to get the columns via the column number\n            // which starts at 1\n            // e.g. resultSet.getSTring(2);\n            String user = resultSet.getString(\"myuser\");\n            String website = resultSet.getString(\"webpage\");\n            String summary = resultSet.getString(\"summary\");\n            Date date = resultSet.getDate(\"datum\");\n            String comment = resultSet.getString(\"comments\");\n            System.out.println(\"User: \" + user);\n            System.out.println(\"Website: \" + website);\n            System.out.println(\"summary: \" + summary);\n            System.out.println(\"Date: \" + date);\n            System.out.println(\"Comment: \" + comment);\n        }\n    }\n\n    // You need to close the resultSet\n    private void close() {\n        try {\n            if (resultSet != null) {\n                resultSet.close();\n            }\n\n            if (statement != null) {\n                statement.close();\n            }\n\n            if (connect != null) {\n                connect.close();\n            }\n        } catch (Exception e) {\n\n        }\n    }\n\n}",
+        "in_page_order": 4,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": true,
+        "APIs": {
+          "Connection.createStatement": true,
+          "Statement.executeQuery": true,
+          "SQLException.resultSet": true,
+          "Connection.prepareStatement": true,
+          "PreparedStatement.setString": true,
+          "Date.__init__": true,
+          "PreparedStatement.setDate": true,
+          "PreparedStatement.executeUpdate": true,
+          "PreparedStatement.executeQuery": true,
+          "ResultSet.getMetaData": true,
+          "ResultSet.next": true,
+          "ResultSet.getString": true,
+          "ResultSet.getDate": true,
+          "ResultSet.close": true,
+          "Statement.close": true,
+          "Connection.close": true
+        },
+        "APIsProjects": {
+          "Connection.createStatement": 90,
+          "Statement.executeQuery": 66,
+          "SQLException.resultSet": 7,
+          "Connection.prepareStatement": 79,
+          "PreparedStatement.setString": 72,
+          "Date.__init__": 441,
+          "PreparedStatement.setDate": 19,
+          "PreparedStatement.executeUpdate": 47,
+          "PreparedStatement.executeQuery": 67,
+          "ResultSet.getMetaData": 53,
+          "ResultSet.next": 105,
+          "ResultSet.getString": 93,
+          "ResultSet.getDate": 32,
+          "ResultSet.close": 78,
+          "Statement.close": 75,
+          "Connection.close": 131
+        },
+        "APIsFiles": {
+          "Connection.createStatement": 476,
+          "Statement.executeQuery": 258,
+          "SQLException.resultSet": 11,
+          "Connection.prepareStatement": 597,
+          "PreparedStatement.setString": 425,
+          "Date.__init__": 5276,
+          "PreparedStatement.setDate": 49,
+          "PreparedStatement.executeUpdate": 240,
+          "PreparedStatement.executeQuery": 494,
+          "ResultSet.getMetaData": 158,
+          "ResultSet.next": 873,
+          "ResultSet.getString": 671,
+          "ResultSet.getDate": 66,
+          "ResultSet.close": 413,
+          "Statement.close": 374,
+          "Connection.close": 939
+        },
+        "APIsSnippets": {
+          "Connection.createStatement": 1703,
+          "Statement.executeQuery": 617,
+          "SQLException.resultSet": 157,
+          "Connection.prepareStatement": 2802,
+          "PreparedStatement.setString": 3056,
+          "Date.__init__": 13241,
+          "PreparedStatement.setDate": 165,
+          "PreparedStatement.executeUpdate": 764,
+          "PreparedStatement.executeQuery": 1674,
+          "ResultSet.getMetaData": 274,
+          "ResultSet.next": 4030,
+          "ResultSet.getString": 4076,
+          "ResultSet.getDate": 251,
+          "ResultSet.close": 1026,
+          "Statement.close": 919,
+          "Connection.close": 2361
+        },
+        "APIsQualifiedNames": {
+          "Connection.createStatement": "java.sql.Connection.createStatement",
+          "Statement.executeQuery": "java.sql.Statement.executeQuery",
+          "SQLException.resultSet": "java.sql.SQLException.resultSet",
+          "Connection.prepareStatement": "java.sql.Connection.prepareStatement",
+          "PreparedStatement.setString": "java.sql.PreparedStatement.setString",
+          "Date.__init__": "java.util.Date.__init__",
+          "PreparedStatement.setDate": "java.sql.PreparedStatement.setDate",
+          "PreparedStatement.executeUpdate": "java.sql.PreparedStatement.executeUpdate",
+          "PreparedStatement.executeQuery": "java.sql.PreparedStatement.executeQuery",
+          "ResultSet.getMetaData": "java.sql.ResultSet.getMetaData",
+          "ResultSet.next": "java.sql.ResultSet.next",
+          "ResultSet.getString": "java.sql.ResultSet.getString",
+          "ResultSet.getDate": "java.sql.ResultSet.getDate",
+          "ResultSet.close": "java.sql.ResultSet.close",
+          "Statement.close": "java.sql.Statement.close",
+          "Connection.close": "java.sql.Connection.close"
+        },
+        "API_Ratio": 1.0
+      },
+      {
+        "code": "package de.vogella.mysql.first.test;\n\nimport de.vogella.mysql.first.MySQLAccess;\n\npublic class Main {\n    public static void main(String[] args) throws Exception {\n        MySQLAccess dao = new MySQLAccess();\n        dao.readDataBase();\n    }\n\n}",
+        "in_page_order": 5,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "MySQLAccess.__init__": false,
+          "MySQLAccess.readDataBase": false
+        },
+        "APIsProjects": {},
+        "APIsFiles": {},
+        "APIsSnippets": {},
+        "APIsQualifiedNames": {},
+        "API_Ratio": 0.0
+      }
+    ]
+  },
+  {
+    "query": "How to connect to a JDBC database",
+    "url": "https://www.tutorialspoint.com/jdbc/jdbc-db-connections.htm",
+    "url position": 2,
+    "segments": [
+      {
+        "code": "\ntry {\n   Driver myDriver = new oracle.jdbc.driver.OracleDriver();\n   DriverManager.registerDriver( myDriver );\n}\ncatch(ClassNotFoundException ex) {\n   System.out.println(\"Error: unable to load driver class!\");\n   System.exit(1);\n}\n",
+        "in_page_order": 4,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Driver.__init__": true
+        },
+        "APIsProjects": {
+          "Driver.__init__": 15
+        },
+        "APIsFiles": {
+          "Driver.__init__": 74
+        },
+        "APIsSnippets": {
+          "Driver.__init__": 100
+        },
+        "APIsQualifiedNames": {
+          "Driver.__init__": "net.hydromatic.optiq.jdbc.Driver.__init__"
+        },
+        "API_Ratio": 1.0
+      }
+    ]
+  },
+  {
+    "query": "How to connect to a JDBC database",
+    "url": "https://docs.oracle.com/javase/tutorial/jdbc/basics/connecting.html",
+    "url position": 1,
+    "segments": [
+      {
+        "code": "\npublic Connection getConnection() throws SQLException {\n\n    Connection conn = null;\n    Properties connectionProps = new Properties();\n    connectionProps.put(\"user\", this.userName);\n    connectionProps.put(\"password\", this.password);\n\n    if (this.dbms.equals(\"mysql\")) {\n        conn = DriverManager.getConnection(\n                   \"jdbc:\" + this.dbms + \"://\" +\n                   this.serverName +\n                   \":\" + this.portNumber + \"/\",\n                   connectionProps);\n    } else if (this.dbms.equals(\"derby\")) {\n        conn = DriverManager.getConnection(\n                   \"jdbc:\" + this.dbms + \":\" +\n                   this.dbName +\n                   \";create=true\",\n                   connectionProps);\n    }\n    System.out.println(\"Connected to database\");\n    return conn;\n}\n",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Properties.__init__": true,
+          "Properties.put": true
+        },
+        "APIsProjects": {
+          "Properties.__init__": 302,
+          "Properties.put": 168
+        },
+        "APIsFiles": {
+          "Properties.__init__": 2658,
+          "Properties.put": 752
+        },
+        "APIsSnippets": {
+          "Properties.__init__": 4618,
+          "Properties.put": 2848
+        },
+        "APIsQualifiedNames": {
+          "Properties.__init__": "java.util.Properties.__init__",
+          "Properties.put": "java.util.Properties.put"
+        },
+        "API_Ratio": 1.0
+      }
+    ]
+  },
+  {
+    "query": "How to connect to a JDBC database",
+    "url": "https://stackoverflow.com/questions/10915375/create-a-class-to-connect-to-any-database-using-jdbc",
+    "url position": 5,
+    "segments": [
+      {
+        "code": "private Connection con = null;\nprivate Statement stmt = null;\nprivate ResultSet rs = null;\n\ncon = ConnectionManager.getConnection();\nstmt = con.createStatement();\nrs = stmt.executeQuery(sql);\n",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": true,
+        "answer_votes": "10",
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Connection.createStatement": true,
+          "Statement.executeQuery": true
+        },
+        "APIsProjects": {
+          "Connection.createStatement": 90,
+          "Statement.executeQuery": 66
+        },
+        "APIsFiles": {
+          "Connection.createStatement": 476,
+          "Statement.executeQuery": 258
+        },
+        "APIsSnippets": {
+          "Connection.createStatement": 1703,
+          "Statement.executeQuery": 617
+        },
+        "APIsQualifiedNames": {
+          "Connection.createStatement": "java.sql.Connection.createStatement",
+          "Statement.executeQuery": "java.sql.Statement.executeQuery"
+        },
+        "API_Ratio": 1.0
+      }
+    ]
+  },
+  {
+    "query": "How to connect to a JDBC database",
+    "url": "https://stackoverflow.com/questions/4832056/java-jdbc-how-to-connect-to-oracle-using-service-name-instead-of-sid",
+    "url position": 6,
+    "segments": [
+      {
+        "code": "import java.sql.*; \n\npublic class MyDBConnect {\n\n    public static void main(String[] args) throws SQLException {\n\n        try { \n            String dbURL = \"jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=whatEverYourHostNameIs)(PORT=1521)))(CONNECT_DATA=(SERVICE_NAME=yourServiceName)))\";\n            String strUserID = \"yourUserId\";\n            String strPassword = \"yourPassword\";\n            Connection myConnection=DriverManager.getConnection(dbURL,strUserID,strPassword);\n\n            Statement sqlStatement = myConnection.createStatement();\n            String readRecordSQL = \"select * from sa_work_order where WORK_ORDER_NO = '1503090' \";  \n            ResultSet myResultSet = sqlStatement.executeQuery(readRecordSQL);\n            while (myResultSet.next()) {\n                System.out.println(\"Record values: \" + myResultSet.getString(\"WORK_ORDER_NO\"));\n            }\n            myResultSet.close();\n            myConnection.close();\n\n        } catch (Exception e) {\n            System.out.println(e);\n        }       \n    }\n}\n",
+        "in_page_order": 5,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": "5",
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Connection.createStatement": true,
+          "Statement.executeQuery": true,
+          "ResultSet.next": true,
+          "ResultSet.getString": true,
+          "ResultSet.close": true,
+          "Connection.close": true
+        },
+        "APIsProjects": {
+          "Connection.createStatement": 90,
+          "Statement.executeQuery": 66,
+          "ResultSet.next": 105,
+          "ResultSet.getString": 93,
+          "ResultSet.close": 78,
+          "Connection.close": 131
+        },
+        "APIsFiles": {
+          "Connection.createStatement": 476,
+          "Statement.executeQuery": 258,
+          "ResultSet.next": 873,
+          "ResultSet.getString": 671,
+          "ResultSet.close": 413,
+          "Connection.close": 939
+        },
+        "APIsSnippets": {
+          "Connection.createStatement": 1703,
+          "Statement.executeQuery": 617,
+          "ResultSet.next": 4030,
+          "ResultSet.getString": 4076,
+          "ResultSet.close": 1026,
+          "Connection.close": 2361
+        },
+        "APIsQualifiedNames": {
+          "Connection.createStatement": "java.sql.Connection.createStatement",
+          "Statement.executeQuery": "java.sql.Statement.executeQuery",
+          "ResultSet.next": "java.sql.ResultSet.next",
+          "ResultSet.getString": "java.sql.ResultSet.getString",
+          "ResultSet.close": "java.sql.ResultSet.close",
+          "Connection.close": "java.sql.Connection.close"
+        },
+        "API_Ratio": 1.0
+      }
+    ]
+  },
+  {
+    "query": "How to connect to a JDBC database",
+    "url": "https://stackoverflow.com/questions/4320623/connecting-a-microsoft-access-database-to-java-using-jdbc-and-compiling",
+    "url position": 7,
+    "segments": [
+      {
+        "code": "package javaapplication1;\n\nimport java.sql.*;\n\npublic class MSaccess_archive {\npublic static void main(String[] args) {\n\n    try {\n\n       Class.forName(\"sun.jdbc.odbc.JdbcOdbcDriver\");\n// set this to a MS Access DB you have on your machine\nString filename = \"mdbTEST.mdb\";\nString database = \"jdbc:odbc:Driver={Microsoft Access Driver (*.mdb)};DBQ=\";\ndatabase+= filename.trim() + \";DriverID=22;}\"; // add on to the end \n// now we can get the connection from the DriverManager\nConnection con = DriverManager.getConnection( database ,\"\",\"\");\n\n        Statement stmt = con.createStatement();\n\n        stmt.execute(\"select * from student\"); // execute query in table student\n\n        ResultSet rs = stmt.getResultSet(); // get any Result that came from our query\n\n        if (rs != null)\n         while ( rs.next() ){\n\n            System.out.println(\"Name: \" + rs.getInt(\"Age\") + \" ID:       \"+rs.getString(\"Course\"));\n            }\n\n            stmt.close();\n            con.close();\n        }\n        catch (Exception err) {\n            System.out.println(\"ERROR: \" + err);\n        }\n   }\n\n}\n",
+        "in_page_order": 5,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": "0",
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Connection.createStatement": true,
+          "Statement.execute": true,
+          "Statement.getResultSet": true,
+          "ResultSet.next": true,
+          "ResultSet.getString": true,
+          "ResultSet.getInt": true,
+          "Statement.close": true,
+          "Connection.close": true
+        },
+        "APIsProjects": {
+          "Connection.createStatement": 90,
+          "Statement.execute": 58,
+          "Statement.getResultSet": 19,
+          "ResultSet.next": 105,
+          "ResultSet.getString": 93,
+          "ResultSet.getInt": 70,
+          "Statement.close": 75,
+          "Connection.close": 131
+        },
+        "APIsFiles": {
+          "Connection.createStatement": 476,
+          "Statement.execute": 243,
+          "Statement.getResultSet": 40,
+          "ResultSet.next": 873,
+          "ResultSet.getString": 671,
+          "ResultSet.getInt": 364,
+          "Statement.close": 374,
+          "Connection.close": 939
+        },
+        "APIsSnippets": {
+          "Connection.createStatement": 1703,
+          "Statement.execute": 1046,
+          "Statement.getResultSet": 130,
+          "ResultSet.next": 4030,
+          "ResultSet.getString": 4076,
+          "ResultSet.getInt": 1510,
+          "Statement.close": 919,
+          "Connection.close": 2361
+        },
+        "APIsQualifiedNames": {
+          "Connection.createStatement": "java.sql.Connection.createStatement",
+          "Statement.execute": "java.sql.Statement.execute",
+          "Statement.getResultSet": "java.sql.Statement.getResultSet",
+          "ResultSet.next": "java.sql.ResultSet.next",
+          "ResultSet.getString": "java.sql.ResultSet.getString",
+          "ResultSet.getInt": "java.sql.ResultSet.getInt",
+          "Statement.close": "java.sql.Statement.close",
+          "Connection.close": "java.sql.Connection.close"
+        },
+        "API_Ratio": 1.0
+      }
+    ]
+  },
+  {
+    "query": "How to connect to a JDBC database",
+    "url": "https://stackoverflow.com/questions/2839321/connect-java-to-a-mysql-database",
+    "url position": 8,
+    "segments": [
+      {
+        "code": "Context context = new InitialContext();\nDataSource dataSource = (DataSource) context.lookup(\"java:comp/env/jdbc/myDB\");\n",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": true,
+        "answer_votes": "155",
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Context.__init__": true,
+          "Context.lookup": true
+        },
+        "APIsProjects": {
+          "Context.__init__": 135,
+          "Context.lookup": 32
+        },
+        "APIsFiles": {
+          "Context.__init__": 736,
+          "Context.lookup": 174
+        },
+        "APIsSnippets": {
+          "Context.__init__": 1368,
+          "Context.lookup": 398
+        },
+        "APIsQualifiedNames": {
+          "Context.__init__": "org.apache.velocity.context.Context.__init__",
+          "Context.lookup": "javax.naming.Context.lookup"
+        },
+        "API_Ratio": 1.0
+      },
+      {
+        "code": "MysqlDataSource dataSource = new MysqlDataSource();\ndataSource.setUser(\"scott\");\ndataSource.setPassword(\"tiger\");\ndataSource.setServerName(\"myDBHost.example.org\");\n",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": true,
+        "answer_votes": "155",
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "MysqlDataSource.__init__": false,
+          "MysqlDataSource.setUser": false,
+          "MysqlDataSource.setPassword": false,
+          "MysqlDataSource.setServerName": false
+        },
+        "APIsProjects": {},
+        "APIsFiles": {},
+        "APIsSnippets": {},
+        "APIsQualifiedNames": {},
+        "API_Ratio": 0.0
+      },
+      {
+        "code": "String url = \"jdbc:mysql://localhost:3306/javabase\";\nString username = \"java\";\nString password = \"password\";\n\nSystem.out.println(\"Connecting database...\");\n\ntry (Connection connection = DriverManager.getConnection(url, username, password)) {\n    System.out.println(\"Database connected!\");\n} catch (SQLException e) {\n    throw new IllegalStateException(\"Cannot connect the database!\", e);\n}\n",
+        "in_page_order": 2,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": "374",
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "IllegalStateException.__init__": true
+        },
+        "APIsProjects": {
+          "IllegalStateException.__init__": 589
+        },
+        "APIsFiles": {
+          "IllegalStateException.__init__": 9878
+        },
+        "APIsSnippets": {
+          "IllegalStateException.__init__": 22622
+        },
+        "APIsQualifiedNames": {
+          "IllegalStateException.__init__": "org.jboss.weld.exceptions.IllegalStateException.__init__"
+        },
+        "API_Ratio": 1.0
+      },
+      {
+        "code": "System.out.println(\"Loading driver...\");\n\ntry {\n    Class.forName(\"com.mysql.jdbc.Driver\");\n    System.out.println(\"Driver loaded!\");\n} catch (ClassNotFoundException e) {\n    throw new IllegalStateException(\"Cannot find the driver in the classpath!\", e);\n}\n",
+        "in_page_order": 2,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": "374",
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "IllegalStateException.__init__": true
+        },
+        "APIsProjects": {
+          "IllegalStateException.__init__": 589
+        },
+        "APIsFiles": {
+          "IllegalStateException.__init__": 9878
+        },
+        "APIsSnippets": {
+          "IllegalStateException.__init__": 22622
+        },
+        "APIsQualifiedNames": {
+          "IllegalStateException.__init__": "org.jboss.weld.exceptions.IllegalStateException.__init__"
+        },
+        "API_Ratio": 1.0
+      },
+      {
+        "code": "// create properties\nprivate Properties getProperties() {\n    if (properties == null) {\n        properties = new Properties();\n        properties.setProperty(\"user\", USERNAME);\n        properties.setProperty(\"password\", PASSWORD);\n        properties.setProperty(\"MaxPooledStatements\", MAX_POOL);\n    }\n    return properties;\n}\n",
+        "in_page_order": 3,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": "23",
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Properties.__init__": true
+        },
+        "APIsProjects": {
+          "Properties.__init__": 302
+        },
+        "APIsFiles": {
+          "Properties.__init__": 2658
+        },
+        "APIsSnippets": {
+          "Properties.__init__": 4618
+        },
+        "APIsQualifiedNames": {
+          "Properties.__init__": "java.util.Properties.__init__"
+        },
+        "API_Ratio": 1.0
+      },
+      {
+        "code": "import java.sql.Connection;\nimport java.sql.DriverManager;\nimport java.sql.SQLException;\nimport java.util.Properties;\n\npublic class MysqlConnect {\n    // init database constants\n    private static final String DATABASE_DRIVER = \"com.mysql.jdbc.Driver\";\n    private static final String DATABASE_URL = \"jdbc:mysql://localhost:3306/database_name\";\n    private static final String USERNAME = \"root\";\n    private static final String PASSWORD = \"\";\n    private static final String MAX_POOL = \"250\";\n\n    // init connection object\n    private Connection connection;\n    // init properties object\n    private Properties properties;\n\n    // create properties\n    private Properties getProperties() {\n        if (properties == null) {\n            properties = new Properties();\n            properties.setProperty(\"user\", USERNAME);\n            properties.setProperty(\"password\", PASSWORD);\n            properties.setProperty(\"MaxPooledStatements\", MAX_POOL);\n        }\n        return properties;\n    }\n\n    // connect database\n    public Connection connect() {\n        if (connection == null) {\n            try {\n                Class.forName(DATABASE_DRIVER);\n                connection = DriverManager.getConnection(DATABASE_URL, getProperties());\n            } catch (ClassNotFoundException | SQLException e) {\n                e.printStackTrace();\n            }\n        }\n        return connection;\n    }\n\n    // disconnect database\n    public void disconnect() {\n        if (connection != null) {\n            try {\n                connection.close();\n                connection = null;\n            } catch (SQLException e) {\n                e.printStackTrace();\n            }\n        }\n    }\n}\n",
+        "in_page_order": 3,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": "23",
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Properties.__init__": true,
+          "Properties.setProperty": true,
+          "Properties": true,
+          "Connection.close": true
+        },
+        "APIsProjects": {
+          "Properties.__init__": 302,
+          "Properties.setProperty": 184,
+          "Properties": 83,
+          "Connection.close": 131
+        },
+        "APIsFiles": {
+          "Properties.__init__": 2658,
+          "Properties.setProperty": 1282,
+          "Properties": 263,
+          "Connection.close": 939
+        },
+        "APIsSnippets": {
+          "Properties.__init__": 4618,
+          "Properties.setProperty": 5579,
+          "Properties": 433,
+          "Connection.close": 2361
+        },
+        "APIsQualifiedNames": {
+          "Properties.__init__": "java.util.Properties.__init__",
+          "Properties.setProperty": "java.util.Properties.setProperty",
+          "Properties": "java.util.Properties.Properties",
+          "Connection.close": "java.sql.Connection.close"
+        },
+        "API_Ratio": 1.0
+      },
+      {
+        "code": "// !_ note _! this is just init\n// it will not create a connection\nMysqlConnect mysqlConnect = new MysqlConnect();\n",
+        "in_page_order": 3,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": "23",
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "MysqlConnect.__init__": false
+        },
+        "APIsProjects": {},
+        "APIsFiles": {},
+        "APIsSnippets": {},
+        "APIsQualifiedNames": {},
+        "API_Ratio": 0.0
+      },
+      {
+        "code": "Class.forName(\"com.mysql.jdbc.Driver\").newInstance();\nConnection conn = DriverManager.getConnection\n   (\"jdbc:mysql://localhost:3306/foo\", \"root\", \"password\");\n\nStatement stmt = conn.createStatement();\nstmt.execute(\"SELECT * FROM `FOO.BAR`\");\nstmt.close();\nconn.close();\n",
+        "in_page_order": 5,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": "11",
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Connection.createStatement": true,
+          "Statement.execute": true,
+          "Statement.close": true,
+          "Connection.close": true
+        },
+        "APIsProjects": {
+          "Connection.createStatement": 90,
+          "Statement.execute": 58,
+          "Statement.close": 75,
+          "Connection.close": 131
+        },
+        "APIsFiles": {
+          "Connection.createStatement": 476,
+          "Statement.execute": 243,
+          "Statement.close": 374,
+          "Connection.close": 939
+        },
+        "APIsSnippets": {
+          "Connection.createStatement": 1703,
+          "Statement.execute": 1046,
+          "Statement.close": 919,
+          "Connection.close": 2361
+        },
+        "APIsQualifiedNames": {
+          "Connection.createStatement": "java.sql.Connection.createStatement",
+          "Statement.execute": "java.sql.Statement.execute",
+          "Statement.close": "java.sql.Statement.close",
+          "Connection.close": "java.sql.Connection.close"
+        },
+        "API_Ratio": 1.0
+      },
+      {
+        "code": "Connection con = DriverManager.getConnection(\n                     \"jdbc:myDriver:DatabaseName\",\n                     dBuserName,\n                     dBuserPassword);\n\nStatement stmt = con.createStatement();\nResultSet rs = stmt.executeQuery(\"SELECT a, b, c FROM Table\");\n\nwhile (rs.next()) {\n    int x = rs.getInt(\"a\");\n    String s = rs.getString(\"b\");\n    float f = rs.getFloat(\"c\");\n}\n",
+        "in_page_order": 8,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": "1",
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Connection.createStatement": true,
+          "Statement.executeQuery": true,
+          "ResultSet.next": true,
+          "ResultSet.getInt": true,
+          "ResultSet.getString": true,
+          "ResultSet.getFloat": true
+        },
+        "APIsProjects": {
+          "Connection.createStatement": 90,
+          "Statement.executeQuery": 66,
+          "ResultSet.next": 105,
+          "ResultSet.getInt": 70,
+          "ResultSet.getString": 93,
+          "ResultSet.getFloat": 25
+        },
+        "APIsFiles": {
+          "Connection.createStatement": 476,
+          "Statement.executeQuery": 258,
+          "ResultSet.next": 873,
+          "ResultSet.getInt": 364,
+          "ResultSet.getString": 671,
+          "ResultSet.getFloat": 39
+        },
+        "APIsSnippets": {
+          "Connection.createStatement": 1703,
+          "Statement.executeQuery": 617,
+          "ResultSet.next": 4030,
+          "ResultSet.getInt": 1510,
+          "ResultSet.getString": 4076,
+          "ResultSet.getFloat": 89
+        },
+        "APIsQualifiedNames": {
+          "Connection.createStatement": "java.sql.Connection.createStatement",
+          "Statement.executeQuery": "java.sql.Statement.executeQuery",
+          "ResultSet.next": "java.sql.ResultSet.next",
+          "ResultSet.getInt": "java.sql.ResultSet.getInt",
+          "ResultSet.getString": "java.sql.ResultSet.getString",
+          "ResultSet.getFloat": "java.sql.ResultSet.getFloat"
+        },
+        "API_Ratio": 1.0
+      },
+      {
+        "code": "Class.forName(\"com.mysql.jdbc.Driver\");     \n\nConnection con=DriverManager.getConnection(\"jdbc:mysql://localhost:3306/DatabaseName\",\"Username\",\"Password\");         \nStatement stmt=con.createStatement();            \nstmt = con.createStatement();\nResultSet rs=stmt.executeQuery(\"Select * from Table\");  \n",
+        "in_page_order": 11,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": "0",
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Connection.createStatement": true,
+          "Statement.executeQuery": true
+        },
+        "APIsProjects": {
+          "Connection.createStatement": 90,
+          "Statement.executeQuery": 66
+        },
+        "APIsFiles": {
+          "Connection.createStatement": 476,
+          "Statement.executeQuery": 258
+        },
+        "APIsSnippets": {
+          "Connection.createStatement": 1703,
+          "Statement.executeQuery": 617
+        },
+        "APIsQualifiedNames": {
+          "Connection.createStatement": "java.sql.Connection.createStatement",
+          "Statement.executeQuery": "java.sql.Statement.executeQuery"
+        },
+        "API_Ratio": 1.0
+      }
+    ]
+  },
+  {
+    "query": "How to connect to a JDBC database",
+    "url": "https://stackoverflow.com/questions/2451892/how-do-i-connect-to-a-sql-server-2008-database-using-jdbc",
+    "url position": 9,
+    "segments": [
+      {
+        "code": "import java.sql.Connection;\nimport java.sql.DriverManager;\nimport java.sql.ResultSet;\nimport java.sql.Statement;\n\npublic class ConnectMSSQLServer\n{\n   public void dbConnect(String db_connect_string,\n            String db_userid,\n            String db_password)\n   {\n      try {\n         Class.forName(\"com.microsoft.sqlserver.jdbc.SQLServerDriver\");\n         Connection conn = DriverManager.getConnection(db_connect_string,\n                  db_userid, db_password);\n         System.out.println(\"connected\");\n         Statement statement = conn.createStatement();\n         String queryString = \"select * from sysobjects where type='u'\";\n         ResultSet rs = statement.executeQuery(queryString);\n         while (rs.next()) {\n            System.out.println(rs.getString(1));\n         }\n      } catch (Exception e) {\n         e.printStackTrace();\n      }\n   }\n\n   public static void main(String[] args)\n   {\n      ConnectMSSQLServer connServer = new ConnectMSSQLServer();\n      connServer.dbConnect(\"jdbc:sqlserver://<hostname>\", \"<user>\",\n               \"<password>\");\n   }\n}\n",
+        "in_page_order": 2,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": "24",
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Connection.createStatement": true,
+          "Statement.executeQuery": true,
+          "ResultSet.next": true,
+          "ResultSet.getString": true,
+          "ConnectMSSQLServer.__init__": false,
+          "ConnectMSSQLServer.dbConnect": false
+        },
+        "APIsProjects": {
+          "Connection.createStatement": 90,
+          "Statement.executeQuery": 66,
+          "ResultSet.next": 105,
+          "ResultSet.getString": 93
+        },
+        "APIsFiles": {
+          "Connection.createStatement": 476,
+          "Statement.executeQuery": 258,
+          "ResultSet.next": 873,
+          "ResultSet.getString": 671
+        },
+        "APIsSnippets": {
+          "Connection.createStatement": 1703,
+          "Statement.executeQuery": 617,
+          "ResultSet.next": 4030,
+          "ResultSet.getString": 4076
+        },
+        "APIsQualifiedNames": {
+          "Connection.createStatement": "java.sql.Connection.createStatement",
+          "Statement.executeQuery": "java.sql.Statement.executeQuery",
+          "ResultSet.next": "java.sql.ResultSet.next",
+          "ResultSet.getString": "java.sql.ResultSet.getString"
+        },
+        "API_Ratio": 0.6666666666666666
+      },
+      {
+        "code": "import java.sql.*;\nimport javax.sql.*;\n\npublic class jdbcdemo{\n\npublic static void main(String args[]){\nString dbtime;\nString dbUrl = \"jdbc:mysql://your.database.domain/yourDBname\";\nString dbClass = \"com.mysql.jdbc.Driver\";\nString query = \"Select * FROM users\";\n\ntry {\n\nClass.forName(\"com.mysql.jdbc.Driver\");\nConnection con = DriverManager.getConnection (dbUrl);\nStatement stmt = con.createStatement();\nResultSet rs = stmt.executeQuery(query);\n\nwhile (rs.next()) {\ndbtime = rs.getString(1);\nSystem.out.println(dbtime);\n} //end while\n\ncon.close();\n} //end try\n\ncatch(ClassNotFoundException e) {\ne.printStackTrace();\n}\n\ncatch(SQLException e) {\ne.printStackTrace();\n}\n\n}  //end main\n\n}  //end class\n",
+        "in_page_order": 7,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": "-7",
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Connection.createStatement": true,
+          "Statement.executeQuery": true,
+          "ResultSet.next": true,
+          "ResultSet.getString": true,
+          "Connection.close": true
+        },
+        "APIsProjects": {
+          "Connection.createStatement": 90,
+          "Statement.executeQuery": 66,
+          "ResultSet.next": 105,
+          "ResultSet.getString": 93,
+          "Connection.close": 131
+        },
+        "APIsFiles": {
+          "Connection.createStatement": 476,
+          "Statement.executeQuery": 258,
+          "ResultSet.next": 873,
+          "ResultSet.getString": 671,
+          "Connection.close": 939
+        },
+        "APIsSnippets": {
+          "Connection.createStatement": 1703,
+          "Statement.executeQuery": 617,
+          "ResultSet.next": 4030,
+          "ResultSet.getString": 4076,
+          "Connection.close": 2361
+        },
+        "APIsQualifiedNames": {
+          "Connection.createStatement": "java.sql.Connection.createStatement",
+          "Statement.executeQuery": "java.sql.Statement.executeQuery",
+          "ResultSet.next": "java.sql.ResultSet.next",
+          "ResultSet.getString": "java.sql.ResultSet.getString",
+          "Connection.close": "java.sql.Connection.close"
+        },
+        "API_Ratio": 1.0
+      }
+    ]
+  },
+  {
+    "query": "How to connect to a JDBC database",
+    "url": "https://db.apache.org/derby/integrate/plugin_help/derby_app.html",
+    "url position": 19,
+    "segments": [
+      {
+        "code": "package myapp;\nimport java.sql.Connection;\nimport java.sql.DriverManager;\nimport java.sql.ResultSet;\nimport java.sql.SQLException;\nimport java.sql.Statement;\nimport java.sql.ResultSetMetaData;\n\n\npublic class Restaurants\n{\n    private static String dbURL = \"jdbc:derby://localhost:1527/myDB;create=true;user=me;password=mine\";\n    private static String tableName = \"restaurants\";\n    // jdbc Connection\n    private static Connection conn = null;\n    private static Statement stmt = null;\n\n    public static void main(String[] args)\n    {\n        createConnection();\n        insertRestaurants(5, \"LaVals\", \"Berkeley\");\n        selectRestaurants();\n        shutdown();\n    }\n    \n    private static void createConnection()\n    {\n        try\n        {\n            Class.forName(\"org.apache.derby.jdbc.ClientDriver\").newInstance();\n            //Get a connection\n            conn = DriverManager.getConnection(dbURL); \n        }\n        catch (Exception except)\n        {\n            except.printStackTrace();\n        }\n    }\n    \n    private static void insertRestaurants(int id, String restName, String cityName)\n    {\n        try\n        {\n            stmt = conn.createStatement();\n            stmt.execute(\"insert into \" + tableName + \" values (\" +\n                    id + \",'\" + restName + \"','\" + cityName +\"')\");\n            stmt.close();\n        }\n        catch (SQLException sqlExcept)\n        {\n            sqlExcept.printStackTrace();\n        }\n    }\n    \n    private static void selectRestaurants()\n    {\n        try\n        {\n            stmt = conn.createStatement();\n            ResultSet results = stmt.executeQuery(\"select * from \" + tableName);\n            ResultSetMetaData rsmd = results.getMetaData();\n            int numberCols = rsmd.getColumnCount();\n            for (int i=1; i<=numberCols; i++)\n            {\n                //print Column Names\n                System.out.print(rsmd.getColumnLabel(i)+\"\\t\\t\");  \n            }\n\n            System.out.println(\"\\n-------------------------------------------------\");\n\n            while(results.next())\n            {\n                int id = results.getInt(1);\n                String restName = results.getString(2);\n                String cityName = results.getString(3);\n                System.out.println(id + \"\\t\\t\" + restName + \"\\t\\t\" + cityName);\n            }\n            results.close();\n            stmt.close();\n        }\n        catch (SQLException sqlExcept)\n        {\n            sqlExcept.printStackTrace();\n        }\n    }\n    \n    private static void shutdown()\n    {\n        try\n        {\n            if (stmt != null)\n            {\n                stmt.close();\n            }\n            if (conn != null)\n            {\n                DriverManager.getConnection(dbURL + \";shutdown=true\");\n                conn.close();\n            }           \n        }\n        catch (SQLException sqlExcept)\n        {\n            \n        }\n\n    }\n}\n",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": true,
+        "APIs": {
+          "Connection.createStatement": true,
+          "Statement.execute": true,
+          "Statement.close": true,
+          "Statement.executeQuery": true,
+          "ResultSet.getMetaData": true,
+          "ResultSetMetaData.getColumnCount": true,
+          "ResultSet.next": true,
+          "ResultSet.getInt": true,
+          "ResultSet.getString": true,
+          "ResultSet.close": true,
+          "Connection.close": true
+        },
+        "APIsProjects": {
+          "Connection.createStatement": 90,
+          "Statement.execute": 58,
+          "Statement.close": 75,
+          "Statement.executeQuery": 66,
+          "ResultSet.getMetaData": 53,
+          "ResultSetMetaData.getColumnCount": 45,
+          "ResultSet.next": 105,
+          "ResultSet.getInt": 70,
+          "ResultSet.getString": 93,
+          "ResultSet.close": 78,
+          "Connection.close": 131
+        },
+        "APIsFiles": {
+          "Connection.createStatement": 476,
+          "Statement.execute": 243,
+          "Statement.close": 374,
+          "Statement.executeQuery": 258,
+          "ResultSet.getMetaData": 158,
+          "ResultSetMetaData.getColumnCount": 119,
+          "ResultSet.next": 873,
+          "ResultSet.getInt": 364,
+          "ResultSet.getString": 671,
+          "ResultSet.close": 413,
+          "Connection.close": 939
+        },
+        "APIsSnippets": {
+          "Connection.createStatement": 1703,
+          "Statement.execute": 1046,
+          "Statement.close": 919,
+          "Statement.executeQuery": 617,
+          "ResultSet.getMetaData": 274,
+          "ResultSetMetaData.getColumnCount": 209,
+          "ResultSet.next": 4030,
+          "ResultSet.getInt": 1510,
+          "ResultSet.getString": 4076,
+          "ResultSet.close": 1026,
+          "Connection.close": 2361
+        },
+        "APIsQualifiedNames": {
+          "Connection.createStatement": "java.sql.Connection.createStatement",
+          "Statement.execute": "java.sql.Statement.execute",
+          "Statement.close": "java.sql.Statement.close",
+          "Statement.executeQuery": "java.sql.Statement.executeQuery",
+          "ResultSet.getMetaData": "java.sql.ResultSet.getMetaData",
+          "ResultSetMetaData.getColumnCount": "java.sql.ResultSetMetaData.getColumnCount",
+          "ResultSet.next": "java.sql.ResultSet.next",
+          "ResultSet.getInt": "java.sql.ResultSet.getInt",
+          "ResultSet.getString": "java.sql.ResultSet.getString",
+          "ResultSet.close": "java.sql.ResultSet.close",
+          "Connection.close": "java.sql.Connection.close"
+        },
+        "API_Ratio": 1.0
+      }
+    ]
+  },
+  {
+    "query": "How to connect to a JDBC database",
+    "url": "https://docs.microsoft.com/en-us/azure/mysql/connect-java",
+    "url position": 17,
+    "segments": [
+      {
+        "code": "import java.sql.*;\nimport java.util.Properties;\n\npublic class CreateTableInsertRows {\n\n    public static void main (String[] args)  throws Exception\n    {\n        // Initialize connection variables. \n        String host = \"myserver4demo.mysql.database.azure.com\";\n        String database = \"quickstartdb\";\n        String user = \"myadmin@myserver4demo\";\n        String password = \"<server_admin_password>\";\n\n        // check that the driver is installed\n        try\n        {\n            Class.forName(\"com.mysql.jdbc.Driver\");\n        }\n        catch (ClassNotFoundException e)\n        {\n            throw new ClassNotFoundException(\"MySQL JDBC driver NOT detected in library path.\", e);\n        }\n\n        System.out.println(\"MySQL JDBC driver detected in library path.\");\n\n        Connection connection = null;\n\n        // Initialize connection object\n        try\n        {\n            String url = String.format(\"jdbc:mysql://%s/%s\", host, database);\n\n            // Set connection properties.\n            Properties properties = new Properties();\n            properties.setProperty(\"user\", user);\n            properties.setProperty(\"password\", password);\n            properties.setProperty(\"useSSL\", \"true\");\n            properties.setProperty(\"verifyServerCertificate\", \"true\");\n            properties.setProperty(\"requireSSL\", \"false\");\n\n            // get connection\n            connection = DriverManager.getConnection(url, properties);\n        }\n        catch (SQLException e)\n        {\n            throw new SQLException(\"Failed to create connection to database.\", e);\n        }\n        if (connection != null) \n        { \n            System.out.println(\"Successfully created connection to database.\");\n\n            // Perform some SQL queries over the connection.\n            try\n            {\n                // Drop previous table of same name if one exists.\n                Statement statement = connection.createStatement();\n                statement.execute(\"DROP TABLE IF EXISTS inventory;\");\n                System.out.println(\"Finished dropping table (if existed).\");\n\n                // Create table.\n                statement.execute(\"CREATE TABLE inventory (id serial PRIMARY KEY, name VARCHAR(50), quantity INTEGER);\");\n                System.out.println(\"Created table.\");\n\n                // Insert some data into table.\n                int nRowsInserted = 0;\n                PreparedStatement preparedStatement = connection.prepareStatement(\"INSERT INTO inventory (name, quantity) VALUES (?, ?);\");\n                preparedStatement.setString(1, \"banana\");\n                preparedStatement.setInt(2, 150);\n                nRowsInserted += preparedStatement.executeUpdate();\n\n                preparedStatement.setString(1, \"orange\");\n                preparedStatement.setInt(2, 154);\n                nRowsInserted += preparedStatement.executeUpdate();\n\n                preparedStatement.setString(1, \"apple\");\n                preparedStatement.setInt(2, 100);\n                nRowsInserted += preparedStatement.executeUpdate();\n                System.out.println(String.format(\"Inserted %d row(s) of data.\", nRowsInserted));\n\n                // NOTE No need to commit all changes to database, as auto-commit is enabled by default.\n\n            }\n            catch (SQLException e)\n            {\n                throw new SQLException(\"Encountered an error when executing given sql statement.\", e);\n            }       \n        }\n        else {\n            System.out.println(\"Failed to create connection to database.\");\n        }\n        System.out.println(\"Execution finished.\");\n    }\n}\n",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": true,
+        "APIs": {
+          "ClassNotFoundException.__init__": true,
+          "Properties.__init__": true,
+          "Properties.setProperty": true,
+          "SQLException.__init__": true,
+          "Connection.createStatement": true,
+          "Statement.execute": true,
+          "Connection.prepareStatement": true,
+          "PreparedStatement.setString": true,
+          "PreparedStatement.setInt": true,
+          "PreparedStatement.executeUpdate": true
+        },
+        "APIsProjects": {
+          "ClassNotFoundException.__init__": 87,
+          "Properties.__init__": 302,
+          "Properties.setProperty": 184,
+          "SQLException.__init__": 81,
+          "Connection.createStatement": 90,
+          "Statement.execute": 58,
+          "Connection.prepareStatement": 79,
+          "PreparedStatement.setString": 72,
+          "PreparedStatement.setInt": 43,
+          "PreparedStatement.executeUpdate": 47
+        },
+        "APIsFiles": {
+          "ClassNotFoundException.__init__": 213,
+          "Properties.__init__": 2658,
+          "Properties.setProperty": 1282,
+          "SQLException.__init__": 445,
+          "Connection.createStatement": 476,
+          "Statement.execute": 243,
+          "Connection.prepareStatement": 597,
+          "PreparedStatement.setString": 425,
+          "PreparedStatement.setInt": 195,
+          "PreparedStatement.executeUpdate": 240
+        },
+        "APIsSnippets": {
+          "ClassNotFoundException.__init__": 373,
+          "Properties.__init__": 4618,
+          "Properties.setProperty": 5579,
+          "SQLException.__init__": 3328,
+          "Connection.createStatement": 1703,
+          "Statement.execute": 1046,
+          "Connection.prepareStatement": 2802,
+          "PreparedStatement.setString": 3056,
+          "PreparedStatement.setInt": 761,
+          "PreparedStatement.executeUpdate": 764
+        },
+        "APIsQualifiedNames": {
+          "Properties.__init__": "java.util.Properties.__init__",
+          "Properties.setProperty": "java.util.Properties.setProperty",
+          "SQLException.__init__": "java.sql.SQLException.__init__",
+          "Connection.createStatement": "java.sql.Connection.createStatement",
+          "Statement.execute": "java.sql.Statement.execute",
+          "Connection.prepareStatement": "java.sql.Connection.prepareStatement",
+          "PreparedStatement.setString": "java.sql.PreparedStatement.setString",
+          "PreparedStatement.setInt": "java.sql.PreparedStatement.setInt",
+          "PreparedStatement.executeUpdate": "java.sql.PreparedStatement.executeUpdate"
+        },
+        "API_Ratio": 1.0
+      },
+      {
+        "code": "import java.sql.*;\nimport java.util.Properties;\n\npublic class ReadTable {\n\n    public static void main (String[] args)  throws Exception\n    {\n        // Initialize connection variables.\n        String host = \"myserver4demo.mysql.database.azure.com\";\n        String database = \"quickstartdb\";\n        String user = \"myadmin@myserver4demo\";\n        String password = \"<server_admin_password>\";\n\n        // check that the driver is installed\n        try\n        {\n            Class.forName(\"com.mysql.jdbc.Driver\");\n        }\n        catch (ClassNotFoundException e)\n        {\n            throw new ClassNotFoundException(\"MySQL JDBC driver NOT detected in library path.\", e);\n        }\n\n        System.out.println(\"MySQL JDBC driver detected in library path.\");\n\n        Connection connection = null;\n\n        // Initialize connection object\n        try\n        {\n            String url = String.format(\"jdbc:mysql://%s/%s\", host, database);\n\n            // Set connection properties.\n            Properties properties = new Properties();\n            properties.setProperty(\"user\", user);\n            properties.setProperty(\"password\", password);\n            properties.setProperty(\"useSSL\", \"true\");\n            properties.setProperty(\"verifyServerCertificate\", \"true\");\n            properties.setProperty(\"requireSSL\", \"false\");\n\n            // get connection\n            connection = DriverManager.getConnection(url, properties);\n        }\n        catch (SQLException e)\n        {\n            throw new SQLException(\"Failed to create connection to database\", e);\n        }\n        if (connection != null) \n        { \n            System.out.println(\"Successfully created connection to database.\");\n\n            // Perform some SQL queries over the connection.\n            try\n            {\n\n                Statement statement = connection.createStatement();\n                ResultSet results = statement.executeQuery(\"SELECT * from inventory;\");\n                while (results.next())\n                {\n                    String outputString = \n                        String.format(\n                            \"Data row = (%s, %s, %s)\",\n                            results.getString(1),\n                            results.getString(2),\n                            results.getString(3));\n                    System.out.println(outputString);\n                }\n            }\n            catch (SQLException e)\n            {\n                throw new SQLException(\"Encountered an error when executing given sql statement\", e);\n            }       \n        }\n        else {\n            System.out.println(\"Failed to create connection to database.\"); \n        }\n        System.out.println(\"Execution finished.\");\n    }\n}\n",
+        "in_page_order": 2,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": true,
+        "APIs": {
+          "ClassNotFoundException.__init__": true,
+          "Properties.__init__": true,
+          "Properties.setProperty": true,
+          "SQLException.__init__": true,
+          "Connection.createStatement": true,
+          "Statement.executeQuery": true,
+          "ResultSet.next": true,
+          "ResultSet.getString": true
+        },
+        "APIsProjects": {
+          "ClassNotFoundException.__init__": 87,
+          "Properties.__init__": 302,
+          "Properties.setProperty": 184,
+          "SQLException.__init__": 81,
+          "Connection.createStatement": 90,
+          "Statement.executeQuery": 66,
+          "ResultSet.next": 105,
+          "ResultSet.getString": 93
+        },
+        "APIsFiles": {
+          "ClassNotFoundException.__init__": 213,
+          "Properties.__init__": 2658,
+          "Properties.setProperty": 1282,
+          "SQLException.__init__": 445,
+          "Connection.createStatement": 476,
+          "Statement.executeQuery": 258,
+          "ResultSet.next": 873,
+          "ResultSet.getString": 671
+        },
+        "APIsSnippets": {
+          "ClassNotFoundException.__init__": 373,
+          "Properties.__init__": 4618,
+          "Properties.setProperty": 5579,
+          "SQLException.__init__": 3328,
+          "Connection.createStatement": 1703,
+          "Statement.executeQuery": 617,
+          "ResultSet.next": 4030,
+          "ResultSet.getString": 4076
+        },
+        "APIsQualifiedNames": {
+          "Properties.__init__": "java.util.Properties.__init__",
+          "Properties.setProperty": "java.util.Properties.setProperty",
+          "SQLException.__init__": "java.sql.SQLException.__init__",
+          "Connection.createStatement": "java.sql.Connection.createStatement",
+          "Statement.executeQuery": "java.sql.Statement.executeQuery",
+          "ResultSet.next": "java.sql.ResultSet.next",
+          "ResultSet.getString": "java.sql.ResultSet.getString"
+        },
+        "API_Ratio": 1.0
+      },
+      {
+        "code": "import java.sql.*;\nimport java.util.Properties;\n\npublic class UpdateTable {\n    public static void main (String[] args)  throws Exception\n    {\n        // Initialize connection variables. \n        String host = \"myserver4demo.mysql.database.azure.com\";\n        String database = \"quickstartdb\";\n        String user = \"myadmin@myserver4demo\";\n        String password = \"<server_admin_password>\";\n\n        // check that the driver is installed\n        try\n        {\n            Class.forName(\"com.mysql.jdbc.Driver\");\n        }\n        catch (ClassNotFoundException e)\n        {\n            throw new ClassNotFoundException(\"MySQL JDBC driver NOT detected in library path.\", e);\n        }\n        System.out.println(\"MySQL JDBC driver detected in library path.\");\n\n        Connection connection = null;\n\n        // Initialize connection object\n        try\n        {\n            String url = String.format(\"jdbc:mysql://%s/%s\", host, database);\n\n            // set up the connection properties\n            Properties properties = new Properties();\n            properties.setProperty(\"user\", user);\n            properties.setProperty(\"password\", password);\n            properties.setProperty(\"useSSL\", \"true\");\n            properties.setProperty(\"verifyServerCertificate\", \"true\");\n            properties.setProperty(\"requireSSL\", \"false\");\n\n            // get connection\n            connection = DriverManager.getConnection(url, properties);\n        }\n        catch (SQLException e)\n        {\n            throw new SQLException(\"Failed to create connection to database.\", e);\n        }\n        if (connection != null) \n        { \n            System.out.println(\"Successfully created connection to database.\");\n\n            // Perform some SQL queries over the connection.\n            try\n            {\n                // Modify some data in table.\n                int nRowsUpdated = 0;\n                PreparedStatement preparedStatement = connection.prepareStatement(\"UPDATE inventory SET quantity = ? WHERE name = ?;\");\n                preparedStatement.setInt(1, 200);\n                preparedStatement.setString(2, \"banana\");\n                nRowsUpdated += preparedStatement.executeUpdate();\n                System.out.println(String.format(\"Updated %d row(s) of data.\", nRowsUpdated));\n\n                // NOTE No need to commit all changes to database, as auto-commit is enabled by default.\n            }\n            catch (SQLException e)\n            {\n                throw new SQLException(\"Encountered an error when executing given sql statement.\", e);\n            }       \n        }\n        else {\n            System.out.println(\"Failed to create connection to database.\");\n        }\n        System.out.println(\"Execution finished.\");\n    }\n}\n",
+        "in_page_order": 3,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": true,
+        "APIs": {
+          "ClassNotFoundException.__init__": true,
+          "Properties.__init__": true,
+          "Properties.setProperty": true,
+          "SQLException.__init__": true,
+          "Connection.prepareStatement": true,
+          "PreparedStatement.setInt": true,
+          "PreparedStatement.setString": true,
+          "PreparedStatement.executeUpdate": true
+        },
+        "APIsProjects": {
+          "ClassNotFoundException.__init__": 87,
+          "Properties.__init__": 302,
+          "Properties.setProperty": 184,
+          "SQLException.__init__": 81,
+          "Connection.prepareStatement": 79,
+          "PreparedStatement.setInt": 43,
+          "PreparedStatement.setString": 72,
+          "PreparedStatement.executeUpdate": 47
+        },
+        "APIsFiles": {
+          "ClassNotFoundException.__init__": 213,
+          "Properties.__init__": 2658,
+          "Properties.setProperty": 1282,
+          "SQLException.__init__": 445,
+          "Connection.prepareStatement": 597,
+          "PreparedStatement.setInt": 195,
+          "PreparedStatement.setString": 425,
+          "PreparedStatement.executeUpdate": 240
+        },
+        "APIsSnippets": {
+          "ClassNotFoundException.__init__": 373,
+          "Properties.__init__": 4618,
+          "Properties.setProperty": 5579,
+          "SQLException.__init__": 3328,
+          "Connection.prepareStatement": 2802,
+          "PreparedStatement.setInt": 761,
+          "PreparedStatement.setString": 3056,
+          "PreparedStatement.executeUpdate": 764
+        },
+        "APIsQualifiedNames": {
+          "Properties.__init__": "java.util.Properties.__init__",
+          "Properties.setProperty": "java.util.Properties.setProperty",
+          "SQLException.__init__": "java.sql.SQLException.__init__",
+          "Connection.prepareStatement": "java.sql.Connection.prepareStatement",
+          "PreparedStatement.setInt": "java.sql.PreparedStatement.setInt",
+          "PreparedStatement.setString": "java.sql.PreparedStatement.setString",
+          "PreparedStatement.executeUpdate": "java.sql.PreparedStatement.executeUpdate"
+        },
+        "API_Ratio": 1.0
+      },
+      {
+        "code": "import java.sql.*;\nimport java.util.Properties;\n\npublic class DeleteTable {\n    public static void main (String[] args)  throws Exception\n    {\n        // Initialize connection variables.\n        String host = \"myserver4demo.mysql.database.azure.com\";\n        String database = \"quickstartdb\";\n        String user = \"myadmin@myserver4demo\";\n        String password = \"<server_admin_password>\";\n\n        // check that the driver is installed\n        try\n        {\n            Class.forName(\"com.mysql.jdbc.Driver\");\n        }\n        catch (ClassNotFoundException e)\n        {\n            throw new ClassNotFoundException(\"MySQL JDBC driver NOT detected in library path.\", e);\n        }\n\n        System.out.println(\"MySQL JDBC driver detected in library path.\");\n\n        Connection connection = null;\n\n        // Initialize connection object\n        try\n        {\n            String url = String.format(\"jdbc:mysql://%s/%s\", host, database);\n\n            // set up the connection properties\n            Properties properties = new Properties();\n            properties.setProperty(\"user\", user);\n            properties.setProperty(\"password\", password);\n            properties.setProperty(\"useSSL\", \"true\");\n            properties.setProperty(\"verifyServerCertificate\", \"true\");\n            properties.setProperty(\"requireSSL\", \"false\");\n\n            // get connection\n            connection = DriverManager.getConnection(url, properties);\n        }\n        catch (SQLException e)\n        {\n            throw new SQLException(\"Failed to create connection to database\", e);\n        }\n        if (connection != null) \n        { \n            System.out.println(\"Successfully created connection to database.\");\n\n            // Perform some SQL queries over the connection.\n            try\n            {\n                // Delete some data from table.\n                int nRowsDeleted = 0;\n                PreparedStatement preparedStatement = connection.prepareStatement(\"DELETE FROM inventory WHERE name = ?;\");\n                preparedStatement.setString(1, \"orange\");\n                nRowsDeleted += preparedStatement.executeUpdate();\n                System.out.println(String.format(\"Deleted %d row(s) of data.\", nRowsDeleted));\n\n                // NOTE No need to commit all changes to database, as auto-commit is enabled by default.\n            }\n            catch (SQLException e)\n            {\n                throw new SQLException(\"Encountered an error when executing given sql statement.\", e);\n            }       \n        }\n        else {\n            System.out.println(\"Failed to create connection to database.\");\n        }\n        System.out.println(\"Execution finished.\");\n    }\n}\n",
+        "in_page_order": 4,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": true,
+        "APIs": {
+          "ClassNotFoundException.__init__": true,
+          "Properties.__init__": true,
+          "Properties.setProperty": true,
+          "SQLException.__init__": true,
+          "Connection.prepareStatement": true,
+          "PreparedStatement.setString": true,
+          "PreparedStatement.executeUpdate": true
+        },
+        "APIsProjects": {
+          "ClassNotFoundException.__init__": 87,
+          "Properties.__init__": 302,
+          "Properties.setProperty": 184,
+          "SQLException.__init__": 81,
+          "Connection.prepareStatement": 79,
+          "PreparedStatement.setString": 72,
+          "PreparedStatement.executeUpdate": 47
+        },
+        "APIsFiles": {
+          "ClassNotFoundException.__init__": 213,
+          "Properties.__init__": 2658,
+          "Properties.setProperty": 1282,
+          "SQLException.__init__": 445,
+          "Connection.prepareStatement": 597,
+          "PreparedStatement.setString": 425,
+          "PreparedStatement.executeUpdate": 240
+        },
+        "APIsSnippets": {
+          "ClassNotFoundException.__init__": 373,
+          "Properties.__init__": 4618,
+          "Properties.setProperty": 5579,
+          "SQLException.__init__": 3328,
+          "Connection.prepareStatement": 2802,
+          "PreparedStatement.setString": 3056,
+          "PreparedStatement.executeUpdate": 764
+        },
+        "APIsQualifiedNames": {
+          "Properties.__init__": "java.util.Properties.__init__",
+          "Properties.setProperty": "java.util.Properties.setProperty",
+          "SQLException.__init__": "java.sql.SQLException.__init__",
+          "Connection.prepareStatement": "java.sql.Connection.prepareStatement",
+          "PreparedStatement.setString": "java.sql.PreparedStatement.setString",
+          "PreparedStatement.executeUpdate": "java.sql.PreparedStatement.executeUpdate"
+        },
+        "API_Ratio": 1.0
+      }
+    ]
+  },
+  {
+    "query": "How to connect to a JDBC database",
+    "url": "https://docs.microsoft.com/en-us/sql/connect/jdbc/connection-url-sample",
+    "url position": 15,
+    "segments": [
+      {
+        "code": "import java.sql.*;  \n\npublic class connectURL {  \n\n   public static void main(String[] args) {  \n\n      // Create a variable for the connection string.  \n      String connectionUrl = \"jdbc:sqlserver://localhost:1433;\" +  \n         \"databaseName=AdventureWorks;user=UserName;password=*****\";  \n\n      // Declare the JDBC objects.  \n      Connection con = null;  \n      Statement stmt = null;  \n      ResultSet rs = null;  \n\n      try {  \n         // Establish the connection.  \n         Class.forName(\"com.microsoft.sqlserver.jdbc.SQLServerDriver\");  \n         con = DriverManager.getConnection(connectionUrl);  \n\n         // Create and execute an SQL statement that returns some data.  \n         String SQL = \"SELECT TOP 10 * FROM Person.Contact\";  \n         stmt = con.createStatement();  \n         rs = stmt.executeQuery(SQL);  \n\n         // Iterate through the data in the result set and display it.  \n         while (rs.next()) {  \n            System.out.println(rs.getString(4) + \" \" + rs.getString(6));  \n         }  \n      }  \n\n      // Handle any errors that may have occurred.  \n      catch (Exception e) {  \n         e.printStackTrace();  \n      }  \n      finally {  \n         if (rs != null) try { rs.close(); } catch(Exception e) {}  \n         if (stmt != null) try { stmt.close(); } catch(Exception e) {}  \n         if (con != null) try { con.close(); } catch(Exception e) {}  \n      }  \n   }  \n}  \n",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Connection.createStatement": true,
+          "Statement.executeQuery": true,
+          "ResultSet.next": true,
+          "ResultSet.getString": true,
+          "ResultSet.close": true,
+          "Statement.close": true,
+          "Connection.close": true
+        },
+        "APIsProjects": {
+          "Connection.createStatement": 90,
+          "Statement.executeQuery": 66,
+          "ResultSet.next": 105,
+          "ResultSet.getString": 93,
+          "ResultSet.close": 78,
+          "Statement.close": 75,
+          "Connection.close": 131
+        },
+        "APIsFiles": {
+          "Connection.createStatement": 476,
+          "Statement.executeQuery": 258,
+          "ResultSet.next": 873,
+          "ResultSet.getString": 671,
+          "ResultSet.close": 413,
+          "Statement.close": 374,
+          "Connection.close": 939
+        },
+        "APIsSnippets": {
+          "Connection.createStatement": 1703,
+          "Statement.executeQuery": 617,
+          "ResultSet.next": 4030,
+          "ResultSet.getString": 4076,
+          "ResultSet.close": 1026,
+          "Statement.close": 919,
+          "Connection.close": 2361
+        },
+        "APIsQualifiedNames": {
+          "Connection.createStatement": "java.sql.Connection.createStatement",
+          "Statement.executeQuery": "java.sql.Statement.executeQuery",
+          "ResultSet.next": "java.sql.ResultSet.next",
+          "ResultSet.getString": "java.sql.ResultSet.getString",
+          "ResultSet.close": "java.sql.ResultSet.close",
+          "Statement.close": "java.sql.Statement.close",
+          "Connection.close": "java.sql.Connection.close"
+        },
+        "API_Ratio": 1.0
+      }
+    ]
+  },
+  {
+    "query": "How to connect to a JDBC database",
+    "url": "https://en.wikipedia.org/wiki/Java_Database_Connectivity",
+    "url position": 25,
+    "segments": [
+      {
+        "code": "\nConnection conn = DriverManager.getConnection(\n     \"jdbc:somejdbcvendor:other data needed by some jdbc vendor\",\n     \"myLogin\",\n     \"myPassword\" );\ntry {\n     /* you use the connection here */\n} finally {\n    //It's important to close the connection when you are done with it\n    try { conn.close(); } catch (Throwable e) { /* Propagate the original exception\ninstead of this one that you want just logged */ logger.warn(\"Could not close JDBC Connection\",e); }\n}\n",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Connection.close": true
+        },
+        "APIsProjects": {
+          "Connection.close": 131
+        },
+        "APIsFiles": {
+          "Connection.close": 939
+        },
+        "APIsSnippets": {
+          "Connection.close": 2361
+        },
+        "APIsQualifiedNames": {
+          "Connection.close": "java.sql.Connection.close"
+        },
+        "API_Ratio": 1.0
+      },
+      {
+        "code": "\nimport java.sql.Connection;\nimport java.sql.DriverManager;\nimport java.sql.Statement;\n\npublic class Mydb1 {\n   static String URL = \"jdbc:mysql://localhost/mydb\";\n\n   public static void main(String[] args) {\n      try{\n        Class.forName(\"com.mysql.jdbc.Driver\");\n\n        Connection conn = DriverManager.getConnection(URL,\"root\",\"root\");\n        Statement stmt = conn.createStatement();\n      \n        String sql = \"INSERT INTO emp1 VALUES ('pctb5361','gajanan','krpuram',968666668)\";\n        stmt.executeUpdate(sql);\n           \n        System.out.println(\"Inserted records into the table...\");\n      } catch (Exception e) {\n         e.printStackTrace();\n      }\n   }\n}\n",
+        "in_page_order": 7,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Connection.createStatement": true,
+          "Statement.executeUpdate": true
+        },
+        "APIsProjects": {
+          "Connection.createStatement": 90,
+          "Statement.executeUpdate": 54
+        },
+        "APIsFiles": {
+          "Connection.createStatement": 476,
+          "Statement.executeUpdate": 135
+        },
+        "APIsSnippets": {
+          "Connection.createStatement": 1703,
+          "Statement.executeUpdate": 392
+        },
+        "APIsQualifiedNames": {
+          "Connection.createStatement": "java.sql.Connection.createStatement",
+          "Statement.executeUpdate": "java.sql.Statement.executeUpdate"
+        },
+        "API_Ratio": 1.0
+      }
+    ]
+  },
+  {
+    "query": "How to connect to a JDBC database",
+    "url": "https://jdbc.postgresql.org/documentation/80/connect.html",
+    "url position": 14,
+    "segments": [
+      {
+        "code": "\nString url = \"jdbc:postgresql://localhost/test\";\nProperties props = new Properties();\nprops.setProperty(\"user\",\"fred\");\nprops.setProperty(\"password\",\"secret\");\nprops.setProperty(\"ssl\",\"true\");\nConnection conn = DriverManager.getConnection(url, props);\n",
+        "in_page_order": 6,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Properties.__init__": true,
+          "Properties.setProperty": true
+        },
+        "APIsProjects": {
+          "Properties.__init__": 302,
+          "Properties.setProperty": 184
+        },
+        "APIsFiles": {
+          "Properties.__init__": 2658,
+          "Properties.setProperty": 1282
+        },
+        "APIsSnippets": {
+          "Properties.__init__": 4618,
+          "Properties.setProperty": 5579
+        },
+        "APIsQualifiedNames": {
+          "Properties.__init__": "java.util.Properties.__init__",
+          "Properties.setProperty": "java.util.Properties.setProperty"
+        },
+        "API_Ratio": 1.0
+      }
+    ]
+  },
+  {
+    "query": "How to connect to a JDBC database",
+    "url": "http://www.java2novice.com/jdbc/create-connection/",
+    "url position": 23,
+    "segments": [
+      {
+        "code": "package com.java2novice.jdbc;\n\nimport java.sql.Connection;\nimport java.sql.DriverManager;\nimport java.sql.SQLException;\nimport java.sql.Statement;\n\npublic class JdbcConnection {\n\n\tpublic static void main(String a[]){\n\t\t\n\t\ttry {\n\t\t\tClass.forName(\"oracle.jdbc.driver.OracleDriver\");\n\t\t\tConnection con = DriverManager.\n\t\t\t\tgetConnection(\"jdbc:oracle:thin:@<hostname>:<port num>:<DB name>\"\n\t\t\t\t\t,\"user\",\"password\");\n\t\t\tStatement stmt = con.createStatement();\n\t\t\tSystem.out.println(\"Created DB Connection....\");\n\t\t} catch (ClassNotFoundException e) {\n\t\t\t// TODO Auto-generated catch block\n\t\t\te.printStackTrace();\n\t\t} catch (SQLException e) {\n\t\t\t// TODO Auto-generated catch block\n\t\t\te.printStackTrace();\n\t\t}\n\t}\n}\n",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Connection.createStatement": true
+        },
+        "APIsProjects": {
+          "Connection.createStatement": 90
+        },
+        "APIsFiles": {
+          "Connection.createStatement": 476
+        },
+        "APIsSnippets": {
+          "Connection.createStatement": 1703
+        },
+        "APIsQualifiedNames": {
+          "Connection.createStatement": "java.sql.Connection.createStatement"
+        },
+        "API_Ratio": 1.0
+      }
+    ]
+  },
+  {
+    "query": "How to connect to a JDBC database",
+    "url": "http://www.informit.com/articles/article.aspx?p=26251&seqNum=3",
+    "url position": 10,
+    "segments": [
+      {
+        "code": "DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());",
+        "in_page_order": 3,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": true,
+        "APIs": {
+          "OracleDriver.__init__": false
+        },
+        "APIsProjects": {},
+        "APIsFiles": {},
+        "APIsSnippets": {},
+        "APIsQualifiedNames": {},
+        "API_Ratio": 0.0
+      }
+    ]
+  },
+  {
+    "query": "How to connect to a JDBC database",
+    "url": "https://www.geeksforgeeks.org/establishing-jdbc-connection-in-java/",
+    "url position": 27,
+    "segments": [
+      {
+        "code": "\r\nimportjava.sql.*;\r\nimportjava.util.*;\r\nclass Main\r\n{\r\n    public static void main(String a[])\r\n    {\r\n        //Creating the connection\r\n        String url = \"jdbc:oracle:thin:@localhost:1521:xe\";\r\n        String user = \"system\";\r\n        String pass = \"12345\";\r\n\r\n        //Entering the data\r\n        Scanner k = new Scanner(System.in);\r\n        System.out.println(\"enter name\");\r\n        String name = k.next();\r\n        System.out.println(\"enter roll no\");\r\n        int roll = k.nextInt();\r\n        System.out.println(\"enter class\");\r\n        String cls =  k.next();\r\n\r\n        //Inserting data using SQL query\r\n        String sql = \"insert into student1 values('\"+name+\"',\"+roll+\",'\"+cls+\"')\";\r\n        Connection con=null;\r\n        try\r\n        {\r\n            DriverManager.registerDriver(new oracle.jdbc.OracleDriver());\r\n\r\n            //Reference to connection interface\r\n            con = DriverManager.getConnection(url,user,pass);\r\n\r\n            Statement st = con.createStatement();\r\n            int m = st.executeUpdate(sql);\r\n            if (m == 1)\r\n                System.out.println(\"inserted successfully : \"+sql);\r\n            else\r\n                System.out.println(\"insertion failed\");\r\n            con.close();\r\n        }\r\n        catch(Exception ex)\r\n        {\r\n            System.err.println(ex);\r\n        }\r\n    }\r\n}\r\n",
+        "in_page_order": 8,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Scanner.__init__": true,
+          "Scanner.next": true,
+          "Scanner.nextInt": true,
+          "OracleDriver.__init__": false,
+          "Connection.createStatement": true,
+          "Statement.executeUpdate": true,
+          "Connection.close": true
+        },
+        "APIsProjects": {
+          "Scanner.__init__": 123,
+          "Scanner.next": 43,
+          "Scanner.nextInt": 11,
+          "Connection.createStatement": 90,
+          "Statement.executeUpdate": 54,
+          "Connection.close": 131
+        },
+        "APIsFiles": {
+          "Scanner.__init__": 290,
+          "Scanner.next": 58,
+          "Scanner.nextInt": 14,
+          "Connection.createStatement": 476,
+          "Statement.executeUpdate": 135,
+          "Connection.close": 939
+        },
+        "APIsSnippets": {
+          "Scanner.__init__": 918,
+          "Scanner.next": 180,
+          "Scanner.nextInt": 139,
+          "Connection.createStatement": 1703,
+          "Statement.executeUpdate": 392,
+          "Connection.close": 2361
+        },
+        "APIsQualifiedNames": {
+          "Scanner.__init__": "java.util.Scanner.__init__",
+          "Scanner.next": "java.util.Scanner.next",
+          "Scanner.nextInt": "java.util.Scanner.nextInt",
+          "Connection.createStatement": "java.sql.Connection.createStatement",
+          "Statement.executeUpdate": "java.sql.Statement.executeUpdate",
+          "Connection.close": "java.sql.Connection.close"
+        },
+        "API_Ratio": 0.8571428571428571
+      }
+    ]
+  },
+  {
+    "query": "How to connect to a JDBC database",
+    "url": "https://devcenter.heroku.com/articles/connecting-to-relational-databases-on-heroku-with-java",
+    "url position": 29,
+    "segments": [
+      {
+        "code": "private static Connection getConnection() throws URISyntaxException, SQLException {\n    URI dbUri = new URI(System.getenv(\"DATABASE_URL\"));\n\n    String username = dbUri.getUserInfo().split(\":\")[0];\n    String password = dbUri.getUserInfo().split(\":\")[1];\n    String dbUrl = \"jdbc:postgresql://\" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();\n\n    return DriverManager.getConnection(dbUrl, username, password);\n}\n",
+        "in_page_order": 11,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "URI.__init__": true,
+          "URI.getUserInfo": true,
+          "URI.getPath": true
+        },
+        "APIsProjects": {
+          "URI.__init__": 224,
+          "URI.getUserInfo": 34,
+          "URI.getPath": 104
+        },
+        "APIsFiles": {
+          "URI.__init__": 1333,
+          "URI.getUserInfo": 77,
+          "URI.getPath": 404
+        },
+        "APIsSnippets": {
+          "URI.__init__": 2992,
+          "URI.getUserInfo": 131,
+          "URI.getPath": 718
+        },
+        "APIsQualifiedNames": {
+          "URI.__init__": "java.net.URI.__init__",
+          "URI.getUserInfo": "java.net.URI.getUserInfo",
+          "URI.getPath": "java.net.URI.getPath"
+        },
+        "API_Ratio": 1.0
+      },
+      {
+        "code": "@Configuration\npublic class MainConfig {\n\n    @Bean\n    public BasicDataSource dataSource() throws URISyntaxException {\n        String dbUrl = System.getenv(\"JDBC_DATABASE_URL\");\n        String username = System.getenv(\"JDBC_DATABASE_USERNAME\");\n        String password = System.getenv(\"JDBC_DATABASE_PASSWORD\");\n\n        BasicDataSource basicDataSource = new BasicDataSource();\n        basicDataSource.setUrl(dbUrl);\n        basicDataSource.setUsername(username);\n        basicDataSource.setPassword(password);\n\n        return basicDataSource;\n    }\n}\n",
+        "in_page_order": 15,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "BasicDataSource.__init__": true,
+          "BasicDataSource.setUrl": true,
+          "BasicDataSource.setUsername": true,
+          "BasicDataSource.setPassword": true
+        },
+        "APIsProjects": {
+          "BasicDataSource.__init__": 16,
+          "BasicDataSource.setUrl": 13,
+          "BasicDataSource.setUsername": 13,
+          "BasicDataSource.setPassword": 13
+        },
+        "APIsFiles": {
+          "BasicDataSource.__init__": 43,
+          "BasicDataSource.setUrl": 42,
+          "BasicDataSource.setUsername": 37,
+          "BasicDataSource.setPassword": 37
+        },
+        "APIsSnippets": {
+          "BasicDataSource.__init__": 45,
+          "BasicDataSource.setUrl": 45,
+          "BasicDataSource.setUsername": 40,
+          "BasicDataSource.setPassword": 40
+        },
+        "APIsQualifiedNames": {
+          "BasicDataSource.__init__": "org.apache.commons.dbcp.BasicDataSource.__init__",
+          "BasicDataSource.setUrl": "org.apache.commons.dbcp.BasicDataSource.setUrl",
+          "BasicDataSource.setUsername": "org.apache.commons.dbcp.BasicDataSource.setUsername",
+          "BasicDataSource.setPassword": "org.apache.commons.dbcp.BasicDataSource.setPassword"
+        },
+        "API_Ratio": 1.0
+      },
+      {
+        "code": "@Configuration\npublic class MainConfig {\n\n    @Bean\n    public BasicDataSource dataSource() throws URISyntaxException {\n        URI dbUri = new URI(System.getenv(\"DATABASE_URL\"));\n\n        String username = dbUri.getUserInfo().split(\":\")[0];\n        String password = dbUri.getUserInfo().split(\":\")[1];\n        String dbUrl = \"jdbc:postgresql://\" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();\n\n        BasicDataSource basicDataSource = new BasicDataSource();\n        basicDataSource.setUrl(dbUrl);\n        basicDataSource.setUsername(username);\n        basicDataSource.setPassword(password);\n\n        return basicDataSource;\n    }\n}\n",
+        "in_page_order": 16,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "URI.__init__": true,
+          "URI.getUserInfo": true,
+          "URI.getPath": true,
+          "BasicDataSource.__init__": true,
+          "BasicDataSource.setUrl": true,
+          "BasicDataSource.setUsername": true,
+          "BasicDataSource.setPassword": true
+        },
+        "APIsProjects": {
+          "URI.__init__": 224,
+          "URI.getUserInfo": 34,
+          "URI.getPath": 104,
+          "BasicDataSource.__init__": 16,
+          "BasicDataSource.setUrl": 13,
+          "BasicDataSource.setUsername": 13,
+          "BasicDataSource.setPassword": 13
+        },
+        "APIsFiles": {
+          "URI.__init__": 1333,
+          "URI.getUserInfo": 77,
+          "URI.getPath": 404,
+          "BasicDataSource.__init__": 43,
+          "BasicDataSource.setUrl": 42,
+          "BasicDataSource.setUsername": 37,
+          "BasicDataSource.setPassword": 37
+        },
+        "APIsSnippets": {
+          "URI.__init__": 2992,
+          "URI.getUserInfo": 131,
+          "URI.getPath": 718,
+          "BasicDataSource.__init__": 45,
+          "BasicDataSource.setUrl": 45,
+          "BasicDataSource.setUsername": 40,
+          "BasicDataSource.setPassword": 40
+        },
+        "APIsQualifiedNames": {
+          "URI.__init__": "java.net.URI.__init__",
+          "URI.getUserInfo": "java.net.URI.getUserInfo",
+          "URI.getPath": "java.net.URI.getPath",
+          "BasicDataSource.__init__": "org.apache.commons.dbcp.BasicDataSource.__init__",
+          "BasicDataSource.setUrl": "org.apache.commons.dbcp.BasicDataSource.setUrl",
+          "BasicDataSource.setUsername": "org.apache.commons.dbcp.BasicDataSource.setUsername",
+          "BasicDataSource.setPassword": "org.apache.commons.dbcp.BasicDataSource.setPassword"
+        },
+        "API_Ratio": 1.0
+      },
+      {
+        "code": "Map<String,String> jdbcUrlSettings = new HashMap<>();\nString jdbcDbUrl = System.getenv(\"JDBC_DATABASE_URL\");\nif (null != jdbcDbUrl) {\n  jdbcUrlSettings.put(\"hibernate.connection.url\", System.getenv(\"JDBC_DATABASE_URL\"));\n}\n\nregistry = new StandardServiceRegistryBuilder().\n    configure(\"hibernate.cfg.xml\").\n    applySettings(jdbcUrlSettings).\n    build();\n",
+        "in_page_order": 17,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Map.__init__": true,
+          "Map.put": true,
+          "StandardServiceRegistryBuilder.__init__": true
+        },
+        "APIsProjects": {
+          "Map.__init__": 567,
+          "Map.put": 628,
+          "StandardServiceRegistryBuilder.__init__": 4
+        },
+        "APIsFiles": {
+          "Map.__init__": 15017,
+          "Map.put": 22575,
+          "StandardServiceRegistryBuilder.__init__": 57
+        },
+        "APIsSnippets": {
+          "Map.__init__": 28662,
+          "Map.put": 81686,
+          "StandardServiceRegistryBuilder.__init__": 75
+        },
+        "APIsQualifiedNames": {
+          "Map.__init__": "java.util.Map.__init__",
+          "Map.put": "java.util.Map.put",
+          "StandardServiceRegistryBuilder.__init__": "org.hibernate.boot.registry.StandardServiceRegistryBuilder.__init__"
+        },
+        "API_Ratio": 1.0
+      }
+    ]
+  },
+  {
+    "query": "How to connect to a JDBC database",
+    "url": "https://www.ntu.edu.sg/home/ehchua/programming/java/JDBC_Basic2.html",
+    "url position": 22,
+    "segments": [
+      {
+        "code": "\r\nimport java.sql.*;\r\n \r\npublic class DerbyTest {  // JDK 7 and above\r\n   public static void main(String[] args) {\r\n      try (\r\n         // Step 1: Allocate a database \"Connection\" object\r\n         Connection conn = DriverManager.getConnection(\r\n               \"jdbc:derby:test_db;create=true\");\r\n \r\n         // Step 2: Allocate a \"Statement\" object in the Connection\r\n         Statement stmt = conn.createStatement();\r\n      ) {\r\n         // Step 3 & 4: Execute a SQL UPDATE via executeUpdate()\r\n         //   which returns an int indicating the number of rows affected.\r\n         // Increase the price by 7% and qty by 1 for id=1001\r\n         int returnCode;\r\n         returnCode = stmt.executeUpdate(\r\n               \"create table test_table (id int primary key, name varchar(20))\");\r\n         System.out.println(returnCode + \" records affected.\");\r\n \r\n         returnCode = stmt.executeUpdate(\r\n               \"insert into test_table values (1, 'one'), (2, 'two')\");\r\n         System.out.println(returnCode + \" records affected.\");\r\n \r\n         ResultSet rset = stmt.executeQuery(\"select * from test_table\");\r\n         while (rset.next()) {\r\n            System.out.println(rset.getInt(\"id\") + \", \" + rset.getString(\"name\"));\r\n         }\r\n      } catch(SQLException ex) {\r\n         ex.printStackTrace();\r\n      }\r\n      // Step 5: Close the resources - Done automatically by try-with-resources\r\n \r\n      // Shutdown the Derby\r\n      try {\r\n         DriverManager.getConnection(\"jdbc:derby:;shutdown=true\");\r\n      } catch (SQLException ex)  {\r\n         if ( ex.getSQLState().equals(\"XJ015\") ) {\r\n            System.out.println(\"successfully shutdown!\");\r\n         }\r\n      }\r\n   }\r\n}",
+        "in_page_order": 9,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "ResultSet.next": true,
+          "ResultSet.getString": true,
+          "ResultSet.getInt": true
+        },
+        "APIsProjects": {
+          "ResultSet.next": 105,
+          "ResultSet.getString": 93,
+          "ResultSet.getInt": 70
+        },
+        "APIsFiles": {
+          "ResultSet.next": 873,
+          "ResultSet.getString": 671,
+          "ResultSet.getInt": 364
+        },
+        "APIsSnippets": {
+          "ResultSet.next": 4030,
+          "ResultSet.getString": 4076,
+          "ResultSet.getInt": 1510
+        },
+        "APIsQualifiedNames": {
+          "ResultSet.next": "java.sql.ResultSet.next",
+          "ResultSet.getString": "java.sql.ResultSet.getString",
+          "ResultSet.getInt": "java.sql.ResultSet.getInt"
+        },
+        "API_Ratio": 1.0
+      },
+      {
+        "code": "\r\nimport java.sql.*;             // Use classes in java.sql package\r\n \r\npublic class ExcelSelectTest {  // JDK 7 and above\r\n   public static void main(String[] args) {\r\n      try (\r\n         // Step 1: Allocate a database \"Connection\" object\r\n         Connection conn = DriverManager.getConnection(\r\n               \"jdbc:odbc:ebookshopODBC\");  // Access/Excel\r\n \r\n         // Step 2: Allocate a \"Statement\" object in the Connection\r\n         Statement stmt = conn.createStatement();\r\n      ) {\r\n         // Excel connection, by default, is read-only.\r\n         // Need to turn it off to issue INSERT, UPDATE, ...\r\n         conn.setReadOnly(false);\r\n \r\n         // Step 3: Execute a SQL SELECT query, the query result\r\n         //   is returned in a \"ResultSet\" object.\r\n         // Table name is the sheet's name in the form of [sheet-name$]\r\n         String strSelect = \"select title, price, qty from [books$]\";\r\n         System.out.println(\"The SQL query is: \" + strSelect); // Echo For debugging\r\n \r\n         ResultSet rset = stmt.executeQuery(strSelect);\r\n \r\n         // Step 4: Process the ResultSet by scrolling the cursor forward via next().\r\n         //  For each row, retrieve the contents of the cells with getXxx(columnName).\r\n         System.out.println(\"The records selected are:\");\r\n         int rowCount = 0;\r\n         while(rset.next()) {   // Move the cursor to the next row\r\n            String title = rset.getString(\"title\");\r\n            double price = rset.getDouble(\"price\");\r\n            int    qty   = rset.getInt(\"qty\");\r\n            System.out.println(title + \", \" + price + \", \" + qty);\r\n            ++rowCount;\r\n         }\r\n         System.out.println(\"Total number of records = \" + rowCount);\r\n \r\n         // Try INSERT\r\n         int returnCode = stmt.executeUpdate(\r\n            \"insert into [books$] values (1002, 'Java 101', 'Tan Ah Teck', 2.2, 2)\");\r\n         System.out.println(returnCode + \" record(s) inserted.\");\r\n \r\n         // Try UPDATE\r\n         returnCode = stmt.executeUpdate(\r\n            \"update [books$] set qty = qty+1 where id = 1002\");\r\n         System.out.println(returnCode + \" record(s) updated.\");\r\n \r\n      } catch(SQLException ex) {\r\n         ex.printStackTrace();\r\n      }\r\n      // Step 5: Close the resources - Done automatically by try-with-resources\r\n   }\r\n}",
+        "in_page_order": 13,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "ResultSet.next": true,
+          "ResultSet.getString": true,
+          "ResultSet.getDouble": true,
+          "ResultSet.getInt": true
+        },
+        "APIsProjects": {
+          "ResultSet.next": 105,
+          "ResultSet.getString": 93,
+          "ResultSet.getDouble": 37,
+          "ResultSet.getInt": 70
+        },
+        "APIsFiles": {
+          "ResultSet.next": 873,
+          "ResultSet.getString": 671,
+          "ResultSet.getDouble": 68,
+          "ResultSet.getInt": 364
+        },
+        "APIsSnippets": {
+          "ResultSet.next": 4030,
+          "ResultSet.getString": 4076,
+          "ResultSet.getDouble": 168,
+          "ResultSet.getInt": 1510
+        },
+        "APIsQualifiedNames": {
+          "ResultSet.next": "java.sql.ResultSet.next",
+          "ResultSet.getString": "java.sql.ResultSet.getString",
+          "ResultSet.getDouble": "java.sql.ResultSet.getDouble",
+          "ResultSet.getInt": "java.sql.ResultSet.getInt"
+        },
+        "API_Ratio": 1.0
+      },
+      {
+        "code": "\r\n// Step 3 & 4: Execute queries and process the query results\r\n// Disable auto-commit for the connection, which commits every SQL statement.\r\nconn.setAutoCommit(false);\r\n\r\n// Before Changes\r\nResultSet rset = stmt.executeQuery(\"select id, qty from books where id in (1001, 1002)\");\r\nSystem.out.println(\"-- Before UPDATE --\");\r\nwhile(rset.next()) {\r\n   System.out.println(rset.getInt(\"id\") + \", \" + rset.getInt(\"qty\"));\r\n}\r\nconn.commit();     // Commit SELECT\r\n \r\n// Issue two UPDATE statements thru executeUpdate()\r\nstmt.executeUpdate(\"update books set qty = qty + 1 where id = 1001\");\r\nstmt.executeUpdate(\"update books set qty = qty + 1 where id = 1002\");\r\nconn.commit();     // Commit UPDATEs\r\n \r\nrset = stmt.executeQuery(\"select id, qty from books where id in (1001, 1002)\");\r\nSystem.out.println(\"-- After UPDATE and Commit --\");\r\nwhile(rset.next()) {\r\n   System.out.println(rset.getInt(\"id\") + \", \" + rset.getInt(\"qty\"));\r\n}\r\nconn.commit();     // Commit SELECT\r\n \r\n// Issue two UPDATE statements thru executeUpdate()\r\nstmt.executeUpdate(\"update books set qty = qty - 99 where id = 1001\");\r\nstmt.executeUpdate(\"update books set qty = qty - 99 where id = 1002\");\r\nconn.rollback();   // Discard all changes since the last commit\r\n \r\nrset = stmt.executeQuery(\"select id, qty from books where id in (1001, 1002)\");\r\nSystem.out.println(\"-- After UPDATE and Rollback --\");\r\nwhile(rset.next()) {\r\n   System.out.println(rset.getInt(\"id\") + \", \" + rset.getInt(\"qty\"));\r\n}\r\nconn.commit();     // Commit SELECT",
+        "in_page_order": 14,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "ResultSet.next": true,
+          "ResultSet.getInt": true
+        },
+        "APIsProjects": {
+          "ResultSet.next": 105,
+          "ResultSet.getInt": 70
+        },
+        "APIsFiles": {
+          "ResultSet.next": 873,
+          "ResultSet.getInt": 364
+        },
+        "APIsSnippets": {
+          "ResultSet.next": 4030,
+          "ResultSet.getInt": 1510
+        },
+        "APIsQualifiedNames": {
+          "ResultSet.next": "java.sql.ResultSet.next",
+          "ResultSet.getInt": "java.sql.ResultSet.getInt"
+        },
+        "API_Ratio": 1.0
+      },
+      {
+        "code": "\r\n// Step 3 & 4: Execute query and process query result\r\nResultSet rset = stmt.executeQuery(\"select * from books\");\r\n// Get the metadata of the ResultSet\r\nResultSetMetaData rsetMD = rset.getMetaData();\r\n// Get the number of column from metadata\r\nint numColumns = rsetMD.getColumnCount();\r\n \r\n// Print column names - Column Index begins at 1 (instead of 0)\r\nfor (int i = 1; i <= numColumns; ++i) {\r\n   System.out.printf(\"%-30s\", rsetMD.getColumnName(i));\r\n}\r\nSystem.out.println();\r\n \r\n// Print column class names\r\nfor (int i = 1; i <= numColumns; ++i) {\r\n   System.out.printf(\"%-30s\",\r\n           \"(\" + rsetMD.getColumnClassName(i) + \")\");\r\n}\r\nSystem.out.println();\r\n \r\n// Print column contents for all the rows\r\nwhile (rset.next()) {\r\n   for (int i = 1; i <= numColumns; ++i) {\r\n      // getString() can be used for all column types\r\n      System.out.printf(\"%-30s\", rset.getString(i));\r\n   }\r\n   System.out.println();\r\n}",
+        "in_page_order": 17,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "ResultSet.getMetaData": true,
+          "ResultSetMetaData.getColumnCount": true,
+          "ResultSet.next": true
+        },
+        "APIsProjects": {
+          "ResultSet.getMetaData": 53,
+          "ResultSetMetaData.getColumnCount": 45,
+          "ResultSet.next": 105
+        },
+        "APIsFiles": {
+          "ResultSet.getMetaData": 158,
+          "ResultSetMetaData.getColumnCount": 119,
+          "ResultSet.next": 873
+        },
+        "APIsSnippets": {
+          "ResultSet.getMetaData": 274,
+          "ResultSetMetaData.getColumnCount": 209,
+          "ResultSet.next": 4030
+        },
+        "APIsQualifiedNames": {
+          "ResultSet.getMetaData": "java.sql.ResultSet.getMetaData",
+          "ResultSetMetaData.getColumnCount": "java.sql.ResultSetMetaData.getColumnCount",
+          "ResultSet.next": "java.sql.ResultSet.next"
+        },
+        "API_Ratio": 1.0
+      },
+      {
+        "code": "\r\nimport java.sql.*;             // Use classes in java.sql package\r\n \r\npublic class JdbcPreparedStatementTest {  // JDK 7 and above\r\n   public static void main(String[] args) {\r\n      try (\r\n         Connection conn = DriverManager.getConnection(\r\n               \"jdbc:mysql://localhost:8888/ebookshop\", \"myuser\", \"xxxx\"); // MySQL\r\n \r\n         // Two PreparedStatements, one for INSERT and one for SELECT\r\n         PreparedStatement pstmt = conn.prepareStatement(\r\n             \"insert into books values (?, ?, ?, ?, ?)\");  // Five parameters 1 to 5\r\n         PreparedStatement pstmtSelect = conn.prepareStatement(\"select * from books\");\r\n      ) {\r\n         pstmt.setInt(1, 7001);  // Set values for parameters 1 to 5\r\n         pstmt.setString(2, \"Mahjong 101\");\r\n         pstmt.setString(3, \"Kumar\");\r\n         pstmt.setDouble(4, 88.88);\r\n         pstmt.setInt(5, 88);\r\n         int rowsInserted = pstmt.executeUpdate();  // Execute statement\r\n         System.out.println(rowsInserted + \"rows affected.\");\r\n \r\n         pstmt.setInt(1, 7002);  // Change values for parameters 1 and 2\r\n         pstmt.setString(2, \"Mahjong 102\");\r\n         // No change in values for parameters 3 to 5\r\n         rowsInserted = pstmt.executeUpdate();\r\n         System.out.println(rowsInserted + \"rows affected.\");\r\n \r\n         // Issue a SELECT to check the changes\r\n         ResultSet rset = pstmtSelect.executeQuery();\r\n         while(rset.next()) {\r\n            System.out.println(rset.getInt(\"id\") + \", \"\r\n                  + rset.getString(\"author\") + \", \"\r\n                  + rset.getString(\"title\") + \", \"\r\n                  + rset.getDouble(\"price\") + \", \"\r\n                  + rset.getInt(\"qty\"));\r\n         }\r\n      } catch(SQLException ex) {\r\n         ex.printStackTrace();\r\n      }\r\n      // Step 5: Close the resources - Done automatically by try-with-resources\r\n   }\r\n}",
+        "in_page_order": 19,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "ResultSet.next": true,
+          "ResultSet.getInt": true,
+          "ResultSet.getDouble": true,
+          "ResultSet.getString": true
+        },
+        "APIsProjects": {
+          "ResultSet.next": 105,
+          "ResultSet.getInt": 70,
+          "ResultSet.getDouble": 37,
+          "ResultSet.getString": 93
+        },
+        "APIsFiles": {
+          "ResultSet.next": 873,
+          "ResultSet.getInt": 364,
+          "ResultSet.getDouble": 68,
+          "ResultSet.getString": 671
+        },
+        "APIsSnippets": {
+          "ResultSet.next": 4030,
+          "ResultSet.getInt": 1510,
+          "ResultSet.getDouble": 168,
+          "ResultSet.getString": 4076
+        },
+        "APIsQualifiedNames": {
+          "ResultSet.next": "java.sql.ResultSet.next",
+          "ResultSet.getInt": "java.sql.ResultSet.getInt",
+          "ResultSet.getDouble": "java.sql.ResultSet.getDouble",
+          "ResultSet.getString": "java.sql.ResultSet.getString"
+        },
+        "API_Ratio": 1.0
+      }
+    ]
+  },
+  {
+    "query": "How to connect to a JDBC database",
+    "url": "http://www.sqlines.com/articles/java/sql_server_jdbc_connection",
+    "url position": 35,
+    "segments": [
+      {
+        "code": "   import java.sql.*;\n\n   public class Test {\n\n\tpublic static void main(String[] args) {\n\n           Connection con = null;\n           String conUrl = \"jdbc:sqlserver://localhost; databaseName=test; user=sa; password=sa;\";\n\n\t   try {\n            // ...\n\t    con = DriverManager.getConnection(conUrl);\n            // ... \n   \t  } catch (Exception e) { e.printStackTrace(); }\n             finally {\n               if (con != null) try { con.close(); } catch(Exception e) {}\n             }\n\t}\n   }",
+        "in_page_order": 3,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Connection.close": true
+        },
+        "APIsProjects": {
+          "Connection.close": 131
+        },
+        "APIsFiles": {
+          "Connection.close": 939
+        },
+        "APIsSnippets": {
+          "Connection.close": 2361
+        },
+        "APIsQualifiedNames": {
+          "Connection.close": "java.sql.Connection.close"
+        },
+        "API_Ratio": 1.0
+      }
+    ]
+  },
+  {
+    "query": "How to connect to a JDBC database",
+    "url": "https://www.developer.com/java/data/creating-a-jdbc-application-in-netbeans-a-step-by-step-guide.html",
+    "url position": 37,
+    "segments": [
+      {
+        "code": "package simplejdbcapplication;\n\nimport java.sql.Connection;\nimport java.sql.DriverManager;\nimport java.sql.ResultSet;\nimport java.sql.SQLException;\nimport java.sql.Statement;\n\npublic class SimpleJDBCApplication {\n\n   static final String DB_URL =\n      \"jdbc:mysql://localhost:3306/testdb\";\n   static final String DB_DRV =\n      \"com.mysql.jdbc.Driver\";\n   static final String DB_USER = \"mickey\";\n   static final String DB_PASSWD = \"mickey\";\n\n   public static void main(String[] args){\n\n      Connection connection = null;\n      Statement statement = null;\n      ResultSet resultSet = null;\n\n      try{\n         connection=DriverManager.getConnection\n            (DB_URL,DB_USER,DB_PASSWD);\n         statement=connection.createStatement();\n         resultSet=statement.executeQuery\n            (\"SELECT * FROM books\");\n         while(resultSet.next()){\n            System.out.printf(\"%s\\t%s\\t%s\\t%f\\n\",\n            resultSet.getString(1),\n            resultSet.getString(2),\n            resultSet.getString(3),\n            resultSet.getFloat(4));\n         }\n\n      }catch(SQLException ex){\n      }finally{\n         try {\n            resultSet.close();\n            statement.close();\n            connection.close();\n         } catch (SQLException ex) {\n         }\n      }\n   }\n}\n",
+        "in_page_order": 9,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Connection.createStatement": true,
+          "Statement.executeQuery": true,
+          "ResultSet.next": true,
+          "ResultSet.getFloat": true,
+          "ResultSet.getString": true,
+          "ResultSet.close": true,
+          "Statement.close": true,
+          "Connection.close": true
+        },
+        "APIsProjects": {
+          "Connection.createStatement": 90,
+          "Statement.executeQuery": 66,
+          "ResultSet.next": 105,
+          "ResultSet.getFloat": 25,
+          "ResultSet.getString": 93,
+          "ResultSet.close": 78,
+          "Statement.close": 75,
+          "Connection.close": 131
+        },
+        "APIsFiles": {
+          "Connection.createStatement": 476,
+          "Statement.executeQuery": 258,
+          "ResultSet.next": 873,
+          "ResultSet.getFloat": 39,
+          "ResultSet.getString": 671,
+          "ResultSet.close": 413,
+          "Statement.close": 374,
+          "Connection.close": 939
+        },
+        "APIsSnippets": {
+          "Connection.createStatement": 1703,
+          "Statement.executeQuery": 617,
+          "ResultSet.next": 4030,
+          "ResultSet.getFloat": 89,
+          "ResultSet.getString": 4076,
+          "ResultSet.close": 1026,
+          "Statement.close": 919,
+          "Connection.close": 2361
+        },
+        "APIsQualifiedNames": {
+          "Connection.createStatement": "java.sql.Connection.createStatement",
+          "Statement.executeQuery": "java.sql.Statement.executeQuery",
+          "ResultSet.next": "java.sql.ResultSet.next",
+          "ResultSet.getFloat": "java.sql.ResultSet.getFloat",
+          "ResultSet.getString": "java.sql.ResultSet.getString",
+          "ResultSet.close": "java.sql.ResultSet.close",
+          "Statement.close": "java.sql.Statement.close",
+          "Connection.close": "java.sql.Connection.close"
+        },
+        "API_Ratio": 1.0
+      }
+    ]
+  },
+  {
+    "query": "How to connect to a JDBC database",
+    "url": "https://mariadb.com/kb/en/library/about-mariadb-connector-j/",
+    "url position": 30,
+    "segments": [
+      {
+        "code": "        final HikariDataSource ds = new HikariDataSource();\n        ds.setMaximumPoolSize(20);\n        ds.setDriverClassName(\"org.mariadb.jdbc.Driver\");\n        ds.setJdbcUrl(\"jdbc:mariadb://localhost:3306/db\");\n        ds.addDataSourceProperty(\"user\", \"root\");\n        ds.addDataSourceProperty(\"password\", \"myPassword\");\n        ds.setAutoCommit(false);\n",
+        "in_page_order": 4,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "HikariDataSource.__init__": true,
+          "HikariDataSource.setMaximumPoolSize": false,
+          "HikariDataSource.setDriverClassName": false,
+          "HikariDataSource.setJdbcUrl": false,
+          "HikariDataSource.addDataSourceProperty": false,
+          "HikariDataSource.setAutoCommit": false
+        },
+        "APIsProjects": {
+          "HikariDataSource.__init__": 4
+        },
+        "APIsFiles": {
+          "HikariDataSource.__init__": 27
+        },
+        "APIsSnippets": {
+          "HikariDataSource.__init__": 59
+        },
+        "APIsQualifiedNames": {
+          "HikariDataSource.__init__": "com.zaxxer.hikari.HikariDataSource.__init__"
+        },
+        "API_Ratio": 0.16666666666666666
+      },
+      {
+        "code": " public class LocalInfileInterceptorImpl implements LocalInfileInterceptor {\n     @Override\n     public boolean validate(String fileName) {\n         File file = new File(fileName);\n         String absolutePath = file.getAbsolutePath();\n         String filePath = absolutePath.substring(0,absolutePath.lastIndexOf(File.separator));\n         return filePath.equals(\"/var/tmp/exchanges\");\n     }\n }\n",
+        "in_page_order": 8,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "File.__init__": true,
+          "File.getAbsolutePath": true
+        },
+        "APIsProjects": {
+          "File.__init__": 591,
+          "File.getAbsolutePath": 405
+        },
+        "APIsFiles": {
+          "File.__init__": 13065,
+          "File.getAbsolutePath": 3857
+        },
+        "APIsSnippets": {
+          "File.__init__": 40468,
+          "File.getAbsolutePath": 9027
+        },
+        "APIsQualifiedNames": {
+          "File.__init__": "java.io.File.__init__",
+          "File.getAbsolutePath": "java.io.File.getAbsolutePath"
+        },
+        "API_Ratio": 1.0
+      },
+      {
+        "code": " @AutoService(LocalInfileInterceptor.class)\n public class LocalInfileInterceptorImpl implements LocalInfileInterceptor {\n     @Override\n     public boolean validate(String fileName) {\n         File file = new File(fileName);\n         String absolutePath = file.getAbsolutePath();\n         String filePath = absolutePath.substring(0,absolutePath.lastIndexOf(File.separator));\n         return filePath.equals(\"/var/tmp/exchanges\");\n     }\n }\n",
+        "in_page_order": 9,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "File.__init__": true,
+          "File.getAbsolutePath": true
+        },
+        "APIsProjects": {
+          "File.__init__": 591,
+          "File.getAbsolutePath": 405
+        },
+        "APIsFiles": {
+          "File.__init__": 13065,
+          "File.getAbsolutePath": 3857
+        },
+        "APIsSnippets": {
+          "File.__init__": 40468,
+          "File.getAbsolutePath": 9027
+        },
+        "APIsQualifiedNames": {
+          "File.__init__": "java.io.File.__init__",
+          "File.getAbsolutePath": "java.io.File.getAbsolutePath"
+        },
+        "API_Ratio": 1.0
+      },
+      {
+        "code": "Connection  connection = DriverManager.getConnection(\"jdbc:mysql://localhost:3306/test\", \"username\", \"password\");\nStatement stmt = connection.createStatement();\nstmt.executeUpdate(\"CREATE TABLE a (id int not null primary key, value varchar(20))\");\nstmt.close();\nconnection.close();\n",
+        "in_page_order": 11,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Connection.createStatement": true,
+          "Statement.executeUpdate": true,
+          "Statement.close": true,
+          "Connection.close": true
+        },
+        "APIsProjects": {
+          "Connection.createStatement": 90,
+          "Statement.executeUpdate": 54,
+          "Statement.close": 75,
+          "Connection.close": 131
+        },
+        "APIsFiles": {
+          "Connection.createStatement": 476,
+          "Statement.executeUpdate": 135,
+          "Statement.close": 374,
+          "Connection.close": 939
+        },
+        "APIsSnippets": {
+          "Connection.createStatement": 1703,
+          "Statement.executeUpdate": 392,
+          "Statement.close": 919,
+          "Connection.close": 2361
+        },
+        "APIsQualifiedNames": {
+          "Connection.createStatement": "java.sql.Connection.createStatement",
+          "Statement.executeUpdate": "java.sql.Statement.executeUpdate",
+          "Statement.close": "java.sql.Statement.close",
+          "Connection.close": "java.sql.Connection.close"
+        },
+        "API_Ratio": 1.0
+      }
+    ]
+  },
+  {
+    "query": "How to connect to a JDBC database",
+    "url": "http://cs-fundamentals.com/java-programming/java-jdbc-connection-tutorial.php",
+    "url position": 38,
+    "segments": [
+      {
+        "code": "/* JDBC_Connection_Demo.java */\n\nimport java.sql.Connection;\nimport java.sql.DriverManager;\nimport java.sql.ResultSet;\nimport java.sql.SQLException;\nimport java.sql.Statement;\n\npublic class JDBC_Connection_Demo\n{\n  /* static block is executed when a class is loaded into memory \n   * this block loads MySQL's JDBC driver\n   */\n  static\n  {\n    try\n    {\n      // loads com.mysql.jdbc.Driver into memory\n      Class.forName(\"com.mysql.jdbc.Driver\");\n    } \n    catch (ClassNotFoundException cnf) \n    {\n      System.out.println(\"Driver could not be loaded: \" + cnf);\n    }\n  }\n\n  public static void main(String[] args)\n  {\n    String connectionUrl = \"jdbc:mysql://localhost:3306/EXPDB\";\n    String dbUser = \"root\";\n    String dbPwd = \"mysql\";\n    Connection conn;\n    ResultSet rs;\n    String queryString = \"SELECT ID, NAME FROM EXPTABLE\";\n\n    try\n    {\n      conn = DriverManager.getConnection(connectionUrl, dbUser, dbPwd);\n      Statement stmt = conn.createStatement();\n\n      // INSERT A RECORD\n      stmt.executeUpdate(\"INSERT INTO EXPTABLE (NAME) VALUES (\\\"TINU K\\\")\");\n\n      // SELECT ALL RECORDS FROM EXPTABLE\n      rs = stmt.executeQuery(queryString);\n\n      System.out.println(\"ID \\tNAME\");\n      System.out.println(\"============\");\n      while(rs.next())\n      {\n        System.out.print(rs.getInt(\"id\") + \".\\t\" + rs.getString(\"name\"));\n        System.out.println();\n      }\n      if (conn != null)\n      {\n        conn.close();\n        conn = null;\n      }\n    }\n    catch (SQLException sqle) \n    {\n      System.out.println(\"SQL Exception thrown: \" + sqle);\n    }\n  }\n} //JDBC_Connection_Demo ends here\n\n---------------------------------------\nOUTPUT\n------\nID \tNAME\n============\n1.\tANUSHKA K\n2.\tGARVITA K\n3.\tTINU K",
+        "in_page_order": 15,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Connection.createStatement": true,
+          "Statement.executeUpdate": true,
+          "Statement.executeQuery": true,
+          "ResultSet.next": true,
+          "ResultSet.getString": true,
+          "ResultSet.getInt": true,
+          "Connection.close": true
+        },
+        "APIsProjects": {
+          "Connection.createStatement": 90,
+          "Statement.executeUpdate": 54,
+          "Statement.executeQuery": 66,
+          "ResultSet.next": 105,
+          "ResultSet.getString": 93,
+          "ResultSet.getInt": 70,
+          "Connection.close": 131
+        },
+        "APIsFiles": {
+          "Connection.createStatement": 476,
+          "Statement.executeUpdate": 135,
+          "Statement.executeQuery": 258,
+          "ResultSet.next": 873,
+          "ResultSet.getString": 671,
+          "ResultSet.getInt": 364,
+          "Connection.close": 939
+        },
+        "APIsSnippets": {
+          "Connection.createStatement": 1703,
+          "Statement.executeUpdate": 392,
+          "Statement.executeQuery": 617,
+          "ResultSet.next": 4030,
+          "ResultSet.getString": 4076,
+          "ResultSet.getInt": 1510,
+          "Connection.close": 2361
+        },
+        "APIsQualifiedNames": {
+          "Connection.createStatement": "java.sql.Connection.createStatement",
+          "Statement.executeUpdate": "java.sql.Statement.executeUpdate",
+          "Statement.executeQuery": "java.sql.Statement.executeQuery",
+          "ResultSet.next": "java.sql.ResultSet.next",
+          "ResultSet.getString": "java.sql.ResultSet.getString",
+          "ResultSet.getInt": "java.sql.ResultSet.getInt",
+          "Connection.close": "java.sql.Connection.close"
+        },
+        "API_Ratio": 1.0
+      }
+    ]
+  },
+  {
+    "query": "How to connect to a JDBC database",
+    "url": "http://www.xyzws.com/Javafaq/how-to-connect-to-a-database-using-jdbc/166",
+    "url position": 44,
+    "segments": [
+      {
+        "code": "import java.sql.Connection;import java.sql.DriverManager;import java.sql.SQLException;public class Program {  public static void main(String... args) {    Connection con = null;    try {      Class.forName(\"org.gjt.mm.mysql.Driver\").newInstance();    }    catch(Exception e) {      System.out.println(\"Exception: \" + e.getMessage());      return ;    }    try {      con = DriverManager.getConnection(\"jdbc:mysql://localhost:3306/mydb\",        \"usr\", \"sql\");      if(!con.isClosed())        System.out.println(\"Successfully connected to \" +          \"MySQL server using TCP/IP...\");    } catch(Exception e) {      System.out.println(\"Exception: \" + e.getMessage());    } finally {      try {        if(con != null)          con.close();      }      catch(SQLException e) {      }    }  }}",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Connection.isClosed": true,
+          "Connection.close": true
+        },
+        "APIsProjects": {
+          "Connection.isClosed": 30,
+          "Connection.close": 131
+        },
+        "APIsFiles": {
+          "Connection.isClosed": 62,
+          "Connection.close": 939
+        },
+        "APIsSnippets": {
+          "Connection.isClosed": 94,
+          "Connection.close": 2361
+        },
+        "APIsQualifiedNames": {
+          "Connection.isClosed": "java.sql.Connection.isClosed",
+          "Connection.close": "java.sql.Connection.close"
+        },
+        "API_Ratio": 1.0
+      }
+    ]
+  },
+  {
+    "query": "How to connect to a JDBC database",
+    "url": "https://www.playframework.com/documentation/2.6.x/JavaDatabase",
+    "url position": 39,
+    "segments": [
+      {
+        "code": "/*\n * Copyright (C) 2009-2017 Lightbend Inc. <https://www.lightbend.com>\n */\npackage javaguide.sql;\n\nimport javax.inject.*;\n\nimport play.db.*;\n\nimport java.util.concurrent.CompletableFuture;\nimport java.util.concurrent.CompletionStage;\n\n@Singleton\nclass JavaApplicationDatabase {\n\n    private Database db;\n    private DatabaseExecutionContext executionContext;\n\n    @Inject\n    public JavaApplicationDatabase(Database db, DatabaseExecutionContext context) {\n        this.db = db;\n        this.executionContext = executionContext;\n    }\n\n   public CompletionStage<Integer> updateSomething() {\n       return CompletableFuture.supplyAsync(() -> {\n           return db.withConnection(connection -> {\n               // do whatever you need with the db connection\n               return 1;\n           });\n       }, executionContext);\n   }\n}",
+        "in_page_order": 9,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Database.withConnection": false
+        },
+        "APIsProjects": {},
+        "APIsFiles": {},
+        "APIsSnippets": {},
+        "APIsQualifiedNames": {},
+        "API_Ratio": 0.0
+      },
+      {
+        "code": "/*\n * Copyright (C) 2009-2017 Lightbend Inc. <https://www.lightbend.com>\n */\npackage javaguide.sql;\n\nimport java.sql.Connection;\nimport java.util.concurrent.CompletableFuture;\nimport java.util.concurrent.CompletionStage;\nimport javax.inject.Inject;\n\nimport play.mvc.Controller;\nimport play.db.NamedDatabase;\nimport play.db.Database;\n\nclass JavaJdbcConnection {\n    private Database db;\n    private DatabaseExecutionContext executionContext;\n\n    @Inject\n    public JavaJdbcConnection(Database db, DatabaseExecutionContext executionContext) {\n        this.db = db;\n        this.executionContext = executionContext;\n    }\n\n    public CompletionStage<Void> updateSomething() {\n        return CompletableFuture.runAsync(() -> {\n            // get jdbc connection\n            Connection connection = db.getConnection();\n\n            // do whatever you need with the db connection\n            return;\n        }, executionContext);\n    }\n\n}",
+        "in_page_order": 12,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Database.getConnection": false
+        },
+        "APIsProjects": {},
+        "APIsFiles": {},
+        "APIsSnippets": {},
+        "APIsQualifiedNames": {},
+        "API_Ratio": 0.0
+      }
+    ]
+  },
+  {
+    "query": "How to connect to a JDBC database",
+    "url": "https://alvinalexander.com/java/edu/pj/jdbc/jdbc0002",
+    "url position": 43,
+    "segments": [
+      {
+        "code": "\n// create a Statement from the connection\nStatement statement = conn.createStatement();\n\n// insert the data\nstatement.executeUpdate(\"INSERT INTO Customers \" + \"VALUES (1001, 'Simpson', 'Mr.', 'Springfield', 2001)\");\n",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Statement.executeUpdate": true
+        },
+        "APIsProjects": {
+          "Statement.executeUpdate": 54
+        },
+        "APIsFiles": {
+          "Statement.executeUpdate": 135
+        },
+        "APIsSnippets": {
+          "Statement.executeUpdate": 392
+        },
+        "APIsQualifiedNames": {
+          "Statement.executeUpdate": "java.sql.Statement.executeUpdate"
+        },
+        "API_Ratio": 1.0
+      },
+      {
+        "code": "\nimport java.sql.*;\n\n/**\n * JdbcInsert1.java - Demonstrates how to INSERT data into an SQL\n *                    database using Java JDBC.\n */\nclass JdbcInsert1 { \n  \n    public static void main (String[] args) { \n        try { \n            String url = \"jdbc:msql://200.210.220.1:1114/Demo\"; \n            Connection conn = DriverManager.getConnection(url,\"\",\"\"); \n            Statement st = conn.createStatement(); \n            st.executeUpdate(\"INSERT INTO Customers \" + \n                \"VALUES (1001, 'Simpson', 'Mr.', 'Springfield', 2001)\"); \n            st.executeUpdate(\"INSERT INTO Customers \" + \n                \"VALUES (1002, 'McBeal', 'Ms.', 'Boston', 2004)\"); \n            st.executeUpdate(\"INSERT INTO Customers \" + \n                \"VALUES (1003, 'Flinstone', 'Mr.', 'Bedrock', 2003)\"); \n            st.executeUpdate(\"INSERT INTO Customers \" + \n                \"VALUES (1004, 'Cramden', 'Mr.', 'New York', 2001)\");\n\n            conn.close(); \n        } catch (Exception e) { \n            System.err.println(\"Got an exception! \"); \n            System.err.println(e.getMessage()); \n        } \n  \n    }\n} \n",
+        "in_page_order": 3,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Connection.createStatement": true,
+          "Statement.executeUpdate": true,
+          "Connection.close": true
+        },
+        "APIsProjects": {
+          "Connection.createStatement": 90,
+          "Statement.executeUpdate": 54,
+          "Connection.close": 131
+        },
+        "APIsFiles": {
+          "Connection.createStatement": 476,
+          "Statement.executeUpdate": 135,
+          "Connection.close": 939
+        },
+        "APIsSnippets": {
+          "Connection.createStatement": 1703,
+          "Statement.executeUpdate": 392,
+          "Connection.close": 2361
+        },
+        "APIsQualifiedNames": {
+          "Connection.createStatement": "java.sql.Connection.createStatement",
+          "Statement.executeUpdate": "java.sql.Statement.executeUpdate",
+          "Connection.close": "java.sql.Connection.close"
+        },
+        "API_Ratio": 1.0
+      }
+    ]
+  },
+  {
+    "query": "How to connect to a JDBC database",
+    "url": "https://spring.io/guides/gs/relational-data-access/",
+    "url position": 28,
+    "segments": [
+      {
+        "code": "package hello;\n\nimport org.slf4j.Logger;\nimport org.slf4j.LoggerFactory;\nimport org.springframework.beans.factory.annotation.Autowired;\nimport org.springframework.boot.CommandLineRunner;\nimport org.springframework.boot.SpringApplication;\nimport org.springframework.boot.autoconfigure.SpringBootApplication;\nimport org.springframework.jdbc.core.JdbcTemplate;\n\nimport java.util.Arrays;\nimport java.util.List;\nimport java.util.stream.Collectors;\n\n@SpringBootApplication\npublic class Application implements CommandLineRunner {\n\n    private static final Logger log = LoggerFactory.getLogger(Application.class);\n\n    public static void main(String args[]) {\n        SpringApplication.run(Application.class, args);\n    }\n\n    @Autowired\n    JdbcTemplate jdbcTemplate;\n\n    @Override\n    public void run(String... strings) throws Exception {\n\n        log.info(\"Creating tables\");\n\n        jdbcTemplate.execute(\"DROP TABLE customers IF EXISTS\");\n        jdbcTemplate.execute(\"CREATE TABLE customers(\" +\n                \"id SERIAL, first_name VARCHAR(255), last_name VARCHAR(255))\");\n\n        // Split up the array of whole names into an array of first/last names\n        List<Object[]> splitUpNames = Arrays.asList(\"John Woo\", \"Jeff Dean\", \"Josh Bloch\", \"Josh Long\").stream()\n                .map(name -> name.split(\" \"))\n                .collect(Collectors.toList());\n\n        // Use a Java 8 stream to print out each tuple of the list\n        splitUpNames.forEach(name -> log.info(String.format(\"Inserting customer record for %s %s\", name[0], name[1])));\n\n        // Uses JdbcTemplate's batchUpdate operation to bulk load data\n        jdbcTemplate.batchUpdate(\"INSERT INTO customers(first_name, last_name) VALUES (?,?)\", splitUpNames);\n\n        log.info(\"Querying for customer records where first_name = 'Josh':\");\n        jdbcTemplate.query(\n                \"SELECT id, first_name, last_name FROM customers WHERE first_name = ?\", new Object[] { \"Josh\" },\n                (rs, rowNum) -> new Customer(rs.getLong(\"id\"), rs.getString(\"first_name\"), rs.getString(\"last_name\"))\n        ).forEach(customer -> log.info(customer.toString()));\n    }\n}",
+        "in_page_order": 6,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Logger.info": true,
+          "JdbcTemplate.execute": true,
+          "List.forEach": false,
+          "JdbcTemplate.batchUpdate": false,
+          "Customer.__init__": true,
+          "JdbcTemplate.query": true
+        },
+        "APIsProjects": {
+          "Logger.info": 316,
+          "JdbcTemplate.execute": 8,
+          "Customer.__init__": 26,
+          "JdbcTemplate.query": 11
+        },
+        "APIsFiles": {
+          "Logger.info": 7705,
+          "JdbcTemplate.execute": 31,
+          "Customer.__init__": 180,
+          "JdbcTemplate.query": 18
+        },
+        "APIsSnippets": {
+          "Logger.info": 27926,
+          "JdbcTemplate.execute": 207,
+          "Customer.__init__": 406,
+          "JdbcTemplate.query": 49
+        },
+        "APIsQualifiedNames": {
+          "Logger.info": "org.slf4j.Logger.info",
+          "JdbcTemplate.execute": "org.springframework.jdbc.core.JdbcTemplate.execute",
+          "Customer.__init__": "org.agoncal.application.petstore.domain.Customer.__init__",
+          "JdbcTemplate.query": "org.springframework.jdbc.core.JdbcTemplate.query"
+        },
+        "API_Ratio": 0.6666666666666666
+      }
+    ]
+  },
+  {
+    "query": "How to connect to a JDBC database",
+    "url": "http://www.codejava.net/java-se/jdbc/connect-to-a-database-with-jdbc",
+    "url position": 41,
+    "segments": [
+      {
+        "code": "import java.sql.Connection;\nimport java.sql.DriverManager;\nimport java.sql.SQLException;\n\npublic class ConnectJDBC3 {\n    public static void main(String[] args) {\n        String databaseURL = \"jdbc:mysql://localhost:3306/test\";\n        String user = \"user\";\n        String password = \"password\";\n        Connection conn = null;\n        try {\n            Class.forName(\"com.mysql.jdbc.Driver\");\n            conn = DriverManager.getConnection(databaseURL, user, password);\n            if (conn != null) {\n                System.out.println(\"Connected to the database\");\n            }\n        } catch (ClassNotFoundException ex) {\n            System.out.println(\"Could not find database driver class\");\n            ex.printStackTrace();\n        } catch (SQLException ex) {\n            System.out.println(\"An error occurred. Maybe user/password is invalid\");\n            ex.printStackTrace();\n        } finally {\n            if (conn != null) {\n                try {\n                    conn.close();\n                } catch (SQLException ex) {\n                    ex.printStackTrace();\n                }\n            }\n        }\n    }\n}\n",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Connection.close": true
+        },
+        "APIsProjects": {
+          "Connection.close": 131
+        },
+        "APIsFiles": {
+          "Connection.close": 939
+        },
+        "APIsSnippets": {
+          "Connection.close": 2361
+        },
+        "APIsQualifiedNames": {
+          "Connection.close": "java.sql.Connection.close"
+        },
+        "API_Ratio": 1.0
+      },
+      {
+        "code": "import java.sql.Connection;\nimport java.sql.DriverManager;\nimport java.sql.SQLException;\n\npublic class DBConnect1 {\n    public static void main(String[] args) {\n        String databaseURL = \"jdbc:mysql://localhost:3306/test?user=root&password=root123\";\n        Connection conn = null;\n        try {\n            conn = DriverManager.getConnection(databaseURL);\n            if (conn != null) {\n                System.out.println(\"Connected to the database\");\n            }\n        } catch (SQLException ex) {\n            System.out.println(\"An error occurred. Maybe user/password is invalid\");\n            ex.printStackTrace();\n        } finally {\n            if (conn != null) {\n                try {\n                    conn.close();\n                } catch (SQLException ex) {\n                    ex.printStackTrace();\n                }\n            }\n        }\n    }\n}\n",
+        "in_page_order": 2,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Connection.close": true
+        },
+        "APIsProjects": {
+          "Connection.close": 131
+        },
+        "APIsFiles": {
+          "Connection.close": 939
+        },
+        "APIsSnippets": {
+          "Connection.close": 2361
+        },
+        "APIsQualifiedNames": {
+          "Connection.close": "java.sql.Connection.close"
+        },
+        "API_Ratio": 1.0
+      },
+      {
+        "code": "import java.sql.Connection;\nimport java.sql.DriverManager;\nimport java.sql.SQLException;\nimport java.util.Properties;\n\npublic class DBConnect2 {\n    public static void main(String[] args) {\n        String databaseURL = \"jdbc:mysql://localhost:3306/test\";\n        Connection conn = null;\n        try {\n            Properties props = new Properties();\n            props.put(\"user\", \"root\");\n            props.put(\"password\", \"root123\");\n            conn = DriverManager.getConnection(databaseURL, props);\n            if (conn != null) {\n                System.out.println(\"Connected to the database\");\n            }\n        } catch (SQLException ex) {\n            System.out.println(\"An error occurred. Maybe user/password is invalid\");\n            ex.printStackTrace();\n        } finally {\n            if (conn != null) {\n                try {\n                    conn.close();\n                } catch (SQLException ex) {\n                    ex.printStackTrace();\n                }\n            }\n        }\n    }\n}\n",
+        "in_page_order": 3,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Properties.__init__": true,
+          "Properties.put": true,
+          "Connection.close": true
+        },
+        "APIsProjects": {
+          "Properties.__init__": 302,
+          "Properties.put": 168,
+          "Connection.close": 131
+        },
+        "APIsFiles": {
+          "Properties.__init__": 2658,
+          "Properties.put": 752,
+          "Connection.close": 939
+        },
+        "APIsSnippets": {
+          "Properties.__init__": 4618,
+          "Properties.put": 2848,
+          "Connection.close": 2361
+        },
+        "APIsQualifiedNames": {
+          "Properties.__init__": "java.util.Properties.__init__",
+          "Properties.put": "java.util.Properties.put",
+          "Connection.close": "java.sql.Connection.close"
+        },
+        "API_Ratio": 1.0
+      },
+      {
+        "code": "import java.sql.Connection;\nimport java.sql.DriverManager;\nimport java.sql.SQLException;\n\npublic class DBConnect3 {\n    public static void main(String[] args) {\n        String databaseURL = \"jdbc:mysql://localhost:3306/test\";\n        String user = \"root\";\n        String password = \"root123\";\n        Connection conn = null;\n        try {\n            conn = DriverManager.getConnection(databaseURL, user, password);\n            if (conn != null) {\n                System.out.println(\"Connected to the database\");\n            }\n        } catch (SQLException ex) {\n            System.out.println(\"An error occurred. Maybe user/password is invalid\");\n            ex.printStackTrace();\n        } finally {\n            if (conn != null) {\n                try {\n                    conn.close();\n                } catch (SQLException ex) {\n                    ex.printStackTrace();\n                }\n            }\n        }\n    }\n}\n",
+        "in_page_order": 4,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Connection.close": true
+        },
+        "APIsProjects": {
+          "Connection.close": 131
+        },
+        "APIsFiles": {
+          "Connection.close": 939
+        },
+        "APIsSnippets": {
+          "Connection.close": 2361
+        },
+        "APIsQualifiedNames": {
+          "Connection.close": "java.sql.Connection.close"
+        },
+        "API_Ratio": 1.0
+      }
+    ]
+  }
+]

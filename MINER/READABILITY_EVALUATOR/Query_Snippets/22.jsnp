@@ -1,0 +1,2 @@
+
+OutputStream f = new FileOutputStream("C:/java/hello") 

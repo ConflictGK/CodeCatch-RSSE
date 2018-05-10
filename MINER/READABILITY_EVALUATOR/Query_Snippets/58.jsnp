@@ -1,0 +1,12 @@
+import static kiss.API.*;
+
+class App {
+  void run() {
+    String line;
+    try (Close in = inOpen("file.dat")) {
+      while ((line = readLine()) != null) {
+        println(line);
+      }
+    }
+  }
+}

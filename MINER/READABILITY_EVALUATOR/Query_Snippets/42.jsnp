@@ -1,0 +1,35 @@
+BufferedReader br = new BufferedReader(new FileReader("file.txt"));
+try {
+    StringBuilder sb = new StringBuilder();
+    String line = br.readLine();
+
+    while (line != null) {
+        sb.append(line);
+        sb.append(System.lineSeparator());
+        line = br.readLine();
+    }
+    String everything = sb.toString();
+} finally {
+    br.close();
+}
+try(BufferedReader br = new BufferedReader(new FileReader("file.txt"))) {
+    StringBuilder sb = new StringBuilder();
+    String line = br.readLine();
+
+    while (line != null) {
+        sb.append(line);
+        sb.append(System.lineSeparator());
+        line = br.readLine();
+    }
+    String everything = sb.toString();
+}
+FileInputStream inputStream = new FileInputStream("foo.txt");
+try {
+    String everything = IOUtils.toString(inputStream);
+} finally {
+    inputStream.close();
+}
+try(FileInputStream inputStream = new FileInputStream("foo.txt")) {     
+    String everything = IOUtils.toString(inputStream);
+    // do something with everything string
+}

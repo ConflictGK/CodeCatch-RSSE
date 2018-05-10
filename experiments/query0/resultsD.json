@@ -1,0 +1,1850 @@
+{
+   "num_snippets_per_cluster": [
+      18,
+      17,
+      16,
+      14,
+      11
+   ],
+   "num_clusters": 5,
+   "clusters": [
+      {
+         "cluster_snippets": [
+            {
+               "Cluster": 0,
+               "Code": "public void createCSVFile() throws IOException {\r\n    FileWriter out = new FileWriter(\"book_new.csv\");\r\n    try (CSVPrinter printer = new CSVPrinter(out, CSVFormat.DEFAULT\r\n      .withHeader(HEADERS))) {\r\n        AUTHOR_BOOK_MAP.forEach((author, title) -> {\r\n            printer.printRecord(author, title);\r\n        });\r\n    }\r\n}",
+               "LOC": 9,
+               "Url": "http://www.baeldung.com/apache-commons-csv",
+               "Score": 1.0,
+               "API_Weights": 7.4901736444,
+               "API_Qualified_Names": {
+                  "FileWriter.__init__": "java.io.FileWriter.__init__"
+               },
+               "Url_Position": 39,
+               "In_Page_Order": 4,
+               "Num_API_Calls": 2,
+               "Dist_Center": 0.0533196119,
+               "MethodInvocations": [
+                  "AM.__init__",
+                  "FileWriter.__init__"
+               ]
+            },
+            {
+               "Cluster": 0,
+               "Code": "public static void getList() {\n        String fileName = \"books.csv\";\n        File file = new File(\"C:\\\\Users\\\\Jacob\\\\Documents\\\\NetBeansProjects\\\\Books\\\\src\\\\Books\\\\books.csv\"); \n        \n        try {\n            try (Scanner inputStream = new Scanner(file)) {\n                while (inputStream.hasNext()){\n                    String data = inputStream.next();\n                    System.out.println(data);\n                }\n            }\n        } catch (FileNotFoundException e){\n        }\n    }",
+               "LOC": 14,
+               "Url": "https://www.java-forums.org/new-java/96732-reading-data-csv-file-java.html",
+               "Score": 0.7254006008,
+               "API_Weights": 5.6943240801,
+               "API_Qualified_Names": {
+                  "File.__init__": "java.io.File.__init__"
+               },
+               "Url_Position": 28,
+               "In_Page_Order": 1,
+               "Num_API_Calls": 2,
+               "Dist_Center": 0.1347270388,
+               "MethodInvocations": [
+                  "AM.__init__",
+                  "File.__init__"
+               ]
+            },
+            {
+               "Cluster": 0,
+               "Code": "List<List<String>> rows = new ArrayList<>();\r\ntry (InputStream in = new FileInputStream(csvFile);) {\r\n  CSV csv = new CSV(true, ',', in);\r\n  List<String> colNames = null;\r\n  if ( csv.hasNext() ) colNames = new ArrayList<String>(csv.next());\r\n  while (csv.hasNext()) {\r\n    List<String> fields = new ArrayList<String>(csv.next());\r\n    rows.add(fields);\r\n  }\r\n}",
+               "LOC": 10,
+               "Url": "http://www.novixys.com/blog/howto-read-csv-file-java/",
+               "Score": 0.4990461525,
+               "API_Weights": 15.1103255817,
+               "API_Qualified_Names": {
+                  "List.__init__": "java.util.List.__init__",
+                  "List.add": "java.util.List.add"
+               },
+               "Url_Position": 20,
+               "In_Page_Order": 2,
+               "Num_API_Calls": 6,
+               "Dist_Center": 0.2018318223,
+               "MethodInvocations": [
+                  "CSV.next",
+                  "CSV.__init__",
+                  "List.__init__",
+                  "List.add",
+                  "CSV.hasNext",
+                  "AM.__init__"
+               ]
+            },
+            {
+               "Cluster": 0,
+               "Code": "@Test\r\npublic void quotedCommaTest() throws Exception\r\n{\r\n    try(Reader in = new StringReader(\"A,B,\\\"C,D\\\",e\");) {\r\n\tCSV csv = new CSV(true, ',', in);\r\n\tassertTrue(csv.hasNext());\r\n\tList<String> fields = csv.next();\r\n\tassertTrue(fields.size() == 4);\r\n\tList<String> expected = Arrays.asList(\"A\", \"B\", \"C,D\", \"e\");\r\n\tassertThat(fields, is(expected));\r\n    }\r\n}",
+               "LOC": 12,
+               "Url": "http://www.novixys.com/blog/howto-read-csv-file-java/",
+               "Score": 0.3961659107,
+               "API_Weights": 14.817968581,
+               "API_Qualified_Names": {
+                  "List.size": "java.util.List.size"
+               },
+               "Url_Position": 20,
+               "In_Page_Order": 4,
+               "Num_API_Calls": 5,
+               "Dist_Center": 0.2323315823,
+               "MethodInvocations": [
+                  "CSV.next",
+                  "CSV.hasNext",
+                  "CSV.__init__",
+                  "List.size",
+                  "AM.__init__"
+               ]
+            },
+            {
+               "Cluster": 0,
+               "Code": "@Test\r\npublic void includeQuotesTest() throws Exception\r\n{\r\n  try(Reader in = new StringReader(\"A,B,\\\"I said \\\"\\\"How about you?\\\"\\\"\\\",d\");) {\r\n    CSV csv = new CSV(true, ',', in);\r\n    assertTrue(csv.hasNext());\r\n    List<String> fields = csv.next();\r\n    assertTrue(fields.size() == 4);\r\n    List<String> expected = Arrays.asList(\"A\",\r\n\t\t\t\t\t  \"B\",\r\n\t\t\t\t\t  \"I said \\\"How about you?\\\"\",\r\n\t\t\t\t\t  \"d\");\r\n    assertThat(fields, is(expected));\r\n  }\r\n}",
+               "LOC": 15,
+               "Url": "http://www.novixys.com/blog/howto-read-csv-file-java/",
+               "Score": 0.3961659107,
+               "API_Weights": 14.817968581,
+               "API_Qualified_Names": {
+                  "List.size": "java.util.List.size"
+               },
+               "Url_Position": 20,
+               "In_Page_Order": 6,
+               "Num_API_Calls": 5,
+               "Dist_Center": 0.2323315823,
+               "MethodInvocations": [
+                  "CSV.next",
+                  "CSV.hasNext",
+                  "CSV.__init__",
+                  "List.size",
+                  "AM.__init__"
+               ]
+            },
+            {
+               "Cluster": 0,
+               "Code": "try (Reader in = new StringReader(csvStr);) {\r\n    CSV csv = new CSV(true, ',', in);\r\n    int nrows = 0;\r\n    while (csv.hasNext()) {\r\n\tList<String> fields = csv.next();\r\n\tfor (int i = 0 ; i < fields.size() ; i++) {\r\n\t    System.out.printf(\"%-3d: %s%n\", (i+1), fields.get(i));\r\n\t}\r\n\tSystem.out.println();\r\n\tnrows++;\r\n    }\r\n}",
+               "LOC": 12,
+               "Url": "http://www.novixys.com/blog/howto-read-csv-file-java/",
+               "Score": 0.3961659107,
+               "API_Weights": 14.817968581,
+               "API_Qualified_Names": {
+                  "List.size": "java.util.List.size"
+               },
+               "Url_Position": 20,
+               "In_Page_Order": 3,
+               "Num_API_Calls": 5,
+               "Dist_Center": 0.2323315823,
+               "MethodInvocations": [
+                  "CSV.next",
+                  "CSV.hasNext",
+                  "CSV.__init__",
+                  "List.size",
+                  "AM.__init__"
+               ]
+            },
+            {
+               "Cluster": 0,
+               "Code": "@Test\r\npublic void quotesStrippedTest() throws Exception\r\n{\r\n  try(Reader in = new StringReader(\"A,B,I said \\\"How are you?\\\",d\");) {\r\n    CSV csv = new CSV(true, ',', in);\r\n    assertTrue(csv.hasNext());\r\n    List<String> fields = csv.next();\r\n    assertTrue(fields.size() == 4);\r\n    List<String> expected = Arrays.asList(\"A\",\r\n\t\t\t\t\t  \"B\",\r\n\t\t\t\t\t  \"I said How are you?\",\r\n\t\t\t\t\t  \"d\");\r\n    assertThat(fields, is(expected));\r\n  }\r\n}",
+               "LOC": 15,
+               "Url": "http://www.novixys.com/blog/howto-read-csv-file-java/",
+               "Score": 0.3961659107,
+               "API_Weights": 14.817968581,
+               "API_Qualified_Names": {
+                  "List.size": "java.util.List.size"
+               },
+               "Url_Position": 20,
+               "In_Page_Order": 5,
+               "Num_API_Calls": 5,
+               "Dist_Center": 0.2323315823,
+               "MethodInvocations": [
+                  "CSV.next",
+                  "CSV.hasNext",
+                  "CSV.__init__",
+                  "List.size",
+                  "AM.__init__"
+               ]
+            },
+            {
+               "Cluster": 0,
+               "Code": "@Test\r\npublic void multilineFieldQuoteTest() throws Exception\r\n{\r\n  try(Reader in = new StringReader(\"A,B,\\\"I said\\n\\\"\\\"How are you?\\\"\\\"\\\",d\");) {\r\n    CSV csv = new CSV(true, ',', in);\r\n    assertTrue(csv.hasNext());\r\n    List<String> fields = csv.next();\r\n    // fields.stream().forEach(System.out::println);\r\n    assertTrue(fields.size() == 4);\r\n    List<String> expected = Arrays\r\n      .asList(\"A\",\r\n\t      \"B\",\r\n\t      \"I said\\n\\\"How are you?\\\"\",\r\n\t      \"d\");\r\n    assertThat(fields, is(expected));\r\n  }\r\n}",
+               "LOC": 17,
+               "Url": "http://www.novixys.com/blog/howto-read-csv-file-java/",
+               "Score": 0.3961659107,
+               "API_Weights": 14.817968581,
+               "API_Qualified_Names": {
+                  "List.size": "java.util.List.size"
+               },
+               "Url_Position": 20,
+               "In_Page_Order": 7,
+               "Num_API_Calls": 5,
+               "Dist_Center": 0.2323315823,
+               "MethodInvocations": [
+                  "CSV.next",
+                  "CSV.hasNext",
+                  "CSV.__init__",
+                  "List.size",
+                  "AM.__init__"
+               ]
+            },
+            {
+               "Cluster": 0,
+               "Code": "\npackage com.zetcode.databaseex;\n\nimport com.opencsv.CSVWriter;\nimport static com.opencsv.CSVWriter.DEFAULT_SEPARATOR;\nimport static com.opencsv.CSVWriter.NO_QUOTE_CHARACTER;\nimport java.io.FileWriter;\nimport java.io.IOException;\nimport java.sql.Connection;\nimport java.sql.DriverManager;\nimport java.sql.PreparedStatement;\nimport java.sql.ResultSet;\nimport java.sql.SQLException;\n\npublic class DatabaseEx {\n\n    public static void main(String[] args) throws IOException, SQLException {\n\n        Connection con = null;\n        PreparedStatement pst = null;\n        ResultSet rs = null;\n\n        CSVWriter writer = null;\n\n        String url = \"jdbc:mysql://localhost:3306/testdb\";\n        String user = \"testuser\";\n        String password = \"test623\";\n\n        try {\n\n            con = DriverManager.getConnection(url, user, password);\n            pst = con.prepareStatement(\"SELECT * FROM Cars\");\n            rs = pst.executeQuery();\n\n            writer = new CSVWriter(new FileWriter(\"cars.csv\"), \n                    DEFAULT_SEPARATOR, NO_QUOTE_CHARACTER);\n            writer.writeAll(rs, true);\n\n        } finally {\n\n            if (writer != null) {\n                writer.close();\n            }\n\n            if (rs != null) {\n                rs.close();\n            }\n\n            if (pst != null) {\n                pst.close();\n            }\n\n            if (con != null) {\n                con.close();\n            }\n        }\n    }\n}\n",
+               "LOC": 59,
+               "Url": "http://zetcode.com/articles/opencsv/",
+               "Score": 0.3599837477,
+               "API_Weights": 9.1500859275,
+               "API_Qualified_Names": {
+                  "Connection.prepareStatement": "java.sql.Connection.prepareStatement",
+                  "PreparedStatement.executeQuery": "java.sql.PreparedStatement.executeQuery",
+                  "FileWriter.__init__": "java.io.FileWriter.__init__",
+                  "CSVWriter.__init__": "au.com.bytecode.opencsv.CSVWriter.__init__",
+                  "CSVWriter.close": "au.com.bytecode.opencsv.CSVWriter.close",
+                  "ResultSet.close": "java.sql.ResultSet.close",
+                  "PreparedStatement.close": "java.sql.PreparedStatement.close",
+                  "Connection.close": "java.sql.Connection.close"
+               },
+               "Url_Position": 23,
+               "In_Page_Order": 19,
+               "Num_API_Calls": 9,
+               "Dist_Center": 0.2430581053,
+               "MethodInvocations": [
+                  "CSVWriter.__init__",
+                  "ResultSet.close",
+                  "PreparedStatement.executeQuery",
+                  "CSVWriter.writeAll",
+                  "Connection.close",
+                  "CSVWriter.close",
+                  "Connection.prepareStatement",
+                  "PreparedStatement.close",
+                  "FileWriter.__init__"
+               ]
+            },
+            {
+               "Cluster": 0,
+               "Code": "final CellProcessor[] processors = new CellProcessor[] {\n    new Unique(new StrMinMax(5, 20)),\n    new StrMinMax(8, 35),\n    new ParseDate(\"dd/MM/yyyy\"),\n    new Optional(new ParseInt()),\n    null\n};\n",
+               "LOC": 8,
+               "Url": "https://stackoverflow.com/questions/101100/csv-api-for-java",
+               "Score": 0.3412121401,
+               "API_Weights": 2.8484127574,
+               "API_Qualified_Names": {},
+               "Url_Position": 7,
+               "In_Page_Order": 3,
+               "Num_API_Calls": 3,
+               "Dist_Center": 0.2486231149,
+               "MethodInvocations": [
+                  "ParseInt.__init__",
+                  "CellProcessor.__init__",
+                  "StrMinMax.__init__"
+               ]
+            },
+            {
+               "Cluster": 0,
+               "Code": "\npackage com.zetcode.writeopencsv2;\n\nimport com.opencsv.CSVWriter;\nimport java.io.FileWriter;\nimport java.io.IOException;\nimport java.util.ArrayList;\nimport java.util.List;\n\npublic class WriteOpenCSV2 {\n\n    public static void main(String[] args) throws IOException {\n\n        String[] items1 = {\"book\", \"coin\", \"pencil\"};\n        String[] items2 = {\"pen\", \"chair\", \"lamp\"};\n        String[] items3 = {\"ball\", \"bowl\", \"spectacles\"};\n\n        List<String[]> entries = new ArrayList<>();\n        entries.add(items1);\n        entries.add(items2);\n        entries.add(items3);\n\n        String fileName = \"items.csv\";\n\n        try (CSVWriter writer = new CSVWriter(new FileWriter(fileName))) {\n            writer.writeAll(entries);\n        }\n    }\n}\n",
+               "LOC": 30,
+               "Url": "http://zetcode.com/articles/opencsv/",
+               "Score": 0.3218250323,
+               "API_Weights": 6.8133223913,
+               "API_Qualified_Names": {
+                  "List.__init__": "java.util.List.__init__",
+                  "List.add": "java.util.List.add"
+               },
+               "Url_Position": 23,
+               "In_Page_Order": 16,
+               "Num_API_Calls": 3,
+               "Dist_Center": 0.2543705949,
+               "MethodInvocations": [
+                  "AM.__init__",
+                  "List.__init__",
+                  "List.add"
+               ]
+            },
+            {
+               "Cluster": 0,
+               "Code": "\nwriter = new CSVWriter(new FileWriter(\"cars.csv\"), \n        DEFAULT_SEPARATOR, NO_QUOTE_CHARACTER);\n",
+               "LOC": 4,
+               "Url": "http://zetcode.com/articles/opencsv/",
+               "Score": 0.3022822952,
+               "API_Weights": 5.3873258304,
+               "API_Qualified_Names": {
+                  "FileWriter.__init__": "java.io.FileWriter.__init__",
+                  "CSVWriter.__init__": "au.com.bytecode.opencsv.CSVWriter.__init__"
+               },
+               "Url_Position": 23,
+               "In_Page_Order": 21,
+               "Num_API_Calls": 2,
+               "Dist_Center": 0.2601642126,
+               "MethodInvocations": [
+                  "CSVWriter.__init__",
+                  "FileWriter.__init__"
+               ]
+            },
+            {
+               "Cluster": 0,
+               "Code": "/**\n * Sets up the processors used for the examples. There are 10 CSV columns, so 10 processors are defined. Empty\n * columns are read as null (hence the NotNull() for mandatory columns).\n * \n * @return the cell processors\n */\nprivate static CellProcessor[] getProcessors() {\n        \n        final String emailRegex = \"[a-z0-9\\\\._]+@[a-z0-9\\\\.]+\"; // just an example, not very robust!\n        StrRegEx.registerMessage(emailRegex, \"must be a valid email address\");\n        \n        final CellProcessor[] processors = new CellProcessor[] { \n                new UniqueHashCode(), // customerNo (must be unique)\n                new NotNull(), // firstName\n                new NotNull(), // lastName\n                new ParseDate(\"dd/MM/yyyy\"), // birthDate\n                new NotNull(), // mailingAddress\n                new Optional(new ParseBool()), // married\n                new Optional(new ParseInt()), // numberOfKids\n                new NotNull(), // favouriteQuote\n                new StrRegEx(emailRegex), // email\n                new LMinMax(0L, LMinMax.MAX_LONG) // loyaltyPoints\n        };\n        \n        return processors;\n}",
+               "LOC": 26,
+               "Url": "https://super-csv.github.io/super-csv/examples_reading.html",
+               "Score": 0.2206536415,
+               "API_Weights": 2.8484127574,
+               "API_Qualified_Names": {},
+               "Url_Position": 35,
+               "In_Page_Order": 2,
+               "Num_API_Calls": 3,
+               "Dist_Center": 0.2843637509,
+               "MethodInvocations": [
+                  "ParseInt.__init__",
+                  "ParseBool.__init__",
+                  "CellProcessor.__init__"
+               ]
+            },
+            {
+               "Cluster": 0,
+               "Code": "\n     CSVWriter writer = new CSVWriter(new FileWriter(\"yourfile.csv\"), '\\t');\n     // feed in your array (or convert your data to an array)\n     String[] entries = \"first#second#third\".split(\"#\");\n     writer.writeNext(entries);\n     writer.close();\n   \n",
+               "LOC": 8,
+               "Url": "http://opencsv.sourceforge.net/",
+               "Score": 0.1226507715,
+               "API_Weights": 7.5970005616,
+               "API_Qualified_Names": {
+                  "FileWriter.__init__": "java.io.FileWriter.__init__",
+                  "CSVWriter.__init__": "au.com.bytecode.opencsv.CSVWriter.__init__",
+                  "CSVWriter.writeNext": "au.com.bytecode.opencsv.CSVWriter.writeNext",
+                  "CSVWriter.close": "au.com.bytecode.opencsv.CSVWriter.close"
+               },
+               "Url_Position": 13,
+               "In_Page_Order": 25,
+               "Num_API_Calls": 4,
+               "Dist_Center": 0.3134175707,
+               "MethodInvocations": [
+                  "CSVWriter.__init__",
+                  "CSVWriter.writeNext",
+                  "CSVWriter.close",
+                  "FileWriter.__init__"
+               ]
+            },
+            {
+               "Cluster": 0,
+               "Code": "\npackage com.jcg;\n\nimport java.io.FileWriter;\nimport java.io.IOException;\nimport java.util.ArrayList;\nimport java.util.List;\n\n/**\n * @author ashraf\n * \n */\npublic class CsvFileWriter {\n\t\n\t//Delimiter used in CSV file\n\tprivate static final String COMMA_DELIMITER = \",\";\n\tprivate static final String NEW_LINE_SEPARATOR = \"\\n\";\n\t\n\t//CSV file header\n\tprivate static final String FILE_HEADER = \"id,firstName,lastName,gender,age\";\n\n\tpublic static void writeCsvFile(String fileName) {\n\t\t\n\t\t//Create new students objects\n\t\tStudent student1 = new Student(1, \"Ahmed\", \"Mohamed\", \"M\", 25);\n\t\tStudent student2 = new Student(2, \"Sara\", \"Said\", \"F\", 23);\n\t\tStudent student3 = new Student(3, \"Ali\", \"Hassan\", \"M\", 24);\n\t\tStudent student4 = new Student(4, \"Sama\", \"Karim\", \"F\", 20);\n\t\tStudent student5 = new Student(5, \"Khaled\", \"Mohamed\", \"M\", 22);\n\t\tStudent student6 = new Student(6, \"Ghada\", \"Sarhan\", \"F\", 21);\n\t\t\n\t\t//Create a new list of student objects\n\t\tList students = new ArrayList();\n\t\tstudents.add(student1);\n\t\tstudents.add(student2);\n\t\tstudents.add(student3);\n\t\tstudents.add(student4);\n\t\tstudents.add(student5);\n\t\tstudents.add(student6);\n\t\t\n\t\tFileWriter fileWriter = null;\n\t\t\t\t\n\t\ttry {\n\t\t\tfileWriter = new FileWriter(fileName);\n\n\t\t\t//Write the CSV file header\n\t\t\tfileWriter.append(FILE_HEADER.toString());\n\t\t\t\n\t\t\t//Add a new line separator after the header\n\t\t\tfileWriter.append(NEW_LINE_SEPARATOR);\n\t\t\t\n\t\t\t//Write a new student object list to the CSV file\n\t\t\tfor (Student student : students) {\n\t\t\t\tfileWriter.append(String.valueOf(student.getId()));\n\t\t\t\tfileWriter.append(COMMA_DELIMITER);\n\t\t\t\tfileWriter.append(student.getFirstName());\n\t\t\t\tfileWriter.append(COMMA_DELIMITER);\n\t\t\t\tfileWriter.append(student.getLastName());\n\t\t\t\tfileWriter.append(COMMA_DELIMITER);\n\t\t\t\tfileWriter.append(student.getGender());\n\t\t\t\tfileWriter.append(COMMA_DELIMITER);\n\t\t\t\tfileWriter.append(String.valueOf(student.getAge()));\n\t\t\t\tfileWriter.append(NEW_LINE_SEPARATOR);\n\t\t\t}\n\n\t\t\t\n\t\t\t\n\t\t\tSystem.out.println(\"CSV file was created successfully !!!\");\n\t\t\t\n\t\t} catch (Exception e) {\n\t\t\tSystem.out.println(\"Error in CsvFileWriter !!!\");\n\t\t\te.printStackTrace();\n\t\t} finally {\n\t\t\t\n\t\t\ttry {\n\t\t\t\tfileWriter.flush();\n\t\t\t\tfileWriter.close();\n\t\t\t} catch (IOException e) {\n\t\t\t\tSystem.out.println(\"Error while flushing/closing fileWriter !!!\");\n                e.printStackTrace();\n\t\t\t}\n\t\t\t\n\t\t}\n\t}\n}\n",
+               "LOC": 86,
+               "Url": "https://examples.javacodegeeks.com/core-java/writeread-csv-files-in-java-example/",
+               "Score": 0.0065841058,
+               "API_Weights": 7.3142731777,
+               "API_Qualified_Names": {
+                  "List.__init__": "java.util.List.__init__",
+                  "List.add": "java.util.List.add",
+                  "FileWriter.__init__": "java.io.FileWriter.__init__",
+                  "FileWriter.append": "java.io.FileWriter.append",
+                  "FileWriter.flush": "java.io.FileWriter.flush",
+                  "FileWriter.close": "java.io.FileWriter.close"
+               },
+               "Url_Position": 18,
+               "In_Page_Order": 2,
+               "Num_API_Calls": 7,
+               "Dist_Center": 0.347826563,
+               "MethodInvocations": [
+                  "FileWriter.close",
+                  "FileWriter.append",
+                  "FileWriter.flush",
+                  "List.__init__",
+                  "Student.__init__",
+                  "List.add",
+                  "FileWriter.__init__"
+               ]
+            },
+            {
+               "Cluster": 0,
+               "Code": "/************* For Writing ***************************/\n\nimport java.io.File;\nimport java.io.FileWriter;\nimport java.io.IOException;\n\nimport com.csvreader.CsvWriter;\n\npublic class CsvWriterAppendExample {\n\n    public static void main(String[] args) {\n\n        String outputFile = \"users.csv\";\n\n        // before we open the file check to see if it already exists\n        boolean alreadyExists = new File(outputFile).exists();\n\n        try {\n            // use FileWriter constructor that specifies open for appending\n            CsvWriter csvOutput = new CsvWriter(new FileWriter(outputFile, true), ',');\n\n            // if the file didn't already exist then we need to write out the header line\n            if (!alreadyExists)\n            {\n                csvOutput.write(\"id\");\n                csvOutput.write(\"name\");\n                csvOutput.endRecord();\n            }\n            // else assume that the file already has the correct header line\n\n            // write out a few records\n            csvOutput.write(\"1\");\n            csvOutput.write(\"Bruce\");\n            csvOutput.endRecord();\n\n            csvOutput.write(\"2\");\n            csvOutput.write(\"John\");\n            csvOutput.endRecord();\n\n            csvOutput.close();\n        } catch (IOException e) {\n            e.printStackTrace();\n        }\n\n    }\n}\n",
+               "LOC": 47,
+               "Url": "https://stackoverflow.com/questions/101100/csv-api-for-java",
+               "Score": 0.0,
+               "API_Weights": 10.2024950233,
+               "API_Qualified_Names": {
+                  "File.__init__": "java.io.File.__init__",
+                  "FileWriter.__init__": "java.io.FileWriter.__init__",
+                  "CsvWriter.__init__": "com.csvreader.CsvWriter.__init__",
+                  "CsvWriter.close": "com.csvreader.CsvWriter.close"
+               },
+               "Url_Position": 7,
+               "In_Page_Order": 7,
+               "Num_API_Calls": 6,
+               "Dist_Center": 0.3497784796,
+               "MethodInvocations": [
+                  "File.__init__",
+                  "CsvWriter.close",
+                  "CsvWriter.__init__",
+                  "CsvWriter.endRecord",
+                  "CsvWriter.write",
+                  "FileWriter.__init__"
+               ]
+            },
+            {
+               "Cluster": 0,
+               "Code": "\r\nimport java.io.File;\r\nimport java.io.FileWriter;\r\nimport java.io.IOException;\r\n\r\nimport com.csvreader.CsvWriter;\r\n\r\npublic class CsvWriterAppendExample {\r\n\t\r\n\tpublic static void main(String[] args) {\r\n\t\t\r\n\t\tString outputFile = \"users.csv\";\r\n\t\t\r\n\t\t// before we open the file check to see if it already exists\r\n\t\tboolean alreadyExists = new File(outputFile).exists();\r\n\t\t\t\r\n\t\ttry {\r\n\t\t\t// use FileWriter constructor that specifies open for appending\r\n\t\t\tCsvWriter csvOutput = new CsvWriter(new FileWriter(outputFile, true), ',');\r\n\t\t\t\r\n\t\t\t// if the file didn't already exist then we need to write out the header line\r\n\t\t\tif (!alreadyExists)\r\n\t\t\t{\r\n\t\t\t\tcsvOutput.write(\"id\");\r\n\t\t\t\tcsvOutput.write(\"name\");\r\n\t\t\t\tcsvOutput.endRecord();\r\n\t\t\t}\r\n\t\t\t// else assume that the file already has the correct header line\r\n\t\t\t\r\n\t\t\t// write out a few records\r\n\t\t\tcsvOutput.write(\"1\");\r\n\t\t\tcsvOutput.write(\"Bruce\");\r\n\t\t\tcsvOutput.endRecord();\r\n\t\t\t\r\n\t\t\tcsvOutput.write(\"2\");\r\n\t\t\tcsvOutput.write(\"John\");\r\n\t\t\tcsvOutput.endRecord();\r\n\t\t\t\r\n\t\t\tcsvOutput.close();\r\n\t\t} catch (IOException e) {\r\n\t\t\te.printStackTrace();\r\n\t\t}\r\n\t\t\r\n\t}\r\n}\r\n",
+               "LOC": 46,
+               "Url": "https://www.csvreader.com/java_csv_samples.php",
+               "Score": 0.0,
+               "API_Weights": 10.2024950233,
+               "API_Qualified_Names": {
+                  "File.__init__": "java.io.File.__init__",
+                  "FileWriter.__init__": "java.io.FileWriter.__init__",
+                  "CsvWriter.__init__": "com.csvreader.CsvWriter.__init__",
+                  "CsvWriter.close": "com.csvreader.CsvWriter.close"
+               },
+               "Url_Position": 19,
+               "In_Page_Order": 3,
+               "Num_API_Calls": 6,
+               "Dist_Center": 0.3497784796,
+               "MethodInvocations": [
+                  "File.__init__",
+                  "CsvWriter.close",
+                  "CsvWriter.__init__",
+                  "CsvWriter.endRecord",
+                  "CsvWriter.write",
+                  "FileWriter.__init__"
+               ]
+            }
+         ],
+         "avg_cluster_api_weights": 9.691087627109383,
+         "top_apis_by_cluster": [
+            "am.__init__",
+            "filewriter.__init__",
+            "csv.__init__",
+            "csv.hasnext",
+            "csv.next",
+            "csvwriter.__init__",
+            "list.size",
+            "csvwriter.close"
+         ]
+      },
+      {
+         "cluster_snippets": [
+            {
+               "Cluster": 1,
+               "Code": "\npackage com.howtodoinjava.csv.demoOpenCSV;\n\nimport java.io.FileReader;\nimport java.io.IOException;\n\nimport au.com.bytecode.opencsv.CSVReader;\n\npublic class OpenCSVExample {\n\t\n\tpublic static void main(String[] args) \n\t{\n\t\tCSVReader reader = null;\n\t\ttry \n\t\t{\n\t\t\t//Get the CSVReader instance with specifying the delimiter to be used\n\t\t\treader = new CSVReader(new FileReader(\"SampleCSVFile.csv\"),',');\n\t\t\tString [] nextLine;\n\t\t\t//Read one line at a time\n\t\t    while ((nextLine = reader.readNext()) != null) \n\t\t    {\n\t\t    \tfor(String token : nextLine)\n\t\t\t\t{\n\t\t\t\t\t//Print all tokens\n\t\t\t\t\tSystem.out.println(token);\n\t\t\t\t}\n\t\t    }\n\t\t}\n\t    catch (Exception e) {\n\t\t\te.printStackTrace();\n\t\t}\n\t\tfinally\t{\n\t\t\ttry {\n\t\t\t\treader.close();\n\t\t\t} catch (IOException e) {\n\t\t\t\te.printStackTrace();\n\t\t\t}\n\t\t}\n\t}\n}\n\nOutput:\nLokesh\nGupta\nhowtodoinjava.com\nenabled\nRakesh\nGupta\nhowtodoinjava.com\nenabled\n\n..More output will appear here\n",
+               "LOC": 53,
+               "Url": "https://howtodoinjava.com/core-java/io/parse-csv-files-in-java/",
+               "Score": 1.0,
+               "API_Weights": 21.0099405076,
+               "API_Qualified_Names": {
+                  "FileReader.__init__": "java.io.FileReader.__init__",
+                  "CSVReader.__init__": "au.com.bytecode.opencsv.CSVReader.__init__",
+                  "CSVReader.readNext": "au.com.bytecode.opencsv.CSVReader.readNext",
+                  "CSVReader.close": "au.com.bytecode.opencsv.CSVReader.close"
+               },
+               "Url_Position": 16,
+               "In_Page_Order": 3,
+               "Num_API_Calls": 4,
+               "Dist_Center": 0.0404194063,
+               "MethodInvocations": [
+                  "CSVReader.__init__",
+                  "CSVReader.close",
+                  "CSVReader.readNext",
+                  "FileReader.__init__"
+               ]
+            },
+            {
+               "Cluster": 1,
+               "Code": "String fileName = \"data.csv\";\nCSVReader reader = new CSVReader(new FileReader(fileName ));\n\n// if the first line is the header\nString[] header = reader.readNext();\n// iterate over reader.readNext until it returns null\nString[] line = reader.readNext();\n",
+               "LOC": 8,
+               "Url": "https://stackoverflow.com/questions/101100/csv-api-for-java",
+               "Score": 0.9588481286,
+               "API_Weights": 18.524523323,
+               "API_Qualified_Names": {
+                  "FileReader.__init__": "java.io.FileReader.__init__",
+                  "CSVReader.__init__": "au.com.bytecode.opencsv.CSVReader.__init__",
+                  "CSVReader.readNext": "au.com.bytecode.opencsv.CSVReader.readNext"
+               },
+               "Url_Position": 7,
+               "In_Page_Order": 2,
+               "Num_API_Calls": 3,
+               "Dist_Center": 0.0564131289,
+               "MethodInvocations": [
+                  "CSVReader.__init__",
+                  "CSVReader.readNext",
+                  "FileReader.__init__"
+               ]
+            },
+            {
+               "Cluster": 1,
+               "Code": "\r\npackage com.mkyong.csv;\r\n\r\nimport com.opencsv.CSVReader;\r\n\r\nimport java.io.FileReader;\r\nimport java.io.IOException;\r\n\r\npublic class CSVReaderExample {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        String csvFile = \"/Users/mkyong/csv/country3.csv\";\r\n\r\n        CSVReader reader = null;\r\n        try {\r\n            reader = new CSVReader(new FileReader(csvFile));\r\n            String[] line;\r\n            while ((line = reader.readNext()) != null) {\r\n                System.out.println(\"Country [id= \" + line[0] + \", code= \" + line[1] + \" , name=\" + line[2] + \"]\");\r\n            }\r\n        } catch (IOException e) {\r\n            e.printStackTrace();\r\n        }\r\n\r\n\r\n    }\r\n\r\n}\r\n",
+               "LOC": 30,
+               "Url": "https://www.mkyong.com/java/how-to-read-and-parse-csv-file-in-java/",
+               "Score": 0.9588481286,
+               "API_Weights": 18.524523323,
+               "API_Qualified_Names": {
+                  "FileReader.__init__": "java.io.FileReader.__init__",
+                  "CSVReader.__init__": "au.com.bytecode.opencsv.CSVReader.__init__",
+                  "CSVReader.readNext": "au.com.bytecode.opencsv.CSVReader.readNext"
+               },
+               "Url_Position": 1,
+               "In_Page_Order": 17,
+               "Num_API_Calls": 3,
+               "Dist_Center": 0.0564131289,
+               "MethodInvocations": [
+                  "CSVReader.__init__",
+                  "CSVReader.readNext",
+                  "FileReader.__init__"
+               ]
+            },
+            {
+               "Cluster": 1,
+               "Code": "\n     CSVReader reader = new CSVReader(new FileReader(\"yourfile.csv\"));\n     String [] nextLine;\n     while ((nextLine = reader.readNext()) != null) {\n        // nextLine[] is an array of values from the line\n        System.out.println(nextLine[0] + nextLine[1] + \"etc...\");\n     }\n   \n",
+               "LOC": 9,
+               "Url": "http://opencsv.sourceforge.net/",
+               "Score": 0.9588481286,
+               "API_Weights": 18.524523323,
+               "API_Qualified_Names": {
+                  "FileReader.__init__": "java.io.FileReader.__init__",
+                  "CSVReader.__init__": "au.com.bytecode.opencsv.CSVReader.__init__",
+                  "CSVReader.readNext": "au.com.bytecode.opencsv.CSVReader.readNext"
+               },
+               "Url_Position": 13,
+               "In_Page_Order": 7,
+               "Num_API_Calls": 3,
+               "Dist_Center": 0.0564131289,
+               "MethodInvocations": [
+                  "CSVReader.__init__",
+                  "CSVReader.readNext",
+                  "FileReader.__init__"
+               ]
+            },
+            {
+               "Cluster": 1,
+               "Code": "\n     CSVReader reader = new CSVReader(new FileReader(\"yourfile.csv\"), '\\t', '\\'', 2);\n   \n",
+               "LOC": 4,
+               "Url": "http://opencsv.sourceforge.net/",
+               "Score": 0.7074806711,
+               "API_Weights": 14.782458021,
+               "API_Qualified_Names": {
+                  "FileReader.__init__": "java.io.FileReader.__init__",
+                  "CSVReader.__init__": "au.com.bytecode.opencsv.CSVReader.__init__"
+               },
+               "Url_Position": 13,
+               "In_Page_Order": 23,
+               "Num_API_Calls": 2,
+               "Dist_Center": 0.154107383,
+               "MethodInvocations": [
+                  "CSVReader.__init__",
+                  "FileReader.__init__"
+               ]
+            },
+            {
+               "Cluster": 1,
+               "Code": "\n     CSVReader reader = new CSVReader(new FileReader(\"yourfile.csv\"), '\\t');\n   \n",
+               "LOC": 4,
+               "Url": "http://opencsv.sourceforge.net/",
+               "Score": 0.7074806711,
+               "API_Weights": 14.782458021,
+               "API_Qualified_Names": {
+                  "FileReader.__init__": "java.io.FileReader.__init__",
+                  "CSVReader.__init__": "au.com.bytecode.opencsv.CSVReader.__init__"
+               },
+               "Url_Position": 13,
+               "In_Page_Order": 3,
+               "Num_API_Calls": 2,
+               "Dist_Center": 0.154107383,
+               "MethodInvocations": [
+                  "CSVReader.__init__",
+                  "FileReader.__init__"
+               ]
+            },
+            {
+               "Cluster": 1,
+               "Code": "\nCSVReader reader = new CSVReader(new FileReader(fileName), '|');\n",
+               "LOC": 3,
+               "Url": "http://zetcode.com/articles/opencsv/",
+               "Score": 0.7074806711,
+               "API_Weights": 14.782458021,
+               "API_Qualified_Names": {
+                  "FileReader.__init__": "java.io.FileReader.__init__",
+                  "CSVReader.__init__": "au.com.bytecode.opencsv.CSVReader.__init__"
+               },
+               "Url_Position": 23,
+               "In_Page_Order": 12,
+               "Num_API_Calls": 2,
+               "Dist_Center": 0.154107383,
+               "MethodInvocations": [
+                  "CSVReader.__init__",
+                  "FileReader.__init__"
+               ]
+            },
+            {
+               "Cluster": 1,
+               "Code": "\n     CSVReader reader = new CSVReader(new FileReader(\"yourfile.csv\"));\n     for(String[] nextLine : reader.iterator()) {\n        // nextLine[] is an array of values from the line\n        System.out.println(nextLine[0] + nextLine[1] + \"etc...\");\n     }\n   \n",
+               "LOC": 8,
+               "Url": "http://opencsv.sourceforge.net/",
+               "Score": 0.7074806711,
+               "API_Weights": 14.782458021,
+               "API_Qualified_Names": {
+                  "FileReader.__init__": "java.io.FileReader.__init__",
+                  "CSVReader.__init__": "au.com.bytecode.opencsv.CSVReader.__init__"
+               },
+               "Url_Position": 13,
+               "In_Page_Order": 10,
+               "Num_API_Calls": 2,
+               "Dist_Center": 0.154107383,
+               "MethodInvocations": [
+                  "CSVReader.__init__",
+                  "FileReader.__init__"
+               ]
+            },
+            {
+               "Cluster": 1,
+               "Code": "\n     CSVReader reader = new CSVReader(new FileReader(\"yourfile.csv\"), '\\t', '\\'');\n   \n",
+               "LOC": 4,
+               "Url": "http://opencsv.sourceforge.net/",
+               "Score": 0.7074806711,
+               "API_Weights": 14.782458021,
+               "API_Qualified_Names": {
+                  "FileReader.__init__": "java.io.FileReader.__init__",
+                  "CSVReader.__init__": "au.com.bytecode.opencsv.CSVReader.__init__"
+               },
+               "Url_Position": 13,
+               "In_Page_Order": 5,
+               "Num_API_Calls": 2,
+               "Dist_Center": 0.154107383,
+               "MethodInvocations": [
+                  "CSVReader.__init__",
+                  "FileReader.__init__"
+               ]
+            },
+            {
+               "Cluster": 1,
+               "Code": "package com.javainterviewpoint;\r\n\r\nimport java.io.FileReader;\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\nimport au.com.bytecode.opencsv.CSVReader;\r\n\r\npublic class WriteCSV_OpenCSV \r\n{\r\n    public static void main(String args[])\r\n    {\r\n        CSVReader csvReader = null;\r\n        \r\n        try\r\n        {\r\n            /**\r\n             * Reading the CSV File\r\n             * Delimiter is comma\r\n             * Start reading from line 1\r\n             */\r\n            csvReader = new CSVReader(new FileReader(\"Employee.csv\"),',','\"',1);\r\n            //employeeDetails stores the values current line\r\n            String[] employeeDetails = null;\r\n            //Create List for holding Employee objects\r\n            List<Employee> empList = new ArrayList<Employee>();\r\n            \r\n            while((employeeDetails = csvReader.readNext())!=null)\r\n            {\r\n              //Save the employee details in Employee object\r\n                Employee emp = new Employee(Integer.parseInt(employeeDetails[0]),\r\n                        employeeDetails[1],employeeDetails[2],\r\n                        Integer.parseInt(employeeDetails[3]));\r\n                empList.add(emp);\r\n            }\r\n        \r\n        //Lets print the Employee List\r\n        for(Employee e : empList)\r\n        {\r\n            System.out.println(e.getEmpId()+\"   \"+e.getFirstName()+\"   \"\r\n                    +e.getLastName()+\"   \"+e.getSalary());\r\n        }\r\n        }\r\n        catch(Exception ee)\r\n        {\r\n            ee.printStackTrace();\r\n        }\r\n    }\r\n}",
+               "LOC": 49,
+               "Url": "http://www.javainterviewpoint.com/how-to-read-and-parse-csv-file-in-java/",
+               "Score": 0.6492553522,
+               "API_Weights": 19.0284198681,
+               "API_Qualified_Names": {
+                  "FileReader.__init__": "java.io.FileReader.__init__",
+                  "CSVReader.__init__": "au.com.bytecode.opencsv.CSVReader.__init__",
+                  "List.__init__": "java.util.List.__init__",
+                  "CSVReader.readNext": "au.com.bytecode.opencsv.CSVReader.readNext"
+               },
+               "Url_Position": 11,
+               "In_Page_Order": 7,
+               "Num_API_Calls": 4,
+               "Dist_Center": 0.1767367208,
+               "MethodInvocations": [
+                  "CSVReader.__init__",
+                  "List.__init__",
+                  "CSVReader.readNext",
+                  "FileReader.__init__"
+               ]
+            },
+            {
+               "Cluster": 1,
+               "Code": "CSVReader reader = null;\ntry {\n   reader = new CSVReader(new FileReader(\"d:\\\\discoveries.csv\"));\n   Iterator<String[]> iterator = reader.iterator();\n   while(iterator.hasNext()){\n\tString[] lineContents = iterator.next();\n\tSystem.out.println(\"[Discovery = \\\"\" + lineContents[0] + \"\\\", Discoverer = \\\"\" + lineContents[1] \n        + \"\\\", Country = \\\"\" + lineContents[2] + \"\\\"]\");\n   }\n} catch (FileNotFoundException e) {\n   e.printStackTrace();\n} catch (IOException e) {\n   e.printStackTrace();\n} finally {\n   if (reader != null) {\n\ttry {\n\t\treader.close();\n\t} catch (IOException e) {\n\t\te.printStackTrace();\n\t}\n   }\n}",
+               "LOC": 22,
+               "Url": "http://codippa.com/how-to-read-csv-file-in-java/",
+               "Score": 0.5965416582,
+               "API_Weights": 18.7690247576,
+               "API_Qualified_Names": {
+                  "FileReader.__init__": "java.io.FileReader.__init__",
+                  "CSVReader.__init__": "au.com.bytecode.opencsv.CSVReader.__init__",
+                  "Iterator.hasNext": "java.util.Iterator.hasNext",
+                  "Iterator.next": "java.util.Iterator.next",
+                  "CSVReader.close": "au.com.bytecode.opencsv.CSVReader.close"
+               },
+               "Url_Position": 38,
+               "In_Page_Order": 4,
+               "Num_API_Calls": 6,
+               "Dist_Center": 0.1972239592,
+               "MethodInvocations": [
+                  "CSVReader.close",
+                  "Iterator.hasNext",
+                  "Iterator.next",
+                  "FileReader.__init__",
+                  "CSVReader.iterator",
+                  "CSVReader.__init__"
+               ]
+            },
+            {
+               "Cluster": 1,
+               "Code": "\n     CSVReader reader = new CSVReader(new FileReader(\"yourfile.csv\"));\n     List<String[]> myEntries = reader.readAll();\n   \n",
+               "LOC": 5,
+               "Url": "http://opencsv.sourceforge.net/",
+               "Score": 0.573738247,
+               "API_Weights": 15.6100467167,
+               "API_Qualified_Names": {
+                  "FileReader.__init__": "java.io.FileReader.__init__",
+                  "CSVReader.__init__": "au.com.bytecode.opencsv.CSVReader.__init__"
+               },
+               "Url_Position": 13,
+               "In_Page_Order": 8,
+               "Num_API_Calls": 3,
+               "Dist_Center": 0.2060865314,
+               "MethodInvocations": [
+                  "CSVReader.__init__",
+                  "CSVReader.readAll",
+                  "FileReader.__init__"
+               ]
+            },
+            {
+               "Cluster": 1,
+               "Code": "\n     CSVIterator iterator = new CSVIterator(new CSVReader(new FileReader(\"yourfile.csv\")));\n     for(String[] nextLine : iterator) {\n        // nextLine[] is an array of values from the line\n        System.out.println(nextLine[0] + nextLine[1] + \"etc...\");\n     }\n   \n",
+               "LOC": 8,
+               "Url": "http://opencsv.sourceforge.net/",
+               "Score": 0.3804207718,
+               "API_Weights": 15.6100467167,
+               "API_Qualified_Names": {
+                  "FileReader.__init__": "java.io.FileReader.__init__",
+                  "CSVReader.__init__": "au.com.bytecode.opencsv.CSVReader.__init__"
+               },
+               "Url_Position": 13,
+               "In_Page_Order": 9,
+               "Num_API_Calls": 3,
+               "Dist_Center": 0.2812195926,
+               "MethodInvocations": [
+                  "CSVReader.__init__",
+                  "CSVIterator.__init__",
+                  "FileReader.__init__"
+               ]
+            },
+            {
+               "Cluster": 1,
+               "Code": "package com.mypackage.utils;\nimport com.opencsv.CSVParserBuilder;\nimport com.opencsv.CSVReader;\nimport com.opencsv.CSVReaderBuilder;\nimport com.opencsv.enums.CSVReaderNullFieldIndicator;\n\nimport java.io.File;\nimport java.io.IOException;\nimport java.nio.file.Paths;\nimport java.util.*;\n\npublic class FileReader {\n\n    private String path;\n    private CSVReader reader;\n    private List<String> linesList;\n    private Set<List<String>> splitLinesSet;\n\n    public FileReader(String path) {\n        this.path = path;\n    }\n\n    public boolean readFile() {\n\n        this.splitLinesSet = new HashSet<>();\n\n        try {\n            File file = Paths.get(path).toFile();\n            reader = new CSVReaderBuilder(new java.io.FileReader(file))\n                    .withCSVParser(new CSVParserBuilder()\n                            .withSeparator('|')\n                            .withFieldAsNull(CSVReaderNullFieldIndicator.NEITHER).build())\n                    .build();\n            read();\n            reader.close();\n        } catch (IOException e) {\n            System.err.println(\"Error in reading CSV: \" + e.getMessage());\n            return false;\n        }\n\n        return true;\n    }\n\n    public Set<List<String>> getSplitLinesSet() {\n        return splitLinesSet;\n    }\n\n    private void read() throws IOException {\n        String[] lines;\n        while ((lines = reader.readNext()) != null) {\n            linesList = new ArrayList<>();\n            Collections.addAll(linesList, lines);\n            splitLinesSet.add(linesList);\n        }\n    }\n}\n",
+               "LOC": 57,
+               "Url": "https://codereview.stackexchange.com/questions/149967/java-class-to-read-csv-files",
+               "Score": 0.3231363246,
+               "API_Weights": 14.1922922781,
+               "API_Qualified_Names": {
+                  "HashSet.__init__": "java.util.HashSet.__init__",
+                  "FileReader.__init__": "java.io.FileReader.__init__",
+                  "IOException": "java.io.IOException.IOException",
+                  "CSVReader.close": "au.com.bytecode.opencsv.CSVReader.close",
+                  "CSVReader.readNext": "au.com.bytecode.opencsv.CSVReader.readNext"
+               },
+               "Url_Position": 22,
+               "In_Page_Order": 1,
+               "Num_API_Calls": 7,
+               "Dist_Center": 0.3034832594,
+               "MethodInvocations": [
+                  "CSVReader.close",
+                  "CSVReaderBuilder.__init__",
+                  "HashSet.__init__",
+                  "FileReader.__init__",
+                  "CSVReader.readNext",
+                  "CSVParserBuilder.__init__",
+                  "IOException"
+               ]
+            },
+            {
+               "Cluster": 1,
+               "Code": "\r\nimport java.io.FileNotFoundException;\r\nimport java.io.IOException;\r\n\r\nimport com.csvreader.CsvReader;\r\n\r\npublic class CsvReaderExample {\r\n\r\n\tpublic static void main(String[] args) {\r\n\t\ttry {\r\n\t\t\t\r\n\t\t\tCsvReader products = new CsvReader(\"products.csv\");\r\n\t\t\r\n\t\t\tproducts.readHeaders();\r\n\r\n\t\t\twhile (products.readRecord())\r\n\t\t\t{\r\n\t\t\t\tString productID = products.get(\"ProductID\");\r\n\t\t\t\tString productName = products.get(\"ProductName\");\r\n\t\t\t\tString supplierID = products.get(\"SupplierID\");\r\n\t\t\t\tString categoryID = products.get(\"CategoryID\");\r\n\t\t\t\tString quantityPerUnit = products.get(\"QuantityPerUnit\");\r\n\t\t\t\tString unitPrice = products.get(\"UnitPrice\");\r\n\t\t\t\tString unitsInStock = products.get(\"UnitsInStock\");\r\n\t\t\t\tString unitsOnOrder = products.get(\"UnitsOnOrder\");\r\n\t\t\t\tString reorderLevel = products.get(\"ReorderLevel\");\r\n\t\t\t\tString discontinued = products.get(\"Discontinued\");\r\n\t\t\t\t\r\n\t\t\t\t// perform program logic here\r\n\t\t\t\tSystem.out.println(productID + \":\" + productName);\r\n\t\t\t}\r\n\t\r\n\t\t\tproducts.close();\r\n\t\t\t\r\n\t\t} catch (FileNotFoundException e) {\r\n\t\t\te.printStackTrace();\r\n\t\t} catch (IOException e) {\r\n\t\t\te.printStackTrace();\r\n\t\t}\r\n\t\t\r\n\t}\r\n\r\n}\r\n",
+               "LOC": 44,
+               "Url": "https://www.csvreader.com/java_csv_samples.php",
+               "Score": 0.3073935762,
+               "API_Weights": 15.2768821559,
+               "API_Qualified_Names": {
+                  "CsvReader.__init__": "com.dotcms.repackage.javacsv.com.csvreader.CsvReader.__init__",
+                  "CsvReader.readHeaders": "com.dotcms.repackage.javacsv.com.csvreader.CsvReader.readHeaders",
+                  "CsvReader.readRecord": "com.dotcms.repackage.javacsv.com.csvreader.CsvReader.readRecord",
+                  "CsvReader.close": "com.dotcms.repackage.javacsv.com.csvreader.CsvReader.close"
+               },
+               "Url_Position": 19,
+               "In_Page_Order": 2,
+               "Num_API_Calls": 5,
+               "Dist_Center": 0.3096016969,
+               "MethodInvocations": [
+                  "CsvReader.close",
+                  "CsvReader.__init__",
+                  "CsvReader.get",
+                  "CsvReader.readHeaders",
+                  "CsvReader.readRecord"
+               ]
+            },
+            {
+               "Cluster": 1,
+               "Code": "/ ************ For Reading ***************/\n\nimport java.io.FileNotFoundException;\nimport java.io.IOException;\n\nimport com.csvreader.CsvReader;\n\npublic class CsvReaderExample {\n\n    public static void main(String[] args) {\n        try {\n\n            CsvReader products = new CsvReader(\"products.csv\");\n\n            products.readHeaders();\n\n            while (products.readRecord())\n            {\n                String productID = products.get(\"ProductID\");\n                String productName = products.get(\"ProductName\");\n                String supplierID = products.get(\"SupplierID\");\n                String categoryID = products.get(\"CategoryID\");\n                String quantityPerUnit = products.get(\"QuantityPerUnit\");\n                String unitPrice = products.get(\"UnitPrice\");\n                String unitsInStock = products.get(\"UnitsInStock\");\n                String unitsOnOrder = products.get(\"UnitsOnOrder\");\n                String reorderLevel = products.get(\"ReorderLevel\");\n                String discontinued = products.get(\"Discontinued\");\n\n                // perform program logic here\n                System.out.println(productID + \":\" + productName);\n            }\n\n            products.close();\n\n        } catch (FileNotFoundException e) {\n            e.printStackTrace();\n        } catch (IOException e) {\n            e.printStackTrace();\n        }\n\n    }\n\n}\n",
+               "LOC": 45,
+               "Url": "https://stackoverflow.com/questions/101100/csv-api-for-java",
+               "Score": 0.3073935762,
+               "API_Weights": 15.2768821559,
+               "API_Qualified_Names": {
+                  "CsvReader.__init__": "com.dotcms.repackage.javacsv.com.csvreader.CsvReader.__init__",
+                  "CsvReader.readHeaders": "com.dotcms.repackage.javacsv.com.csvreader.CsvReader.readHeaders",
+                  "CsvReader.readRecord": "com.dotcms.repackage.javacsv.com.csvreader.CsvReader.readRecord",
+                  "CsvReader.close": "com.dotcms.repackage.javacsv.com.csvreader.CsvReader.close"
+               },
+               "Url_Position": 7,
+               "In_Page_Order": 7,
+               "Num_API_Calls": 5,
+               "Dist_Center": 0.3096016969,
+               "MethodInvocations": [
+                  "CsvReader.close",
+                  "CsvReader.__init__",
+                  "CsvReader.get",
+                  "CsvReader.readHeaders",
+                  "CsvReader.readRecord"
+               ]
+            },
+            {
+               "Cluster": 1,
+               "Code": "package com.example.csv;\r\nimport com.csvreader.CsvReader;\r\nimport java.io.FileNotFoundException;\r\nimport java.io.IOException;\r\n\r\npublic class ReadCsvFile {\r\n\r\n    public static void main(String[] args) {\r\n        try {\r\n\r\n            CsvReader testcases = new CsvReader(\"test.csv\");\r\n\r\n            testcases.readHeaders();\r\n            //get total numbers of header column\r\n           int numberOfHeaders=testcases.getHeaderCount();\r\n            //print header column\r\n            for(int i=0;i<numberOfHeaders;i++)\r\n            {\r\n                System.out.print(testcases.getHeader(i)+\",  \");\r\n            }\r\n            System.out.println();\r\n            while (testcases.readRecord())\r\n            {\r\n                String TestId = testcases.get(\"TestId\");\r\n                String TestName = testcases.get(\"TestName\");\r\n                String TestModule = testcases.get(\"TestModule\");\r\n                String TestType = testcases.get(\"TestType\");\r\n                String TestSteps = testcases.get(\"TestSteps\");\r\n                String Action = testcases.get(\"Action\");\r\n                String TestResult = testcases.get(\"TestResult\");\r\n                String Note = testcases.get(\"Note\");\r\n                 // output file content\r\n                System.out.println(TestId +\",   \" + TestName +\",    \" + TestModule +\",  \" + TestType +\",    \" + TestSteps +\",   \" + Action +\",  \" + TestResult+\",   \"+Note);\r\n            }\r\n\r\n            testcases.close();\r\n        } catch (FileNotFoundException e) {\r\n            e.printStackTrace();\r\n        } catch (IOException e) {\r\n            e.printStackTrace();\r\n        }\r\n\r\n    }\r\n}\r\n",
+               "LOC": 45,
+               "Url": "http://seleniummaster.com/sitecontent/index.php/java-tutorial/java-csv/299-read-csv-in-java",
+               "Score": 0.2394169328,
+               "API_Weights": 15.77703081,
+               "API_Qualified_Names": {
+                  "CsvReader.__init__": "com.dotcms.repackage.javacsv.com.csvreader.CsvReader.__init__",
+                  "CsvReader.readHeaders": "com.dotcms.repackage.javacsv.com.csvreader.CsvReader.readHeaders",
+                  "CsvReader.readRecord": "com.dotcms.repackage.javacsv.com.csvreader.CsvReader.readRecord",
+                  "CsvReader.close": "com.dotcms.repackage.javacsv.com.csvreader.CsvReader.close"
+               },
+               "Url_Position": 33,
+               "In_Page_Order": 3,
+               "Num_API_Calls": 6,
+               "Dist_Center": 0.3360208982,
+               "MethodInvocations": [
+                  "CsvReader.close",
+                  "CsvReader.__init__",
+                  "CsvReader.getHeaderCount",
+                  "CsvReader.get",
+                  "CsvReader.readHeaders",
+                  "CsvReader.readRecord"
+               ]
+            },
+            {
+               "Cluster": 1,
+               "Code": "/**\n * An example of reading using CsvMapReader.\n */\nprivate static void readWithCsvMapReader() throws Exception {\n        \n        ICsvMapReader mapReader = null;\n        try {\n                mapReader = new CsvMapReader(new FileReader(CSV_FILENAME), CsvPreference.STANDARD_PREFERENCE);\n                \n                // the header columns are used as the keys to the Map\n                final String[] header = mapReader.getHeader(true);\n                final CellProcessor[] processors = getProcessors();\n                \n                Map<String, Object> customerMap;\n                while( (customerMap = mapReader.read(header, processors)) != null ) {\n                        System.out.println(String.format(\"lineNo=%s, rowNo=%s, customerMap=%s\", mapReader.getLineNumber(),\n                                mapReader.getRowNumber(), customerMap));\n                }\n                \n        }\n        finally {\n                if( mapReader != null ) {\n                        mapReader.close();\n                }\n        }\n}",
+               "LOC": 26,
+               "Url": "https://super-csv.github.io/super-csv/examples_reading.html",
+               "Score": -2.220446049e-16,
+               "API_Weights": 8.1759076302,
+               "API_Qualified_Names": {
+                  "FileReader.__init__": "java.io.FileReader.__init__"
+               },
+               "Url_Position": 35,
+               "In_Page_Order": 8,
+               "Num_API_Calls": 5,
+               "Dist_Center": 0.4290705671,
+               "MethodInvocations": [
+                  "ICsvMapReader.read",
+                  "FileReader.__init__",
+                  "ICsvMapReader.close",
+                  "ICsvMapReader.__init__",
+                  "ICsvMapReader.getHeader"
+               ]
+            }
+         ],
+         "avg_cluster_api_weights": 16.011796315022796,
+         "top_apis_by_cluster": [
+            "csvreader.__init__",
+            "filereader.__init__",
+            "csvreader.readnext",
+            "csvreader.close",
+            "csvreader.readrecord",
+            "csvreader.get",
+            "csvreader.readheaders",
+            "csvreader.readall"
+         ]
+      },
+      {
+         "cluster_snippets": [
+            {
+               "Cluster": 2,
+               "Code": "\r\npackage com.mkyong.utils;\r\n\r\nimport java.io.File;\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\nimport java.util.Scanner;\r\n\r\npublic class CSVUtils {\r\n\r\n    private static final char DEFAULT_SEPARATOR = ',';\r\n    private static final char DEFAULT_QUOTE = '\"';\r\n\r\n    public static void main(String[] args) throws Exception {\r\n\r\n        String csvFile = \"/Users/mkyong/csv/country2.csv\";\r\n\r\n        Scanner scanner = new Scanner(new File(csvFile));\r\n        while (scanner.hasNext()) {\r\n            List<String> line = parseLine(scanner.nextLine());\r\n            System.out.println(\"Country [id= \" + line.get(0) + \", code= \" + line.get(1) + \" , name=\" + line.get(2) + \"]\");\r\n        }\r\n        scanner.close();\r\n\r\n    }\r\n\r\n    public static List<String> parseLine(String cvsLine) {\r\n        return parseLine(cvsLine, DEFAULT_SEPARATOR, DEFAULT_QUOTE);\r\n    }\r\n\r\n    public static List<String> parseLine(String cvsLine, char separators) {\r\n        return parseLine(cvsLine, separators, DEFAULT_QUOTE);\r\n    }\r\n\r\n    public static List<String> parseLine(String cvsLine, char separators, char customQuote) {\r\n\r\n        List<String> result = new ArrayList<>();\r\n\r\n        //if empty, return!\r\n        if (cvsLine == null && cvsLine.isEmpty()) {\r\n            return result;\r\n        }\r\n\r\n        if (customQuote == ' ') {\r\n            customQuote = DEFAULT_QUOTE;\r\n        }\r\n\r\n        if (separators == ' ') {\r\n            separators = DEFAULT_SEPARATOR;\r\n        }\r\n\r\n        StringBuffer curVal = new StringBuffer();\r\n        boolean inQuotes = false;\r\n        boolean startCollectChar = false;\r\n        boolean doubleQuotesInColumn = false;\r\n\r\n        char[] chars = cvsLine.toCharArray();\r\n\r\n        for (char ch : chars) {\r\n\r\n            if (inQuotes) {\r\n                startCollectChar = true;\r\n                if (ch == customQuote) {\r\n                    inQuotes = false;\r\n                    doubleQuotesInColumn = false;\r\n                } else {\r\n\r\n                    //Fixed : allow \"\" in custom quote enclosed\r\n                    if (ch == '\\\"') {\r\n                        if (!doubleQuotesInColumn) {\r\n                            curVal.append(ch);\r\n                            doubleQuotesInColumn = true;\r\n                        }\r\n                    } else {\r\n                        curVal.append(ch);\r\n                    }\r\n\r\n                }\r\n            } else {\r\n                if (ch == customQuote) {\r\n\r\n                    inQuotes = true;\r\n\r\n                    //Fixed : allow \"\" in empty quote enclosed\r\n                    if (chars[0] != '\"' && customQuote == '\\\"') {\r\n                        curVal.append('\"');\r\n                    }\r\n\r\n                    //double quotes in column will hit this!\r\n                    if (startCollectChar) {\r\n                        curVal.append('\"');\r\n                    }\r\n\r\n                } else if (ch == separators) {\r\n\r\n                    result.add(curVal.toString());\r\n\r\n                    curVal = new StringBuffer();\r\n                    startCollectChar = false;\r\n\r\n                } else if (ch == '\\r') {\r\n                    //ignore LF characters\r\n                    continue;\r\n                } else if (ch == '\\n') {\r\n                    //the end, break!\r\n                    break;\r\n                } else {\r\n                    curVal.append(ch);\r\n                }\r\n            }\r\n\r\n        }\r\n\r\n        result.add(curVal.toString());\r\n\r\n        return result;\r\n    }\r\n\r\n}\r\n",
+               "LOC": 120,
+               "Url": "https://www.mkyong.com/java/how-to-read-and-parse-csv-file-in-java/",
+               "Score": 1.0,
+               "API_Weights": 18.1039437133,
+               "API_Qualified_Names": {
+                  "File.__init__": "java.io.File.__init__",
+                  "Scanner.__init__": "java.util.Scanner.__init__",
+                  "Scanner.hasNext": "java.util.Scanner.hasNext",
+                  "Scanner.nextLine": "java.util.Scanner.nextLine",
+                  "List.get": "java.util.List.get",
+                  "Scanner.close": "java.util.Scanner.close",
+                  "List.__init__": "java.util.List.__init__",
+                  "StringBuffer.__init__": "java.lang.StringBuffer.__init__",
+                  "StringBuffer.toString": "java.lang.StringBuffer.toString",
+                  "List.add": "java.util.List.add"
+               },
+               "Url_Position": 1,
+               "In_Page_Order": 11,
+               "Num_API_Calls": 12,
+               "Dist_Center": 0.0351254016,
+               "MethodInvocations": [
+                  "Scanner.hasNext",
+                  "File.__init__",
+                  "Scanner.__init__",
+                  "List.cvsLine",
+                  "Scanner.nextLine",
+                  "List.__init__",
+                  "StringBuffer.__init__",
+                  "StringBuffer.toString",
+                  "List.add",
+                  "Scanner.close",
+                  "StringBuffer.append",
+                  "List.get"
+               ]
+            },
+            {
+               "Cluster": 2,
+               "Code": "import java.io.File;\nimport java.io.FileNotFoundException;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.List;\nimport java.util.Scanner;\n\npublic class CsvParser {\n\n    public static void main(String[] args) {\n        String fileName= \"read_ex.csv\";\n        File file= new File(fileName);\n\n        // this gives you a 2-dimensional array of strings\n        List<List<String>> lines = new ArrayList<>();\n        Scanner inputStream;\n\n        try{\n            inputStream = new Scanner(file);\n\n            while(inputStream.hasNext()){\n                String line= inputStream.next();\n                String[] values = line.split(\",\");\n                // this adds the currently parsed line to the 2-dimensional string array\n                lines.add(Arrays.asList(values));\n            }\n\n            inputStream.close();\n        }catch (FileNotFoundException e) {\n            e.printStackTrace();\n        }\n\n        // the following code lets you iterate through the 2-dimensional array\n        int lineNo = 1;\n        for(List<String> line: lines) {\n            int columnNo = 1;\n            for (String value: line) {\n                System.out.println(\"Line \" + lineNo + \" Column \" + columnNo + \": \" + value);\n                columnNo++;\n            }\n            lineNo++;\n        }\n    }\n\n}\n",
+               "LOC": 46,
+               "Url": "https://stackoverflow.com/questions/40074840/reading-a-csv-file-into-a-array",
+               "Score": 0.6885081603,
+               "API_Weights": 15.9735365922,
+               "API_Qualified_Names": {
+                  "File.__init__": "java.io.File.__init__",
+                  "List.__init__": "java.util.List.__init__",
+                  "Scanner.__init__": "java.util.Scanner.__init__",
+                  "Scanner.hasNext": "java.util.Scanner.hasNext",
+                  "Scanner.next": "java.util.Scanner.next",
+                  "List.add": "java.util.List.add",
+                  "Scanner.close": "java.util.Scanner.close"
+               },
+               "Url_Position": 5,
+               "In_Page_Order": 1,
+               "Num_API_Calls": 7,
+               "Dist_Center": 0.1514874109,
+               "MethodInvocations": [
+                  "Scanner.hasNext",
+                  "File.__init__",
+                  "Scanner.next",
+                  "Scanner.__init__",
+                  "List.__init__",
+                  "List.add",
+                  "Scanner.close"
+               ]
+            },
+            {
+               "Cluster": 2,
+               "Code": "import java.io.File;\nimport java.io.IOException;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.List;\nimport java.util.Scanner;\n\npublic class Example\n{\n    public static void main(String args[])\n    {\n        Scanner inputStream = null;\n        try\n        {\n            String fileName = \"dataset.csv\";\n            File file = new File(fileName);\n\n            // we don't know the amount of data ahead of time so we use lists\n            List<Double> col1 = new ArrayList<>();\n            List<Double> col2 = new ArrayList<>();\n\n            inputStream = new Scanner(file);\n            while (inputStream.hasNext())\n            {\n                String data = inputStream.next();\n                String [] arr = data.split(\",\");\n\n                col1.add(Double.parseDouble(arr[0]));\n                col2.add(Double.parseDouble(arr[1]));\n            }\n\n            // Covert the lists to double arrays\n            double[] column1 = new double[col1.size()];\n            double[] column2 = new double[col2.size()];\n\n            for (int i = 0; i < col1.size(); i++)\n            {\n                column1[i] = col1.get(i);\n            }\n\n            for (int i = 0; i < col2.size(); i++)\n            {\n                column2[i] = col2.get(i);\n            }\n\n            // print out just for verification\n            System.out.println(Arrays.toString(column1));\n            System.out.println(Arrays.toString(column2));\n        }\n        catch (IOException e)\n        {\n            e.printStackTrace();\n        }\n        finally\n        {\n            if (inputStream != null)\n            {\n                inputStream.close();\n            }\n        }\n    }\n}\n",
+               "LOC": 63,
+               "Url": "https://stackoverflow.com/questions/44137929/java-convert-string-csv-file-into-double-array",
+               "Score": 0.6751710012,
+               "API_Weights": 17.6123781093,
+               "API_Qualified_Names": {
+                  "File.__init__": "java.io.File.__init__",
+                  "List.__init__": "java.util.List.__init__",
+                  "Scanner.__init__": "java.util.Scanner.__init__",
+                  "Scanner.hasNext": "java.util.Scanner.hasNext",
+                  "Scanner.next": "java.util.Scanner.next",
+                  "List.add": "java.util.List.add",
+                  "List.size": "java.util.List.size",
+                  "Scanner.close": "java.util.Scanner.close"
+               },
+               "Url_Position": 4,
+               "In_Page_Order": 1,
+               "Num_API_Calls": 8,
+               "Dist_Center": 0.1564696879,
+               "MethodInvocations": [
+                  "Scanner.hasNext",
+                  "File.__init__",
+                  "Scanner.next",
+                  "Scanner.__init__",
+                  "List.__init__",
+                  "List.add",
+                  "Scanner.close",
+                  "List.size"
+               ]
+            },
+            {
+               "Cluster": 2,
+               "Code": "\r\npackage com.mkyong.csv;\r\n\r\nimport com.mkyong.utils.CSVUtils;\r\nimport org.hamcrest.core.IsNull;\r\nimport org.junit.Test;\r\n\r\nimport java.util.List;\r\n\r\nimport static org.hamcrest.MatcherAssert.assertThat;\r\nimport static org.hamcrest.core.Is.is;\r\n\r\npublic class CSVUtilsTest {\r\n\r\n    @Test\r\n    public void test_no_quote() {\r\n\r\n        String line = \"10,AU,Australia\";\r\n        List<String> result = CSVUtils.parseLine(line);\r\n\r\n        assertThat(result, IsNull.notNullValue());\r\n        assertThat(result.size(), is(3));\r\n        assertThat(result.get(0), is(\"10\"));\r\n        assertThat(result.get(1), is(\"AU\"));\r\n        assertThat(result.get(2), is(\"Australia\"));\r\n\r\n    }\r\n\r\n    @Test\r\n    public void test_no_quote_but_double_quotes_in_column() throws Exception {\r\n\r\n        String line = \"10,AU,Aus\\\"\\\"tralia\";\r\n\r\n        List<String> result = CSVUtils.parseLine(line);\r\n        assertThat(result, IsNull.notNullValue());\r\n        assertThat(result.size(), is(3));\r\n        assertThat(result.get(0), is(\"10\"));\r\n        assertThat(result.get(1), is(\"AU\"));\r\n        assertThat(result.get(2), is(\"Aus\\\"tralia\"));\r\n\r\n    }\r\n\r\n    @Test\r\n    public void test_double_quotes() {\r\n\r\n        String line = \"\\\"10\\\",\\\"AU\\\",\\\"Australia\\\"\";\r\n        List<String> result = CSVUtils.parseLine(line);\r\n\r\n        assertThat(result, IsNull.notNullValue());\r\n        assertThat(result.size(), is(3));\r\n        assertThat(result.get(0), is(\"10\"));\r\n        assertThat(result.get(1), is(\"AU\"));\r\n        assertThat(result.get(2), is(\"Australia\"));\r\n\r\n    }\r\n\r\n    @Test\r\n    public void test_double_quotes_but_double_quotes_in_column() {\r\n\r\n        String line = \"\\\"10\\\",\\\"AU\\\",\\\"Aus\\\"\\\"tralia\\\"\";\r\n        List<String> result = CSVUtils.parseLine(line);\r\n\r\n        assertThat(result, IsNull.notNullValue());\r\n        assertThat(result.size(), is(3));\r\n        assertThat(result.get(0), is(\"10\"));\r\n        assertThat(result.get(1), is(\"AU\"));\r\n        assertThat(result.get(2), is(\"Aus\\\"tralia\"));\r\n\r\n    }\r\n\r\n    @Test\r\n    public void test_double_quotes_but_comma_in_column() {\r\n\r\n        String line = \"\\\"10\\\",\\\"AU\\\",\\\"Aus,tralia\\\"\";\r\n        List<String> result = CSVUtils.parseLine(line);\r\n\r\n        assertThat(result, IsNull.notNullValue());\r\n        assertThat(result.size(), is(3));\r\n        assertThat(result.get(0), is(\"10\"));\r\n        assertThat(result.get(1), is(\"AU\"));\r\n        assertThat(result.get(2), is(\"Aus,tralia\"));\r\n\r\n    }\r\n\r\n}\r\n",
+               "LOC": 86,
+               "Url": "https://www.mkyong.com/java/how-to-read-and-parse-csv-file-in-java/",
+               "Score": 0.6303296508,
+               "API_Weights": 3.7580172789,
+               "API_Qualified_Names": {
+                  "List.size": "java.util.List.size",
+                  "List.get": "java.util.List.get"
+               },
+               "Url_Position": 1,
+               "In_Page_Order": 13,
+               "Num_API_Calls": 2,
+               "Dist_Center": 0.1732207837,
+               "MethodInvocations": [
+                  "List.get",
+                  "List.size"
+               ]
+            },
+            {
+               "Cluster": 2,
+               "Code": "\r\npackage com.mkyong.csv;\r\n\r\nimport com.mkyong.utils.CSVUtils;\r\nimport org.hamcrest.core.IsNull;\r\nimport org.junit.Test;\r\n\r\nimport java.util.List;\r\n\r\nimport static org.hamcrest.MatcherAssert.assertThat;\r\nimport static org.hamcrest.core.Is.is;\r\n\r\npublic class CSVUtilsTestCustom {\r\n\r\n    @Test\r\n    public void test_custom_separator() {\r\n\r\n        String line = \"10|AU|Australia\";\r\n        List<String> result = CSVUtils.parseLine(line, '|');\r\n\r\n        assertThat(result, IsNull.notNullValue());\r\n        assertThat(result.size(), is(3));\r\n        assertThat(result.get(0), is(\"10\"));\r\n        assertThat(result.get(1), is(\"AU\"));\r\n        assertThat(result.get(2), is(\"Australia\"));\r\n\r\n    }\r\n\r\n    @Test\r\n    public void test_custom_separator_and_quote() {\r\n\r\n        String line = \"'10'|'AU'|'Australia'\";\r\n        List<String> result = CSVUtils.parseLine(line, '|', '\\'');\r\n\r\n        assertThat(result, IsNull.notNullValue());\r\n        assertThat(result.size(), is(3));\r\n        assertThat(result.get(0), is(\"10\"));\r\n        assertThat(result.get(1), is(\"AU\"));\r\n        assertThat(result.get(2), is(\"Australia\"));\r\n\r\n    }\r\n\r\n    @Test\r\n    public void test_custom_separator_and_quote_but_custom_quote_in_column() {\r\n\r\n        String line = \"'10'|'AU'|'Aus|tralia'\";\r\n        List<String> result = CSVUtils.parseLine(line, '|', '\\'');\r\n\r\n        assertThat(result, IsNull.notNullValue());\r\n        assertThat(result.size(), is(3));\r\n        assertThat(result.get(0), is(\"10\"));\r\n        assertThat(result.get(1), is(\"AU\"));\r\n        assertThat(result.get(2), is(\"Aus|tralia\"));\r\n\r\n    }\r\n\r\n    @Test\r\n    public void test_custom_separator_and_quote_but_double_quotes_in_column() {\r\n\r\n        String line = \"'10'|'AU'|'Aus\\\"\\\"tralia'\";\r\n        List<String> result = CSVUtils.parseLine(line, '|', '\\'');\r\n\r\n        assertThat(result, IsNull.notNullValue());\r\n        assertThat(result.size(), is(3));\r\n        assertThat(result.get(0), is(\"10\"));\r\n        assertThat(result.get(1), is(\"AU\"));\r\n        assertThat(result.get(2), is(\"Aus\\\"tralia\"));\r\n\r\n    }\r\n\r\n}\r\n",
+               "LOC": 72,
+               "Url": "https://www.mkyong.com/java/how-to-read-and-parse-csv-file-in-java/",
+               "Score": 0.6303296508,
+               "API_Weights": 3.7580172789,
+               "API_Qualified_Names": {
+                  "List.size": "java.util.List.size",
+                  "List.get": "java.util.List.get"
+               },
+               "Url_Position": 1,
+               "In_Page_Order": 14,
+               "Num_API_Calls": 2,
+               "Dist_Center": 0.1732207837,
+               "MethodInvocations": [
+                  "List.get",
+                  "List.size"
+               ]
+            },
+            {
+               "Cluster": 2,
+               "Code": "public static Book toString (List<String> values) {\n       String _title = values.get(0);\n       String _author = values.get(1);\n       int _year = Integer.parseInt(values.get(2));\n       return new Book(_title, _author, _year);\n    }\n    \n    public List<String> getValues() {\n        Vector<String> values = new Vector<> ();\n        values.add(title);\n        values.add(author);\n        values.add(Integer.toString(year));\n        return values;\n    }\n    \n    public static List<Book> getList() throws Exception {\n    List<Book> collection = new Vector<>();\n    File csvFile = new File(\"C:\\\\Users\\\\Jacob\\\\Documents\\\\NetBeansProjects\\\\Books\\\\src\\\\Books\\\\books.csv\");\n    FileInputStream fis = new FileInputStream(csvFile);\n    Reader fr = new InputStreamReader(fis, \"UTF-8\");\n \n    List<String> values = CSVHelper.parseLine(fr);\n    while (values!= null) {\n        collection.add( Book.toString(values));\n        values = CSVHelper.parseLine(fr);\n    }\n    fis.close();\n    return collection;\n    }",
+               "LOC": 29,
+               "Url": "https://www.java-forums.org/new-java/96732-reading-data-csv-file-java.html",
+               "Score": 0.5911074444,
+               "API_Weights": 10.6270775084,
+               "API_Qualified_Names": {
+                  "List.get": "java.util.List.get",
+                  "Book.__init__": "eu.stratosphere.api.java.typeutils.runtime.GenericTypeSerializerTest.Book.__init__",
+                  "Vector.__init__": "java.util.Vector.__init__",
+                  "Vector.add": "java.util.Vector.add",
+                  "List.__init__": "java.util.List.__init__",
+                  "File.__init__": "java.io.File.__init__",
+                  "FileInputStream.__init__": "java.io.FileInputStream.__init__",
+                  "Reader.__init__": "java.io.Reader.__init__",
+                  "FileInputStream.close": "java.io.FileInputStream.close"
+               },
+               "Url_Position": 28,
+               "In_Page_Order": 3,
+               "Num_API_Calls": 9,
+               "Dist_Center": 0.1878727718,
+               "MethodInvocations": [
+                  "File.__init__",
+                  "Reader.__init__",
+                  "FileInputStream.__init__",
+                  "Book.__init__",
+                  "Vector.add",
+                  "List.__init__",
+                  "FileInputStream.close",
+                  "Vector.__init__",
+                  "List.get"
+               ]
+            },
+            {
+               "Cluster": 2,
+               "Code": "package com.javainterviewpoint;\r\n\r\nimport java.io.File;\r\nimport java.io.FileNotFoundException;\r\nimport java.util.Scanner;\r\n\r\npublic class ReadCSV_Scanner \r\n{\r\n\t//Delimiters used in the CSV file\r\n\tprivate static final String COMMA_DELIMITER = \",\";\r\n\t\r\n\tpublic static void main(String args[])\r\n\t{\r\n\t\t \r\n\t\tScanner scanner = null;\r\n\t\ttry {\r\n\t\t\t//Get the scanner instance\r\n\t\t\tscanner = new Scanner(new File(\"Employee.csv\"));\r\n\t\t\t//Use Delimiter as COMMA\r\n\t\t\tscanner.useDelimiter(COMMA_DELIMITER);\r\n\t\t\twhile(scanner.hasNext())\r\n\t\t\t{\r\n\t\t\t\t\tSystem.out.print(scanner.next()+\"   \");\r\n\t\t\t}\r\n\t\t} \r\n\t\tcatch (FileNotFoundException fe) \r\n\t\t{\r\n\t\t\tfe.printStackTrace();\r\n\t\t}\r\n\t\tfinally\r\n\t\t{\r\n\t\t\tscanner.close();\r\n\t\t}\r\n\t}\r\n}",
+               "LOC": 35,
+               "Url": "http://www.javainterviewpoint.com/how-to-read-and-parse-csv-file-in-java/",
+               "Score": 0.5231366494,
+               "API_Weights": 13.4490952153,
+               "API_Qualified_Names": {
+                  "File.__init__": "java.io.File.__init__",
+                  "Scanner.__init__": "java.util.Scanner.__init__",
+                  "Scanner.useDelimiter": "java.util.Scanner.useDelimiter",
+                  "Scanner.hasNext": "java.util.Scanner.hasNext",
+                  "Scanner.next": "java.util.Scanner.next",
+                  "Scanner.close": "java.util.Scanner.close"
+               },
+               "Url_Position": 11,
+               "In_Page_Order": 5,
+               "Num_API_Calls": 6,
+               "Dist_Center": 0.2132641858,
+               "MethodInvocations": [
+                  "Scanner.useDelimiter",
+                  "Scanner.hasNext",
+                  "File.__init__",
+                  "Scanner.next",
+                  "Scanner.__init__",
+                  "Scanner.close"
+               ]
+            },
+            {
+               "Cluster": 2,
+               "Code": "\npackage com.howtodoinjava.csv.demoScanner;\n\nimport java.io.File;\nimport java.io.FileNotFoundException;\nimport java.util.Scanner;\n\npublic class ScannerExample \n{\n\tpublic static void main(String[] args) throws FileNotFoundException \n\t{\n\t\t//Get scanner instance\n\t\tScanner scanner = new Scanner(new File(\"SampleCSVFile.csv\"));\n\t\t\n\t\t//Set the delimiter used in file\n\t\tscanner.useDelimiter(\",\");\n\t\t\n\t\t//Get all tokens and store them in some data structure\n\t\t//I am just printing them\n\t\twhile (scanner.hasNext()) \n\t\t{\n\t\t\tSystem.out.print(scanner.next() + \"|\");\n\t\t}\n\t\t\n\t\t//Do not forget to close the scanner  \n\t\tscanner.close();\n\t}\n}\n\nOutput:\n\n1|Lokesh|Gupta|howtodoinjava.com|enabled\n2|Rakesh|Gupta|howtodoinjava.com|enabled\n3|Manoj|Sharma|howtodoinjava.com|enabled\n4|Abhay|Dwivedi|howtodoinjava.com|enabled\n5|John|Adward|howtodoinjava.com|enabled\n6|Steve|Jobs|howtodoinjava.com|disabled\n7|Bill|Gates|howtodoinjava.com|enabled\n8|Tom|Hanks|howtodoinjava.com|enabled\n9|Dev|Patel|howtodoinjava.com|disabled\n\n",
+               "LOC": 42,
+               "Url": "https://howtodoinjava.com/core-java/io/parse-csv-files-in-java/",
+               "Score": 0.5231366494,
+               "API_Weights": 13.4490952153,
+               "API_Qualified_Names": {
+                  "File.__init__": "java.io.File.__init__",
+                  "Scanner.__init__": "java.util.Scanner.__init__",
+                  "Scanner.useDelimiter": "java.util.Scanner.useDelimiter",
+                  "Scanner.hasNext": "java.util.Scanner.hasNext",
+                  "Scanner.next": "java.util.Scanner.next",
+                  "Scanner.close": "java.util.Scanner.close"
+               },
+               "Url_Position": 16,
+               "In_Page_Order": 1,
+               "Num_API_Calls": 6,
+               "Dist_Center": 0.2132641858,
+               "MethodInvocations": [
+                  "Scanner.useDelimiter",
+                  "Scanner.hasNext",
+                  "File.__init__",
+                  "Scanner.next",
+                  "Scanner.__init__",
+                  "Scanner.close"
+               ]
+            },
+            {
+               "Cluster": 2,
+               "Code": "import java.io.File;\nimport java.io.FileNotFoundException;\nimport java.util.Scanner;\n\n\npublic class TestScanner {\n\n    public static void main(String[] args) throws FileNotFoundException {\n        Scanner scanner = new Scanner(new File(\"/Users/pankaj/abc.csv\"));\n        scanner.useDelimiter(\",\");\n        while(scanner.hasNext()){\n            System.out.print(scanner.next()+\"|\");\n        }\n        scanner.close();\n    }\n\n}\n",
+               "LOC": 18,
+               "Url": "https://stackoverflow.com/questions/14274259/read-csv-with-scanner",
+               "Score": 0.5231366494,
+               "API_Weights": 13.4490952153,
+               "API_Qualified_Names": {
+                  "File.__init__": "java.io.File.__init__",
+                  "Scanner.__init__": "java.util.Scanner.__init__",
+                  "Scanner.useDelimiter": "java.util.Scanner.useDelimiter",
+                  "Scanner.hasNext": "java.util.Scanner.hasNext",
+                  "Scanner.next": "java.util.Scanner.next",
+                  "Scanner.close": "java.util.Scanner.close"
+               },
+               "Url_Position": 3,
+               "In_Page_Order": 1,
+               "Num_API_Calls": 6,
+               "Dist_Center": 0.2132641858,
+               "MethodInvocations": [
+                  "Scanner.useDelimiter",
+                  "Scanner.hasNext",
+                  "File.__init__",
+                  "Scanner.next",
+                  "Scanner.__init__",
+                  "Scanner.close"
+               ]
+            },
+            {
+               "Cluster": 2,
+               "Code": "public static void main(String args[]){\n\t//This scanner receives input from STDIN\n\tScanner in = new Scanner(System.in);\n\t//This scanner divides (tokenize) the input line (from in)\n\tScanner lineTokenizer;\n\twhile(in.hasNextLine()){\n\t\t//Due to the fact that the file is a CSV,\n\t\t//use comma as a delimiter.\n\t\tlineTokenizer = new Scanner(\n\t\t\t\t\tin.nextLine()).useDelimiter(\", \");\n\t\t\n\t\twhile(lineTokenizer.hasNext()){\n\t\t\t\tif(lineTokenizer.hasNextInt()){\n\t\t\t\t\t//Save in INT ARRAYLIST\t\n\t\t\t\t}\n\t\t\t\telse if(lineTokenizer.hasNextDouble()){\n\t\t\t\t\t//Save in DOUBLE ARRAYLIST\n\t\t\t\t}else{\n\t\t\t\t\t//If is not a INT and not a double,\n\t\t\t\t\t//only remains a String\n\t\t\t\t\t//Save in STRING ARRAYLIST\n\t\t\t\t}\n\t\t}\n\t}\n",
+               "LOC": 25,
+               "Url": "https://www.quora.com/In-Java-how-do-you-go-about-parsing-a-CSV-of-Integers-Doubles-Strings-and-then-saving-them-within-an-ArrayList-s",
+               "Score": 0.5093170995,
+               "API_Weights": 7.104159857,
+               "API_Qualified_Names": {
+                  "Scanner.__init__": "java.util.Scanner.__init__",
+                  "Scanner.hasNextLine": "java.util.Scanner.hasNextLine",
+                  "Scanner.nextLine": "java.util.Scanner.nextLine",
+                  "Scanner.hasNext": "java.util.Scanner.hasNext",
+                  "Scanner.hasNextInt": "java.util.Scanner.hasNextInt",
+                  "Scanner.hasNextDouble": "java.util.Scanner.hasNextDouble"
+               },
+               "Url_Position": 32,
+               "In_Page_Order": 6,
+               "Num_API_Calls": 6,
+               "Dist_Center": 0.2184266665,
+               "MethodInvocations": [
+                  "Scanner.hasNext",
+                  "Scanner.__init__",
+                  "Scanner.hasNextLine",
+                  "Scanner.nextLine",
+                  "Scanner.hasNextInt",
+                  "Scanner.hasNextDouble"
+               ]
+            },
+            {
+               "Cluster": 2,
+               "Code": "import com.opencsv.CSVWriter;\nimport com.opencsv.bean.StatefulBeanToCsv;\nimport com.opencsv.bean.StatefulBeanToCsvBuilder;\nimport com.opencsv.exceptions.CsvDataTypeMismatchException;\nimport com.opencsv.exceptions.CsvRequiredFieldEmptyException;\n\nimport java.io.IOException;\nimport java.io.Writer;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\nimport java.util.ArrayList;\nimport java.util.List;\n\npublic class OpenCSVWriter {\n    private static final String OBJECT_LIST_SAMPLE = \"./object-list-sample.csv\";\n\n    public static void main(String[] args) throws IOException,\n            CsvDataTypeMismatchException,\n            CsvRequiredFieldEmptyException {\n\n        try (\n            Writer writer = Files.newBufferedWriter(Paths.get(STRING_ARRAY_SAMPLE));\n        ) {\n            StatefulBeanToCsv beanToCsv = new StatefulBeanToCsvBuilder(writer)\n                    .withQuotechar(CSVWriter.NO_QUOTE_CHARACTER)\n                    .build();\n\n            List<MyUser> myUsers = new ArrayList<>();\n            myUsers.add(new MyUser(\"Sundar Pichai \", \"sundar.pichai@gmail.com\", \"+1-1111111111\", \"India\"));\n            myUsers.add(new MyUser(\"Satya Nadella\", \"satya.nadella@outlook.com\", \"+1-1111111112\", \"India\"));\n\n            beanToCsv.write(myUsers);\n        }\n    }\n}\n",
+               "LOC": 36,
+               "Url": "https://www.callicoder.com/java-read-write-csv-file-opencsv/",
+               "Score": 0.3551484362,
+               "API_Weights": 5.4903016481,
+               "API_Qualified_Names": {
+                  "List.__init__": "java.util.List.__init__",
+                  "List.add": "java.util.List.add"
+               },
+               "Url_Position": 8,
+               "In_Page_Order": 14,
+               "Num_API_Calls": 5,
+               "Dist_Center": 0.2760184655,
+               "MethodInvocations": [
+                  "StatefulBeanToCsvBuilder.__init__",
+                  "List.__init__",
+                  "MyUser.__init__",
+                  "List.add",
+                  "StatefulBeanToCsv.write"
+               ]
+            },
+            {
+               "Cluster": 2,
+               "Code": "import java.io.BufferedReader;\nimport java.io.IOException;\nimport java.nio.charset.StandardCharsets;\nimport java.nio.file.Files;\nimport java.nio.file.Path;\nimport java.nio.file.Paths;\nimport java.util.ArrayList;\nimport java.util.List;\n\n/**\n * Simple Java program to read CSV file in Java. In this program we will read\n * list of books stored in CSV file as comma separated values.\n * \n * @author WINDOWS 8\n *\n */\npublic class CSVReaderInJava {\n\n    public static void main(String... args) {\n        List<Book> books = readBooksFromCSV(\"books.txt\");\n\n        // let's print all the person read from CSV file\n        for (Book b : books) {\n            System.out.println(b);\n        }\n    }\n\n    private static List<Book> readBooksFromCSV(String fileName) {\n        List<Book> books = new ArrayList<>();\n        Path pathToFile = Paths.get(fileName);\n\n        // create an instance of BufferedReader\n        // using try with resource, Java 7 feature to close resources\n        try (BufferedReader br = Files.newBufferedReader(pathToFile,\n                StandardCharsets.US_ASCII)) {\n\n            // read the first line from the text file\n            String line = br.readLine();\n\n            // loop until all lines are read\n            while (line != null) {\n\n                // use string.split to load a string array with the values from\n                // each line of\n                // the file, using a comma as the delimiter\n                String[] attributes = line.split(\",\");\n\n                Book book = createBook(attributes);\n\n                // adding book into ArrayList\n                books.add(book);\n\n                // read next line before looping\n                // if end of file reached, line would be null\n                line = br.readLine();\n            }\n\n        } catch (IOException ioe) {\n            ioe.printStackTrace();\n        }\n\n        return books;\n    }\n\n    private static Book createBook(String[] metadata) {\n        String name = metadata[0];\n        int price = Integer.parseInt(metadata[1]);\n        String author = metadata[2];\n\n        // create and return book of this metadata\n        return new Book(name, price, author);\n    }\n\n}\n\nclass Book {\n    private String name;\n    private int price;\n    private String author;\n\n    public Book(String name, int price, String author) {\n        this.name = name;\n        this.price = price;\n        this.author = author;\n    }\n\n    public String getName() {\n        return name;\n    }\n\n    public void setName(String name) {\n        this.name = name;\n    }\n\n    public int getPrice() {\n        return price;\n    }\n\n    public void setPrice(int price) {\n        this.price = price;\n    }\n\n    public String getAuthor() {\n        return author;\n    }\n\n    public void setAuthor(String author) {\n        this.author = author;\n    }\n\n    @Override\n    public String toString() {\n        return \"Book [name=\" + name + \", price=\" + price + \", author=\" + author\n                + \"]\";\n    }\n\n}\n\nOutput\nBook [name=Effective Java, price=42, author=Joshua Bloch]\nBook [name=Head First Java, price=39, author=Kathy Sierra]\nBook [name=Head First Design Pattern, price=44, author=Kathy Sierra]\nBook [name=Introduction to Algorithm, price=72, author=Thomas Cormen]",
+               "LOC": 123,
+               "Url": "http://www.java67.com/2015/08/how-to-load-data-from-csv-file-in-java.html",
+               "Score": 0.3140030963,
+               "API_Weights": 3.4207516703,
+               "API_Qualified_Names": {
+                  "List.__init__": "java.util.List.__init__",
+                  "Book.__init__": "eu.stratosphere.api.java.typeutils.runtime.GenericTypeSerializerTest.Book.__init__"
+               },
+               "Url_Position": 2,
+               "In_Page_Order": 1,
+               "Num_API_Calls": 2,
+               "Dist_Center": 0.2913888663,
+               "MethodInvocations": [
+                  "Book.__init__",
+                  "List.__init__"
+               ]
+            },
+            {
+               "Cluster": 2,
+               "Code": "public static void main(String[] args) throws Exception {\n    File file = new File(\"test.csv\");\n    List<String> lines = Files.readAllLines(file.toPath(), \n            StandardCharsets.UTF_8);\n    for (String line : lines) {\n        String[] array = line.split(\",\");\n        System.out.println(array[0]);\n    }\n}\n",
+               "LOC": 10,
+               "Url": "https://stackoverflow.com/questions/19931929/reading-a-column-from-csv-file-using-java",
+               "Score": 0.1394951048,
+               "API_Weights": 3.5150027172,
+               "API_Qualified_Names": {
+                  "File.__init__": "java.io.File.__init__",
+                  "File.toPath": "java.io.File.toPath"
+               },
+               "Url_Position": 6,
+               "In_Page_Order": 2,
+               "Num_API_Calls": 2,
+               "Dist_Center": 0.3565786978,
+               "MethodInvocations": [
+                  "File.toPath",
+                  "File.__init__"
+               ]
+            },
+            {
+               "Cluster": 2,
+               "Code": "public class CustomCsvProcessor implements CsvProcessor<CsvData> {\t@Override\tpublic CsvData process(CsvData inData) {\t\tinData.setName(inData.getName().toUpperCase());\t\treturn inData;\t}}",
+               "LOC": 1,
+               "Url": "http://www.opencodez.com/java/generic-csv-file-reader-in-java.htm",
+               "Score": 0.0746844193,
+               "API_Weights": 1.4142135624,
+               "API_Qualified_Names": {},
+               "Url_Position": 27,
+               "In_Page_Order": 8,
+               "Num_API_Calls": 2,
+               "Dist_Center": 0.38078961,
+               "MethodInvocations": [
+                  "CsvData.getName",
+                  "CsvData.setName"
+               ]
+            },
+            {
+               "Cluster": 2,
+               "Code": "String file = \"src/main/resources/sample-data.csv\";List<String> ord = new ArrayList<String>();ord.add(\"id\");ord.add(\"name\");ord.add(\"series\");CustomCsvReader<CsvData> reader = new CustomCsvReader<CsvData>(CsvData.class, file, true)\t\t.setOrder(ord)\t\t.read()\t\t.process(new CustomCsvProcessor());for(CsvData msg :reader.getData()) {\tSystem.out.println(msg);}",
+               "LOC": 1,
+               "Url": "http://www.opencodez.com/java/generic-csv-file-reader-in-java.htm",
+               "Score": 0.0433359934,
+               "API_Weights": 5.1466066288,
+               "API_Qualified_Names": {
+                  "List.__init__": "java.util.List.__init__",
+                  "List.add": "java.util.List.add"
+               },
+               "Url_Position": 27,
+               "In_Page_Order": 9,
+               "Num_API_Calls": 4,
+               "Dist_Center": 0.3925002405,
+               "MethodInvocations": [
+                  "List.__init__",
+                  "CustomCsvProcessor.__init__",
+                  "List.add",
+                  "CustomCsvReader.__init__"
+               ]
+            },
+            {
+               "Cluster": 2,
+               "Code": "\n Reader in = new StringReader(\"a;b\\nc;d\");\n CSVParser parser = new CSVParser(in, CSVFormat.EXCEL);\n List<CSVRecord> list = parser.getRecords();\n ",
+               "LOC": 5,
+               "Url": "https://commons.apache.org/proper/commons-csv/apidocs/org/apache/commons/csv/CSVParser.html",
+               "Score": 0.0,
+               "API_Weights": 2.0725885693,
+               "API_Qualified_Names": {
+                  "Reader.__init__": "java.io.Reader.__init__",
+                  "CSVParser.__init__": "au.com.bytecode.opencsv.CSVParser.__init__"
+               },
+               "Url_Position": 15,
+               "In_Page_Order": 5,
+               "Num_API_Calls": 3,
+               "Dist_Center": 0.4086889897,
+               "MethodInvocations": [
+                  "CSVParser.getRecords",
+                  "Reader.__init__",
+                  "CSVParser.__init__"
+               ]
+            }
+         ],
+         "avg_cluster_api_weights": 8.646492548743716,
+         "top_apis_by_cluster": [
+            "file.__init__",
+            "scanner.__init__",
+            "scanner.hasnext",
+            "scanner.close",
+            "list.__init__",
+            "list.get",
+            "scanner.next",
+            "list.add"
+         ]
+      },
+      {
+         "cluster_snippets": [
+            {
+               "Cluster": 3,
+               "Code": "     import java.io.BufferedReader;\n     import java.io.FileNotFoundException;\n     import java.io.FileReader;\n     import java.io.IOException;\n     import java.util.ArrayList;\n     import java.util.HashMap;\n     \n     public class CSVReader {\n     \n         public ArrayList readFile() {\n     \n             String file = \"path/to/file.csv\";\n             BufferedReader br = null;\n             String line = null;\n             String[] country = null;\n             ArrayList<HashMap<String, String>> listOfCountries = new ArrayList<HashMap<String, String>>();\n             HashMap<String, String> mapOfCountry = null;\n     \n             try {\n                 br = new BufferedReader(new FileReader(file));\n                 while ((line = br.readLine()) != null) {\n                     country = line.split(\",\");\n                     mapOfCountry = new HashMap<String, String>();\n                     mapOfCountry.put(\"column0\", country[0]);\n                     mapOfCountry.put(\"column1\", country[1]);\n                     mapOfCountry.put(\"column2\", country[2]);\n                     listOfCountries.add(mapOfCountry);\n                 }\n                 return listOfCountries;\n             } catch (FileNotFoundException e) {\n                 e.printStackTrace();\n             } catch (IOException e) {\n                 e.printStackTrace();\n             } finally {\n                 if (br != null) {\n                     try {\n                         br.close();\n                     } catch (IOException e) {\n                         e.printStackTrace();\n                     }\n                 }\n             }\n             return null;\n         }\n     }\n \n \n",
+               "LOC": 48,
+               "Url": "https://forums.mulesoft.com/questions/71459/get-csv-file-as-payload-from-java-and-pass-it-to-t.html",
+               "Score": 1.0,
+               "API_Weights": 20.8451005932,
+               "API_Qualified_Names": {
+                  "ArrayList.__init__": "java.util.ArrayList.__init__",
+                  "FileReader.__init__": "java.io.FileReader.__init__",
+                  "BufferedReader.__init__": "java.io.BufferedReader.__init__",
+                  "BufferedReader.readLine": "java.io.BufferedReader.readLine",
+                  "BufferedReader.close": "java.io.BufferedReader.close"
+               },
+               "Url_Position": 36,
+               "In_Page_Order": 1,
+               "Num_API_Calls": 5,
+               "Dist_Center": 0.0639877315,
+               "MethodInvocations": [
+                  "BufferedReader.__init__",
+                  "FileReader.__init__",
+                  "BufferedReader.close",
+                  "BufferedReader.readLine",
+                  "ArrayList.__init__"
+               ]
+            },
+            {
+               "Cluster": 3,
+               "Code": "package com.javainterviewpoint;\r\n\r\nimport java.io.BufferedReader;\r\nimport java.io.FileReader;\r\nimport java.io.IOException;\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\npublic class ReadCSVFile_BufferedReader \r\n{\r\n\t//Delimiters used in the CSV file\r\n    private static final String COMMA_DELIMITER = \",\";\r\n    \r\n    public static void main(String args[])\r\n    {\r\n        BufferedReader br = null;\r\n        try\r\n        {\r\n            //Reading the csv file\r\n            br = new BufferedReader(new FileReader(\"Employee.csv\"));\r\n            \r\n            //Create List for holding Employee objects\r\n            List<Employee> empList = new ArrayList<Employee>();\r\n            \r\n            String line = \"\";\r\n            //Read to skip the header\r\n            br.readLine();\r\n            //Reading from the second line\r\n            while ((line = br.readLine()) != null) \r\n            {\r\n                String[] employeeDetails = line.split(COMMA_DELIMITER);\r\n                \r\n                if(employeeDetails.length > 0 )\r\n                {\r\n                    //Save the employee details in Employee object\r\n                    Employee emp = new Employee(Integer.parseInt(employeeDetails[0]),\r\n                            employeeDetails[1],employeeDetails[2],\r\n                            Integer.parseInt(employeeDetails[3]));\r\n                    empList.add(emp);\r\n                }\r\n            }\r\n            \r\n            //Lets print the Employee List\r\n            for(Employee e : empList)\r\n            {\r\n                System.out.println(e.getEmpId()+\"   \"+e.getFirstName()+\"   \"\r\n                \t\t+e.getLastName()+\"   \"+e.getSalary());\r\n            }\r\n        }\r\n        catch(Exception ee)\r\n        {\r\n            ee.printStackTrace();\r\n        }\r\n        finally\r\n        {\r\n            try\r\n            {\r\n                br.close();\r\n            }\r\n            catch(IOException ie)\r\n            {\r\n                System.out.println(\"Error occured while closing the BufferedReader\");\r\n                ie.printStackTrace();\r\n            }\r\n        }\r\n    }\r\n}",
+               "LOC": 67,
+               "Url": "http://www.javainterviewpoint.com/how-to-read-and-parse-csv-file-in-java/",
+               "Score": 0.944918442,
+               "API_Weights": 20.4272340139,
+               "API_Qualified_Names": {
+                  "FileReader.__init__": "java.io.FileReader.__init__",
+                  "BufferedReader.__init__": "java.io.BufferedReader.__init__",
+                  "List.__init__": "java.util.List.__init__",
+                  "BufferedReader.readLine": "java.io.BufferedReader.readLine",
+                  "BufferedReader.close": "java.io.BufferedReader.close"
+               },
+               "Url_Position": 11,
+               "In_Page_Order": 3,
+               "Num_API_Calls": 5,
+               "Dist_Center": 0.084814174,
+               "MethodInvocations": [
+                  "BufferedReader.__init__",
+                  "FileReader.__init__",
+                  "List.__init__",
+                  "BufferedReader.close",
+                  "BufferedReader.readLine"
+               ]
+            },
+            {
+               "Cluster": 3,
+               "Code": "\npackage com.jcg;\n\nimport java.io.BufferedReader;\nimport java.io.FileReader;\nimport java.io.IOException;\nimport java.util.ArrayList;\nimport java.util.List;\n\n/**\n * @author ashraf_sarhan\n *\n */\npublic class CsvFileReader {\n\t\n\t//Delimiter used in CSV file\n\tprivate static final String COMMA_DELIMITER = \",\";\n\t\n\t//Student attributes index\n\tprivate static final int STUDENT_ID_IDX = 0;\n\tprivate static final int STUDENT_FNAME_IDX = 1;\n\tprivate static final int STUDENT_LNAME_IDX = 2;\n\tprivate static final int STUDENT_GENDER = 3; \n\tprivate static final int STUDENT_AGE = 4;\n\t\n\tpublic static void readCsvFile(String fileName) {\n\n\t\tBufferedReader fileReader = null;\n     \n        try {\n        \t\n        \t//Create a new list of student to be filled by CSV file data \n        \tList students = new ArrayList();\n        \t\n            String line = \"\";\n            \n            //Create the file reader\n            fileReader = new BufferedReader(new FileReader(fileName));\n            \n            //Read the CSV file header to skip it\n            fileReader.readLine();\n            \n            //Read the file line by line starting from the second line\n            while ((line = fileReader.readLine()) != null) {\n                //Get all tokens available in line\n                String[] tokens = line.split(COMMA_DELIMITER);\n                if (tokens.length > 0) {\n                \t//Create a new student object and fill his  data\n\t\t\t\t\tStudent student = new Student(Long.parseLong(tokens[STUDENT_ID_IDX]), tokens[STUDENT_FNAME_IDX], tokens[STUDENT_LNAME_IDX], tokens[STUDENT_GENDER], Integer.parseInt(tokens[STUDENT_AGE]));\n\t\t\t\t\tstudents.add(student);\n\t\t\t\t}\n            }\n            \n            //Print the new student list\n            for (Student student : students) {\n\t\t\t\tSystem.out.println(student.toString());\n\t\t\t}\n        } \n        catch (Exception e) {\n        \tSystem.out.println(\"Error in CsvFileReader !!!\");\n            e.printStackTrace();\n        } finally {\n            try {\n                fileReader.close();\n            } catch (IOException e) {\n            \tSystem.out.println(\"Error while closing fileReader !!!\");\n                e.printStackTrace();\n            }\n        }\n\n\t}\n\n}\n",
+               "LOC": 74,
+               "Url": "https://examples.javacodegeeks.com/core-java/writeread-csv-files-in-java-example/",
+               "Score": 0.944918442,
+               "API_Weights": 20.4272340139,
+               "API_Qualified_Names": {
+                  "List.__init__": "java.util.List.__init__",
+                  "FileReader.__init__": "java.io.FileReader.__init__",
+                  "BufferedReader.__init__": "java.io.BufferedReader.__init__",
+                  "BufferedReader.readLine": "java.io.BufferedReader.readLine",
+                  "BufferedReader.close": "java.io.BufferedReader.close"
+               },
+               "Url_Position": 18,
+               "In_Page_Order": 4,
+               "Num_API_Calls": 5,
+               "Dist_Center": 0.084814174,
+               "MethodInvocations": [
+                  "BufferedReader.__init__",
+                  "FileReader.__init__",
+                  "List.__init__",
+                  "BufferedReader.close",
+                  "BufferedReader.readLine"
+               ]
+            },
+            {
+               "Cluster": 3,
+               "Code": "\r\npackage com.mkyong.csv;\r\n\r\nimport java.io.BufferedReader;\r\nimport java.io.FileNotFoundException;\r\nimport java.io.FileReader;\r\nimport java.io.IOException;\r\n\r\npublic class CSVReader {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        String csvFile = \"/Users/mkyong/csv/country.csv\";\r\n        BufferedReader br = null;\r\n        String line = \"\";\r\n        String cvsSplitBy = \",\";\r\n\r\n        try {\r\n\r\n            br = new BufferedReader(new FileReader(csvFile));\r\n            while ((line = br.readLine()) != null) {\r\n\r\n                // use comma as separator\r\n                String[] country = line.split(cvsSplitBy);\r\n\r\n                System.out.println(\"Country [code= \" + country[4] + \" , name=\" + country[5] + \"]\");\r\n\r\n            }\r\n\r\n        } catch (FileNotFoundException e) {\r\n            e.printStackTrace();\r\n        } catch (IOException e) {\r\n            e.printStackTrace();\r\n        } finally {\r\n            if (br != null) {\r\n                try {\r\n                    br.close();\r\n                } catch (IOException e) {\r\n                    e.printStackTrace();\r\n                }\r\n            }\r\n        }\r\n\r\n    }\r\n\r\n}\r\n",
+               "LOC": 47,
+               "Url": "https://www.mkyong.com/java/how-to-read-and-parse-csv-file-in-java/",
+               "Score": 0.9056395261,
+               "API_Weights": 19.5386837968,
+               "API_Qualified_Names": {
+                  "FileReader.__init__": "java.io.FileReader.__init__",
+                  "BufferedReader.__init__": "java.io.BufferedReader.__init__",
+                  "BufferedReader.readLine": "java.io.BufferedReader.readLine",
+                  "BufferedReader.close": "java.io.BufferedReader.close"
+               },
+               "Url_Position": 1,
+               "In_Page_Order": 6,
+               "Num_API_Calls": 4,
+               "Dist_Center": 0.0996656072,
+               "MethodInvocations": [
+                  "BufferedReader.readLine",
+                  "BufferedReader.__init__",
+                  "FileReader.__init__",
+                  "BufferedReader.close"
+               ]
+            },
+            {
+               "Cluster": 3,
+               "Code": "import java.io.BufferedReader;\nimport java.io.FileReader;\n\npublic class InsertValuesIntoTestDb {\n\n  @SuppressWarnings(\"rawtypes\")\n  public static void main(String[] args) throws Exception {\n      String splitBy = \",\";\n      BufferedReader br = new BufferedReader(new FileReader(\"test.csv\"));\n      while((line = br.readLine()) != null){\n           String[] b = line.split(splitBy);\n           System.out.println(b[0]);\n      }\n      br.close();\n\n  }\n}\n",
+               "LOC": 18,
+               "Url": "https://stackoverflow.com/questions/19931929/reading-a-column-from-csv-file-using-java",
+               "Score": 0.9056395261,
+               "API_Weights": 19.5386837968,
+               "API_Qualified_Names": {
+                  "FileReader.__init__": "java.io.FileReader.__init__",
+                  "BufferedReader.__init__": "java.io.BufferedReader.__init__",
+                  "BufferedReader.readLine": "java.io.BufferedReader.readLine",
+                  "BufferedReader.close": "java.io.BufferedReader.close"
+               },
+               "Url_Position": 6,
+               "In_Page_Order": 4,
+               "Num_API_Calls": 4,
+               "Dist_Center": 0.0996656072,
+               "MethodInvocations": [
+                  "BufferedReader.readLine",
+                  "BufferedReader.__init__",
+                  "FileReader.__init__",
+                  "BufferedReader.close"
+               ]
+            },
+            {
+               "Cluster": 3,
+               "Code": "\npackage com.howtodoinjava.csv.demoSplit;\n\nimport java.io.BufferedReader;\nimport java.io.FileReader;\nimport java.io.IOException;\n\npublic class SplitterExample\n{\n\tpublic static void main(String[] args)\n\t{\n\t\t//Input file which needs to be parsed\n\t\tString fileToParse = \"SampleCSVFile.csv\";\n\t\tBufferedReader fileReader = null;\n\t\t\n\t\t//Delimiter used in CSV file\n\t\tfinal String DELIMITER = \",\";\n\t\ttry \n\t\t{\n\t\t\tString line = \"\";\n\t\t\t//Create the file reader\n\t\t\tfileReader = new BufferedReader(new FileReader(fileToParse));\n\t\t\t\n\t\t\t//Read the file line by line\n\t\t\twhile ((line = fileReader.readLine()) != null) \n\t\t\t{\n\t\t\t\t//Get all tokens available in line\n\t\t\t\tString[] tokens = line.split(DELIMITER);\n\t\t\t\tfor(String token : tokens)\n\t\t\t\t{\n\t\t\t\t\t//Print all tokens\n\t\t\t\t\tSystem.out.println(token);\n\t\t\t\t}\n\t\t\t}\n\t\t} \n\t\tcatch (Exception e) {\n\t\t\te.printStackTrace();\n\t\t} \n\t\tfinally \n\t\t{\n\t\t\ttry {\n\t\t\t\tfileReader.close();\n\t\t\t} catch (IOException e) {\n\t\t\t\te.printStackTrace();\n\t\t\t}\n\t\t}\n\t}\n}\n\nOutput:\nLokesh\nGupta\nhowtodoinjava.com\nenabled\nRakesh\nGupta\nhowtodoinjava.com\nenabled\n\n..More output will appear here\n",
+               "LOC": 61,
+               "Url": "https://howtodoinjava.com/core-java/io/parse-csv-files-in-java/",
+               "Score": 0.9056395261,
+               "API_Weights": 19.5386837968,
+               "API_Qualified_Names": {
+                  "FileReader.__init__": "java.io.FileReader.__init__",
+                  "BufferedReader.__init__": "java.io.BufferedReader.__init__",
+                  "BufferedReader.readLine": "java.io.BufferedReader.readLine",
+                  "BufferedReader.close": "java.io.BufferedReader.close"
+               },
+               "Url_Position": 16,
+               "In_Page_Order": 2,
+               "Num_API_Calls": 4,
+               "Dist_Center": 0.0996656072,
+               "MethodInvocations": [
+                  "BufferedReader.readLine",
+                  "BufferedReader.__init__",
+                  "FileReader.__init__",
+                  "BufferedReader.close"
+               ]
+            },
+            {
+               "Cluster": 3,
+               "Code": "static void processBySplit() {\n\tBufferedReader reader = null;\n\ttry {\n\t\treader = new BufferedReader(new FileReader(\"d:\\\\discoveries.csv\"));\n\t\tString line = null;\n\t\twhile ((line = reader.readLine()) != null) {\n\t\t\tString[] words = line.split(\",\");\n\t\t\tSystem.out.println(\"[Discovery = \\\"\" + words[0] + \"\\\", Discoverer = \\\"\" + words[1]\n                        + \"\\\", Country = \\\"\" + words[2] + \"\\\"]\");\n\t\t}\n\t} catch (FileNotFoundException e) {\n\t\te.printStackTrace();\n\t} catch (IOException e) {\n\t\te.printStackTrace();\n\t} finally {\n\t\tif (reader != null) {\n\t\t\ttry {\n\t\t\t\treader.close();\n\t\t\t} catch (IOException e) {\n\t\t\t\te.printStackTrace();\n\t\t\t}\n\t\t}\n\t}\n}",
+               "LOC": 24,
+               "Url": "http://codippa.com/how-to-read-csv-file-in-java/",
+               "Score": 0.9056395261,
+               "API_Weights": 19.5386837968,
+               "API_Qualified_Names": {
+                  "FileReader.__init__": "java.io.FileReader.__init__",
+                  "BufferedReader.__init__": "java.io.BufferedReader.__init__",
+                  "BufferedReader.readLine": "java.io.BufferedReader.readLine",
+                  "BufferedReader.close": "java.io.BufferedReader.close"
+               },
+               "Url_Position": 38,
+               "In_Page_Order": 1,
+               "Num_API_Calls": 4,
+               "Dist_Center": 0.0996656072,
+               "MethodInvocations": [
+                  "BufferedReader.readLine",
+                  "BufferedReader.__init__",
+                  "FileReader.__init__",
+                  "BufferedReader.close"
+               ]
+            },
+            {
+               "Cluster": 3,
+               "Code": "static void processByRegEx() {\n   BufferedReader reader = null;\n   try {\n\treader = new BufferedReader(new FileReader(\"d:\\\\discoveries.csv\"));\n\tString line = null;\n\twhile ((line = reader.readLine()) != null) {\n\t   String[] words = line.split(\"\\\\s*,\\\\s*\");\n\t   System.out.println(\"[Discovery = \\\"\" + words[0] + \"\\\", Discoverer = \\\"\" + words[1]\n           + \"\\\", Country = \\\"\" + words[2] + \"\\\"]\");\n\t}\n   } catch (FileNotFoundException e) {\n\te.printStackTrace();\n   } catch (IOException e) {\n\te.printStackTrace();\n   } finally {\n\tif (reader != null) {\n\t\ttry {\n\t\t\treader.close();\n\t\t} catch (IOException e) {\n\t\t\te.printStackTrace();\n\t\t}\n      }\n   }\n}",
+               "LOC": 24,
+               "Url": "http://codippa.com/how-to-read-csv-file-in-java/",
+               "Score": 0.9056395261,
+               "API_Weights": 19.5386837968,
+               "API_Qualified_Names": {
+                  "FileReader.__init__": "java.io.FileReader.__init__",
+                  "BufferedReader.__init__": "java.io.BufferedReader.__init__",
+                  "BufferedReader.readLine": "java.io.BufferedReader.readLine",
+                  "BufferedReader.close": "java.io.BufferedReader.close"
+               },
+               "Url_Position": 38,
+               "In_Page_Order": 2,
+               "Num_API_Calls": 4,
+               "Dist_Center": 0.0996656072,
+               "MethodInvocations": [
+                  "BufferedReader.readLine",
+                  "BufferedReader.__init__",
+                  "FileReader.__init__",
+                  "BufferedReader.close"
+               ]
+            },
+            {
+               "Cluster": 3,
+               "Code": "package com.admfactory;import java.io.BufferedReader;import java.io.FileReader;import java.io.IOException;import java.util.ArrayList;public class CSVParser {/** characters used as delimiters */private char[] separators = {',', '\\t'};/** when the delimiters appears in the text the value will be between two double quotas */private char specialChars = '\"';/** * Method used to spit each line into values *  * @param line * @return the array of values */private String[] lineParser(String line) {String[] result = null;/** Using ArrayList as the number of values are unknown at this stage */ArrayList<String> parsedLine = new ArrayList<String>();int len = line.length();int i = 0;/** iterate through all the chars in the line */while (i < len) {int nextSep = len;/** Get the next separator */for (int j = 0; j < separators.length; ++j) {int temp = line.indexOf(separators[j], i);if ((temp == -1) || (temp >= nextSep))continue;nextSep = temp;}/** Place the special separator at the end of the string */int nextSpecialSep = len;/** Check if there is any special separator */int temp = line.indexOf(specialChars, i);if ((temp == -1) || (temp >= nextSpecialSep))nextSpecialSep = len;elsenextSpecialSep = temp;/** if we are at the special separator get the text until the next special separator */if (nextSpecialSep == i) {char c = line.charAt(i);/** check if there is any double quote chars in the text */int d = line.indexOf((c + \"\") + (c + \"\"), i + 1);/** if there are two double quota chars jump to the next one - are part of the text */int end = line.indexOf(c, d >= 0 ? d + 3 : i + 1);if (end == -1) {end = len;}String toAdd = line.substring(i + 1, end);/** Replace two double quota with one double quota */toAdd = toAdd.replaceAll((c + \"\") + (c + \"\"), c + \"\");parsedLine.add(toAdd);i = end + 1;}/** if we are at a normal separator, ignore the separator and jump to the next char */else if (nextSep == i) {++i;}/** Copy the value in the result string */else {parsedLine.add(line.substring(i, nextSep));i = nextSep;}}/** Convert the result to String[] */result = parsedLine.toArray(new String[parsedLine.size()]);return result;}/** *  * Method used to parse the file *  * @param path * to the file * @return array of all lines */public ArrayList<String[]> parser(String path) {BufferedReader br = null;ArrayList<String[]> result = new ArrayList<String[]>();try {br = new BufferedReader(new FileReader(path));/** Parsing each line in the file */String line = \"\";while ((line = br.readLine()) != null) {/** Parse each line into values */String[] values = lineParser(line);/** Adding the lines to the array list */result.add(values);}}catch (Exception e) {/** Just display the error */e.printStackTrace();}finally {/** Closing the the stream */if (br != null) {try {br.close();} catch (IOException e) {e.printStackTrace();}}}return result;}/** * main method for testing *  * @param args */public static void main(String[] args){String path = \"names.csv\";System.out.println(\"CSV Parser Example\");System.out.println(\"Parsing file \" + path);CSVParser parser = new CSVParser();ArrayList<String[]> lines = parser.parser(path);System.out.println(\"File Content\");for (int i = 0; i < lines.size(); i++) {String[] line = lines.get(i);for (int j = 0; j < line.length; j++) {String print = String.format(\"%-45s\", line[j]);System.out.print(print);}System.out.println();}}}",
+               "LOC": 1,
+               "Url": "http://www.admfactory.com/read-csv-file-in-java/",
+               "Score": 0.8657035974,
+               "API_Weights": 23.0593996694,
+               "API_Qualified_Names": {
+                  "ArrayList.__init__": "java.util.ArrayList.__init__",
+                  "ArrayList.size": "java.util.ArrayList.size",
+                  "ArrayList.toArray": "java.util.ArrayList.toArray",
+                  "FileReader.__init__": "java.io.FileReader.__init__",
+                  "BufferedReader.__init__": "java.io.BufferedReader.__init__",
+                  "BufferedReader.readLine": "java.io.BufferedReader.readLine",
+                  "BufferedReader.close": "java.io.BufferedReader.close",
+                  "CSVParser.__init__": "au.com.bytecode.opencsv.CSVParser.__init__"
+               },
+               "Url_Position": 14,
+               "In_Page_Order": 2,
+               "Num_API_Calls": 9,
+               "Dist_Center": 0.1147654582,
+               "MethodInvocations": [
+                  "ArrayList.toArray",
+                  "BufferedReader.__init__",
+                  "ArrayList.size",
+                  "CSVParser.parser",
+                  "FileReader.__init__",
+                  "CSVParser.__init__",
+                  "BufferedReader.close",
+                  "BufferedReader.readLine",
+                  "ArrayList.__init__"
+               ]
+            },
+            {
+               "Cluster": 3,
+               "Code": "\n package org.jusfortechies.example; \n\n import java.io.BufferedReader;\n import java.io.FileReader;\n import java.util.StringTokenizer;\n\n public class ReadCSVFile {\n\n   public static void main(String[] args) {\n\n     try { \n\t\t\t\n       String csvFile = \"C:\\\\SampleCSV.csv\";\n\n       //create BufferedReader to read csv file\n       BufferedReader br = new BufferedReader(new FileReader(csvFile));\n       String line = \"\";\n       StringTokenizer st = null;\n\n       int lineNumber = 0; \n       int tokenNumber = 0;\n\n       //read comma separated file line by line\n       while ((line = br.readLine()) != null) {\n         lineNumber++;\n\n         //use comma as token separator\n         st = new StringTokenizer(line, \",\");\n\n         while (st.hasMoreTokens()) {\n           tokenNumber++;\n\n           //display csv values\n           System.out.print(st.nextToken() + \"  \");\n         }\n\n         System.out.println();\n\n         //reset token number\n         tokenNumber = 0;\n       }\n\n     } catch (Exception e) {\n       System.err.println(\"CSV file cannot be read : \" + e);\n     }\n   }\n\n }\n\n",
+               "LOC": 51,
+               "Url": "http://www.jusfortechies.com/sample_programs/read-csv-file.php",
+               "Score": 0.751120344,
+               "API_Weights": 15.0293411325,
+               "API_Qualified_Names": {
+                  "FileReader.__init__": "java.io.FileReader.__init__",
+                  "BufferedReader.__init__": "java.io.BufferedReader.__init__",
+                  "BufferedReader.readLine": "java.io.BufferedReader.readLine"
+               },
+               "Url_Position": 25,
+               "In_Page_Order": 1,
+               "Num_API_Calls": 3,
+               "Dist_Center": 0.1580896055,
+               "MethodInvocations": [
+                  "BufferedReader.readLine",
+                  "BufferedReader.__init__",
+                  "FileReader.__init__"
+               ]
+            },
+            {
+               "Cluster": 3,
+               "Code": "reader = new BufferedReader(new FileReader(file));while ((line = reader.readLine()) != null) {\t\tList<String> row = Arrays.asList(line.split(seperator));\t\tif (this.hasHeader){\t\tsetHeaders(row);;\t\tthis.hasHeader = false;\t\tcontinue;\t}\t\tT refObject = genericType.newInstance();\tint index = 0;\t\t\t\t\t\tList<String> listOfFieldNames = (null != getOrder()) ? getOrder() : new ArrayList<String>(privateFields.keySet());\t\tfor(String fieldName : listOfFieldNames) {\t\tif( index >= row.size()) {\t\t\tbreak;\t\t}\t\tassign(refObject,privateFields.get(fieldName),row.get(index++));\t}\tgetData().add(refObject);}reader.close();",
+               "LOC": 1,
+               "Url": "http://www.opencodez.com/java/generic-csv-file-reader-in-java.htm",
+               "Score": 0.5477642026,
+               "API_Weights": 10.0106617198,
+               "API_Qualified_Names": {
+                  "FileReader.__init__": "java.io.FileReader.__init__",
+                  "BufferedReader.__init__": "java.io.BufferedReader.__init__"
+               },
+               "Url_Position": 27,
+               "In_Page_Order": 6,
+               "Num_API_Calls": 2,
+               "Dist_Center": 0.2349789516,
+               "MethodInvocations": [
+                  "BufferedReader.__init__",
+                  "FileReader.__init__"
+               ]
+            },
+            {
+               "Cluster": 3,
+               "Code": "\npublic void test() throws FileNotFoundException, IOException {\n  CSVParser parser = new CSVParser(\n      new FileReader(\"test.csv\"), \n      CSVFormat.DEFAULT.withHeader());\n  for (CSVRecord record : parser) {\n    System.out.printf(\"%st%sn\", \n      record.get(\"COL1\"), \n      record.get(\"COL2\"));\n  }\n  parser.close();\n}\n",
+               "LOC": 13,
+               "Url": "http://blog.pengyifan.com/how-to-read-csv-files-in-java-a-case-study-of-iterator-and-decorator/",
+               "Score": 0.4993332495,
+               "API_Weights": 6.0066986855,
+               "API_Qualified_Names": {
+                  "FileReader.__init__": "java.io.FileReader.__init__",
+                  "CSVParser.__init__": "au.com.bytecode.opencsv.CSVParser.__init__"
+               },
+               "Url_Position": 41,
+               "In_Page_Order": 2,
+               "Num_API_Calls": 3,
+               "Dist_Center": 0.2532907876,
+               "MethodInvocations": [
+                  "CSVParser.__init__",
+                  "CSVParser.close",
+                  "FileReader.__init__"
+               ]
+            },
+            {
+               "Cluster": 3,
+               "Code": "/**\n * An example of reading using CsvListReader.\n */\nprivate static void readWithCsvListReader() throws Exception {\n        \n        ICsvListReader listReader = null;\n        try {\n                listReader = new CsvListReader(new FileReader(CSV_FILENAME), CsvPreference.STANDARD_PREFERENCE);\n                \n                listReader.getHeader(true); // skip the header (can't be used with CsvListReader)\n                final CellProcessor[] processors = getProcessors();\n                \n                List<Object> customerList;\n                while( (customerList = listReader.read(processors)) != null ) {\n                        System.out.println(String.format(\"lineNo=%s, rowNo=%s, customerList=%s\", listReader.getLineNumber(),\n                                listReader.getRowNumber(), customerList));\n                }\n                \n        }\n        finally {\n                if( listReader != null ) {\n                        listReader.close();\n                }\n        }\n}",
+               "LOC": 25,
+               "Url": "https://super-csv.github.io/super-csv/examples_reading.html",
+               "Score": 0.4077989112,
+               "API_Weights": 6.267815797,
+               "API_Qualified_Names": {
+                  "FileReader.__init__": "java.io.FileReader.__init__"
+               },
+               "Url_Position": 35,
+               "In_Page_Order": 6,
+               "Num_API_Calls": 5,
+               "Dist_Center": 0.287900096,
+               "MethodInvocations": [
+                  "ICsvListReader.getHeader",
+                  "FileReader.__init__",
+                  "ICsvListReader.read",
+                  "ICsvListReader.close",
+                  "ICsvListReader.__init__"
+               ]
+            },
+            {
+               "Cluster": 3,
+               "Code": "/*\n * Copyright 2013 Keith D Swenson\n *\n * Licensed under the Apache License, Version 2.0 (the \"License\");\n * you may not use this file except in compliance with the License.\n * You may obtain a copy of the License at\n *\n *    http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\n\npackage org.workcast.streams;\n\nimport java.io.Reader;\nimport java.io.Writer;\nimport java.util.ArrayList;\nimport java.util.List;\n\n/**\n * Helps to read and write a CSV file, all methods are static writeLine:\n * Converts list of String values into a line of a CSV file parseLine: read a\n * line from a LineNumberReader and return the list of Strings\n *\n * That should be all you need. Create or open the file & streams yourself from\n * whatever source you need to read from.. Everything in this class works on\n * characters, and not bytes.\n */\npublic class CSVHelper {\n\n    public static void writeLine(Writer w, List<String> values) throws Exception {\n        boolean firstVal = true;\n        for (String val : values) {\n            if (!firstVal) {\n                w.write(\",\");\n            }\n            w.write(\"\\\"\");\n            for (int i = 0; i < val.length(); i++) {\n                char ch = val.charAt(i);\n                if (ch == '\\\"') {\n                    w.write(\"\\\"\"); // extra quote\n                }\n                w.write(ch);\n            }\n            w.write(\"\\\"\");\n            firstVal = false;\n        }\n        w.write(\"\\n\");\n    }\n\n\n    /**\n    * returns a row of values as a list\n    * returns null if you are past the end of the line\n    */\n    public static List<String> parseLine(Reader r) throws Exception {\n        int ch = r.read();\n        while (ch == '\\r') {\n            //ignore linefeed characters wherever they are, particularly just before end of file\n            ch = r.read();\n        }\n        if (ch<0) {\n            return null;\n        }\n        ArrayList<String> store = new ArrayList<String>();\n        StringBuffer curVal = new StringBuffer();\n        boolean inquotes = false;\n        boolean started = false;\n        while (ch>=0) {\n            if (inquotes) {\n                started=true;\n                if (ch == '\\\"') {\n                    inquotes = false;\n                }\n                else {\n                    curVal.append((char)ch);\n                }\n            }\n            else {\n                if (ch == '\\\"') {\n                    inquotes = true;\n                    if (started) {\n                        // if this is the second quote in a value, add a quote\n                        // this is for the double quote in the middle of a value\n                        curVal.append('\\\"');\n                    }\n                }\n                else if (ch == ',') {\n                    store.add(curVal.toString());\n                    curVal = new StringBuffer();\n                    started = false;\n                }\n                else if (ch == '\\r') {\n                    //ignore LF characters\n                }\n                else if (ch == '\\n') {\n                    //end of a line, break out\n                    break;\n                }\n                else {\n                    curVal.append((char)ch);\n                }\n            }\n            ch = r.read();\n        }\n        store.add(curVal.toString());\n        return store;\n    }\n}",
+               "LOC": 113,
+               "Url": "https://www.java-forums.org/new-java/96732-reading-data-csv-file-java.html",
+               "Score": 1.110223025e-16,
+               "API_Weights": 3.3848490032,
+               "API_Qualified_Names": {
+                  "Writer.write": "java.io.Writer.write",
+                  "Reader.read": "java.io.Reader.read",
+                  "ArrayList.__init__": "java.util.ArrayList.__init__",
+                  "StringBuffer.__init__": "java.lang.StringBuffer.__init__",
+                  "StringBuffer.toString": "java.lang.StringBuffer.toString",
+                  "ArrayList.add": "java.util.ArrayList.add"
+               },
+               "Url_Position": 28,
+               "In_Page_Order": 2,
+               "Num_API_Calls": 6,
+               "Dist_Center": 0.4420896444,
+               "MethodInvocations": [
+                  "ArrayList.add",
+                  "StringBuffer.__init__",
+                  "StringBuffer.toString",
+                  "Writer.write",
+                  "Reader.read",
+                  "ArrayList.__init__"
+               ]
+            }
+         ],
+         "avg_cluster_api_weights": 15.939410972309153,
+         "top_apis_by_cluster": [
+            "bufferedreader.__init__",
+            "bufferedreader.readline",
+            "bufferedreader.close",
+            "filereader.__init__",
+            "arraylist.__init__",
+            "csvparser.__init__",
+            "list.__init__",
+            "csvparser.close"
+         ]
+      },
+      {
+         "cluster_snippets": [
+            {
+               "Cluster": 4,
+               "Code": "\nCsvToBean<CarBean> csvToBean = new CsvToBean<>();\nList<CarBean> beanList = csvToBean.parse(strategy, reader);\n",
+               "LOC": 4,
+               "Url": "http://zetcode.com/articles/opencsv/",
+               "Score": 1.0,
+               "API_Weights": 4.7730646516,
+               "API_Qualified_Names": {},
+               "Url_Position": 23,
+               "In_Page_Order": 28,
+               "Num_API_Calls": 2,
+               "Dist_Center": 0.0277372475,
+               "MethodInvocations": [
+                  "CsvToBean.parse",
+                  "CsvToBean.__init__"
+               ]
+            },
+            {
+               "Cluster": 4,
+               "Code": "import com.opencsv.bean.CsvToBean;\nimport com.opencsv.bean.CsvToBeanBuilder;\n\nimport java.io.IOException;\nimport java.io.Reader;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\nimport java.util.List;\n\npublic class OpenCSVReadAndParseToBean {\n    private static final String SAMPLE_CSV_FILE_PATH = \"./users-with-header.csv\";\n\n    public static void main(String[] args) throws IOException {\n        try (\n            Reader reader = Files.newBufferedReader(Paths.get(SAMPLE_CSV_FILE_PATH));\n        ) {\n            CsvToBean csvToBean = new CsvToBeanBuilder(reader)\n                    .withType(CSVUser.class)\n                    .withIgnoreLeadingWhiteSpace(true)\n                    .build();\n\n            List<CSVUser> csvUsers = csvToBean.parse();\n\n            for (CSVUser csvUser : csvUsers) {\n                System.out.println(\"Name : \" + csvUser.getName());\n                System.out.println(\"Email : \" + csvUser.getEmail());\n                System.out.println(\"PhoneNo : \" + csvUser.getPhoneNo());\n                System.out.println(\"Country : \" + csvUser.getCountry());\n                System.out.println(\"---------------------------\");\n            }\n        }\n    }\n}\n",
+               "LOC": 34,
+               "Url": "https://www.callicoder.com/java-read-write-csv-file-opencsv/",
+               "Score": 0.8027382932,
+               "API_Weights": 5.0651506621,
+               "API_Qualified_Names": {},
+               "Url_Position": 8,
+               "In_Page_Order": 9,
+               "Num_API_Calls": 2,
+               "Dist_Center": 0.0879478738,
+               "MethodInvocations": [
+                  "CsvToBean.parse",
+                  "CsvToBeanBuilder.__init__"
+               ]
+            },
+            {
+               "Cluster": 4,
+               "Code": "try (\n    Reader reader = Files.newBufferedReader(Paths.get(\"./users.csv\"));\n) {\n    CsvToBean csvToBean = new CsvToBeanBuilder(reader)\n            .withType(CSVUser.class)\n            .withIgnoreLeadingWhiteSpace(true)\n            .build();\n\n    List<CSVUser> csvUsers = csvToBean.parse();\n\n    for (CSVUser csvUser : csvUsers) {\n        System.out.println(\"Name : \" + csvUser.getName());\n        System.out.println(\"Age : \" + csvUser.getAge());\n    }\n}\n",
+               "LOC": 16,
+               "Url": "https://www.quora.com/In-Java-how-do-you-go-about-parsing-a-CSV-of-Integers-Doubles-Strings-and-then-saving-them-within-an-ArrayList-s",
+               "Score": 0.8027382932,
+               "API_Weights": 5.0651506621,
+               "API_Qualified_Names": {},
+               "Url_Position": 32,
+               "In_Page_Order": 5,
+               "Num_API_Calls": 2,
+               "Dist_Center": 0.0879478738,
+               "MethodInvocations": [
+                  "CsvToBean.parse",
+                  "CsvToBeanBuilder.__init__"
+               ]
+            },
+            {
+               "Cluster": 4,
+               "Code": "import com.opencsv.bean.ColumnPositionMappingStrategy;\nimport com.opencsv.bean.CsvToBean;\nimport com.opencsv.bean.CsvToBeanBuilder;\n\nimport java.io.IOException;\nimport java.io.Reader;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\nimport java.util.List;\n\npublic class OpenCSVParseToBeanWithoutAnnotation {\n    private static final String SAMPLE_CSV_FILE_PATH = \"./users-with-header.csv\";\n\n    public static void main(String[] args) throws IOException {\n        try (\n            Reader reader = Files.newBufferedReader(Paths.get(SAMPLE_CSV_FILE_PATH));\n        ) {\n            ColumnPositionMappingStrategy strategy = new ColumnPositionMappingStrategy();\n            strategy.setType(MyUser.class);\n            String[] memberFieldsToBindTo = {\"name\", \"email\", \"phoneNo\", \"country\"};\n            strategy.setColumnMapping(memberFieldsToBindTo);\n\n            CsvToBean csvToBean = new CsvToBeanBuilder(reader)\n                    .withMappingStrategy(strategy)\n                    .withSkipLines(1)\n                    .withIgnoreLeadingWhiteSpace(true)\n                    .build();\n\n            List<MyUser> myUsers = csvToBean.parse();\n\n            for (MyUser myUser : myUsers) {\n                System.out.println(\"Name : \" + myUser.getName());\n                System.out.println(\"Email : \" + myUser.getEmail());\n                System.out.println(\"PhoneNo : \" + myUser.getPhoneNo());\n                System.out.println(\"Country : \" + myUser.getCountry());\n                System.out.println(\"---------------------------\");\n            }\n        }\n    }\n}\n",
+               "LOC": 41,
+               "Url": "https://www.callicoder.com/java-read-write-csv-file-opencsv/",
+               "Score": 0.6416226775,
+               "API_Weights": 7.8905294437,
+               "API_Qualified_Names": {},
+               "Url_Position": 8,
+               "In_Page_Order": 12,
+               "Num_API_Calls": 5,
+               "Dist_Center": 0.137125549,
+               "MethodInvocations": [
+                  "ColumnPositionMappingStrategy.setColumnMapping",
+                  "CsvToBean.parse",
+                  "ColumnPositionMappingStrategy.__init__",
+                  "CsvToBeanBuilder.__init__",
+                  "ColumnPositionMappingStrategy.setType"
+               ]
+            },
+            {
+               "Cluster": 4,
+               "Code": "\n    ColumnPositionMappingStrategy strat = new ColumnPositionMappingStrategy();\n    strat.setType(YourOrderBean.class);\n    String[] columns = new String[] {\"name\", \"orderNumber\", \"id\"}; // the fields to bind to in your bean\n    strat.setColumnMapping(columns);\n\n    CsvToBean csv = new CsvToBean();\n    List list = csv.parse(strat, yourReader);\n   \n",
+               "LOC": 10,
+               "Url": "http://opencsv.sourceforge.net/",
+               "Score": 0.6159085844,
+               "API_Weights": 7.5984434333,
+               "API_Qualified_Names": {},
+               "Url_Position": 13,
+               "In_Page_Order": 22,
+               "Num_API_Calls": 5,
+               "Dist_Center": 0.1449743184,
+               "MethodInvocations": [
+                  "ColumnPositionMappingStrategy.setColumnMapping",
+                  "CsvToBean.parse",
+                  "CsvToBean.__init__",
+                  "ColumnPositionMappingStrategy.__init__",
+                  "ColumnPositionMappingStrategy.setType"
+               ]
+            },
+            {
+               "Cluster": 4,
+               "Code": "\npackage com.zetcode.beansex;\n\nimport com.opencsv.CSVReader;\nimport com.opencsv.bean.CsvToBean;\nimport com.opencsv.bean.HeaderColumnNameMappingStrategy;\nimport java.io.FileReader;\nimport java.io.IOException;\nimport java.util.List;\n\npublic class BeansEx {\n\n    public static void main(String[] args) throws IOException {\n        \n        String fileName = \"src/main/resources/cars.csv\";\n        \n        try (CSVReader reader = new CSVReader(new FileReader(fileName))) {\n        \n            HeaderColumnNameMappingStrategy<CarBean> strategy =\n                    new HeaderColumnNameMappingStrategy<>();\n            strategy.setType(CarBean.class);\n            \n            CsvToBean<CarBean> csvToBean = new CsvToBean<>();\n            List<CarBean> beanList = csvToBean.parse(strategy, reader);\n            \n            for (CarBean bean: beanList) {\n                System.out.println(bean);\n            }\n        }\n    }\n}\n",
+               "LOC": 32,
+               "Url": "http://zetcode.com/articles/opencsv/",
+               "Score": 0.6054133821,
+               "API_Weights": 7.535720862,
+               "API_Qualified_Names": {},
+               "Url_Position": 23,
+               "In_Page_Order": 26,
+               "Num_API_Calls": 5,
+               "Dist_Center": 0.1481777922,
+               "MethodInvocations": [
+                  "HeaderColumnNameMappingStrategy.__init__",
+                  "HeaderColumnNameMappingStrategy.setType",
+                  "CsvToBean.parse",
+                  "AM.__init__",
+                  "CsvToBean.__init__"
+               ]
+            },
+            {
+               "Cluster": 4,
+               "Code": "\nHeaderColumnNameMappingStrategy<CarBean> strategy = \n        new HeaderColumnNameMappingStrategy<>();\nstrategy.setType(CarBean.class);\n",
+               "LOC": 5,
+               "Url": "http://zetcode.com/articles/opencsv/",
+               "Score": 0.5758423328,
+               "API_Weights": 2.4153067943,
+               "API_Qualified_Names": {},
+               "Url_Position": 23,
+               "In_Page_Order": 27,
+               "Num_API_Calls": 2,
+               "Dist_Center": 0.1572038288,
+               "MethodInvocations": [
+                  "HeaderColumnNameMappingStrategy.__init__",
+                  "HeaderColumnNameMappingStrategy.setType"
+               ]
+            },
+            {
+               "Cluster": 4,
+               "Code": "class ReadingObjects {\n  public static void main(String[] args) throws Exception{\n    ICsvBeanReader inFile = new CsvBeanReader(new FileReader(\"foo.csv\"), CsvPreference.EXCEL_PREFERENCE);\n    try {\n      final String[] header = inFile.getCSVHeader(true);\n      UserBean user;\n      while( (user = inFile.read(UserBean.class, header, processors)) != null) {\n        System.out.println(user.getZip());\n      }\n    } finally {\n      inFile.close();\n    }\n  }\n}\n",
+               "LOC": 15,
+               "Url": "https://stackoverflow.com/questions/101100/csv-api-for-java",
+               "Score": 0.0508528646,
+               "API_Weights": 3.8104962734,
+               "API_Qualified_Names": {
+                  "FileReader.__init__": "java.io.FileReader.__init__"
+               },
+               "Url_Position": 7,
+               "In_Page_Order": 3,
+               "Num_API_Calls": 5,
+               "Dist_Center": 0.3174475234,
+               "MethodInvocations": [
+                  "ICsvBeanReader.close",
+                  "ICsvBeanReader.__init__",
+                  "FileReader.__init__",
+                  "ICsvBeanReader.read",
+                  "ICsvBeanReader.getCSVHeader"
+               ]
+            },
+            {
+               "Cluster": 4,
+               "Code": "\n     // List<MyBean> beans comes from somewhere earlier in your code.\n     Writer writer = new FileWriter(\"yourfile.csv\");\n     StatefulBeanToCsvBuilder beanToCsv = StatefulBeanToCsvBuilder(writer).build();\n     beanToCsv.write(beans);\n     writer.close();\n   \n",
+               "LOC": 8,
+               "Url": "http://opencsv.sourceforge.net/",
+               "Score": 0.0426786799,
+               "API_Weights": 3.4641016151,
+               "API_Qualified_Names": {
+                  "Writer.__init__": "java.io.Writer.__init__",
+                  "Writer.close": "java.io.Writer.close"
+               },
+               "Url_Position": 13,
+               "In_Page_Order": 2,
+               "Num_API_Calls": 3,
+               "Dist_Center": 0.3199425479,
+               "MethodInvocations": [
+                  "Writer.close",
+                  "StatefulBeanToCsvBuilder.write",
+                  "Writer.__init__"
+               ]
+            },
+            {
+               "Cluster": 4,
+               "Code": "\n     // List<MyBean> beans comes from somewhere earlier in your code.\n     Writer writer = new FileWriter(\"yourfile.csv\");\n     StatefulBeanToCsvBuilder beanToCsv = StatefulBeanToCsvBuilder(writer).build();\n     beanToCsv.write(beans);\n     writer.close();\n   \n",
+               "LOC": 8,
+               "Url": "http://opencsv.sourceforge.net/",
+               "Score": 0.0426786799,
+               "API_Weights": 3.4641016151,
+               "API_Qualified_Names": {
+                  "Writer.__init__": "java.io.Writer.__init__",
+                  "Writer.close": "java.io.Writer.close"
+               },
+               "Url_Position": 13,
+               "In_Page_Order": 26,
+               "Num_API_Calls": 3,
+               "Dist_Center": 0.3199425479,
+               "MethodInvocations": [
+                  "Writer.close",
+                  "StatefulBeanToCsvBuilder.write",
+                  "Writer.__init__"
+               ]
+            },
+            {
+               "Cluster": 4,
+               "Code": "/**\n * An example of reading using CsvBeanReader.\n */\nprivate static void readWithCsvBeanReader() throws Exception {\n        \n        ICsvBeanReader beanReader = null;\n        try {\n                beanReader = new CsvBeanReader(new FileReader(CSV_FILENAME), CsvPreference.STANDARD_PREFERENCE);\n                \n                // the header elements are used to map the values to the bean (names must match)\n                final String[] header = beanReader.getHeader(true);\n                final CellProcessor[] processors = getProcessors();\n                \n                CustomerBean customer;\n                while( (customer = beanReader.read(CustomerBean.class, header, processors)) != null ) {\n                        System.out.println(String.format(\"lineNo=%s, rowNo=%s, customer=%s\", beanReader.getLineNumber(),\n                                beanReader.getRowNumber(), customer));\n                }\n                \n        }\n        finally {\n                if( beanReader != null ) {\n                        beanReader.close();\n                }\n        }\n}",
+               "LOC": 26,
+               "Url": "https://super-csv.github.io/super-csv/examples_reading.html",
+               "Score": 0.0,
+               "API_Weights": 3.8104962734,
+               "API_Qualified_Names": {
+                  "FileReader.__init__": "java.io.FileReader.__init__"
+               },
+               "Url_Position": 35,
+               "In_Page_Order": 4,
+               "Num_API_Calls": 5,
+               "Dist_Center": 0.3329694556,
+               "MethodInvocations": [
+                  "ICsvBeanReader.close",
+                  "ICsvBeanReader.__init__",
+                  "FileReader.__init__",
+                  "ICsvBeanReader.getHeader",
+                  "ICsvBeanReader.read"
+               ]
+            }
+         ],
+         "avg_cluster_api_weights": 4.990232935092775,
+         "top_apis_by_cluster": [
+            "csvtobean.parse",
+            "csvtobeanbuilder.__init__",
+            "csvtobean.__init__",
+            "headercolumnnamemappingstrategy.settype",
+            "headercolumnnamemappingstrategy.__init__",
+            "statefulbeantocsvbuilder.write",
+            "writer.__init__",
+            "writer.close"
+         ]
+      }
+   ]
+}

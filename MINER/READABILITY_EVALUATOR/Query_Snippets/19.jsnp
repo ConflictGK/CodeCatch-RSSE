@@ -1,0 +1,10 @@
+
+$javac ReadConsole.java
+$java ReadConsole
+Enter characters, 'q' to quit.
+1
+1
+e
+e
+q
+q

@@ -1,0 +1,54 @@
+{% extends "head.html" %}
+
+{% block content %}
+<section id='results-search' class='results'>
+	<div class="container">
+		<div class="row" class="col-md-12">
+			<div class="col-md-12">
+				<h2>Cluster {{ cluster_num }}</h2>
+				<div class="text-right">
+					<form action="/results" method="post" >
+						<input name="thepath" style="display: none;" value="{{ thepath }}">
+						<input name="text" style="display: none;" value="___{{ query }}">
+						<input name="back" type="submit" class="btn btn-primary" value="Back to Results" style="margin-top: -44px;">
+					</form>
+				</div>
+				{% for snippet in cluster.cluster_snippets %}
+				<div >
+					<h4>Snippet {{ loop.index }}</h4>
+				</div>
+				<div >
+					<div class="metrics">
+						<span class="badge badge-info" style="background-color: #3071a9;">API Score: {{ "%.2f" %snippet.API_Score }}</span>
+						<span class="badge badge-info" style="background-color: #3071a9;">Centroid Distance: {{ "%.2f" %snippet.Dist_Center }}</span>
+						<span class="badge badge-info" style="background-color: #3071a9;">Readability: {% if snippet.readability %}High{% else %}Low{% endif %}</span>
+						<span class="badge badge-info" style="background-color: #3071a9;">Position: {{ snippet.Url_Position }}</span>
+						<span class="badge badge-info" style="background-color: #3071a9;">Order in page: {{ snippet.In_Page_Order }}</span>
+						<span class="badge badge-info" style="background-color: #3071a9;">Number of API calls: {{ snippet.Num_API_Calls }}</span>
+						<span class="badge badge-info" style="background-color: #3071a9;">Lines of Code: {{ snippet.LOC }}</span>
+                    </div>
+						<span id="invbutton{{ loop.index }}" style="display:inline;">
+		            		<button onclick="bclick('inv', 'cd', {{ loop.index }})" class="btn btn-link" style="padding: 0 !important;cursor: pointer;">Show invocations</button>
+	            		</span>
+						<span id="cdbutton{{ loop.index }}" style="display:none;">
+		            		<button onclick="bclick('cd', 'inv', {{ loop.index }})" class="btn btn-link" style="padding: 0 !important;cursor: pointer;">Show full code</button>
+	            		</span>
+						<span class="btn" style="padding: 0 !important;">
+	            		-
+	            		</span>
+						<span>
+		            		<a target="_blank" href="{{ snippet.Url }}" class="btn btn-link" style="padding: 0 !important;cursor: pointer;">Go to snippet webpage</a>
+	            		</span>
+						<span id="tsnippet{{ loop.index }}" style="display:none;">
+							{{ snippet.invocations_code|safe }}
+						</span>
+						<span id="csnippet{{ loop.index }}" style="display:block;">
+							{{ snippet.full_code|safe }}
+						</span>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}

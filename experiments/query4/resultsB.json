@@ -1,0 +1,2592 @@
+[
+  {
+    "query": "How to play audio file",
+    "url": "https://stackoverflow.com/questions/6045384/playing-mp3-and-wav-in-java",
+    "url position": 1,
+    "segments": [
+      {
+        "code": "String bip = \"bip.mp3\";\nMedia hit = new Media(new File(bip).toURI().toString());\nMediaPlayer mediaPlayer = new MediaPlayer(hit);\nmediaPlayer.play();\n",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": true,
+        "answer_votes": "92",
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "File.__init__": true,
+          "Media.__init__": true,
+          "MediaPlayer.__init__": true,
+          "MediaPlayer.play": false
+        },
+        "APIsProjects": {
+          "File.__init__": 591,
+          "Media.__init__": 8,
+          "MediaPlayer.__init__": 23
+        },
+        "APIsFiles": {
+          "File.__init__": 13065,
+          "Media.__init__": 46,
+          "MediaPlayer.__init__": 30
+        },
+        "APIsSnippets": {
+          "File.__init__": 40468,
+          "Media.__init__": 71,
+          "MediaPlayer.__init__": 34
+        },
+        "APIsQualifiedNames": {
+          "File.__init__": "java.io.File.__init__",
+          "Media.__init__": "org.broadleafcommerce.common.media.domain.Media.__init__",
+          "MediaPlayer.__init__": "uk.co.caprica.vlcj.player.MediaPlayer.__init__"
+        },
+        "API_Ratio": 0.75
+      },
+      {
+        "code": "AudioInputStream audioIn = AudioSystem.getAudioInputStream(MyClazz.class.getResource(\"music.wav\"));\nClip clip = AudioSystem.getClip();\nclip.open(audioIn);\nclip.start();\n",
+        "in_page_order": 4,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": "14",
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Clip.open": true,
+          "Clip.start": true
+        },
+        "APIsProjects": {
+          "Clip.open": 5,
+          "Clip.start": 5
+        },
+        "APIsFiles": {
+          "Clip.open": 5,
+          "Clip.start": 5
+        },
+        "APIsSnippets": {
+          "Clip.open": 5,
+          "Clip.start": 8
+        },
+        "APIsQualifiedNames": {
+          "Clip.open": "javax.sound.sampled.Clip.open",
+          "Clip.start": "javax.sound.sampled.Clip.start"
+        },
+        "API_Ratio": 1.0
+      },
+      {
+        "code": "String songName = \"HungryKidsofHungary-ScatteredDiamonds.mp3\";\nString pathToMp3 = System.getProperty(\"user.dir\") +\"/\"+ songName;\nBasicPlayer player = new BasicPlayer();\ntry {\n    player.open(new URL(\"file:///\" + pathToMp3));\n    player.play();\n} catch (BasicPlayerException | MalformedURLException e) {\n    e.printStackTrace();\n}\n",
+        "in_page_order": 5,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": "11",
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "String": true,
+          "BasicPlayer.__init__": false,
+          "URL.__init__": true,
+          "BasicPlayer.open": false,
+          "BasicPlayer.play": false
+        },
+        "APIsProjects": {
+          "String": 496,
+          "URL.__init__": 380
+        },
+        "APIsFiles": {
+          "String": 5232,
+          "URL.__init__": 2050
+        },
+        "APIsSnippets": {
+          "String": 7629,
+          "URL.__init__": 4004
+        },
+        "APIsQualifiedNames": {
+          "URL.__init__": "java.net.URL.__init__"
+        },
+        "API_Ratio": 0.4
+      },
+      {
+        "code": "import java.io.File;\nimport java.io.IOException;\n\nimport javax.sound.sampled.AudioFormat;\nimport javax.sound.sampled.AudioInputStream;\nimport javax.sound.sampled.AudioSystem;\nimport javax.sound.sampled.DataLine.Info;\nimport javax.sound.sampled.LineUnavailableException;\nimport javax.sound.sampled.SourceDataLine;\nimport javax.sound.sampled.UnsupportedAudioFileException;\n\nimport static javax.sound.sampled.AudioSystem.getAudioInputStream;\nimport static javax.sound.sampled.AudioFormat.Encoding.PCM_SIGNED;\n\npublic class AudioFilePlayer {\n\n    public static void main(String[] args) {\n        final AudioFilePlayer player = new AudioFilePlayer ();\n        player.play(\"something.mp3\");\n        player.play(\"something.ogg\");\n    }\n\n    public void play(String filePath) {\n        final File file = new File(filePath);\n\n        try (final AudioInputStream in = getAudioInputStream(file)) {\n\n            final AudioFormat outFormat = getOutFormat(in.getFormat());\n            final Info info = new Info(SourceDataLine.class, outFormat);\n\n            try (final SourceDataLine line =\n                     (SourceDataLine) AudioSystem.getLine(info)) {\n\n                if (line != null) {\n                    line.open(outFormat);\n                    line.start();\n                    stream(getAudioInputStream(outFormat, in), line);\n                    line.drain();\n                    line.stop();\n                }\n            }\n\n        } catch (UnsupportedAudioFileException \n               | LineUnavailableException \n               | IOException e) {\n            throw new IllegalStateException(e);\n        }\n    }\n\n    private AudioFormat getOutFormat(AudioFormat inFormat) {\n        final int ch = inFormat.getChannels();\n\n        final float rate = inFormat.getSampleRate();\n        return new AudioFormat(PCM_SIGNED, rate, 16, ch, ch * 2, rate, false);\n    }\n\n    private void stream(AudioInputStream in, SourceDataLine line) \n        throws IOException {\n        final byte[] buffer = new byte[4096];\n        for (int n = 0; n != -1; n = in.read(buffer, 0, buffer.length)) {\n            line.write(buffer, 0, n);\n        }\n    }\n}\n",
+        "in_page_order": 6,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": "8",
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "AudioFilePlayer.__init__": false,
+          "AudioFilePlayer.play": false,
+          "File.__init__": true,
+          "Info.__init__": true,
+          "IOException.line": true,
+          "IllegalStateException.__init__": true,
+          "AudioFormat.getChannels": false,
+          "AudioFormat.getSampleRate": false,
+          "AudioFormat.__init__": true
+        },
+        "APIsProjects": {
+          "File.__init__": 591,
+          "Info.__init__": 25,
+          "IOException.line": 11,
+          "IllegalStateException.__init__": 589,
+          "AudioFormat.__init__": 7
+        },
+        "APIsFiles": {
+          "File.__init__": 13065,
+          "Info.__init__": 52,
+          "IOException.line": 11,
+          "IllegalStateException.__init__": 9878,
+          "AudioFormat.__init__": 14
+        },
+        "APIsSnippets": {
+          "File.__init__": 40468,
+          "Info.__init__": 92,
+          "IOException.line": 19,
+          "IllegalStateException.__init__": 22622,
+          "AudioFormat.__init__": 25
+        },
+        "APIsQualifiedNames": {
+          "File.__init__": "java.io.File.__init__",
+          "Info.__init__": "javax.sound.sampled.DataLine.Info.__init__",
+          "IOException.line": "java.io.IOException.line",
+          "IllegalStateException.__init__": "org.jboss.weld.exceptions.IllegalStateException.__init__",
+          "AudioFormat.__init__": "javax.sound.sampled.AudioFormat.__init__"
+        },
+        "API_Ratio": 0.5555555555555556
+      },
+      {
+        "code": "public class SimplePlayer {\n\n    public SimplePlayer(){\n\n        try{\n\n             FileInputStream fis = new FileInputStream(\"File location.\");\n             Player playMP3 = new Player(fis);\n\n             playMP3.play();\n\n        }  catch(Exception e){\n             System.out.println(e);\n           }\n    } \n}\n",
+        "in_page_order": 7,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": "4",
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "FileInputStream.__init__": true,
+          "Player.__init__": true,
+          "Player.play": true
+        },
+        "APIsProjects": {
+          "FileInputStream.__init__": 443,
+          "Player.__init__": 16,
+          "Player.play": 3
+        },
+        "APIsFiles": {
+          "FileInputStream.__init__": 2808,
+          "Player.__init__": 22,
+          "Player.play": 4
+        },
+        "APIsSnippets": {
+          "FileInputStream.__init__": 4023,
+          "Player.__init__": 38,
+          "Player.play": 6
+        },
+        "APIsQualifiedNames": {
+          "FileInputStream.__init__": "java.io.FileInputStream.__init__",
+          "Player.__init__": "org.assertj.core.test.Player.__init__",
+          "Player.play": "javazoom.jl.player.Player.play"
+        },
+        "API_Ratio": 1.0
+      },
+      {
+        "code": "import jaco.mp3.player.MP3Player;\nimport java.io.File;\n\npublic class Example1 {\n  public static void main(String[] args) {\n    new MP3Player(new File(\"test.mp3\")).play();\n  }\n}\n",
+        "in_page_order": 8,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": "3",
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "File.__init__": true,
+          "MP3Player.__init__": false
+        },
+        "APIsProjects": {
+          "File.__init__": 591
+        },
+        "APIsFiles": {
+          "File.__init__": 13065
+        },
+        "APIsSnippets": {
+          "File.__init__": 40468
+        },
+        "APIsQualifiedNames": {
+          "File.__init__": "java.io.File.__init__"
+        },
+        "API_Ratio": 0.5
+      },
+      {
+        "code": "File f = new File(\"D:/Songs/preview.mp3\");\nMediaLocator ml = new MediaLocator(f.toURL());\nPlayer p = Manager.createPlayer(ml);\np.start();\n",
+        "in_page_order": 9,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": "2",
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "File.__init__": true,
+          "File.toURL": true,
+          "MediaLocator.__init__": false,
+          "Player.start": true
+        },
+        "APIsProjects": {
+          "File.__init__": 591,
+          "File.toURL": 29,
+          "Player.start": 3
+        },
+        "APIsFiles": {
+          "File.__init__": 13065,
+          "File.toURL": 54,
+          "Player.start": 4
+        },
+        "APIsSnippets": {
+          "File.__init__": 40468,
+          "File.toURL": 84,
+          "Player.start": 4
+        },
+        "APIsQualifiedNames": {
+          "File.__init__": "java.io.File.__init__",
+          "File.toURL": "java.io.File.toURL",
+          "Player.start": "javax.media.Player.start"
+        },
+        "API_Ratio": 0.75
+      }
+    ]
+  },
+  {
+    "query": "How to play audio file",
+    "url": "https://stackoverflow.com/questions/41331288/java-how-to-play-an-audio-file-like-wav-and-mp3-from-a-file",
+    "url position": 2,
+    "segments": [
+      {
+        "code": "String soundFile = \"path/to/.wav/file\";\nInputStream in = new FileInputStream(soundFile );\n\n// create an audiostream from the inputstream\nAudioStream audioStream = new AudioStream(in);\n\n// play the audio clip with the audioplayer class\nAudioPlayer.player.start(audioStream);\n",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": true,
+        "answer_votes": "1",
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "InputStream.__init__": true,
+          "AudioStream.__init__": false
+        },
+        "APIsProjects": {
+          "InputStream.__init__": 350
+        },
+        "APIsFiles": {
+          "InputStream.__init__": 1711
+        },
+        "APIsSnippets": {
+          "InputStream.__init__": 2609
+        },
+        "APIsQualifiedNames": {
+          "InputStream.__init__": "java.io.InputStream.__init__"
+        },
+        "API_Ratio": 0.5
+      },
+      {
+        "code": "import java.io.IOException;\nimport java.io.InputStream;\n\nimport javax.sound.sampled.AudioFormat;\nimport javax.sound.sampled.AudioInputStream;\nimport javax.sound.sampled.AudioSystem;\nimport javax.sound.sampled.DataLine;\nimport javax.sound.sampled.LineUnavailableException;\nimport javax.sound.sampled.SourceDataLine;\nimport javax.sound.sampled.UnsupportedAudioFileException;\n\npublic class AePlayWave extends Thread {\n\n    protected static final boolean DEBUG = false;\n\n    protected InputStream inputStream;\n\n    public AePlayWave(InputStream inputStream) {\n        this.inputStream = inputStream;\n        if (DEBUG) System.out.println(\"AePlayWave constructor\");\n    }\n\n    @Override\n    public void run() {\n        if (DEBUG) System.out.println(\"AePlayWave running\");\n\n        AudioInputStream audioInputStream = verifyInputStream();\n        if (audioInputStream == null) {\n            return;\n        }\n\n        AudioFormat format = audioInputStream.getFormat();\n        SourceDataLine audioLine = openInputStream(format);\n\n        if (DEBUG) System.out.println(audioLine.getLineInfo());\n\n        if (audioLine != null) {\n            audioLine.start();\n            playInputStream(audioInputStream, audioLine);\n        }\n    }\n\n    protected AudioInputStream verifyInputStream() {\n        if (DEBUG) System.out.println(\"AePlayWave verifyInputStream\");\n        AudioInputStream audioInputStream = null;\n        try {\n            audioInputStream = AudioSystem.getAudioInputStream(inputStream);\n        } catch (UnsupportedAudioFileException e) {\n            e.printStackTrace();\n            return null;\n        } catch (IOException e) {\n            e.printStackTrace();\n            return null;\n        }\n        return audioInputStream;\n    }\n\n    protected SourceDataLine openInputStream(AudioFormat format) {\n        if (DEBUG) System.out.println(\"AePlayWave openInputStream\");\n        DataLine.Info info = new DataLine.Info(SourceDataLine.class, format);\n        SourceDataLine audioLine = null;\n        if (DEBUG) System.out.println(\"AePlayWave openInputStream try\");\n        try {\n            audioLine = (SourceDataLine) AudioSystem.getLine(info);\n            if (DEBUG) System.out.println(\"AePlayWave openInputStream getLine\");\n            audioLine.open(format);\n            if (DEBUG) System.out.println(\"AePlayWave openInputStream open\");\n        } catch (LineUnavailableException e) {\n            e.printStackTrace();\n            return null;\n        } catch (Exception e) {\n            e.printStackTrace();\n            return null;\n        }\n        return audioLine;\n    }\n\n    protected void playInputStream(AudioInputStream audioInputStream,\n            SourceDataLine audioLine) {\n        if (DEBUG) System.out.println(\"AePlayWave playInputStream\");\n        int externalBufferSize = (int) audioInputStream.getFrameLength() * 4;\n        if (DEBUG) System.out.println(\"AePlayWave playInputStream externalBufferSize: \" \n                + externalBufferSize);\n        int nBytesRead = 0;\n        byte[] abData = new byte[externalBufferSize];\n\n        try {\n            while (nBytesRead != -1) {\n                nBytesRead = audioInputStream.read(abData, 0, abData.length);\n                if (nBytesRead >= 0) {\n                    if (DEBUG) System.out.println(\"Bytes read: \" + nBytesRead);\n                    audioLine.write(abData, 0, nBytesRead);\n                }\n            }\n        } catch (IOException e) {\n            e.printStackTrace();\n            return;\n        } finally {\n            audioLine.drain();\n            audioLine.close();\n        }\n    }\n}\n",
+        "in_page_order": 2,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": "1",
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": true,
+        "APIs": {
+          "AudioInputStream.getFormat": true,
+          "SourceDataLine.getLineInfo": false,
+          "SourceDataLine.start": true,
+          "Info.__init__": true,
+          "SourceDataLine.open": true,
+          "AudioInputStream.getFrameLength": false,
+          "SourceDataLine.drain": true,
+          "SourceDataLine.close": true
+        },
+        "APIsProjects": {
+          "AudioInputStream.getFormat": 5,
+          "SourceDataLine.start": 5,
+          "Info.__init__": 25,
+          "SourceDataLine.open": 5,
+          "SourceDataLine.drain": 5,
+          "SourceDataLine.close": 5
+        },
+        "APIsFiles": {
+          "AudioInputStream.getFormat": 8,
+          "SourceDataLine.start": 7,
+          "Info.__init__": 52,
+          "SourceDataLine.open": 5,
+          "SourceDataLine.drain": 5,
+          "SourceDataLine.close": 7
+        },
+        "APIsSnippets": {
+          "AudioInputStream.getFormat": 17,
+          "SourceDataLine.start": 9,
+          "Info.__init__": 92,
+          "SourceDataLine.open": 5,
+          "SourceDataLine.drain": 5,
+          "SourceDataLine.close": 8
+        },
+        "APIsQualifiedNames": {
+          "AudioInputStream.getFormat": "javax.sound.sampled.AudioInputStream.getFormat",
+          "SourceDataLine.start": "javax.sound.sampled.SourceDataLine.start",
+          "Info.__init__": "javax.sound.sampled.DataLine.Info.__init__",
+          "SourceDataLine.open": "javax.sound.sampled.SourceDataLine.open",
+          "SourceDataLine.drain": "javax.sound.sampled.SourceDataLine.drain",
+          "SourceDataLine.close": "javax.sound.sampled.SourceDataLine.close"
+        },
+        "API_Ratio": 0.75
+      },
+      {
+        "code": "InputStream inputStream = getClass().getResourceAsStream(\"alarm-clock-1.wav\");\nAePlayWave playWave = new AePlayWave(inputStream);\nplayWave.run();\n",
+        "in_page_order": 2,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": "1",
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "AePlayWave.__init__": false,
+          "AePlayWave.run": false
+        },
+        "APIsProjects": {},
+        "APIsFiles": {},
+        "APIsSnippets": {},
+        "APIsQualifiedNames": {},
+        "API_Ratio": 0.0
+      }
+    ]
+  },
+  {
+    "query": "How to play audio file",
+    "url": "http://rbwhitaker.wikidot.com/java-play-audio",
+    "url position": 13,
+    "segments": [
+      {
+        "code": "\nimport java.io.File;\nimport java.io.FileInputStream;\nimport java.io.InputStream;\n \nimport sun.audio.AudioPlayer;\nimport sun.audio.AudioStream;\n \npublic class AudioDemo \n{\n    public static void main(String[] args) throws Exception\n    {\n        String filename = args[0];\n \n        InputStream in = new FileInputStream(new File(filename));\n        AudioStream audioStream = new AudioStream(in);\n        AudioPlayer.player.start(audioStream);\n    }\n}\n",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "File.__init__": true,
+          "InputStream.__init__": true,
+          "AudioStream.__init__": false
+        },
+        "APIsProjects": {
+          "File.__init__": 591,
+          "InputStream.__init__": 350
+        },
+        "APIsFiles": {
+          "File.__init__": 13065,
+          "InputStream.__init__": 1711
+        },
+        "APIsSnippets": {
+          "File.__init__": 40468,
+          "InputStream.__init__": 2609
+        },
+        "APIsQualifiedNames": {
+          "File.__init__": "java.io.File.__init__",
+          "InputStream.__init__": "java.io.InputStream.__init__"
+        },
+        "API_Ratio": 0.6666666666666666
+      }
+    ]
+  },
+  {
+    "query": "How to play audio file",
+    "url": "https://stackoverflow.com/questions/2416935/how-to-play-wav-files-with-java",
+    "url position": 5,
+    "segments": [
+      {
+        "code": "import java.io.File;\nimport java.io.IOException;\n\nimport javax.sound.sampled.AudioFormat;\nimport javax.sound.sampled.AudioInputStream;\nimport javax.sound.sampled.AudioSystem;\nimport javax.sound.sampled.DataLine;\nimport javax.sound.sampled.LineUnavailableException;\nimport javax.sound.sampled.SourceDataLine;\n\npublic class MakeSound {\n\n    private final int BUFFER_SIZE = 128000;\n    private File soundFile;\n    private AudioInputStream audioStream;\n    private AudioFormat audioFormat;\n    private SourceDataLine sourceLine;\n\n    /**\n     * @param filename the name of the file that is going to be played\n     */\n    public void playSound(String filename){\n\n        String strFilename = filename;\n\n        try {\n            soundFile = new File(strFilename);\n        } catch (Exception e) {\n            e.printStackTrace();\n            System.exit(1);\n        }\n\n        try {\n            audioStream = AudioSystem.getAudioInputStream(soundFile);\n        } catch (Exception e){\n            e.printStackTrace();\n            System.exit(1);\n        }\n\n        audioFormat = audioStream.getFormat();\n\n        DataLine.Info info = new DataLine.Info(SourceDataLine.class, audioFormat);\n        try {\n            sourceLine = (SourceDataLine) AudioSystem.getLine(info);\n            sourceLine.open(audioFormat);\n        } catch (LineUnavailableException e) {\n            e.printStackTrace();\n            System.exit(1);\n        } catch (Exception e) {\n            e.printStackTrace();\n            System.exit(1);\n        }\n\n        sourceLine.start();\n\n        int nBytesRead = 0;\n        byte[] abData = new byte[BUFFER_SIZE];\n        while (nBytesRead != -1) {\n            try {\n                nBytesRead = audioStream.read(abData, 0, abData.length);\n            } catch (IOException e) {\n                e.printStackTrace();\n            }\n            if (nBytesRead >= 0) {\n                @SuppressWarnings(\"unused\")\n                int nBytesWritten = sourceLine.write(abData, 0, nBytesRead);\n            }\n        }\n\n        sourceLine.drain();\n        sourceLine.close();\n    }\n}\n",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": true,
+        "answer_votes": "32",
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "File.__init__": true,
+          "AudioInputStream.getFormat": true,
+          "Info.__init__": true,
+          "SourceDataLine.open": true,
+          "SourceDataLine.start": true,
+          "SourceDataLine.drain": true,
+          "SourceDataLine.close": true
+        },
+        "APIsProjects": {
+          "File.__init__": 591,
+          "AudioInputStream.getFormat": 5,
+          "Info.__init__": 25,
+          "SourceDataLine.open": 5,
+          "SourceDataLine.start": 5,
+          "SourceDataLine.drain": 5,
+          "SourceDataLine.close": 5
+        },
+        "APIsFiles": {
+          "File.__init__": 13065,
+          "AudioInputStream.getFormat": 8,
+          "Info.__init__": 52,
+          "SourceDataLine.open": 5,
+          "SourceDataLine.start": 7,
+          "SourceDataLine.drain": 5,
+          "SourceDataLine.close": 7
+        },
+        "APIsSnippets": {
+          "File.__init__": 40468,
+          "AudioInputStream.getFormat": 17,
+          "Info.__init__": 92,
+          "SourceDataLine.open": 5,
+          "SourceDataLine.start": 9,
+          "SourceDataLine.drain": 5,
+          "SourceDataLine.close": 8
+        },
+        "APIsQualifiedNames": {
+          "File.__init__": "java.io.File.__init__",
+          "AudioInputStream.getFormat": "javax.sound.sampled.AudioInputStream.getFormat",
+          "Info.__init__": "javax.sound.sampled.DataLine.Info.__init__",
+          "SourceDataLine.open": "javax.sound.sampled.SourceDataLine.open",
+          "SourceDataLine.start": "javax.sound.sampled.SourceDataLine.start",
+          "SourceDataLine.drain": "javax.sound.sampled.SourceDataLine.drain",
+          "SourceDataLine.close": "javax.sound.sampled.SourceDataLine.close"
+        },
+        "API_Ratio": 1.0
+      },
+      {
+        "code": "public static void play(String filename)\n{\n    try\n    {\n        Clip clip = AudioSystem.getClip();\n        clip.open(AudioSystem.getAudioInputStream(new File(filename)));\n        clip.start();\n    }\n    catch (Exception exc)\n    {\n        exc.printStackTrace(System.out);\n    }\n}\n",
+        "in_page_order": 3,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": "15",
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "File.__init__": true,
+          "Clip.open": true,
+          "Clip.start": true
+        },
+        "APIsProjects": {
+          "File.__init__": 591,
+          "Clip.open": 5,
+          "Clip.start": 5
+        },
+        "APIsFiles": {
+          "File.__init__": 13065,
+          "Clip.open": 5,
+          "Clip.start": 5
+        },
+        "APIsSnippets": {
+          "File.__init__": 40468,
+          "Clip.open": 5,
+          "Clip.start": 8
+        },
+        "APIsQualifiedNames": {
+          "File.__init__": "java.io.File.__init__",
+          "Clip.open": "javax.sound.sampled.Clip.open",
+          "Clip.start": "javax.sound.sampled.Clip.start"
+        },
+        "API_Ratio": 1.0
+      },
+      {
+        "code": "public static void main(String[] args) {\n        AePlayWave aw = new AePlayWave( \"C:\\\\WINDOWS\\\\Media\\\\tada.wav\" );\n        aw.start();     \n}\n",
+        "in_page_order": 5,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": "3",
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "AePlayWave.__init__": false,
+          "AePlayWave.start": false
+        },
+        "APIsProjects": {},
+        "APIsFiles": {},
+        "APIsSnippets": {},
+        "APIsQualifiedNames": {},
+        "API_Ratio": 0.0
+      },
+      {
+        "code": "class Sound implements Playable {\n\n    private final Path wavPath;\n    private final CyclicBarrier barrier = new CyclicBarrier(2);\n\n    Sound(final Path wavPath) {\n\n        this.wavPath = wavPath;\n    }\n\n    @Override\n    public void play() throws LineUnavailableException, IOException, UnsupportedAudioFileException {\n\n        try (final AudioInputStream audioIn = AudioSystem.getAudioInputStream(wavPath.toFile());\n             final Clip clip = AudioSystem.getClip()) {\n\n            listenForEndOf(clip);\n            clip.open(audioIn);\n            clip.start();\n            waitForSoundEnd();\n        }\n    }\n\n    private void listenForEndOf(final Clip clip) {\n\n        clip.addLineListener(event -> {\n            if (event.getType() == LineEvent.Type.STOP) waitOnBarrier();\n        });\n    }\n\n    private void waitOnBarrier() {\n\n        try {\n\n            barrier.await();\n        } catch (final InterruptedException ignored) {\n        } catch (final BrokenBarrierException e) {\n\n            throw new RuntimeException(e);\n        }\n    }\n\n    private void waitForSoundEnd() {\n\n        waitOnBarrier();\n    }\n}\n",
+        "in_page_order": 6,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": "1",
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Clip.addLineListener": true,
+          "CyclicBarrier.await": true,
+          "RuntimeException.__init__": true
+        },
+        "APIsProjects": {
+          "Clip.addLineListener": 3,
+          "CyclicBarrier.await": 45,
+          "RuntimeException.__init__": 606
+        },
+        "APIsFiles": {
+          "Clip.addLineListener": 3,
+          "CyclicBarrier.await": 138,
+          "RuntimeException.__init__": 14398
+        },
+        "APIsSnippets": {
+          "Clip.addLineListener": 3,
+          "CyclicBarrier.await": 462,
+          "RuntimeException.__init__": 37177
+        },
+        "APIsQualifiedNames": {
+          "Clip.addLineListener": "javax.sound.sampled.Clip.addLineListener",
+          "CyclicBarrier.await": "java.util.concurrent.CyclicBarrier.await",
+          "RuntimeException.__init__": "java.lang.RuntimeException.__init__"
+        },
+        "API_Ratio": 1.0
+      },
+      {
+        "code": "import javax.sound.sampled.*;\nimport java.io.*;\npublic class playsound\n{\n    public static void main (String args[]) throws Exception\n    {\n        playSound ( args [0] );\n    }\n    public static\n    void playSound\n    ( \n        String filename\n    ) throws Exception\n    {\n\n        AudioInputStream \n        audioStream = \n        AudioSystem.getAudioInputStream\n        ( new File (filename) );\n\n        int BUFFER_SIZE = 128000;\n        AudioFormat audioFormat = null;\n        SourceDataLine sourceLine = null;\n\n        audioFormat = audioStream.getFormat();\n\n        sourceLine = (SourceDataLine) \n        AudioSystem.getSourceDataLine\n        ( audioFormat );\n\n        sourceLine.open ( audioFormat );\n\n        sourceLine.start();\n\n        int nBytesRead = 0;\n        byte[] abData = new byte[BUFFER_SIZE];\n        while (nBytesRead != -1) \n        {\n            try \n            {\n                nBytesRead = \n                audioStream.read\n                ( abData, 0, abData.length );\n            } \n            catch (IOException e) \n            {\n                e.printStackTrace();\n            }\n            if (nBytesRead >= 0) \n            {\n                int nBytesWritten = \n                sourceLine.write\n                ( abData, 0, nBytesRead );\n            }\n        }\n\n        sourceLine.drain();\n        sourceLine.close();\n    }\n\n}\n",
+        "in_page_order": 7,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": "1",
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Exception": true,
+          "File.__init__": true,
+          "AudioInputStream.getFormat": true,
+          "SourceDataLine.open": true,
+          "SourceDataLine.start": true,
+          "SourceDataLine.drain": true,
+          "SourceDataLine.close": true
+        },
+        "APIsProjects": {
+          "Exception": 319,
+          "File.__init__": 591,
+          "AudioInputStream.getFormat": 5,
+          "SourceDataLine.open": 5,
+          "SourceDataLine.start": 5,
+          "SourceDataLine.drain": 5,
+          "SourceDataLine.close": 5
+        },
+        "APIsFiles": {
+          "Exception": 5709,
+          "File.__init__": 13065,
+          "AudioInputStream.getFormat": 8,
+          "SourceDataLine.open": 5,
+          "SourceDataLine.start": 7,
+          "SourceDataLine.drain": 5,
+          "SourceDataLine.close": 7
+        },
+        "APIsSnippets": {
+          "Exception": 29060,
+          "File.__init__": 40468,
+          "AudioInputStream.getFormat": 17,
+          "SourceDataLine.open": 5,
+          "SourceDataLine.start": 9,
+          "SourceDataLine.drain": 5,
+          "SourceDataLine.close": 8
+        },
+        "APIsQualifiedNames": {
+          "Exception": "java.lang.Exception.Exception",
+          "File.__init__": "java.io.File.__init__",
+          "AudioInputStream.getFormat": "javax.sound.sampled.AudioInputStream.getFormat",
+          "SourceDataLine.open": "javax.sound.sampled.SourceDataLine.open",
+          "SourceDataLine.start": "javax.sound.sampled.SourceDataLine.start",
+          "SourceDataLine.drain": "javax.sound.sampled.SourceDataLine.drain",
+          "SourceDataLine.close": "javax.sound.sampled.SourceDataLine.close"
+        },
+        "API_Ratio": 1.0
+      },
+      {
+        "code": "import java.awt.event.ActionEvent;\nimport java.awt.event.ActionListener;\nimport java.io.FileInputStream;\nimport java.io.FileNotFoundException;\nimport java.io.IOException;\nimport java.io.InputStream;\n\nimport javax.swing.JButton;\nimport javax.swing.JFrame;\nimport javax.swing.JPanel;\n\nimport sun.audio.AudioPlayer;\nimport sun.audio.AudioStream;\n\npublic class AudioWizz extends JPanel implements ActionListener {\n\n    private static final long serialVersionUID = 1L; //you like your cereal and the program likes their \"serial\"\n\n    static AudioWizz a;\n    static JButton playBuddon;\n    static JFrame frame;\n\n    public static void main(String arguments[]){\n\n        frame= new JFrame(\"AudioWizz\");\n        frame.setSize(300,300);\n        frame.setVisible(true);\n        a= new AudioWizz();\n        playBuddon= new JButton(\"PUSH ME\");\n        playBuddon.setBounds(10,10,80,30);\n        playBuddon.addActionListener(a);\n\n        frame.add(playBuddon);\n        frame.add(a);\n    }\n\n    public void actionPerformed(ActionEvent e){ //an eventListener\n        if (e.getSource() == playBuddon) {\n            try {\n                InputStream in = new FileInputStream(\"*.wav\");\n                AudioStream sound = new AudioStream(in);\n                AudioPlayer.player.start(sound);\n            } catch(FileNotFoundException e1) {\n                e1.printStackTrace();\n            } catch (IOException e1) {\n                e1.printStackTrace();\n            }\n        }\n    }\n\n}\n",
+        "in_page_order": 8,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": "0",
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "JFrame.__init__": true,
+          "JFrame.setSize": true,
+          "JFrame.setVisible": true,
+          "AudioWizz.__init__": false,
+          "JButton.__init__": true,
+          "JButton.setBounds": true,
+          "JButton.addActionListener": true,
+          "JFrame.add": true,
+          "ActionEvent.getSource": true,
+          "InputStream.__init__": true,
+          "AudioStream.__init__": false
+        },
+        "APIsProjects": {
+          "JFrame.__init__": 58,
+          "JFrame.setSize": 31,
+          "JFrame.setVisible": 53,
+          "JButton.__init__": 75,
+          "JButton.setBounds": 6,
+          "JButton.addActionListener": 70,
+          "JFrame.add": 24,
+          "ActionEvent.getSource": 35,
+          "InputStream.__init__": 350
+        },
+        "APIsFiles": {
+          "JFrame.__init__": 340,
+          "JFrame.setSize": 156,
+          "JFrame.setVisible": 310,
+          "JButton.__init__": 611,
+          "JButton.setBounds": 6,
+          "JButton.addActionListener": 601,
+          "JFrame.add": 61,
+          "ActionEvent.getSource": 210,
+          "InputStream.__init__": 1711
+        },
+        "APIsSnippets": {
+          "JFrame.__init__": 447,
+          "JFrame.setSize": 220,
+          "JFrame.setVisible": 466,
+          "JButton.__init__": 1532,
+          "JButton.setBounds": 14,
+          "JButton.addActionListener": 1496,
+          "JFrame.add": 89,
+          "ActionEvent.getSource": 434,
+          "InputStream.__init__": 2609
+        },
+        "APIsQualifiedNames": {
+          "JFrame.__init__": "javax.swing.JFrame.__init__",
+          "JFrame.setSize": "javax.swing.JFrame.setSize",
+          "JFrame.setVisible": "javax.swing.JFrame.setVisible",
+          "JButton.__init__": "javax.swing.JButton.__init__",
+          "JButton.setBounds": "javax.swing.JButton.setBounds",
+          "JButton.addActionListener": "javax.swing.JButton.addActionListener",
+          "JFrame.add": "javax.swing.JFrame.add",
+          "ActionEvent.getSource": "java.awt.event.ActionEvent.getSource",
+          "InputStream.__init__": "java.io.InputStream.__init__"
+        },
+        "API_Ratio": 0.8181818181818182
+      },
+      {
+        "code": "import java.io.File;\n\nimport javax.sound.sampled.AudioInputStream;\nimport javax.sound.sampled.AudioSystem;\nimport javax.sound.sampled.Clip;\nimport javax.sound.sampled.Line;\nimport javax.sound.sampled.LineEvent;\nimport javax.sound.sampled.LineListener;\nimport javax.swing.JDialog;\nimport javax.swing.JFileChooser;\n\npublic class CoreJavaSound extends Object implements LineListener {\n    File soundFile;\n\n    JDialog playingDialog;\n\n    Clip clip;\n\n    public static void main(String[] args) throws Exception {\n        CoreJavaSound s = new CoreJavaSound();\n    }\n\n    public CoreJavaSound() throws Exception {\n        JFileChooser chooser = new JFileChooser();\n        chooser.showOpenDialog(null);\n        soundFile = chooser.getSelectedFile();\n\n        System.out.println(\"Playing \" + soundFile.getName());\n\n        Line.Info linfo = new Line.Info(Clip.class);\n        Line line = AudioSystem.getLine(linfo);\n        clip = (Clip) line;\n        clip.addLineListener(this);\n        AudioInputStream ais = AudioSystem.getAudioInputStream(soundFile);\n        clip.open(ais);\n        clip.start();\n    }\n\n    public void update(LineEvent le) {\n        LineEvent.Type type = le.getType();\n        if (type == LineEvent.Type.OPEN) {\n            System.out.println(\"OPEN\");\n        } else if (type == LineEvent.Type.CLOSE) {\n            System.out.println(\"CLOSE\");\n            System.exit(0);\n        } else if (type == LineEvent.Type.START) {\n            System.out.println(\"START\");\n            playingDialog.setVisible(true);\n        } else if (type == LineEvent.Type.STOP) {\n            System.out.println(\"STOP\");\n            playingDialog.setVisible(false);\n            clip.close();\n        }\n    }\n}\n",
+        "in_page_order": 9,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": "0",
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "CoreJavaSound.__init__": false,
+          "JFileChooser.__init__": true,
+          "JFileChooser.showOpenDialog": true,
+          "JFileChooser.getSelectedFile": true,
+          "File.getName": true,
+          "Info.__init__": true,
+          "Clip.addLineListener": true,
+          "Clip.open": true,
+          "Clip.start": true,
+          "LineEvent.getType": false,
+          "JDialog.setVisible": true,
+          "Clip.close": true
+        },
+        "APIsProjects": {
+          "JFileChooser.__init__": 43,
+          "JFileChooser.showOpenDialog": 39,
+          "JFileChooser.getSelectedFile": 41,
+          "File.getName": 300,
+          "Info.__init__": 25,
+          "Clip.addLineListener": 3,
+          "Clip.open": 5,
+          "Clip.start": 5,
+          "JDialog.setVisible": 25,
+          "Clip.close": 3
+        },
+        "APIsFiles": {
+          "JFileChooser.__init__": 103,
+          "JFileChooser.showOpenDialog": 90,
+          "JFileChooser.getSelectedFile": 122,
+          "File.getName": 1846,
+          "Info.__init__": 52,
+          "Clip.addLineListener": 3,
+          "Clip.open": 5,
+          "Clip.start": 5,
+          "JDialog.setVisible": 73,
+          "Clip.close": 3
+        },
+        "APIsSnippets": {
+          "JFileChooser.__init__": 150,
+          "JFileChooser.showOpenDialog": 117,
+          "JFileChooser.getSelectedFile": 217,
+          "File.getName": 3551,
+          "Info.__init__": 92,
+          "Clip.addLineListener": 3,
+          "Clip.open": 5,
+          "Clip.start": 8,
+          "JDialog.setVisible": 175,
+          "Clip.close": 3
+        },
+        "APIsQualifiedNames": {
+          "JFileChooser.__init__": "javax.swing.JFileChooser.__init__",
+          "JFileChooser.showOpenDialog": "javax.swing.JFileChooser.showOpenDialog",
+          "JFileChooser.getSelectedFile": "javax.swing.JFileChooser.getSelectedFile",
+          "File.getName": "java.io.File.getName",
+          "Info.__init__": "javax.sound.sampled.DataLine.Info.__init__",
+          "Clip.addLineListener": "javax.sound.sampled.Clip.addLineListener",
+          "Clip.open": "javax.sound.sampled.Clip.open",
+          "Clip.start": "javax.sound.sampled.Clip.start",
+          "JDialog.setVisible": "javax.swing.JDialog.setVisible",
+          "Clip.close": "javax.sound.sampled.Clip.close"
+        },
+        "API_Ratio": 0.8333333333333334
+      }
+    ]
+  },
+  {
+    "query": "How to play audio file",
+    "url": "https://stackoverflow.com/questions/16870064/how-to-play-an-mp3-file-in-java",
+    "url position": 4,
+    "segments": [
+      {
+        "code": "import javax.media.*;\nimport java.net.*;\nimport java.io.*;\nimport java.util.*;\nclass AudioPlay\n{\n public static void main(String args[]) throws Exception\n {\n\n\n // Take the path of the audio file from command line\n File f=new File(\"song.mp3\");\n\n\n // Create a Player object that realizes the audio\n final Player p=Manager.createRealizedPlayer(f.toURI().toURL());\n\n\n  // Start the music\n  p.start();\n\n\n  // Create a Scanner object for taking input from cmd\n  Scanner s=new Scanner(System.in);\n\n\n  // Read a line and store it in st\n  String st=s.nextLine();\n\n\n   // If user types 's', stop the audio\n   if(st.equals(\"s\"))\n   {\n   p.stop();\n   }\n }\n}\n",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": true,
+        "answer_votes": "2",
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "File.__init__": true,
+          "File.toURI": true,
+          "Player.start": true,
+          "Scanner.__init__": true,
+          "Scanner.nextLine": true,
+          "Player.stop": true
+        },
+        "APIsProjects": {
+          "File.__init__": 591,
+          "File.toURI": 157,
+          "Player.start": 3,
+          "Scanner.__init__": 123,
+          "Scanner.nextLine": 49,
+          "Player.stop": 3
+        },
+        "APIsFiles": {
+          "File.__init__": 13065,
+          "File.toURI": 524,
+          "Player.start": 4,
+          "Scanner.__init__": 290,
+          "Scanner.nextLine": 119,
+          "Player.stop": 3
+        },
+        "APIsSnippets": {
+          "File.__init__": 40468,
+          "File.toURI": 844,
+          "Player.start": 4,
+          "Scanner.__init__": 918,
+          "Scanner.nextLine": 184,
+          "Player.stop": 3
+        },
+        "APIsQualifiedNames": {
+          "File.__init__": "java.io.File.__init__",
+          "File.toURI": "java.io.File.toURI",
+          "Player.start": "javax.media.Player.start",
+          "Scanner.__init__": "java.util.Scanner.__init__",
+          "Scanner.nextLine": "java.util.Scanner.nextLine",
+          "Player.stop": "javax.media.Player.stop"
+        },
+        "API_Ratio": 1.0
+      },
+      {
+        "code": "public class SimplePlayer {\n\npublic SimplePlayer(){\n\n    try{\n\n    FileInputStream fis = new FileInputStream(\"File location.\");\n    Player playMP3 = new Player(fis);\n\n    playMP3.play();\n\n    }catch(Exception e){System.out.println(e);}\n}\n\n}\n",
+        "in_page_order": 2,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": "1",
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "FileInputStream.__init__": true,
+          "Player.__init__": true,
+          "Player.play": true
+        },
+        "APIsProjects": {
+          "FileInputStream.__init__": 443,
+          "Player.__init__": 16,
+          "Player.play": 3
+        },
+        "APIsFiles": {
+          "FileInputStream.__init__": 2808,
+          "Player.__init__": 22,
+          "Player.play": 4
+        },
+        "APIsSnippets": {
+          "FileInputStream.__init__": 4023,
+          "Player.__init__": 38,
+          "Player.play": 6
+        },
+        "APIsQualifiedNames": {
+          "FileInputStream.__init__": "java.io.FileInputStream.__init__",
+          "Player.__init__": "org.assertj.core.test.Player.__init__",
+          "Player.play": "javazoom.jl.player.Player.play"
+        },
+        "API_Ratio": 1.0
+      },
+      {
+        "code": "import java.net.URL;\nimport javafx.application.Application;\nimport javafx.scene.media.Media;\nimport javafx.scene.media.MediaPlayer;\nimport javafx.stage.Stage;\n\npublic class VLC extends Application {\n    void playMedia() {\n        String mp3 = \"00- Tu Hi Mera.mp3\";\n        URL resource = getClass().getResource(mp3);\n        System.out.println(resource.toString());\n        Media media = new Media(resource.toString());\n        MediaPlayer mediaPlayer = new MediaPlayer(media);\n        mediaPlayer.play();\n    }\n    public static void main(String args[]) {\n        new VLC().playMedia();\n    }\n    @Override\n    public void start(Stage stage) throws Exception {\n    }\n}\n",
+        "in_page_order": 3,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": "0",
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "URL.toString": true,
+          "Media.__init__": true,
+          "MediaPlayer.__init__": true,
+          "MediaPlayer.play": false,
+          "VLC.__init__": false
+        },
+        "APIsProjects": {
+          "URL.toString": 158,
+          "Media.__init__": 8,
+          "MediaPlayer.__init__": 23
+        },
+        "APIsFiles": {
+          "URL.toString": 454,
+          "Media.__init__": 46,
+          "MediaPlayer.__init__": 30
+        },
+        "APIsSnippets": {
+          "URL.toString": 735,
+          "Media.__init__": 71,
+          "MediaPlayer.__init__": 34
+        },
+        "APIsQualifiedNames": {
+          "URL.toString": "java.net.URL.toString",
+          "Media.__init__": "org.broadleafcommerce.common.media.domain.Media.__init__",
+          "MediaPlayer.__init__": "uk.co.caprica.vlcj.player.MediaPlayer.__init__"
+        },
+        "API_Ratio": 0.6
+      }
+    ]
+  },
+  {
+    "query": "How to play audio file",
+    "url": "https://alvinalexander.com/java/java-audio-example-java-au-play-sound",
+    "url position": 8,
+    "segments": [
+      {
+        "code": "import java.io.*;\nimport sun.audio.*;\n\n/**\n * A simple Java sound file example (i.e., Java code to play a sound file).\n *AudioStream and AudioPlayer code comes from a javaworld.com example.\n * @author alvin alexander, devdaily.com.\n */\npublic class JavaAudioPlaySoundExample\n{\n  public static void main(String[] args) \n  throws Exception\n  {\n    // open the sound file as a Java input stream\n    String gongFile = \"/Users/al/DevDaily/Projects/MeditationApp/resources/gong.au\";\n    InputStream in = new FileInputStream(gongFile);\n\n    // create an audiostream from the inputstream\n    AudioStream audioStream = new AudioStream(in);\n\n    // play the audio clip with the audioplayer class\n    AudioPlayer.player.start(audioStream);\n  }\n}\n",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "InputStream.__init__": true,
+          "AudioStream.__init__": false
+        },
+        "APIsProjects": {
+          "InputStream.__init__": 350
+        },
+        "APIsFiles": {
+          "InputStream.__init__": 1711
+        },
+        "APIsSnippets": {
+          "InputStream.__init__": 2609
+        },
+        "APIsQualifiedNames": {
+          "InputStream.__init__": "java.io.InputStream.__init__"
+        },
+        "API_Ratio": 0.5
+      },
+      {
+        "code": "private void playSound() \n{\n  try\n  {\n    // get the sound file as a resource out of my jar file;\n    // the sound file must be in the same directory as this class file.\n    // the input stream portion of this recipe comes from a javaworld.com article.\n    InputStream inputStream = getClass().getResourceAsStream(SOUND_FILENAME);\n    AudioStream audioStream = new AudioStream(inputStream);\n    AudioPlayer.player.start(audioStream);\n  }\n  catch (Exception e)\n  {\n    // a special way i'm handling logging in this application\n    if (debugFileWriter!=null) e.printStackTrace(debugFileWriter);\n  }\n}\n",
+        "in_page_order": 2,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "AudioStream.__init__": false
+        },
+        "APIsProjects": {},
+        "APIsFiles": {},
+        "APIsSnippets": {},
+        "APIsQualifiedNames": {},
+        "API_Ratio": 0.0
+      }
+    ]
+  },
+  {
+    "query": "How to play audio file",
+    "url": "https://www.geeksforgeeks.org/play-audio-file-using-java/",
+    "url position": 7,
+    "segments": [
+      {
+        "code": "\r\n// Java program to play an Audio\r\n// file using Clip Object\r\nimport java.io.File;\r\nimport java.io.IOException;\r\nimport java.util.Scanner;\r\n\r\nimport javax.sound.sampled.AudioInputStream;\r\nimport javax.sound.sampled.AudioSystem;\r\nimport javax.sound.sampled.Clip;\r\nimport javax.sound.sampled.LineUnavailableException;\r\nimport javax.sound.sampled.UnsupportedAudioFileException;\r\n\r\npublic class SimpleAudioPlayer \r\n{\r\n\r\n    // to store current position\r\n    Long currentFrame;\r\n    Clip clip;\r\n    \r\n    // current status of clip\r\n    String status;\r\n    \r\n    AudioInputStream audioInputStream;\r\n    static String filePath;\r\n\r\n    // constructor to initialize streams and clip\r\n    public SimpleAudioPlayer()\r\n        throws UnsupportedAudioFileException,\r\n        IOException, LineUnavailableException \r\n    {\r\n        // create AudioInputStream object\r\n        audioInputStream = \r\n                AudioSystem.getAudioInputStream(new File(filePath).getAbsoluteFile());\r\n        \r\n        // create clip reference\r\n        clip = AudioSystem.getClip();\r\n        \r\n        // open audioInputStream to the clip\r\n        clip.open(audioInputStream);\r\n        \r\n        clip.loop(Clip.LOOP_CONTINUOUSLY);\r\n    }\r\n\r\n    public static void main(String[] args) \r\n    {\r\n        try\r\n        {\r\n            filePath = \"Your path for the file\";\r\n            SimpleAudioPlayer audioPlayer = \r\n                            new SimpleAudioPlayer();\r\n            \r\n            audioPlayer.play();\r\n            Scanner sc = new Scanner(System.in);\r\n            \r\n            while (true)\r\n            {\r\n                System.out.println(\"1. pause\");\r\n                System.out.println(\"2. resume\");\r\n                System.out.println(\"3. restart\");\r\n                System.out.println(\"4. stop\");\r\n                System.out.println(\"5. Jump to specific time\");\r\n                int c = sc.nextInt();\r\n                audioPlayer.gotoChoice(c);\r\n                if (c == 4)\r\n                break;\r\n            }\r\n            sc.close();\r\n        } \r\n        \r\n        catch (Exception ex) \r\n        {\r\n            System.out.println(\"Error with playing sound.\");\r\n            ex.printStackTrace();\r\n        \r\n          }\r\n    }\r\n    \r\n    // Work as the user enters his choice\r\n    \r\n    private void gotoChoice(int c)\r\n            throws IOException, LineUnavailableException, UnsupportedAudioFileException \r\n    {\r\n        switch (c) \r\n        {\r\n            case 1:\r\n                pause();\r\n                break;\r\n            case 2:\r\n                resumeAudio();\r\n                break;\r\n            case 3:\r\n                restart();\r\n                break;\r\n            case 4:\r\n                stop();\r\n                break;\r\n            case 5:\r\n                System.out.println(\"Enter time (\" + 0 + \r\n                \", \" + clip.getMicrosecondLength() + \")\");\r\n                Scanner sc = new Scanner(System.in);\r\n                long c1 = sc.nextLong();\r\n                jump(c1);\r\n                break;\r\n    \r\n        }\r\n    \r\n    }\r\n    \r\n    // Method to play the audio\r\n    public void play() \r\n    {\r\n        //start the clip\r\n        clip.start();\r\n        \r\n        status = \"play\";\r\n    }\r\n    \r\n    // Method to pause the audio\r\n    public void pause() \r\n    {\r\n        if (status.equals(\"paused\")) \r\n        {\r\n            System.out.println(\"audio is already paused\");\r\n            return;\r\n        }\r\n        this.currentFrame = \r\n        this.clip.getMicrosecondPosition();\r\n        clip.stop();\r\n        status = \"paused\";\r\n    }\r\n    \r\n    // Method to resume the audio\r\n    public void resumeAudio() throws UnsupportedAudioFileException,\r\n                                IOException, LineUnavailableException \r\n    {\r\n        if (status.equals(\"play\")) \r\n        {\r\n            System.out.println(\"Audio is already \"+\r\n            \"being played\");\r\n            return;\r\n        }\r\n        clip.close();\r\n        resetAudioStream();\r\n        clip.setMicrosecondPosition(currentFrame);\r\n        this.play();\r\n    }\r\n    \r\n    // Method to restart the audio\r\n    public void restart() throws IOException, LineUnavailableException,\r\n                                            UnsupportedAudioFileException \r\n    {\r\n        clip.stop();\r\n        clip.close();\r\n        resetAudioStream();\r\n        currentFrame = 0L;\r\n        clip.setMicrosecondPosition(0);\r\n        this.play();\r\n    }\r\n    \r\n    // Method to stop the audio\r\n    public void stop() throws UnsupportedAudioFileException,\r\n    IOException, LineUnavailableException \r\n    {\r\n        currentFrame = 0L;\r\n        clip.stop();\r\n        clip.close();\r\n    }\r\n    \r\n    // Method to jump over a specific part\r\n    public void jump(long c) throws UnsupportedAudioFileException, IOException,\r\n                                                        LineUnavailableException \r\n    {\r\n        if (c > 0 && c < clip.getMicrosecondLength()) \r\n        {\r\n            clip.stop();\r\n            clip.close();\r\n            resetAudioStream();\r\n            currentFrame = c;\r\n            clip.setMicrosecondPosition(c);\r\n            this.play();\r\n        }\r\n    }\r\n    \r\n    // Method to reset audio stream\r\n    public void resetAudioStream() throws UnsupportedAudioFileException, IOException,\r\n                                            LineUnavailableException \r\n    {\r\n        audioInputStream = AudioSystem.getAudioInputStream(\r\n        new File(filePath).getAbsoluteFile());\r\n        clip.open(audioInputStream);\r\n        clip.loop(Clip.LOOP_CONTINUOUSLY);\r\n    }\r\n\r\n}\r\n\r\n",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": true,
+        "APIs": {
+          "File.__init__": true,
+          "Clip.open": true,
+          "Clip.loop": false,
+          "SimpleAudioPlayer.__init__": false,
+          "SimpleAudioPlayer.play": false,
+          "Scanner.__init__": true,
+          "Scanner.nextInt": true,
+          "SimpleAudioPlayer.gotoChoice": false,
+          "Scanner.close": true,
+          "UnsupportedAudioFileException": false,
+          "IOException": true,
+          "Clip.getMicrosecondLength": false,
+          "Scanner.nextLong": true,
+          "UnsupportedAudioFileException.c1": false,
+          "Clip.start": true,
+          "Clip.stop": true,
+          "Clip.close": true,
+          "Clip.setMicrosecondPosition": false
+        },
+        "APIsProjects": {
+          "File.__init__": 591,
+          "Clip.open": 5,
+          "Scanner.__init__": 123,
+          "Scanner.nextInt": 11,
+          "Scanner.close": 48,
+          "IOException": 444,
+          "Scanner.nextLong": 5,
+          "Clip.start": 5,
+          "Clip.stop": 3,
+          "Clip.close": 3
+        },
+        "APIsFiles": {
+          "File.__init__": 13065,
+          "Clip.open": 5,
+          "Scanner.__init__": 290,
+          "Scanner.nextInt": 14,
+          "Scanner.close": 82,
+          "IOException": 6092,
+          "Scanner.nextLong": 6,
+          "Clip.start": 5,
+          "Clip.stop": 3,
+          "Clip.close": 3
+        },
+        "APIsSnippets": {
+          "File.__init__": 40468,
+          "Clip.open": 5,
+          "Scanner.__init__": 918,
+          "Scanner.nextInt": 139,
+          "Scanner.close": 155,
+          "IOException": 57973,
+          "Scanner.nextLong": 125,
+          "Clip.start": 8,
+          "Clip.stop": 3,
+          "Clip.close": 3
+        },
+        "APIsQualifiedNames": {
+          "File.__init__": "java.io.File.__init__",
+          "Clip.open": "javax.sound.sampled.Clip.open",
+          "Scanner.__init__": "java.util.Scanner.__init__",
+          "Scanner.nextInt": "java.util.Scanner.nextInt",
+          "Scanner.close": "java.util.Scanner.close",
+          "IOException": "java.io.IOException.IOException",
+          "Scanner.nextLong": "java.util.Scanner.nextLong",
+          "Clip.start": "javax.sound.sampled.Clip.start",
+          "Clip.stop": "javax.sound.sampled.Clip.stop",
+          "Clip.close": "javax.sound.sampled.Clip.close"
+        },
+        "API_Ratio": 0.5555555555555556
+      }
+    ]
+  },
+  {
+    "query": "How to play audio file",
+    "url": "https://stackoverflow.com/questions/42955509/how-to-play-a-simple-audio-file-java",
+    "url position": 6,
+    "segments": [
+      {
+        "code": "public void sound() {\n    try {\n        AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(this.getClass().getResource(\"NameOfFile.wav\"));\n        Clip clip = AudioSystem.getClip();\n        clip.open(audioInputStream);\n        clip.start();\n        // If you want the sound to loop infinitely, then put: clip.loop(Clip.LOOP_CONTINUOUSLY); \n        // If you want to stop the sound, then use clip.stop();\n    } catch (Exception ex) {\n        ex.printStackTrace();\n    }\n}\n",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": false,
+        "answer_votes": "1",
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Clip.open": true,
+          "Clip.start": true
+        },
+        "APIsProjects": {
+          "Clip.open": 5,
+          "Clip.start": 5
+        },
+        "APIsFiles": {
+          "Clip.open": 5,
+          "Clip.start": 5
+        },
+        "APIsSnippets": {
+          "Clip.open": 5,
+          "Clip.start": 8
+        },
+        "APIsQualifiedNames": {
+          "Clip.open": "javax.sound.sampled.Clip.open",
+          "Clip.start": "javax.sound.sampled.Clip.start"
+        },
+        "API_Ratio": 1.0
+      }
+    ]
+  },
+  {
+    "query": "How to play audio file",
+    "url": "http://www.codejava.net/coding/how-to-play-back-audio-in-java-with-examples",
+    "url position": 11,
+    "segments": [
+      {
+        "code": "File audioFile = new File(audioFilePath);\n\nAudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile); ",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "File.__init__": true
+        },
+        "APIsProjects": {
+          "File.__init__": 591
+        },
+        "APIsFiles": {
+          "File.__init__": 13065
+        },
+        "APIsSnippets": {
+          "File.__init__": 40468
+        },
+        "APIsQualifiedNames": {
+          "File.__init__": "java.io.File.__init__"
+        },
+        "API_Ratio": 1.0
+      },
+      {
+        "code": "AudioFormat format = audioStream.getFormat();\n\nDataLine.Info info = new DataLine.Info(Clip.class, format); ",
+        "in_page_order": 2,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Info.__init__": true
+        },
+        "APIsProjects": {
+          "Info.__init__": 25
+        },
+        "APIsFiles": {
+          "Info.__init__": 52
+        },
+        "APIsSnippets": {
+          "Info.__init__": 92
+        },
+        "APIsQualifiedNames": {
+          "Info.__init__": "javax.sound.sampled.DataLine.Info.__init__"
+        },
+        "API_Ratio": 1.0
+      },
+      {
+        "code": "package net.codejava.sound;\n\nimport java.io.File;\nimport java.io.IOException;\n\nimport javax.sound.sampled.AudioFormat;\nimport javax.sound.sampled.AudioInputStream;\nimport javax.sound.sampled.AudioSystem;\nimport javax.sound.sampled.Clip;\nimport javax.sound.sampled.DataLine;\nimport javax.sound.sampled.LineEvent;\nimport javax.sound.sampled.LineListener;\nimport javax.sound.sampled.LineUnavailableException;\nimport javax.sound.sampled.UnsupportedAudioFileException;\n\n/**\n * This is an example program that demonstrates how to play back an audio file\n * using the Clip in Java Sound API.\n * @author www.codejava.net\n *\n */\npublic class AudioPlayerExample1 implements LineListener {\n\t\n\t/**\n\t * this flag indicates whether the playback completes or not.\n\t */\n\tboolean playCompleted;\n\t\n\t/**\n\t * Play a given audio file.\n\t * @param audioFilePath Path of the audio file.\n\t */\n\tvoid play(String audioFilePath) {\n\t\tFile audioFile = new File(audioFilePath);\n\n\t\ttry {\n\t\t\tAudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);\n\n\t\t\tAudioFormat format = audioStream.getFormat();\n\n\t\t\tDataLine.Info info = new DataLine.Info(Clip.class, format);\n\n\t\t\tClip audioClip = (Clip) AudioSystem.getLine(info);\n\n\t\t\taudioClip.addLineListener(this);\n\n\t\t\taudioClip.open(audioStream);\n\t\t\t\n\t\t\taudioClip.start();\n\t\t\t\n\t\t\twhile (!playCompleted) {\n\t\t\t\t// wait for the playback completes\n\t\t\t\ttry {\n\t\t\t\t\tThread.sleep(1000);\n\t\t\t\t} catch (InterruptedException ex) {\n\t\t\t\t\tex.printStackTrace();\n\t\t\t\t}\n\t\t\t}\n\t\t\t\n\t\t\taudioClip.close();\n\t\t\t\n\t\t} catch (UnsupportedAudioFileException ex) {\n\t\t\tSystem.out.println(\"The specified audio file is not supported.\");\n\t\t\tex.printStackTrace();\n\t\t} catch (LineUnavailableException ex) {\n\t\t\tSystem.out.println(\"Audio line for playing back is unavailable.\");\n\t\t\tex.printStackTrace();\n\t\t} catch (IOException ex) {\n\t\t\tSystem.out.println(\"Error playing the audio file.\");\n\t\t\tex.printStackTrace();\n\t\t}\n\t\t\n\t}\n\t\n\t/**\n\t * Listens to the START and STOP events of the audio line.\n\t */\n\t@Override\n\tpublic void update(LineEvent event) {\n\t\tLineEvent.Type type = event.getType();\n\t\t\n\t\tif (type == LineEvent.Type.START) {\n\t\t\tSystem.out.println(\"Playback started.\");\n\t\t\t\n\t\t} else if (type == LineEvent.Type.STOP) {\n\t\t\tplayCompleted = true;\n\t\t\tSystem.out.println(\"Playback completed.\");\n\t\t}\n\n\t}\n\n\tpublic static void main(String[] args) {\n\t\tString audioFilePath = \"E:/Test/Audio.wav\";\n\t\tAudioPlayerExample1 player = new AudioPlayerExample1();\n\t\tplayer.play(audioFilePath);\n\t}\n\n}\n",
+        "in_page_order": 6,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "File.__init__": true,
+          "AudioInputStream.getFormat": true,
+          "Info.__init__": true,
+          "Clip.addLineListener": true,
+          "Clip.open": true,
+          "Clip.start": true,
+          "Clip.close": true,
+          "LineEvent.getType": false,
+          "AudioPlayerExample1.__init__": false,
+          "AudioPlayerExample1.play": false
+        },
+        "APIsProjects": {
+          "File.__init__": 591,
+          "AudioInputStream.getFormat": 5,
+          "Info.__init__": 25,
+          "Clip.addLineListener": 3,
+          "Clip.open": 5,
+          "Clip.start": 5,
+          "Clip.close": 3
+        },
+        "APIsFiles": {
+          "File.__init__": 13065,
+          "AudioInputStream.getFormat": 8,
+          "Info.__init__": 52,
+          "Clip.addLineListener": 3,
+          "Clip.open": 5,
+          "Clip.start": 5,
+          "Clip.close": 3
+        },
+        "APIsSnippets": {
+          "File.__init__": 40468,
+          "AudioInputStream.getFormat": 17,
+          "Info.__init__": 92,
+          "Clip.addLineListener": 3,
+          "Clip.open": 5,
+          "Clip.start": 8,
+          "Clip.close": 3
+        },
+        "APIsQualifiedNames": {
+          "File.__init__": "java.io.File.__init__",
+          "AudioInputStream.getFormat": "javax.sound.sampled.AudioInputStream.getFormat",
+          "Info.__init__": "javax.sound.sampled.DataLine.Info.__init__",
+          "Clip.addLineListener": "javax.sound.sampled.Clip.addLineListener",
+          "Clip.open": "javax.sound.sampled.Clip.open",
+          "Clip.start": "javax.sound.sampled.Clip.start",
+          "Clip.close": "javax.sound.sampled.Clip.close"
+        },
+        "API_Ratio": 0.7
+      },
+      {
+        "code": "@Override\npublic void update(LineEvent event) {\n\tLineEvent.Type type = event.getType();\n\n\tif (type == LineEvent.Type.START) {\n\t\tSystem.out.println(\"Playback started.\");\n\n\t} else if (type == LineEvent.Type.STOP) {\n\t\tplayCompleted = true;\n\t\tSystem.out.println(\"Playback completed.\");\n\t}\n\n}\n",
+        "in_page_order": 9,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "LineEvent.getType": false
+        },
+        "APIsProjects": {},
+        "APIsFiles": {},
+        "APIsSnippets": {},
+        "APIsQualifiedNames": {},
+        "API_Ratio": 0.0
+      },
+      {
+        "code": "File audioFile = new File(audioFilePath);\n\nAudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);\n\nAudioFormat format = audioStream.getFormat();\n\nDataLine.Info info = new DataLine.Info(SourceDataLine.class, format);\n\nSourceDataLine audioLine = (SourceDataLine) AudioSystem.getLine(info); ",
+        "in_page_order": 16,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "File.__init__": true,
+          "AudioInputStream.getFormat": true,
+          "Info.__init__": true
+        },
+        "APIsProjects": {
+          "File.__init__": 591,
+          "AudioInputStream.getFormat": 5,
+          "Info.__init__": 25
+        },
+        "APIsFiles": {
+          "File.__init__": 13065,
+          "AudioInputStream.getFormat": 8,
+          "Info.__init__": 52
+        },
+        "APIsSnippets": {
+          "File.__init__": 40468,
+          "AudioInputStream.getFormat": 17,
+          "Info.__init__": 92
+        },
+        "APIsQualifiedNames": {
+          "File.__init__": "java.io.File.__init__",
+          "AudioInputStream.getFormat": "javax.sound.sampled.AudioInputStream.getFormat",
+          "Info.__init__": "javax.sound.sampled.DataLine.Info.__init__"
+        },
+        "API_Ratio": 1.0
+      },
+      {
+        "code": "package net.codejava.sound;\n\nimport java.io.File;\nimport java.io.IOException;\n\nimport javax.sound.sampled.AudioFormat;\nimport javax.sound.sampled.AudioInputStream;\nimport javax.sound.sampled.AudioSystem;\nimport javax.sound.sampled.DataLine;\nimport javax.sound.sampled.LineUnavailableException;\nimport javax.sound.sampled.SourceDataLine;\nimport javax.sound.sampled.UnsupportedAudioFileException;\n\n/**\n * This is an example program that demonstrates how to play back an audio file\n * using the SourceDataLine in Java Sound API.\n * @author www.codejava.net\n *\n */\npublic class AudioPlayerExample2 {\n\n\t// size of the byte buffer used to read/write the audio stream\n\tprivate static final int BUFFER_SIZE = 4096;\n\t\n\t/**\n\t * Play a given audio file.\n\t * @param audioFilePath Path of the audio file.\n\t */\n\tvoid play(String audioFilePath) {\n\t\tFile audioFile = new File(audioFilePath);\n\t\ttry {\n\t\t\tAudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);\n\n\t\t\tAudioFormat format = audioStream.getFormat();\n\n\t\t\tDataLine.Info info = new DataLine.Info(SourceDataLine.class, format);\n\n\t\t\tSourceDataLine audioLine = (SourceDataLine) AudioSystem.getLine(info);\n\n\t\t\taudioLine.open(format);\n\n\t\t\taudioLine.start();\n\t\t\t\n\t\t\tSystem.out.println(\"Playback started.\");\n\t\t\t\n\t\t\tbyte[] bytesBuffer = new byte[BUFFER_SIZE];\n\t\t\tint bytesRead = -1;\n\n\t\t\twhile ((bytesRead = audioStream.read(bytesBuffer)) != -1) {\n\t\t\t\taudioLine.write(bytesBuffer, 0, bytesRead);\n\t\t\t}\n\t\t\t\n\t\t\taudioLine.drain();\n\t\t\taudioLine.close();\n\t\t\taudioStream.close();\n\t\t\t\n\t\t\tSystem.out.println(\"Playback completed.\");\n\t\t\t\n\t\t} catch (UnsupportedAudioFileException ex) {\n\t\t\tSystem.out.println(\"The specified audio file is not supported.\");\n\t\t\tex.printStackTrace();\n\t\t} catch (LineUnavailableException ex) {\n\t\t\tSystem.out.println(\"Audio line for playing back is unavailable.\");\n\t\t\tex.printStackTrace();\n\t\t} catch (IOException ex) {\n\t\t\tSystem.out.println(\"Error playing the audio file.\");\n\t\t\tex.printStackTrace();\n\t\t}\t\t\n\t}\n\t\n\tpublic static void main(String[] args) {\n\t\tString audioFilePath = \"E:/Test/Audio.wav\";\n\t\tAudioPlayerExample1 player = new AudioPlayerExample1();\n\t\tplayer.play(audioFilePath);\n\t}\n\n}\n",
+        "in_page_order": 20,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "File.__init__": true,
+          "AudioInputStream.getFormat": true,
+          "Info.__init__": true,
+          "SourceDataLine.open": true,
+          "SourceDataLine.start": true,
+          "AudioInputStream.read": false,
+          "SourceDataLine.drain": true,
+          "SourceDataLine.close": true,
+          "AudioInputStream.close": true,
+          "AudioPlayerExample1.__init__": false,
+          "AudioPlayerExample1.play": false
+        },
+        "APIsProjects": {
+          "File.__init__": 591,
+          "AudioInputStream.getFormat": 5,
+          "Info.__init__": 25,
+          "SourceDataLine.open": 5,
+          "SourceDataLine.start": 5,
+          "SourceDataLine.drain": 5,
+          "SourceDataLine.close": 5,
+          "AudioInputStream.close": 3
+        },
+        "APIsFiles": {
+          "File.__init__": 13065,
+          "AudioInputStream.getFormat": 8,
+          "Info.__init__": 52,
+          "SourceDataLine.open": 5,
+          "SourceDataLine.start": 7,
+          "SourceDataLine.drain": 5,
+          "SourceDataLine.close": 7,
+          "AudioInputStream.close": 4
+        },
+        "APIsSnippets": {
+          "File.__init__": 40468,
+          "AudioInputStream.getFormat": 17,
+          "Info.__init__": 92,
+          "SourceDataLine.open": 5,
+          "SourceDataLine.start": 9,
+          "SourceDataLine.drain": 5,
+          "SourceDataLine.close": 8,
+          "AudioInputStream.close": 8
+        },
+        "APIsQualifiedNames": {
+          "File.__init__": "java.io.File.__init__",
+          "AudioInputStream.getFormat": "javax.sound.sampled.AudioInputStream.getFormat",
+          "Info.__init__": "javax.sound.sampled.DataLine.Info.__init__",
+          "SourceDataLine.open": "javax.sound.sampled.SourceDataLine.open",
+          "SourceDataLine.start": "javax.sound.sampled.SourceDataLine.start",
+          "SourceDataLine.drain": "javax.sound.sampled.SourceDataLine.drain",
+          "SourceDataLine.close": "javax.sound.sampled.SourceDataLine.close",
+          "AudioInputStream.close": "javax.sound.sampled.AudioInputStream.close"
+        },
+        "API_Ratio": 0.7272727272727273
+      }
+    ]
+  },
+  {
+    "query": "How to play audio file",
+    "url": "https://www.ntu.edu.sg/home/ehchua/programming/java/J8c_PlayingSound.html",
+    "url position": 10,
+    "segments": [
+      {
+        "code": "\r\nimport java.io.*;\r\nimport java.net.URL;\r\nimport javax.sound.sampled.*;\r\nimport javax.swing.*;\r\n   \r\n// To play sound using Clip, the process need to be alive.\r\n// Hence, we use a Swing application.\r\npublic class SoundClipTest extends JFrame {\r\n   \r\n   // Constructor\r\n   public SoundClipTest() {\r\n      this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);\r\n      this.setTitle(\"Test Sound Clip\");\r\n      this.setSize(300, 200);\r\n      this.setVisible(true);\r\n   \r\n      try {\r\n         // Open an audio input stream.\r\n         URL url = this.getClass().getClassLoader().getResource(\"gameover.wav\");\r\n         AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);\r\n         // Get a sound clip resource.\r\n         Clip clip = AudioSystem.getClip();\r\n         // Open audio clip and load samples from the audio input stream.\r\n         clip.open(audioIn);\r\n         clip.start();\r\n      } catch (UnsupportedAudioFileException e) {\r\n         e.printStackTrace();\r\n      } catch (IOException e) {\r\n         e.printStackTrace();\r\n      } catch (LineUnavailableException e) {\r\n         e.printStackTrace();\r\n      }\r\n   }\r\n   \r\n   public static void main(String[] args) {\r\n      new SoundClipTest();\r\n   }\r\n}\r\n",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Clip.open": true,
+          "Clip.start": true,
+          "SoundClipTest.__init__": false
+        },
+        "APIsProjects": {
+          "Clip.open": 5,
+          "Clip.start": 5
+        },
+        "APIsFiles": {
+          "Clip.open": 5,
+          "Clip.start": 5
+        },
+        "APIsSnippets": {
+          "Clip.open": 5,
+          "Clip.start": 8
+        },
+        "APIsQualifiedNames": {
+          "Clip.open": "javax.sound.sampled.Clip.open",
+          "Clip.start": "javax.sound.sampled.Clip.start"
+        },
+        "API_Ratio": 0.6666666666666666
+      },
+      {
+        "code": "\r\n// from a wave File\r\nFile soundFile = new File(\"eatfood.wav\");\r\nAudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);\r\n// from a URL\r\nURL url = new URL(\"http://www.zzz.com/eatfood.wav\");\r\nAudioInputStream audioIn = AudioSystem.getAudioInputStream(url);\r\n// can read from a disk file and also a file contained inside a JAR (used for distribution)\r\n// recommended\r\nURL url = this.getClass().getClassLoader().getResource(\"eatfood.wav\");\r\nAudioInputStream audioIn = AudioSystem.getAudioInputStream(url);\r\n",
+        "in_page_order": 2,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "File.__init__": true,
+          "URL.__init__": true
+        },
+        "APIsProjects": {
+          "File.__init__": 591,
+          "URL.__init__": 380
+        },
+        "APIsFiles": {
+          "File.__init__": 13065,
+          "URL.__init__": 2050
+        },
+        "APIsSnippets": {
+          "File.__init__": 40468,
+          "URL.__init__": 4004
+        },
+        "APIsQualifiedNames": {
+          "File.__init__": "java.io.File.__init__",
+          "URL.__init__": "java.net.URL.__init__"
+        },
+        "API_Ratio": 1.0
+      },
+      {
+        "code": "\r\nimport java.awt.*;\r\nimport java.awt.event.*;\r\nimport javax.swing.*;\r\n   \r\n// Testing the SoundEffect enum in a Swing application\r\npublic class SoundEffectDemo extends JFrame {\r\n   \r\n   // Constructor\r\n   public SoundEffectDemo() {\r\n      // Pre-load all the sound files\r\n      SoundEffect.init();\r\n      SoundEffect.volume = SoundEffect.Volume.LOW;  // un-mute\r\n   \r\n      // Set up UI components\r\n      Container cp = this.getContentPane();\r\n      cp.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));\r\n      JButton btnSound1 = new JButton(\"Sound 1\");\r\n      btnSound1.addActionListener(new ActionListener() {\r\n         @Override\r\n         public void actionPerformed(ActionEvent e) {\r\n            SoundEffect.EXPLODE.play();\r\n         }\r\n      });\r\n      cp.add(btnSound1);\r\n      JButton btnSound2 = new JButton(\"Sound 2\");\r\n      btnSound2.addActionListener(new ActionListener() {\r\n         @Override\r\n         public void actionPerformed(ActionEvent e) {\r\n            SoundEffect.GONG.play();\r\n         }\r\n      });\r\n      cp.add(btnSound2);\r\n      JButton btnSound3 = new JButton(\"Sound 3\");\r\n      btnSound3.addActionListener(new ActionListener() {\r\n         @Override\r\n         public void actionPerformed(ActionEvent e) {\r\n            SoundEffect.SHOOT.play();\r\n         }\r\n      });\r\n      cp.add(btnSound3);\r\n      this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);\r\n      this.setTitle(\"Test SoundEffct\");\r\n      this.pack();\r\n      this.setVisible(true);\r\n   }\r\n   \r\n   public static void main(String[] args) {\r\n      new SoundEffectDemo();\r\n   }\r\n}\r\n",
+        "in_page_order": 8,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "FlowLayout.__init__": true,
+          "Container.setLayout": true,
+          "JButton.__init__": true,
+          "ActionListener.__init__": true,
+          "JButton.addActionListener": true,
+          "Container.add": true,
+          "SoundEffectDemo.__init__": false
+        },
+        "APIsProjects": {
+          "FlowLayout.__init__": 48,
+          "Container.setLayout": 26,
+          "JButton.__init__": 75,
+          "ActionListener.__init__": 82,
+          "JButton.addActionListener": 70,
+          "Container.add": 39
+        },
+        "APIsFiles": {
+          "FlowLayout.__init__": 307,
+          "Container.setLayout": 77,
+          "JButton.__init__": 611,
+          "ActionListener.__init__": 1215,
+          "JButton.addActionListener": 601,
+          "Container.add": 122
+        },
+        "APIsSnippets": {
+          "FlowLayout.__init__": 440,
+          "Container.setLayout": 98,
+          "JButton.__init__": 1532,
+          "ActionListener.__init__": 3088,
+          "JButton.addActionListener": 1496,
+          "Container.add": 397
+        },
+        "APIsQualifiedNames": {
+          "FlowLayout.__init__": "java.awt.FlowLayout.__init__",
+          "Container.setLayout": "java.awt.Container.setLayout",
+          "JButton.__init__": "javax.swing.JButton.__init__",
+          "ActionListener.__init__": "java.awt.event.ActionListener.__init__",
+          "JButton.addActionListener": "javax.swing.JButton.addActionListener",
+          "Container.add": "java.awt.Container.add"
+        },
+        "API_Ratio": 0.8571428571428571
+      },
+      {
+        "code": "\r\nimport java.io.*;\r\nimport javax.sound.sampled.*;\r\n/**\r\n * Use SourceDataLine to read line-by-line from the external sound file.\r\n * For computer game, use Clip to pre-load short-duration sound files.\r\n */\r\npublic class SoundLineTest {\r\n   public static void main(String[] args) {\r\n      SourceDataLine soundLine = null;\r\n      int BUFFER_SIZE = 64*1024;  // 64 KB\r\n   \r\n      // Set up an audio input stream piped from the sound file.\r\n      try {\r\n         File soundFile = new File(\"gameover.wav\");\r\n         AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundFile);\r\n         AudioFormat audioFormat = audioInputStream.getFormat();\r\n         DataLine.Info info = new DataLine.Info(SourceDataLine.class, audioFormat);\r\n         soundLine = (SourceDataLine) AudioSystem.getLine(info);\r\n         soundLine.open(audioFormat);\r\n         soundLine.start();\r\n         int nBytesRead = 0;\r\n         byte[] sampledData = new byte[BUFFER_SIZE];\r\n         while (nBytesRead != -1) {\r\n            nBytesRead = audioInputStream.read(sampledData, 0, sampledData.length);\r\n            if (nBytesRead >= 0) {\r\n               // Writes audio data to the mixer via this source data line.\r\n               soundLine.write(sampledData, 0, nBytesRead);\r\n            }\r\n         }\r\n      } catch (UnsupportedAudioFileException ex) {\r\n         ex.printStackTrace();\r\n      } catch (IOException ex) {\r\n         ex.printStackTrace();\r\n      } catch (LineUnavailableException ex) {\r\n         ex.printStackTrace();\r\n      } finally {\r\n         soundLine.drain();\r\n         soundLine.close();\r\n      }\r\n   }\r\n}\r\n",
+        "in_page_order": 9,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "File.__init__": true,
+          "AudioInputStream.getFormat": true,
+          "Info.__init__": true,
+          "SourceDataLine.open": true,
+          "SourceDataLine.start": true,
+          "SourceDataLine.drain": true,
+          "SourceDataLine.close": true
+        },
+        "APIsProjects": {
+          "File.__init__": 591,
+          "AudioInputStream.getFormat": 5,
+          "Info.__init__": 25,
+          "SourceDataLine.open": 5,
+          "SourceDataLine.start": 5,
+          "SourceDataLine.drain": 5,
+          "SourceDataLine.close": 5
+        },
+        "APIsFiles": {
+          "File.__init__": 13065,
+          "AudioInputStream.getFormat": 8,
+          "Info.__init__": 52,
+          "SourceDataLine.open": 5,
+          "SourceDataLine.start": 7,
+          "SourceDataLine.drain": 5,
+          "SourceDataLine.close": 7
+        },
+        "APIsSnippets": {
+          "File.__init__": 40468,
+          "AudioInputStream.getFormat": 17,
+          "Info.__init__": 92,
+          "SourceDataLine.open": 5,
+          "SourceDataLine.start": 9,
+          "SourceDataLine.drain": 5,
+          "SourceDataLine.close": 8
+        },
+        "APIsQualifiedNames": {
+          "File.__init__": "java.io.File.__init__",
+          "AudioInputStream.getFormat": "javax.sound.sampled.AudioInputStream.getFormat",
+          "Info.__init__": "javax.sound.sampled.DataLine.Info.__init__",
+          "SourceDataLine.open": "javax.sound.sampled.SourceDataLine.open",
+          "SourceDataLine.start": "javax.sound.sampled.SourceDataLine.start",
+          "SourceDataLine.drain": "javax.sound.sampled.SourceDataLine.drain",
+          "SourceDataLine.close": "javax.sound.sampled.SourceDataLine.close"
+        },
+        "API_Ratio": 1.0
+      },
+      {
+        "code": "\r\nSequence song = MidiSystem.getSequence(new File(\"song.mid\"));\r\n",
+        "in_page_order": 10,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": true,
+        "APIs": {
+          "File.__init__": true
+        },
+        "APIsProjects": {
+          "File.__init__": 591
+        },
+        "APIsFiles": {
+          "File.__init__": 13065
+        },
+        "APIsSnippets": {
+          "File.__init__": 40468
+        },
+        "APIsQualifiedNames": {
+          "File.__init__": "java.io.File.__init__"
+        },
+        "API_Ratio": 1.0
+      },
+      {
+        "code": "\r\nimport java.io.*;\r\nimport javax.sound.midi.*;\r\n   \r\npublic class MidiSoundTest {\r\n   private static Sequencer midiPlayer;\r\n   \r\n   // testing main method\r\n   public static void main(String[] args) {\r\n      startMidi(\"song1.mid\");     // start the midi player\r\n      try {\r\n         Thread.sleep(10000);   // delay\r\n      } catch (InterruptedException e) { }\r\n      System.out.println(\"faster\");\r\n      midiPlayer.setTempoFactor(2.0F);   // >1 to speed up the tempo\r\n      try {\r\n         Thread.sleep(10000);   // delay\r\n      } catch (InterruptedException e) { }\r\n   \r\n      // Do this on every move step, you could change to another song\r\n      if (!midiPlayer.isRunning()) {  // previous song finished\r\n         // reset midi player and start a new song\r\n         midiPlayer.stop();\r\n         midiPlayer.close();\r\n         startMidi(\"song2.mid\");\r\n      }\r\n   }\r\n   \r\n   public static void startMidi(String midFilename) {\r\n      try {\r\n         File midiFile = new File(midFilename);\r\n         Sequence song = MidiSystem.getSequence(midiFile);\r\n         midiPlayer = MidiSystem.getSequencer();\r\n         midiPlayer.open();\r\n         midiPlayer.setSequence(song);\r\n         midiPlayer.setLoopCount(0); // repeat 0 times (play once)\r\n         midiPlayer.start();\r\n      } catch (MidiUnavailableException e) {\r\n         e.printStackTrace();\r\n      } catch (InvalidMidiDataException e) {\r\n         e.printStackTrace();\r\n      } catch (IOException e) {\r\n         e.printStackTrace();\r\n      }\r\n   }\r\n}\r\n",
+        "in_page_order": 18,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Sequencer.setTempoFactor": false,
+          "Sequencer.isRunning": false,
+          "Sequencer.stop": false,
+          "Sequencer.close": false,
+          "File.__init__": true,
+          "Sequencer.open": false,
+          "Sequencer.setSequence": false,
+          "Sequencer.setLoopCount": false,
+          "Sequencer.start": false
+        },
+        "APIsProjects": {
+          "File.__init__": 591
+        },
+        "APIsFiles": {
+          "File.__init__": 13065
+        },
+        "APIsSnippets": {
+          "File.__init__": 40468
+        },
+        "APIsQualifiedNames": {
+          "File.__init__": "java.io.File.__init__"
+        },
+        "API_Ratio": 0.1111111111111111
+      },
+      {
+        "code": "\r\nimport javax.media.*;\r\nimport java.net.URL;\r\n   \r\npublic class Mp3PlayerDemo extends Thread {\r\n   \r\n   private String filename;\r\n   Player player;\r\n   \r\n   public Mp3PlayerDemo(String mp3Filename) {\r\n      this.filename = mp3Filename;\r\n   }\r\n   \r\n   public void run() {\r\n      try {\r\n         URL url = this.getClass().getClassLoader().getResource(filename);\r\n         MediaLocator locator = new MediaLocator(url);\r\n         player = Manager.createPlayer(locator);\r\n         player.addControllerListener(new ControllerListener() {\r\n            public void controllerUpdate(ControllerEvent event) {\r\n               if (event instanceof EndOfMediaEvent) {\r\n                  player.stop();\r\n                  player.close();\r\n               }\r\n            }\r\n         });\r\n         player.realize();\r\n         player.start();\r\n      } catch (Exception e) {\r\n         e.printStackTrace();\r\n      }\r\n   }\r\n   \r\n   public static void main(String[] args) {\r\n      new Mp3PlayerDemo(\"song.mp3\").start();\r\n   }\r\n}\r\n",
+        "in_page_order": 19,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "MediaLocator.__init__": false,
+          "Player.close": true,
+          "Player.stop": true,
+          "ControllerListener.__init__": false,
+          "Player.addControllerListener": false,
+          "Player.realize": false,
+          "Player.start": true,
+          "Mp3PlayerDemo.__init__": false
+        },
+        "APIsProjects": {
+          "Player.close": 4,
+          "Player.stop": 3,
+          "Player.start": 3
+        },
+        "APIsFiles": {
+          "Player.close": 5,
+          "Player.stop": 3,
+          "Player.start": 4
+        },
+        "APIsSnippets": {
+          "Player.close": 5,
+          "Player.stop": 3,
+          "Player.start": 4
+        },
+        "APIsQualifiedNames": {
+          "Player.close": "javax.media.Player.close",
+          "Player.stop": "javax.media.Player.stop",
+          "Player.start": "javax.media.Player.start"
+        },
+        "API_Ratio": 0.375
+      }
+    ]
+  },
+  {
+    "query": "How to play audio file",
+    "url": "https://www.javaworld.com/article/2077521/learn-java/java-tip-24--how-to-play-audio-in-applications.html",
+    "url position": 9,
+    "segments": [
+      {
+        "code": "AudioStream as = new AudioStream (url.openStream());\n",
+        "in_page_order": 3,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": true,
+        "APIs": {
+          "AudioStream.__init__": false
+        },
+        "APIsProjects": {},
+        "APIsFiles": {},
+        "APIsSnippets": {},
+        "APIsQualifiedNames": {},
+        "API_Ratio": 0.0
+      },
+      {
+        "code": "// Create audio stream as discussed previously.\n// Create AudioData source.\nAudioData data = as.getData();\n// Create ContinuousAudioDataStream.\nContinuousAudioDataStream cas = new ContinuousAudioDataStream (data);\n// Play audio.\nAudioPlayer.player.play (cas);\n// Similarly, to stop the audio.\nAudioPlayer.player.stop (cas);\n",
+        "in_page_order": 4,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "ContinuousAudioDataStream.__init__": false
+        },
+        "APIsProjects": {},
+        "APIsFiles": {},
+        "APIsSnippets": {},
+        "APIsQualifiedNames": {},
+        "API_Ratio": 0.0
+      }
+    ]
+  },
+  {
+    "query": "How to play audio file",
+    "url": "http://www.java2s.com/Code/Java/Development-Class/AnexampleofloadingandplayingasoundusingaClip.htm",
+    "url position": 18,
+    "segments": [
+      {
+        "code": " \n       /*\nDEVELOPING GAME IN JAVA \n\nCaracteristiques\n\nEditeur : NEW RIDERS \nAuteur : BRACKEEN \nParution : 09 2003 \nPages : 972 \nIsbn : 1-59273-005-1 \nReliure : Paperback \nDisponibilite : Disponible a la librairie \n*/\n        \n\nimport java.io.File;\n\nimport javax.sound.sampled.AudioInputStream;\nimport javax.sound.sampled.AudioSystem;\nimport javax.sound.sampled.Clip;\nimport javax.sound.sampled.DataLine;\nimport javax.sound.sampled.LineEvent;\nimport javax.sound.sampled.LineListener;\n\n/**\n * An example of loading and playing a sound using a Clip. This complete class\n * isn't in the book ;)\n */\npublic class ClipTest {\n\n  public static void main(String[] args) throws Exception {\n\n    // specify the sound to play\n    // (assuming the sound can be played by the audio system)\n    File soundFile = new File(\"../sounds/voice.wav\");\n    AudioInputStream sound = AudioSystem.getAudioInputStream(soundFile);\n\n    // load the sound into memory (a Clip)\n    DataLine.Info info = new DataLine.Info(Clip.class, sound.getFormat());\n    Clip clip = (Clip) AudioSystem.getLine(info);\n    clip.open(sound);\n\n    // due to bug in Java Sound, explicitly exit the VM when\n    // the sound has stopped.\n    clip.addLineListener(new LineListener() {\n      public void update(LineEvent event) {\n        if (event.getType() == LineEvent.Type.STOP) {\n          event.getLine().close();\n          System.exit(0);\n        }\n      }\n    });\n\n    // play the sound clip\n    clip.start();\n  }\n}        \n           \n         \n  \n",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "File.__init__": true,
+          "AudioInputStream.getFormat": true,
+          "Info.__init__": true,
+          "Clip.open": true,
+          "LineListener.__init__": true,
+          "Clip.addLineListener": true,
+          "Clip.start": true,
+          "LineEvent.getType": false,
+          "LineEvent.getLine": false
+        },
+        "APIsProjects": {
+          "File.__init__": 591,
+          "AudioInputStream.getFormat": 5,
+          "Info.__init__": 25,
+          "Clip.open": 5,
+          "LineListener.__init__": 3,
+          "Clip.addLineListener": 3,
+          "Clip.start": 5
+        },
+        "APIsFiles": {
+          "File.__init__": 13065,
+          "AudioInputStream.getFormat": 8,
+          "Info.__init__": 52,
+          "Clip.open": 5,
+          "LineListener.__init__": 3,
+          "Clip.addLineListener": 3,
+          "Clip.start": 5
+        },
+        "APIsSnippets": {
+          "File.__init__": 40468,
+          "AudioInputStream.getFormat": 17,
+          "Info.__init__": 92,
+          "Clip.open": 5,
+          "LineListener.__init__": 3,
+          "Clip.addLineListener": 3,
+          "Clip.start": 8
+        },
+        "APIsQualifiedNames": {
+          "File.__init__": "java.io.File.__init__",
+          "AudioInputStream.getFormat": "javax.sound.sampled.AudioInputStream.getFormat",
+          "Info.__init__": "javax.sound.sampled.DataLine.Info.__init__",
+          "Clip.open": "javax.sound.sampled.Clip.open",
+          "LineListener.__init__": "javax.sound.sampled.LineListener.__init__",
+          "Clip.addLineListener": "javax.sound.sampled.Clip.addLineListener",
+          "Clip.start": "javax.sound.sampled.Clip.start"
+        },
+        "API_Ratio": 0.7777777777777778
+      }
+    ]
+  },
+  {
+    "query": "How to play audio file",
+    "url": "https://www.developer.com/java/other/article.php/2173111/Java-Sound-Playing-Back-Audio-Files-using-Java.htm",
+    "url position": 19,
+    "segments": [
+      {
+        "code": "  public static void main(String args[]){\n    new AudioPlayer02();\n  }//end main\n\nListing 2",
+        "in_page_order": 2,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": true,
+        "APIs": {
+          "AudioPlayer02.__init__": false
+        },
+        "APIsProjects": {},
+        "APIsFiles": {},
+        "APIsSnippets": {},
+        "APIsQualifiedNames": {},
+        "API_Ratio": 0.0
+      },
+      {
+        "code": "      new PlayThread().start();\n    }catch (Exception e) {\n      e.printStackTrace();\n      System.exit(0);\n    }//end catch\n  }//end playAudio\n\nListing 12",
+        "in_page_order": 12,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "PlayThread.__init__": false
+        },
+        "APIsProjects": {},
+        "APIsFiles": {},
+        "APIsSnippets": {},
+        "APIsQualifiedNames": {},
+        "API_Ratio": 0.0
+      },
+      {
+        "code": "/*File AudioPlayer02.java\nCopyright 2003 Richard G. Baldwin\n\nDemonstrates playback of an audio file.  The\npath and name of the audio file is specified by\nthe user in a text field.\n\nA GUI appears on the screen containing\nthe following components:\n  Text field for the file name\n  Play\n  Stop\n\nAfter entering an audio file name in the text\nfield, the user can click the Play button to\ncause the program to play the audio file.  By\ndefault, the program will play the entire file\nand then get ready to play another file, or to\nplay the same file again.\n\nIf the user clicks the Stop button while the file\nis being played, playback will terminate.\nHowever, because the audio data is buffered in a\nlarge buffer in the playback loop, there may be a\nnoticeable delay between the time that the Stop\nbutton is clicked and the time that the playback\nactually terminates.\n\nThe text field contains the default audio file\nname, junk.au, when the GUI first appears on the\nscreen.\n\nThe program displays the format of the audio\ndata in the file before playing the file.  The\nformat is displayed on the command- line screen.\n\nTested using SDK 1.4.1 under Win2000\n************************************************/\n\nimport javax.swing.*;\nimport java.awt.*;\nimport java.awt.event.*;\nimport java.io.*;\nimport javax.sound.sampled.*;\n\npublic class AudioPlayer02 extends JFrame{\n\n  AudioFormat audioFormat;\n  AudioInputStream audioInputStream;\n  SourceDataLine sourceDataLine;\n  boolean stopPlayback = false;\n  final JButton stopBtn = new JButton(\"Stop\");\n  final JButton playBtn = new JButton(\"Play\");\n  final JTextField textField =\n                       new JTextField(\"junk.au\");\n\n  public static void main(String args[]){\n    new AudioPlayer02();\n  }//end main\n  //-------------------------------------------//\n\n  public AudioPlayer02(){//constructor\n\n    stopBtn.setEnabled(false);\n    playBtn.setEnabled(true);\n\n    //Instantiate and register action listeners\n    // on the Play and Stop buttons.\n    playBtn.addActionListener(\n      new ActionListener(){\n        public void actionPerformed(\n                                  ActionEvent e){\n          stopBtn.setEnabled(true);\n          playBtn.setEnabled(false);\n          playAudio();//Play the file\n        }//end actionPerformed\n      }//end ActionListener\n    );//end addActionListener()\n\n    stopBtn.addActionListener(\n      new ActionListener(){\n        public void actionPerformed(\n                                  ActionEvent e){\n          //Terminate playback before EOF\n          stopPlayback = true;\n        }//end actionPerformed\n      }//end ActionListener\n    );//end addActionListener()\n\n    getContentPane().add(playBtn,\"West\");\n    getContentPane().add(stopBtn,\"East\");\n    getContentPane().add(textField,\"North\");\n\n    setTitle(\"Copyright 2003, R.G.Baldwin\");\n    setDefaultCloseOperation(EXIT_ON_CLOSE);\n    setSize(250,70);\n    setVisible(true);\n  }//end constructor\n  //-------------------------------------------//\n\n  //This method plays back audio data from an\n  // audio file whose name is specified in the\n  // text field.\n  private void playAudio() {\n    try{\n      File soundFile =\n                   new File(textField.getText());\n      audioInputStream = AudioSystem.\n                  getAudioInputStream(soundFile);\n      audioFormat = audioInputStream.getFormat();\n      System.out.println(audioFormat);\n\n      DataLine.Info dataLineInfo =\n                          new DataLine.Info(\n                            SourceDataLine.class,\n                                    audioFormat);\n\n      sourceDataLine =\n             (SourceDataLine)AudioSystem.getLine(\n                                   dataLineInfo);\n\n      //Create a thread to play back the data and\n      // start it running.  It will run until the\n      // end of file, or the Stop button is\n      // clicked, whichever occurs first.\n      // Because of the data buffers involved,\n      // there will normally be a delay between\n      // the click on the Stop button and the\n      // actual termination of playback.\n      new PlayThread().start();\n    }catch (Exception e) {\n      e.printStackTrace();\n      System.exit(0);\n    }//end catch\n  }//end playAudio\n\n\n//=============================================//\n//Inner class to play back the data from the\n// audio file.\nclass PlayThread extends Thread{\n  byte tempBuffer[] = new byte[10000];\n\n  public void run(){\n    try{\n      sourceDataLine.open(audioFormat);\n      sourceDataLine.start();\n\n      int cnt;\n      //Keep looping until the input read method\n      // returns -1 for empty stream or the\n      // user clicks the Stop button causing\n      // stopPlayback to switch from false to\n      // true.\n      while((cnt = audioInputStream.read(\n           tempBuffer,0,tempBuffer.length)) != -1\n                       && stopPlayback == false){\n        if(cnt > 0){\n          //Write data to the internal buffer of\n          // the data line where it will be\n          // delivered to the speaker.\n          sourceDataLine.write(\n                             tempBuffer, 0, cnt);\n        }//end if\n      }//end while\n      //Block and wait for internal buffer of the\n      // data line to empty.\n      sourceDataLine.drain();\n      sourceDataLine.close();\n\n      //Prepare to playback another file\n      stopBtn.setEnabled(false);\n      playBtn.setEnabled(true);\n      stopPlayback = false;\n    }catch (Exception e) {\n      e.printStackTrace();\n      System.exit(0);\n    }//end catch\n  }//end run\n}//end inner class PlayThread\n//===================================//\n\n}//end outer class AudioPlayer02.java\n\nListing 17",
+        "in_page_order": 17,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": true,
+        "APIs": {
+          "AudioPlayer02.__init__": false,
+          "JButton.setEnabled": true,
+          "ActionListener.__init__": true,
+          "JButton.addActionListener": true,
+          "JTextField.getText": true,
+          "File.__init__": true,
+          "AudioInputStream.getFormat": true,
+          "Info.__init__": true,
+          "PlayThread.__init__": false,
+          "SourceDataLine.open": true,
+          "SourceDataLine.start": true,
+          "AudioInputStream.read": false,
+          "SourceDataLine.drain": true,
+          "SourceDataLine.close": true
+        },
+        "APIsProjects": {
+          "JButton.setEnabled": 45,
+          "ActionListener.__init__": 82,
+          "JButton.addActionListener": 70,
+          "JTextField.getText": 64,
+          "File.__init__": 591,
+          "AudioInputStream.getFormat": 5,
+          "Info.__init__": 25,
+          "SourceDataLine.open": 5,
+          "SourceDataLine.start": 5,
+          "SourceDataLine.drain": 5,
+          "SourceDataLine.close": 5
+        },
+        "APIsFiles": {
+          "JButton.setEnabled": 271,
+          "ActionListener.__init__": 1215,
+          "JButton.addActionListener": 601,
+          "JTextField.getText": 551,
+          "File.__init__": 13065,
+          "AudioInputStream.getFormat": 8,
+          "Info.__init__": 52,
+          "SourceDataLine.open": 5,
+          "SourceDataLine.start": 7,
+          "SourceDataLine.drain": 5,
+          "SourceDataLine.close": 7
+        },
+        "APIsSnippets": {
+          "JButton.setEnabled": 1719,
+          "ActionListener.__init__": 3088,
+          "JButton.addActionListener": 1496,
+          "JTextField.getText": 1703,
+          "File.__init__": 40468,
+          "AudioInputStream.getFormat": 17,
+          "Info.__init__": 92,
+          "SourceDataLine.open": 5,
+          "SourceDataLine.start": 9,
+          "SourceDataLine.drain": 5,
+          "SourceDataLine.close": 8
+        },
+        "APIsQualifiedNames": {
+          "JButton.setEnabled": "javax.swing.JButton.setEnabled",
+          "ActionListener.__init__": "java.awt.event.ActionListener.__init__",
+          "JButton.addActionListener": "javax.swing.JButton.addActionListener",
+          "JTextField.getText": "javax.swing.JTextField.getText",
+          "File.__init__": "java.io.File.__init__",
+          "AudioInputStream.getFormat": "javax.sound.sampled.AudioInputStream.getFormat",
+          "Info.__init__": "javax.sound.sampled.DataLine.Info.__init__",
+          "SourceDataLine.open": "javax.sound.sampled.SourceDataLine.open",
+          "SourceDataLine.start": "javax.sound.sampled.SourceDataLine.start",
+          "SourceDataLine.drain": "javax.sound.sampled.SourceDataLine.drain",
+          "SourceDataLine.close": "javax.sound.sampled.SourceDataLine.close"
+        },
+        "API_Ratio": 0.7857142857142857
+      }
+    ]
+  },
+  {
+    "query": "How to play audio file",
+    "url": "http://forum.codecall.net/topic/58228-playing-simple-sampled-audio-in-java/",
+    "url position": 21,
+    "segments": [
+      {
+        "code": "\nAudioInputStream audio = AudioSystem.getAudioInputStream(new File(\"x.wav\"));\n",
+        "in_page_order": 2,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": true,
+        "APIs": {
+          "File.__init__": true
+        },
+        "APIsProjects": {
+          "File.__init__": 591
+        },
+        "APIsFiles": {
+          "File.__init__": 13065
+        },
+        "APIsSnippets": {
+          "File.__init__": 40468
+        },
+        "APIsQualifiedNames": {
+          "File.__init__": "java.io.File.__init__"
+        },
+        "API_Ratio": 1.0
+      },
+      {
+        "code": "\npublic static void main(String[] args) {\n        JFrame frame = new JFrame();\n        frame.setSize(300,300);\n        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);\n        frame.setVisible(true);\n\n        KeyListener s;\n\n        try {\n            AudioInputStream audio = AudioSystem.getAudioInputStream(new File(\"x.wav\"));\n            Clip clip = AudioSystem.getClip();\n            clip.open(audio);\n            clip.start();\n        }\n        \n        catch(UnsupportedAudioFileException uae) {\n            System.out.println(uae);\n        }\n        catch(IOException ioe) {\n            System.out.println(ioe);\n        }\n        catch(LineUnavailableException lua) {\n            System.out.println(lua);\n        }\n}\n",
+        "in_page_order": 3,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "JFrame.__init__": true,
+          "JFrame.setSize": true,
+          "JFrame.setDefaultCloseOperation": true,
+          "JFrame.setVisible": true,
+          "File.__init__": true,
+          "Clip.open": true,
+          "Clip.start": true
+        },
+        "APIsProjects": {
+          "JFrame.__init__": 58,
+          "JFrame.setSize": 31,
+          "JFrame.setDefaultCloseOperation": 46,
+          "JFrame.setVisible": 53,
+          "File.__init__": 591,
+          "Clip.open": 5,
+          "Clip.start": 5
+        },
+        "APIsFiles": {
+          "JFrame.__init__": 340,
+          "JFrame.setSize": 156,
+          "JFrame.setDefaultCloseOperation": 201,
+          "JFrame.setVisible": 310,
+          "File.__init__": 13065,
+          "Clip.open": 5,
+          "Clip.start": 5
+        },
+        "APIsSnippets": {
+          "JFrame.__init__": 447,
+          "JFrame.setSize": 220,
+          "JFrame.setDefaultCloseOperation": 224,
+          "JFrame.setVisible": 466,
+          "File.__init__": 40468,
+          "Clip.open": 5,
+          "Clip.start": 8
+        },
+        "APIsQualifiedNames": {
+          "JFrame.__init__": "javax.swing.JFrame.__init__",
+          "JFrame.setSize": "javax.swing.JFrame.setSize",
+          "JFrame.setDefaultCloseOperation": "javax.swing.JFrame.setDefaultCloseOperation",
+          "JFrame.setVisible": "javax.swing.JFrame.setVisible",
+          "File.__init__": "java.io.File.__init__",
+          "Clip.open": "javax.sound.sampled.Clip.open",
+          "Clip.start": "javax.sound.sampled.Clip.start"
+        },
+        "API_Ratio": 1.0
+      }
+    ]
+  },
+  {
+    "query": "How to play audio file",
+    "url": "https://www.math.uni-hamburg.de/doc/java/tutorial/sound/playing.html",
+    "url position": 28,
+    "segments": [
+      {
+        "code": "\nAudioClip onceClip, loopClip;\nonceClip = soundList.getClip(chosenFile);\nloopClip = soundList.getClip(chosenFile);\nAudioClip audioClip = Applet.getAudioClip(baseURL, relativeURL);\nonceClip.play();\t//Play it once.\nloopClip.loop();\t//Start the sound loop.\nloopClip.stop();\t//Stop the sound loop.\n",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "AudioClip.play": false
+        },
+        "APIsProjects": {},
+        "APIsFiles": {},
+        "APIsSnippets": {},
+        "APIsQualifiedNames": {},
+        "API_Ratio": 0.0
+      }
+    ]
+  },
+  {
+    "query": "How to play audio file",
+    "url": "https://algs4.cs.princeton.edu/code/edu/princeton/cs/algs4/StdAudio.java.html",
+    "url position": 23,
+    "segments": [
+      {
+        "code": "/******************************************************************************\n *  Compilation:  javac StdAudio.java\n *  Execution:    java StdAudio\n *  Dependencies: none\n *  \n *  Simple library for reading, writing, and manipulating .wav files.\n *\n *\n *  Limitations\n *  -----------\n *    - Does not seem to work properly when reading .wav files from a .jar file.\n *    - Assumes the audio is monaural, with sampling rate of 44,100.\n *\n ******************************************************************************/\n\npackage edu.princeton.cs.algs4;\n\nimport javax.sound.sampled.Clip;\n\n// for playing midi sound files on some older systems\nimport java.applet.Applet;\nimport java.applet.AudioClip;\nimport java.net.MalformedURLException;\n\nimport java.io.File;\nimport java.io.ByteArrayInputStream;\nimport java.io.InputStream;\nimport java.io.IOException;\n\nimport java.net.URL;\n\nimport javax.sound.sampled.AudioFileFormat;\nimport javax.sound.sampled.AudioFormat;\nimport javax.sound.sampled.AudioInputStream;\nimport javax.sound.sampled.AudioSystem;\nimport javax.sound.sampled.DataLine;\nimport javax.sound.sampled.LineUnavailableException;\nimport javax.sound.sampled.SourceDataLine;\nimport javax.sound.sampled.UnsupportedAudioFileException;\n\n/**\n *  <i>Standard audio</i>. This class provides a basic capability for\n *  creating, reading, and saving audio. \n *  <p>\n *  The audio format uses a sampling rate of 44,100 (CD quality audio), 16-bit, monaural.\n *\n *  <p>\n *  For additional documentation, see <a href=\"https://introcs.cs.princeton.edu/15inout\">Section 1.5</a> of\n *  <i>Computer Science: An Interdisciplinary Approach</i> by Robert Sedgewick and Kevin Wayne.\n *\n *  @author Robert Sedgewick\n *  @author Kevin Wayne\n */\npublic final class StdAudio {\n\n    /**\n     *  The sample rate - 44,100 Hz for CD quality audio.\n     */\n    public static final int SAMPLE_RATE = 44100;\n\n    private static final int BYTES_PER_SAMPLE = 2;                // 16-bit audio\n    private static final int BITS_PER_SAMPLE = 16;                // 16-bit audio\n    private static final double MAX_16_BIT = Short.MAX_VALUE;     // 32,767\n    private static final int SAMPLE_BUFFER_SIZE = 4096;\n\n\n    private static SourceDataLine line;   // to play the sound\n    private static byte[] buffer;         // our internal buffer\n    private static int bufferSize = 0;    // number of samples currently in internal buffer\n\n    private StdAudio() {\n        // can not instantiate\n    }\n   \n    // static initializer\n    static {\n        init();\n    }\n\n    // open up an audio stream\n    private static void init() {\n        try {\n            // 44,100 samples per second, 16-bit audio, mono, signed PCM, little Endian\n            AudioFormat format = new AudioFormat((float) SAMPLE_RATE, BITS_PER_SAMPLE, 1, true, false);\n            DataLine.Info info = new DataLine.Info(SourceDataLine.class, format);\n\n            line = (SourceDataLine) AudioSystem.getLine(info);\n            line.open(format, SAMPLE_BUFFER_SIZE * BYTES_PER_SAMPLE);\n            \n            // the internal buffer is a fraction of the actual buffer size, this choice is arbitrary\n            // it gets divided because we can't expect the buffered data to line up exactly with when\n            // the sound card decides to push out its samples.\n            buffer = new byte[SAMPLE_BUFFER_SIZE * BYTES_PER_SAMPLE/3];\n        }\n        catch (LineUnavailableException e) {\n            System.out.println(e.getMessage());\n        }\n\n        // no sound gets made before this call\n        line.start();\n    }\n\n\n    /**\n     * Closes standard audio.\n     */\n    public static void close() {\n        line.drain();\n        line.stop();\n    }\n    \n    /**\n     * Writes one sample (between -1.0 and +1.0) to standard audio.\n     * If the sample is outside the range, it will be clipped.\n     *\n     * @param  sample the sample to play\n     * @throws IllegalArgumentException if the sample is {@code Double.NaN}\n     */\n    public static void play(double sample) {\n\n        // clip if outside [-1, +1]\n        if (Double.isNaN(sample)) throw new IllegalArgumentException(\"sample is NaN\");\n        if (sample < -1.0) sample = -1.0;\n        if (sample > +1.0) sample = +1.0;\n\n        // convert to bytes\n        short s = (short) (MAX_16_BIT * sample);\n        buffer[bufferSize++] = (byte) s;\n        buffer[bufferSize++] = (byte) (s >> 8);   // little Endian\n\n        // send to sound card if buffer is full        \n        if (bufferSize >= buffer.length) {\n            line.write(buffer, 0, buffer.length);\n            bufferSize = 0;\n        }\n    }\n\n    /**\n     * Writes the array of samples (between -1.0 and +1.0) to standard audio.\n     * If a sample is outside the range, it will be clipped.\n     *\n     * @param  samples the array of samples to play\n     * @throws IllegalArgumentException if any sample is {@code Double.NaN}\n     * @throws IllegalArgumentException if {@code samples} is {@code null}\n     */\n    public static void play(double[] samples) {\n        if (samples == null) throw new IllegalArgumentException(\"argument to play() is null\");\n        for (int i = 0; i < samples.length; i++) {\n            play(samples[i]);\n        }\n    }\n\n    /**\n     * Reads audio samples from a file (in .wav or .au format) and returns\n     * them as a double array with values between -1.0 and +1.0.\n     *\n     * @param  filename the name of the audio file\n     * @return the array of samples\n     */\n    public static double[] read(String filename) {\n        byte[] data = readByte(filename);\n        int n = data.length;\n        double[] d = new double[n/2];\n        for (int i = 0; i < n/2; i++) {\n            d[i] = ((short) (((data[2*i+1] & 0xFF) << 8) + (data[2*i] & 0xFF))) / ((double) MAX_16_BIT);\n        }\n        return d;\n    }\n\n    // return data as a byte array\n    private static byte[] readByte(String filename) {\n        byte[] data = null;\n        AudioInputStream ais = null;\n        try {\n\n            // try to read from file\n            File file = new File(filename);\n            if (file.exists()) {\n                ais = AudioSystem.getAudioInputStream(file);\n                int bytesToRead = ais.available();\n                data = new byte[bytesToRead];\n                int bytesRead = ais.read(data);\n                if (bytesToRead != bytesRead)\n                    throw new IllegalStateException(\"read only \" + bytesRead + \" of \" + bytesToRead + \" bytes\"); \n            }\n\n            // try to read from URL\n            else {\n                URL url = StdAudio.class.getResource(filename);\n                ais = AudioSystem.getAudioInputStream(url);\n                int bytesToRead = ais.available();\n                data = new byte[bytesToRead];\n                int bytesRead = ais.read(data);\n                if (bytesToRead != bytesRead)\n                    throw new IllegalStateException(\"read only \" + bytesRead + \" of \" + bytesToRead + \" bytes\"); \n            }\n        }\n        catch (IOException e) {\n            throw new IllegalArgumentException(\"could not read '\" + filename + \"'\", e);\n        }\n\n        catch (UnsupportedAudioFileException e) {\n            throw new IllegalArgumentException(\"unsupported audio format: '\" + filename + \"'\", e);\n        }\n\n        return data;\n    }\n\n    /**\n     * Saves the double array as an audio file (using .wav or .au format).\n     *\n     * @param  filename the name of the audio file\n     * @param  samples the array of samples\n     * @throws IllegalArgumentException if unable to save {@code filename}\n     * @throws IllegalArgumentException if {@code samples} is {@code null}\n     */\n    public static void save(String filename, double[] samples) {\n        if (samples == null) {\n            throw new IllegalArgumentException(\"samples[] is null\");\n        }\n\n        // assumes 44,100 samples per second\n        // use 16-bit audio, mono, signed PCM, little Endian\n        AudioFormat format = new AudioFormat(SAMPLE_RATE, 16, 1, true, false);\n        byte[] data = new byte[2 * samples.length];\n        for (int i = 0; i < samples.length; i++) {\n            int temp = (short) (samples[i] * MAX_16_BIT);\n            data[2*i + 0] = (byte) temp;\n            data[2*i + 1] = (byte) (temp >> 8);\n        }\n\n        // now save the file\n        try {\n            ByteArrayInputStream bais = new ByteArrayInputStream(data);\n            AudioInputStream ais = new AudioInputStream(bais, format, samples.length);\n            if (filename.endsWith(\".wav\") || filename.endsWith(\".WAV\")) {\n                AudioSystem.write(ais, AudioFileFormat.Type.WAVE, new File(filename));\n            }\n            else if (filename.endsWith(\".au\") || filename.endsWith(\".AU\")) {\n                AudioSystem.write(ais, AudioFileFormat.Type.AU, new File(filename));\n            }\n            else {\n                throw new IllegalArgumentException(\"unsupported audio format: '\" + filename + \"'\");\n            }\n        }\n        catch (IOException ioe) {\n            throw new IllegalArgumentException(\"unable to save file '\" + filename + \"'\", ioe);\n        }\n    }\n\n\n\n    /**\n     * Plays an audio file (in .wav, .mid, or .au format) in a background thread.\n     *\n     * @param filename the name of the audio file\n     * @throws IllegalArgumentException if unable to play {@code filename}\n     * @throws IllegalArgumentException if {@code filename} is {@code null}\n     */\n    public static synchronized void play(final String filename) {\n        if (filename == null) throw new IllegalArgumentException();\n\n        InputStream is = StdAudio.class.getResourceAsStream(filename);\n        if (is == null) {\n            throw new IllegalArgumentException(\"could not read '\" + filename + \"'\");\n        }\n\n        // code adapted from: http://stackoverflow.com/questions/26305/how-can-i-play-sound-in-java\n        try {\n            // check if file format is supported\n            // (if not, will throw an UnsupportedAudioFileException)\n            AudioSystem.getAudioInputStream(is);\n\n            new Thread(new Runnable() {\n                @Override\n                public void run() {\n                    stream(filename);\n                }\n           }).start();\n        }\n\n        // let's try Applet.newAudioClip() instead\n        catch (UnsupportedAudioFileException e) {\n            playApplet(filename);\n            return;\n        }\n\n        // something else went wrong\n        catch (IOException ioe) {\n            throw new IllegalArgumentException(\"could not play '\" + filename + \"'\", ioe);\n        }\n\n    }\n\n\n    // play sound file using Applet.newAudioClip();\n    private static void playApplet(String filename) {\n        URL url = null;\n        try {\n            File file = new File(filename);\n            if(file.canRead()) url = file.toURI().toURL();\n        }\n        catch (MalformedURLException e) {\n            throw new IllegalArgumentException(\"could not play '\" + filename + \"'\", e);\n        }\n\n        // URL url = StdAudio.class.getResource(filename);\n        if (url == null) {\n            throw new IllegalArgumentException(\"could not play '\" + filename + \"'\");\n        }\n\n        AudioClip clip = Applet.newAudioClip(url);\n        clip.play();\n    }\n\n    // https://www3.ntu.edu.sg/home/ehchua/programming/java/J8c_PlayingSound.html\n    // play a wav or aif file\n    // javax.sound.sampled.Clip fails for long clips (on some systems)\n    private static void stream(String filename) {\n        SourceDataLine line = null;\n        int BUFFER_SIZE = 4096; // 4K buffer\n\n        try {\n            InputStream is = StdAudio.class.getResourceAsStream(filename);\n            AudioInputStream ais = AudioSystem.getAudioInputStream(is);\n            AudioFormat audioFormat = ais.getFormat();\n            DataLine.Info info = new DataLine.Info(SourceDataLine.class, audioFormat);\n            line = (SourceDataLine) AudioSystem.getLine(info);\n            line.open(audioFormat);\n            line.start();\n            byte[] samples = new byte[BUFFER_SIZE];\n            int count = 0;\n            while ((count = ais.read(samples, 0, BUFFER_SIZE)) != -1) {\n                line.write(samples, 0, count);\n            }\n        }\n        catch (IOException e) {\n            e.printStackTrace();\n        }\n        catch (UnsupportedAudioFileException e) {\n            e.printStackTrace();\n        }\n        catch (LineUnavailableException e) {\n            e.printStackTrace();\n        }\n        finally {\n            if (line != null) {\n                line.drain();\n                line.close();\n            }\n        }\n    }\n\n    /**\n     * Loops an audio file (in .wav, .mid, or .au format) in a background thread.\n     *\n     * @param filename the name of the audio file\n     * @throws IllegalArgumentException if {@code filename} is {@code null}\n     */\n    public static synchronized void loop(String filename) {\n        if (filename == null) throw new IllegalArgumentException();\n\n        // code adapted from: http://stackoverflow.com/questions/26305/how-can-i-play-sound-in-java\n        try {\n            Clip clip = AudioSystem.getClip();\n            InputStream is = StdAudio.class.getResourceAsStream(filename);\n            AudioInputStream ais = AudioSystem.getAudioInputStream(is);\n            clip.open(ais);\n            clip.loop(Clip.LOOP_CONTINUOUSLY);\n        }\n        catch (UnsupportedAudioFileException e) {\n            throw new IllegalArgumentException(\"unsupported audio format: '\" + filename + \"'\", e);\n        }\n        catch (LineUnavailableException e) {\n            throw new IllegalArgumentException(\"could not play '\" + filename + \"'\", e);\n        }\n        catch (IOException e) {\n            throw new IllegalArgumentException(\"could not play '\" + filename + \"'\", e);\n        }\n    }\n\n\n   /***************************************************************************\n    * Unit tests {@code StdAudio}.\n    ***************************************************************************/\n\n    // create a note (sine wave) of the given frequency (Hz), for the given\n    // duration (seconds) scaled to the given volume (amplitude)\n    private static double[] note(double hz, double duration, double amplitude) {\n        int n = (int) (StdAudio.SAMPLE_RATE * duration);\n        double[] a = new double[n+1];\n        for (int i = 0; i <= n; i++)\n            a[i] = amplitude * Math.sin(2 * Math.PI * i * hz / StdAudio.SAMPLE_RATE);\n        return a;\n    }\n\n    /**\n     * Test client - play an A major scale to standard audio.\n     *\n     * @param args the command-line arguments\n     */\n    /**\n     * Test client - play an A major scale to standard audio.\n     *\n     * @param args the command-line arguments\n     */\n    public static void main(String[] args) {\n        \n        // 440 Hz for 1 sec\n        double freq = 440.0;\n        for (int i = 0; i <= StdAudio.SAMPLE_RATE; i++) {\n            StdAudio.play(0.5 * Math.sin(2*Math.PI * freq * i / StdAudio.SAMPLE_RATE));\n        }\n        \n        // scale increments\n        int[] steps = { 0, 2, 4, 5, 7, 9, 11, 12 };\n        for (int i = 0; i < steps.length; i++) {\n            double hz = 440.0 * Math.pow(2, steps[i] / 12.0);\n            StdAudio.play(note(hz, 1.0, 0.5));\n        }\n\n\n        // need to call this in non-interactive stuff so the program doesn't terminate\n        // until all the sound leaves the speaker.\n        StdAudio.close(); \n    }\n}\n\n/******************************************************************************\n *  Copyright 2002-2016, Robert Sedgewick and Kevin Wayne.\n *\n *  This file is part of algs4.jar, which accompanies the textbook\n *\n *      Algorithms, 4th edition by Robert Sedgewick and Kevin Wayne,\n *      Addison-Wesley Professional, 2011, ISBN 0-321-57351-X.\n *      http://algs4.cs.princeton.edu\n *\n *\n *  algs4.jar is free software: you can redistribute it and/or modify\n *  it under the terms of the GNU General Public License as published by\n *  the Free Software Foundation, either version 3 of the License, or\n *  (at your option) any later version.\n *\n *  algs4.jar is distributed in the hope that it will be useful,\n *  but WITHOUT ANY WARRANTY; without even the implied warranty of\n *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n *  GNU General Public License for more details.\n *\n *  You should have received a copy of the GNU General Public License\n *  along with algs4.jar.  If not, see http://www.gnu.org/licenses.\n ******************************************************************************/\n",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": true,
+        "APIs": {
+          "AudioFormat.__init__": true,
+          "Info.__init__": true,
+          "SourceDataLine.open": true,
+          "SourceDataLine.start": true,
+          "SourceDataLine.drain": true,
+          "SourceDataLine.stop": true,
+          "IllegalArgumentException.__init__": true,
+          "SourceDataLine.write": true,
+          "File.__init__": true,
+          "File.exists": true,
+          "AudioInputStream.available": false,
+          "AudioInputStream.read": false,
+          "IllegalStateException.__init__": true,
+          "ByteArrayInputStream.__init__": true,
+          "AudioInputStream.__init__": true,
+          "Runnable.__init__": true,
+          "Thread.__init__": true,
+          "File.canRead": true,
+          "File.toURI": true,
+          "AudioClip.play": false,
+          "AudioInputStream.getFormat": true,
+          "SourceDataLine.close": true,
+          "Clip.open": true,
+          "Clip.loop": false
+        },
+        "APIsProjects": {
+          "AudioFormat.__init__": 7,
+          "Info.__init__": 25,
+          "SourceDataLine.open": 5,
+          "SourceDataLine.start": 5,
+          "SourceDataLine.drain": 5,
+          "SourceDataLine.stop": 3,
+          "IllegalArgumentException.__init__": 675,
+          "SourceDataLine.write": 4,
+          "File.__init__": 591,
+          "File.exists": 464,
+          "IllegalStateException.__init__": 589,
+          "ByteArrayInputStream.__init__": 385,
+          "AudioInputStream.__init__": 4,
+          "Runnable.__init__": 544,
+          "Thread.__init__": 464,
+          "File.canRead": 123,
+          "File.toURI": 157,
+          "AudioInputStream.getFormat": 5,
+          "SourceDataLine.close": 5,
+          "Clip.open": 5
+        },
+        "APIsFiles": {
+          "AudioFormat.__init__": 14,
+          "Info.__init__": 52,
+          "SourceDataLine.open": 5,
+          "SourceDataLine.start": 7,
+          "SourceDataLine.drain": 5,
+          "SourceDataLine.stop": 5,
+          "IllegalArgumentException.__init__": 17475,
+          "SourceDataLine.write": 6,
+          "File.__init__": 13065,
+          "File.exists": 4741,
+          "IllegalStateException.__init__": 9878,
+          "ByteArrayInputStream.__init__": 2918,
+          "AudioInputStream.__init__": 5,
+          "Runnable.__init__": 7286,
+          "Thread.__init__": 3187,
+          "File.canRead": 309,
+          "File.toURI": 524,
+          "AudioInputStream.getFormat": 8,
+          "SourceDataLine.close": 7,
+          "Clip.open": 5
+        },
+        "APIsSnippets": {
+          "AudioFormat.__init__": 25,
+          "Info.__init__": 92,
+          "SourceDataLine.open": 5,
+          "SourceDataLine.start": 9,
+          "SourceDataLine.drain": 5,
+          "SourceDataLine.stop": 6,
+          "IllegalArgumentException.__init__": 44486,
+          "SourceDataLine.write": 11,
+          "File.__init__": 40468,
+          "File.exists": 10225,
+          "IllegalStateException.__init__": 22622,
+          "ByteArrayInputStream.__init__": 5225,
+          "AudioInputStream.__init__": 6,
+          "Runnable.__init__": 17261,
+          "Thread.__init__": 5242,
+          "File.canRead": 424,
+          "File.toURI": 844,
+          "AudioInputStream.getFormat": 17,
+          "SourceDataLine.close": 8,
+          "Clip.open": 5
+        },
+        "APIsQualifiedNames": {
+          "AudioFormat.__init__": "javax.sound.sampled.AudioFormat.__init__",
+          "Info.__init__": "javax.sound.sampled.DataLine.Info.__init__",
+          "SourceDataLine.open": "javax.sound.sampled.SourceDataLine.open",
+          "SourceDataLine.start": "javax.sound.sampled.SourceDataLine.start",
+          "SourceDataLine.drain": "javax.sound.sampled.SourceDataLine.drain",
+          "SourceDataLine.stop": "javax.sound.sampled.SourceDataLine.stop",
+          "IllegalArgumentException.__init__": "org.jboss.weld.exceptions.IllegalArgumentException.__init__",
+          "SourceDataLine.write": "javax.sound.sampled.SourceDataLine.write",
+          "File.__init__": "java.io.File.__init__",
+          "File.exists": "java.io.File.exists",
+          "IllegalStateException.__init__": "org.jboss.weld.exceptions.IllegalStateException.__init__",
+          "ByteArrayInputStream.__init__": "java.io.ByteArrayInputStream.__init__",
+          "AudioInputStream.__init__": "javax.sound.sampled.AudioInputStream.__init__",
+          "Runnable.__init__": "org.jboss.arquillian.container.weld.ee.embedded_1_1.mock.TestContainer.Runner.Runnable.__init__",
+          "Thread.__init__": "java.lang.Thread.__init__",
+          "File.canRead": "java.io.File.canRead",
+          "File.toURI": "java.io.File.toURI",
+          "AudioInputStream.getFormat": "javax.sound.sampled.AudioInputStream.getFormat",
+          "SourceDataLine.close": "javax.sound.sampled.SourceDataLine.close",
+          "Clip.open": "javax.sound.sampled.Clip.open"
+        },
+        "API_Ratio": 0.8333333333333334
+      }
+    ]
+  },
+  {
+    "query": "How to play audio file",
+    "url": "http://www.onjava.com/pub/a/onjava/excerpt/jenut3_ch17/index.html",
+    "url position": 27,
+    "segments": [
+      {
+        "code": "package je3.sound;\r\n\r\n/**\r\n * Play a sound file from the network using the java.applet.Applet API.\r\n */\r\npublic class PlaySound {\r\n    public static void main(String[  ] args)\r\n        throws java.net.MalformedURLException\r\n    {\r\n        java.applet.AudioClip clip =\r\n            java.applet.Applet.newAudioClip(new java.net.URL(args[0]));\r\n        clip.play( );\r\n    }\r\n}",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "URL.__init__": true,
+          "AudioClip.play": false
+        },
+        "APIsProjects": {
+          "URL.__init__": 380
+        },
+        "APIsFiles": {
+          "URL.__init__": 2050
+        },
+        "APIsSnippets": {
+          "URL.__init__": 4004
+        },
+        "APIsQualifiedNames": {
+          "URL.__init__": "java.net.URL.__init__"
+        },
+        "API_Ratio": 0.5
+      }
+    ]
+  },
+  {
+    "query": "How to play audio file",
+    "url": "https://developer.android.com/guide/topics/media/mediarecorder.html",
+    "url position": 30,
+    "segments": [
+      {
+        "code": "\npackage com.android.audiorecordtest;\n\nimport android.Manifest;\nimport android.content.Context;\nimport android.content.pm.PackageManager;\nimport android.media.MediaPlayer;\nimport android.media.MediaRecorder;\nimport android.os.Bundle;\nimport android.support.annotation.NonNull;\nimport android.support.v4.app.ActivityCompat;\nimport android.support.v7.app.AppCompatActivity;\nimport android.util.Log;\nimport android.view.View;\nimport android.view.ViewGroup;\nimport android.widget.Button;\nimport android.widget.LinearLayout;\n\nimport java.io.IOException;\n\npublic class AudioRecordTest extends AppCompatActivity {\n\n    private static final String LOG_TAG = \"AudioRecordTest\";\n    private static final int REQUEST_RECORD_AUDIO_PERMISSION = 200;\n    private static String mFileName = null;\n\n    private RecordButton mRecordButton = null;\n    private MediaRecorder mRecorder = null;\n\n    private PlayButton   mPlayButton = null;\n    private MediaPlayer   mPlayer = null;\n\n    // Requesting permission to RECORD_AUDIO\n    private boolean permissionToRecordAccepted = false;\n    private String [] permissions = {Manifest.permission.RECORD_AUDIO};\n\n    @Override\n    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {\n        super.onRequestPermissionsResult(requestCode, permissions, grantResults);\n        switch (requestCode){\n            case REQUEST_RECORD_AUDIO_PERMISSION:\n                permissionToRecordAccepted  = grantResults[0] == PackageManager.PERMISSION_GRANTED;\n                break;\n        }\n        if (!permissionToRecordAccepted ) finish();\n\n    }\n\n    private void onRecord(boolean start) {\n        if (start) {\n            startRecording();\n        } else {\n            stopRecording();\n        }\n    }\n\n    private void onPlay(boolean start) {\n        if (start) {\n            startPlaying();\n        } else {\n            stopPlaying();\n        }\n    }\n\n    private void startPlaying() {\n        mPlayer = new MediaPlayer();\n        try {\n            mPlayer.setDataSource(mFileName);\n            mPlayer.prepare();\n            mPlayer.start();\n        } catch (IOException e) {\n            Log.e(LOG_TAG, \"prepare() failed\");\n        }\n    }\n\n    private void stopPlaying() {\n        mPlayer.release();\n        mPlayer = null;\n    }\n\n    private void startRecording() {\n        mRecorder = new MediaRecorder();\n        mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);\n        mRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);\n        mRecorder.setOutputFile(mFileName);\n        mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);\n\n        try {\n            mRecorder.prepare();\n        } catch (IOException e) {\n            Log.e(LOG_TAG, \"prepare() failed\");\n        }\n\n        mRecorder.start();\n    }\n\n    private void stopRecording() {\n        mRecorder.stop();\n        mRecorder.release();\n        mRecorder = null;\n    }\n\n    class RecordButton extends Button {\n        boolean mStartRecording = true;\n\n        OnClickListener clicker = new OnClickListener() {\n            public void onClick(View v) {\n                onRecord(mStartRecording);\n                if (mStartRecording) {\n                    setText(\"Stop recording\");\n                } else {\n                    setText(\"Start recording\");\n                }\n                mStartRecording = !mStartRecording;\n            }\n        };\n\n        public RecordButton(Context ctx) {\n            super(ctx);\n            setText(\"Start recording\");\n            setOnClickListener(clicker);\n        }\n    }\n\n    class PlayButton extends Button {\n        boolean mStartPlaying = true;\n\n        OnClickListener clicker = new OnClickListener() {\n            public void onClick(View v) {\n                onPlay(mStartPlaying);\n                if (mStartPlaying) {\n                    setText(\"Stop playing\");\n                } else {\n                    setText(\"Start playing\");\n                }\n                mStartPlaying = !mStartPlaying;\n            }\n        };\n\n        public PlayButton(Context ctx) {\n            super(ctx);\n            setText(\"Start playing\");\n            setOnClickListener(clicker);\n        }\n    }\n\n    @Override\n    public void onCreate(Bundle icicle) {\n        super.onCreate(icicle);\n\n        // Record to the external cache directory for visibility\n        mFileName = getExternalCacheDir().getAbsolutePath();\n        mFileName += \"/audiorecordtest.3gp\";\n\n        ActivityCompat.requestPermissions(this, permissions, REQUEST_RECORD_AUDIO_PERMISSION);\n\n        LinearLayout ll = new LinearLayout(this);\n        mRecordButton = new RecordButton(this);\n        ll.addView(mRecordButton,\n                new LinearLayout.LayoutParams(\n                        ViewGroup.LayoutParams.WRAP_CONTENT,\n                        ViewGroup.LayoutParams.WRAP_CONTENT,\n                        0));\n        mPlayButton = new PlayButton(this);\n        ll.addView(mPlayButton,\n                new LinearLayout.LayoutParams(\n                        ViewGroup.LayoutParams.WRAP_CONTENT,\n                        ViewGroup.LayoutParams.WRAP_CONTENT,\n                        0));\n        setContentView(ll);\n    }\n\n    @Override\n    public void onStop() {\n        super.onStop();\n        if (mRecorder != null) {\n            mRecorder.release();\n            mRecorder = null;\n        }\n\n        if (mPlayer != null) {\n            mPlayer.release();\n            mPlayer = null;\n        }\n    }\n}\n",
+        "in_page_order": 3,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": true,
+        "APIs": {
+          "MediaPlayer.__init__": true,
+          "MediaPlayer.setDataSource": true,
+          "MediaPlayer.prepare": true,
+          "MediaPlayer.start": true,
+          "MediaPlayer.release": true,
+          "MediaRecorder.__init__": true,
+          "MediaRecorder.setAudioSource": true,
+          "MediaRecorder.setOutputFormat": true,
+          "MediaRecorder.setOutputFile": true,
+          "MediaRecorder.setAudioEncoder": true,
+          "MediaRecorder.prepare": true,
+          "MediaRecorder.start": true,
+          "MediaRecorder.stop": true,
+          "MediaRecorder.release": true,
+          "LinearLayout.__init__": true,
+          "RecordButton.__init__": false,
+          "LayoutParams.__init__": true,
+          "LinearLayout.addView": true,
+          "PlayButton.__init__": false
+        },
+        "APIsProjects": {
+          "MediaPlayer.__init__": 23,
+          "MediaPlayer.setDataSource": 23,
+          "MediaPlayer.prepare": 19,
+          "MediaPlayer.start": 28,
+          "MediaPlayer.release": 23,
+          "MediaRecorder.__init__": 11,
+          "MediaRecorder.setAudioSource": 10,
+          "MediaRecorder.setOutputFormat": 7,
+          "MediaRecorder.setOutputFile": 10,
+          "MediaRecorder.setAudioEncoder": 7,
+          "MediaRecorder.prepare": 10,
+          "MediaRecorder.start": 10,
+          "MediaRecorder.stop": 11,
+          "MediaRecorder.release": 10,
+          "LinearLayout.__init__": 62,
+          "LayoutParams.__init__": 179,
+          "LinearLayout.addView": 85
+        },
+        "APIsFiles": {
+          "MediaPlayer.__init__": 30,
+          "MediaPlayer.setDataSource": 30,
+          "MediaPlayer.prepare": 23,
+          "MediaPlayer.start": 40,
+          "MediaPlayer.release": 42,
+          "MediaRecorder.__init__": 16,
+          "MediaRecorder.setAudioSource": 12,
+          "MediaRecorder.setOutputFormat": 9,
+          "MediaRecorder.setOutputFile": 12,
+          "MediaRecorder.setAudioEncoder": 9,
+          "MediaRecorder.prepare": 12,
+          "MediaRecorder.start": 12,
+          "MediaRecorder.stop": 13,
+          "MediaRecorder.release": 12,
+          "LinearLayout.__init__": 139,
+          "LayoutParams.__init__": 647,
+          "LinearLayout.addView": 199
+        },
+        "APIsSnippets": {
+          "MediaPlayer.__init__": 34,
+          "MediaPlayer.setDataSource": 36,
+          "MediaPlayer.prepare": 28,
+          "MediaPlayer.start": 49,
+          "MediaPlayer.release": 57,
+          "MediaRecorder.__init__": 18,
+          "MediaRecorder.setAudioSource": 13,
+          "MediaRecorder.setOutputFormat": 12,
+          "MediaRecorder.setOutputFile": 14,
+          "MediaRecorder.setAudioEncoder": 12,
+          "MediaRecorder.prepare": 12,
+          "MediaRecorder.start": 12,
+          "MediaRecorder.stop": 16,
+          "MediaRecorder.release": 19,
+          "LinearLayout.__init__": 185,
+          "LayoutParams.__init__": 1199,
+          "LinearLayout.addView": 472
+        },
+        "APIsQualifiedNames": {
+          "MediaPlayer.__init__": "uk.co.caprica.vlcj.player.MediaPlayer.__init__",
+          "MediaPlayer.setDataSource": "android.media.MediaPlayer.setDataSource",
+          "MediaPlayer.prepare": "android.media.MediaPlayer.prepare",
+          "MediaPlayer.start": "uk.co.caprica.vlcj.player.MediaPlayer.start",
+          "MediaPlayer.release": "uk.co.caprica.vlcj.player.MediaPlayer.release",
+          "MediaRecorder.__init__": "android.media.MediaRecorder.__init__",
+          "MediaRecorder.setAudioSource": "android.media.MediaRecorder.setAudioSource",
+          "MediaRecorder.setOutputFormat": "android.media.MediaRecorder.setOutputFormat",
+          "MediaRecorder.setOutputFile": "android.media.MediaRecorder.setOutputFile",
+          "MediaRecorder.setAudioEncoder": "android.media.MediaRecorder.setAudioEncoder",
+          "MediaRecorder.prepare": "android.media.MediaRecorder.prepare",
+          "MediaRecorder.start": "android.media.MediaRecorder.start",
+          "MediaRecorder.stop": "android.media.MediaRecorder.stop",
+          "MediaRecorder.release": "android.media.MediaRecorder.release",
+          "LinearLayout.__init__": "android.widget.LinearLayout.__init__",
+          "LayoutParams.__init__": "android.support.v4.widget.DrawerLayout.LayoutParams.__init__",
+          "LinearLayout.addView": "android.widget.LinearLayout.addView"
+        },
+        "API_Ratio": 0.8947368421052632
+      }
+    ]
+  },
+  {
+    "query": "How to play audio file",
+    "url": "https://www.java-tips.org/java-se-tips-100019/35-java-util-jar/2319-play-an-audio-file-from-a-jar-file.html",
+    "url position": 35,
+    "segments": [
+      {
+        "code": " import java.io.*;\r\nimport java.net.*;\r\n\r\nimport sun.audio.*;\r\n\r\npublic class AppAudio {\r\n  public static void main(String args[]) throws Throwable {\r\n    InputStream in = AppAudio.class.getResourceAsStream(args[0]);\r\n    AudioStream as = new AudioStream(in);\r\n    AudioPlayer.player.start(as);\r\n    Thread.sleep(5000);\r\n  }\r\n}\r\n\r\n",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "AudioStream.__init__": false
+        },
+        "APIsProjects": {},
+        "APIsFiles": {},
+        "APIsSnippets": {},
+        "APIsQualifiedNames": {},
+        "API_Ratio": 0.0
+      }
+    ]
+  },
+  {
+    "query": "How to play audio file",
+    "url": "https://docstore.mik.ua/orelly/java/awt/ch14_05.htm",
+    "url position": 37,
+    "segments": [
+      {
+        "code": "\nFileInputStream fis = new FileInputStream (\"/usr/openwin/demo/sounds/1.au\");\nAudioStream audiostream = new AudioStream (fis);\n",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "FileInputStream.__init__": true,
+          "AudioStream.__init__": false
+        },
+        "APIsProjects": {
+          "FileInputStream.__init__": 443
+        },
+        "APIsFiles": {
+          "FileInputStream.__init__": 2808
+        },
+        "APIsSnippets": {
+          "FileInputStream.__init__": 4023
+        },
+        "APIsQualifiedNames": {
+          "FileInputStream.__init__": "java.io.FileInputStream.__init__"
+        },
+        "API_Ratio": 0.5
+      },
+      {
+        "code": "\nAudioStream audiostream = new AudioStream (savedUrl.openStream());\n",
+        "in_page_order": 2,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": true,
+        "APIs": {
+          "AudioStream.__init__": false
+        },
+        "APIsProjects": {},
+        "APIsFiles": {},
+        "APIsSnippets": {},
+        "APIsQualifiedNames": {},
+        "API_Ratio": 0.0
+      },
+      {
+        "code": "\nAudioData audiodata = new AudioStream (aUrl.openStream()).getData();\n",
+        "in_page_order": 3,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": true,
+        "APIs": {
+          "AudioStream.__init__": false
+        },
+        "APIsProjects": {},
+        "APIsFiles": {},
+        "APIsSnippets": {},
+        "APIsQualifiedNames": {},
+        "API_Ratio": 0.0
+      },
+      {
+        "code": "\nimport java.net.URL;\nimport java.io.FileInputStream;\nimport sun.audio.*;\npublic class SunAudioClip implements java.applet.AudioClip {\n    private AudioData audiodata;\n    private AudioDataStream audiostream;\n    private ContinuousAudioDataStream continuousaudiostream;\n    static int length;\n    public SunAudioClip (URL url) throws java.io.IOException {\n        audiodata = new AudioStream (url.openStream()).getData();\n        audiostream = null;\n        continuousaudiostream = null;\n    }\n    public SunAudioClip (String filename) throws java.io.IOException {\n        FileInputStream fis = new FileInputStream (filename);\n        AudioStream audioStream = new AudioStream (fis);\n        audiodata = audioStream.getData();\n        audiostream = null;\n        continuousaudiostream = null;\n    }\n    public void play () {\n        audiostream = new AudioDataStream (audiodata);\n        AudioPlayer.player.start (audiostream);\n    }\n    public void loop () {\n        continuousaudiostream = new ContinuousAudioDataStream (audiodata);\n        AudioPlayer.player.start (continuousaudiostream);\n    }\n    public void stop () {\n        if (audiostream != null)\n            AudioPlayer.player.stop (audiostream);\n        if (continuousaudiostream != null)\n            AudioPlayer.player.stop (continuousaudiostream);\n    }\n    public static void main (String args[]) throws Exception {\n        URL url1 = new URL (\"http://localhost:8080/audio/1.au\");\n        URL url2 = new URL (\"http://localhost:8080/audio/2.au\");\n        SunAudioClip sac1 = new SunAudioClip (url1);\n        SunAudioClip sac2 = new SunAudioClip (url2);\n        SunAudioClip sac3 = new SunAudioClip (\"1.au\");\n        sac1.play ();\n        sac2.loop ();\n        sac3.play ();\n        try {// Delay for loop\n            Thread.sleep (2000);\n        } catch (InterruptedException ie) {}\n        sac2.stop();\n    }\n}\n",
+        "in_page_order": 5,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "URL.openStream": true,
+          "AudioStream.__init__": false,
+          "FileInputStream.__init__": true,
+          "AudioStream.getData": false,
+          "AudioDataStream.__init__": false,
+          "ContinuousAudioDataStream.__init__": false,
+          "URL.__init__": true,
+          "SunAudioClip.__init__": false,
+          "SunAudioClip.play": false,
+          "SunAudioClip.loop": false,
+          "SunAudioClip.stop": false
+        },
+        "APIsProjects": {
+          "URL.openStream": 186,
+          "FileInputStream.__init__": 443,
+          "URL.__init__": 380
+        },
+        "APIsFiles": {
+          "URL.openStream": 566,
+          "FileInputStream.__init__": 2808,
+          "URL.__init__": 2050
+        },
+        "APIsSnippets": {
+          "URL.openStream": 683,
+          "FileInputStream.__init__": 4023,
+          "URL.__init__": 4004
+        },
+        "APIsQualifiedNames": {
+          "URL.openStream": "java.net.URL.openStream",
+          "FileInputStream.__init__": "java.io.FileInputStream.__init__",
+          "URL.__init__": "java.net.URL.__init__"
+        },
+        "API_Ratio": 0.2727272727272727
+      }
+    ]
+  },
+  {
+    "query": "How to play audio file",
+    "url": "https://www.daniweb.com/programming/software-development/threads/475808/how-to-play-mp3-files-in-java-using-eclipse",
+    "url position": 31,
+    "segments": [
+      {
+        "code": "import javax.media.*;\nimport java.net.*;\nimport java.io.*;\nimport java.util.*;\n\nclass MP3Play\n\n{\n public static void main(String args[]) throws Exception\n\n {\n//File Path\n File f=new File(args[0]);\n // Create a Player object that realizes the audio\n final Player p=Manager.createRealizedPlayer(f.toURI().toURL());\n\n  p.start();\n  Scanner s=new Scanner(System.in);\n  String st=s.nextLine();\n   // If user types 'stop', stop the audio\n\n   if(st.equals(\"stop\"))\n\n   {\n   p.stop();\n\n   }\n }\n\n}\n",
+        "in_page_order": 2,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "File.__init__": true,
+          "File.toURI": true,
+          "Player.start": true,
+          "Scanner.__init__": true,
+          "Scanner.nextLine": true,
+          "Player.stop": true
+        },
+        "APIsProjects": {
+          "File.__init__": 591,
+          "File.toURI": 157,
+          "Player.start": 3,
+          "Scanner.__init__": 123,
+          "Scanner.nextLine": 49,
+          "Player.stop": 3
+        },
+        "APIsFiles": {
+          "File.__init__": 13065,
+          "File.toURI": 524,
+          "Player.start": 4,
+          "Scanner.__init__": 290,
+          "Scanner.nextLine": 119,
+          "Player.stop": 3
+        },
+        "APIsSnippets": {
+          "File.__init__": 40468,
+          "File.toURI": 844,
+          "Player.start": 4,
+          "Scanner.__init__": 918,
+          "Scanner.nextLine": 184,
+          "Player.stop": 3
+        },
+        "APIsQualifiedNames": {
+          "File.__init__": "java.io.File.__init__",
+          "File.toURI": "java.io.File.toURI",
+          "Player.start": "javax.media.Player.start",
+          "Scanner.__init__": "java.util.Scanner.__init__",
+          "Scanner.nextLine": "java.util.Scanner.nextLine",
+          "Player.stop": "javax.media.Player.stop"
+        },
+        "API_Ratio": 1.0
+      },
+      {
+        "code": "String uriString = new File(fileName).toURI().toString();\n",
+        "in_page_order": 4,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": true,
+        "APIs": {
+          "File.__init__": true
+        },
+        "APIsProjects": {
+          "File.__init__": 591
+        },
+        "APIsFiles": {
+          "File.__init__": 13065
+        },
+        "APIsSnippets": {
+          "File.__init__": 40468
+        },
+        "APIsQualifiedNames": {
+          "File.__init__": "java.io.File.__init__"
+        },
+        "API_Ratio": 1.0
+      },
+      {
+        "code": "MediaPlayer player = new MediaPlayer(new Media(uriString));\nplayer.play(); // or stop() or pause() etc etc\n",
+        "in_page_order": 5,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Media.__init__": true,
+          "MediaPlayer.__init__": true,
+          "MediaPlayer.play": false
+        },
+        "APIsProjects": {
+          "Media.__init__": 8,
+          "MediaPlayer.__init__": 23
+        },
+        "APIsFiles": {
+          "Media.__init__": 46,
+          "MediaPlayer.__init__": 30
+        },
+        "APIsSnippets": {
+          "Media.__init__": 71,
+          "MediaPlayer.__init__": 34
+        },
+        "APIsQualifiedNames": {
+          "Media.__init__": "org.broadleafcommerce.common.media.domain.Media.__init__",
+          "MediaPlayer.__init__": "uk.co.caprica.vlcj.player.MediaPlayer.__init__"
+        },
+        "API_Ratio": 0.6666666666666666
+      },
+      {
+        "code": "new javafx.embed.swing.JFXPanel(); // forces JavaFX init\n",
+        "in_page_order": 6,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": true,
+        "APIs": {
+          "JFXPanel.__init__": false
+        },
+        "APIsProjects": {},
+        "APIsFiles": {},
+        "APIsSnippets": {},
+        "APIsQualifiedNames": {},
+        "API_Ratio": 0.0
+      },
+      {
+        "code": "void playMP3(String fileName) {\n    new javafx.embed.swing.JFXPanel();\n    String uriString = new File(fileName).toURI().toString();\n    new MediaPlayer(new Media(uriString)).play();\n}\n",
+        "in_page_order": 7,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "JFXPanel.__init__": false,
+          "File.__init__": true,
+          "Media.__init__": true,
+          "MediaPlayer.__init__": true
+        },
+        "APIsProjects": {
+          "File.__init__": 591,
+          "Media.__init__": 8,
+          "MediaPlayer.__init__": 23
+        },
+        "APIsFiles": {
+          "File.__init__": 13065,
+          "Media.__init__": 46,
+          "MediaPlayer.__init__": 30
+        },
+        "APIsSnippets": {
+          "File.__init__": 40468,
+          "Media.__init__": 71,
+          "MediaPlayer.__init__": 34
+        },
+        "APIsQualifiedNames": {
+          "File.__init__": "java.io.File.__init__",
+          "Media.__init__": "org.broadleafcommerce.common.media.domain.Media.__init__",
+          "MediaPlayer.__init__": "uk.co.caprica.vlcj.player.MediaPlayer.__init__"
+        },
+        "API_Ratio": 0.75
+      }
+    ]
+  },
+  {
+    "query": "How to play audio file",
+    "url": "http://www.jsresources.org/faq_audio.html",
+    "url position": 41,
+    "segments": [
+      {
+        "code": "\nFile file = new File(\"my_file.ext\");\nAudioFileFormat audioFileFormat = AudioSystem.getAudioFileFormat(file);\n// get all properties\nMap<String, Object> properties = audioFileFormat.properties();\n// duration is in microseconds\nLong duration = (Long) properties.get(\"duration\");\n}",
+        "in_page_order": 9,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "File.__init__": true,
+          "AudioFileFormat.properties": false,
+          "Map.get": true
+        },
+        "APIsProjects": {
+          "File.__init__": 591,
+          "Map.get": 623
+        },
+        "APIsFiles": {
+          "File.__init__": 13065,
+          "Map.get": 20428
+        },
+        "APIsSnippets": {
+          "File.__init__": 40468,
+          "Map.get": 66916
+        },
+        "APIsQualifiedNames": {
+          "File.__init__": "java.io.File.__init__",
+          "Map.get": "java.util.Map.get"
+        },
+        "API_Ratio": 0.6666666666666666
+      },
+      {
+        "code": "\nimport java.io.*;\nimport javazoom.jl.decoder.*;\nimport javax.sound.sampled.*;\n\npublic class TestMP3Duration\n{\n    public static void main(String args[])\n    {\n\n        try\n        {\n            File f = new File(args[0]);\n            Bitstream m_bitstream = new Bitstream(\n                              new FileInputStream(f));\n            Header m_header = m_bitstream.readFrame();\n\n            int mediaLength = (int)f.length();\n \n            int nTotalMS = 0;\n            if (mediaLength != AudioSystem.NOT_SPECIFIED) {\n               nTotalMS = Math.round(m_header.total_ms(mediaLength));\n            }\n\n            System.out.println(\"Length in ms: \" + nTotalMS);\n        } catch(Exception e) {\n            e.printStackTrace();\n        } \n    }\n}",
+        "in_page_order": 47,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "File.__init__": true,
+          "FileInputStream.__init__": true,
+          "Bitstream.__init__": false,
+          "Bitstream.readFrame": false,
+          "File.length": true,
+          "Header.total_ms": false
+        },
+        "APIsProjects": {
+          "File.__init__": 591,
+          "FileInputStream.__init__": 443,
+          "File.length": 260
+        },
+        "APIsFiles": {
+          "File.__init__": 13065,
+          "FileInputStream.__init__": 2808,
+          "File.length": 942
+        },
+        "APIsSnippets": {
+          "File.__init__": 40468,
+          "FileInputStream.__init__": 4023,
+          "File.length": 1590
+        },
+        "APIsQualifiedNames": {
+          "File.__init__": "java.io.File.__init__",
+          "FileInputStream.__init__": "java.io.FileInputStream.__init__",
+          "File.length": "java.io.File.length"
+        },
+        "API_Ratio": 0.5
+      }
+    ]
+  }
+]

@@ -1,0 +1,13 @@
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+/**
+ * A simple example program that reads a into a String using Java 7's Files.readAllBytes.
+ */
+public class ReadTextFileExample {
+    public static void main(String[] args) throws IOException {
+        String contents = new String(Files.readAllBytes(Paths.get("C:\\temp\\testfile.txt")));
+        System.out.println(contents);
+    }
+}

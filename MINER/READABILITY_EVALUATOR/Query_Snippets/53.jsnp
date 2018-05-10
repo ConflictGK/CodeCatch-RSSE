@@ -1,0 +1,1 @@
+Files.lines(Paths.get("text.txt")).collect(Collectors.toList());

@@ -1,0 +1,5 @@
+/**
+ * Reads the contents of a file line by line to a List
+ * of Strings using the default encoding for the VM.
+ */
+static List readLines(File file)

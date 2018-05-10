@@ -1,0 +1,16 @@
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
+/**
+ * A simple example program that reads a text file line by line using Files.readAllLines.
+ */
+public class ReadTextFileExample {
+    public static void main(String[] args) throws IOException {
+        ListString lines = Files.readAllLines(Paths.get("c:\\temp\\testfile.txt"));
+        for (String line : lines) {
+            System.out.println(line);
+        }
+    }
+}

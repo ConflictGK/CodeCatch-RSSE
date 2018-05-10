@@ -1,0 +1,1821 @@
+{
+   "query0": {
+      "http://www.javainterviewpoint.com/how-to-read-and-parse-csv-file-in-java/": {
+         "3": 1,
+         "7": 1,
+         "5": 1
+      },
+      "https://howtodoinjava.com/core-java/io/parse-csv-files-in-java/": {
+         "3": 1,
+         "1": 1,
+         "2": 1
+      },
+      "http://opencsv.sourceforge.net/": {
+         "3": 1,
+         "7": 1,
+         "22": 1,
+         "9": 1,
+         "23": 1,
+         "25": 0,
+         "10": 1,
+         "2": 0,
+         "26": 0,
+         "8": 1,
+         "5": 1
+      },
+      "https://stackoverflow.com/questions/44137929/java-convert-string-csv-file-into-double-array": {
+         "1": 1
+      },
+      "https://stackoverflow.com/questions/14274259/read-csv-with-scanner": {
+         "3": 1,
+         "1": 1,
+         "5": 0
+      },
+      "https://www.quickprogrammingtips.com/java/how-to-parse-a-csv-file-in-java.html": {
+         "1": 1,
+         "2": 1
+      },
+      "https://stackoverflow.com/questions/27324187/java-reading-from-csv-file-and-storing-its-information-into-arraylistclass": {
+         "1": 0,
+         "2": 1
+      },
+      "http://www.baeldung.com/java-read-lines-large-file": {
+         "8": 0,
+         "6": 0
+      },
+      "http://www.opencodez.com/java/generic-csv-file-reader-in-java.htm": {
+         "2": 0,
+         "6": 1,
+         "8": 0,
+         "9": 1
+      },
+      "http://www.admfactory.com/read-csv-file-in-java/": {
+         "2": 1
+      },
+      "http://codippa.com/how-to-read-csv-file-in-java/": {
+         "1": 1,
+         "2": 1,
+         "4": 1
+      },
+      "http://www.jusfortechies.com/sample_programs/read-csv-file.php": {
+         "1": 1
+      },
+      "https://commons.apache.org/proper/commons-csv/apidocs/org/apache/commons/csv/CSVParser.html": {
+         "3": 1,
+         "4": 1,
+         "5": 1
+      },
+      "http://blog.pengyifan.com/how-to-read-csv-files-in-java-a-case-study-of-iterator-and-decorator/": {
+         "2": 1
+      },
+      "https://www.mkyong.com/java/how-to-read-and-parse-csv-file-in-java/": {
+         "7": 1,
+         "17": 1,
+         "13": 1,
+         "6": 1,
+         "14": 1,
+         "11": 1
+      },
+      "http://beginwithjava.blogspot.gr/2011/05/java-csv-file-reader.html": {
+         "1": 1
+      },
+      "https://www.java-forums.org/new-java/96732-reading-data-csv-file-java.html": {
+         "3": 1,
+         "1": 1,
+         "2": 1
+      },
+      "https://stackoverflow.com/questions/26285086/reading-a-string-int-and-double-from-csv-file": {
+         "1": 1
+      },
+      "https://commons.apache.org/proper/commons-csv/user-guide.html": {
+         "1": 1,
+         "2": 1,
+         "6": 1,
+         "8": 0,
+         "5": 1
+      },
+      "https://examples.javacodegeeks.com/core-java/writeread-csv-files-in-java-example/": {
+         "2": 0,
+         "4": 1
+      },
+      "https://www.csvreader.com/java_csv_samples.php": {
+         "3": 0,
+         "2": 1
+      },
+      "https://stackoverflow.com/questions/19931929/reading-a-column-from-csv-file-using-java": {
+         "3": 1,
+         "1": 0,
+         "2": 1,
+         "4": 1
+      },
+      "http://www.java67.com/2015/08/how-to-load-data-from-csv-file-in-java.html": {
+         "1": 1
+      },
+      "https://gist.github.com/madan712/8683348": {
+         "24": 0,
+         "22": 0,
+         "37": 1,
+         "20": 0
+      },
+      "http://viralpatel.net/blogs/java-read-write-csv-file/": {
+         "3": 1,
+         "16": 0,
+         "9": 0,
+         "17": 1,
+         "8": 0,
+         "15": 1,
+         "2": 1,
+         "14": 0,
+         "11": 1
+      },
+      "https://codereview.stackexchange.com/questions/149967/java-class-to-read-csv-files": {
+         "1": 1,
+         "2": 1
+      },
+      "http://seleniummaster.com/sitecontent/index.php/java-tutorial/java-csv/299-read-csv-in-java": {
+         "3": 1
+      },
+      "https://processing.org/tutorials/data/": {
+         "3": 0,
+         "34": 0,
+         "18": 0,
+         "53": 0,
+         "71": 0,
+         "77": 0,
+         "10": 0,
+         "35": 0,
+         "15": 0,
+         "12": 0,
+         "23": 0,
+         "22": 0,
+         "51": 0,
+         "50": 0,
+         "1": 0,
+         "27": 0,
+         "6": 0,
+         "4": 0,
+         "40": 1,
+         "72": 0,
+         "29": 0,
+         "17": 0,
+         "24": 0,
+         "2": 0,
+         "20": 0,
+         "7": 0,
+         "49": 0,
+         "19": 0,
+         "66": 0,
+         "69": 0,
+         "68": 0,
+         "75": 0,
+         "47": 0,
+         "30": 0,
+         "41": 0,
+         "78": 0,
+         "26": 0,
+         "13": 0,
+         "14": 0
+      },
+      "http://javarevisited.blogspot.gr/2015/06/2-ways-to-parse-csv-files-in-java-example.html": {
+         "2": 1,
+         "4": 1
+      },
+      "http://crunchify.com/how-to-read-convert-csv-comma-separated-values-file-to-arraylist-in-java-using-split-operation/": {
+         "2": 1
+      },
+      "http://zetcode.com/articles/opencsv/": {
+         "3": 1,
+         "16": 0,
+         "29": 0,
+         "21": 0,
+         "26": 1,
+         "13": 0,
+         "11": 1,
+         "12": 1,
+         "19": 0,
+         "27": 0,
+         "15": 0,
+         "6": 0,
+         "28": 0
+      },
+      "https://www.callicoder.com/java-read-write-csv-file-apache-commons-csv/": {
+         "8": 0,
+         "5": 1
+      },
+      "https://stackoverflow.com/questions/101100/csv-api-for-java": {
+         "3": 1,
+         "7": 1,
+         "2": 1
+      },
+      "http://www.baeldung.com/apache-commons-csv": {
+         "4": 0
+      },
+      "https://super-csv.github.io/super-csv/examples_reading.html": {
+         "2": 0,
+         "6": 1,
+         "8": 1,
+         "4": 1
+      },
+      "https://dzone.com/articles/how-to-read-a-big-csv-file-with-java-8-and-stream": {
+         "1": 0
+      },
+      "https://www.callicoder.com/java-read-write-csv-file-opencsv/": {
+         "12": 1,
+         "9": 1,
+         "13": 0,
+         "6": 1,
+         "14": 0,
+         "5": 1
+      },
+      "http://www.novixys.com/blog/howto-read-csv-file-java/": {
+         "3": 1,
+         "7": 1,
+         "1": 1,
+         "2": 1,
+         "6": 1,
+         "4": 1,
+         "5": 1
+      },
+      "https://www.quora.com/In-Java-how-do-you-go-about-parsing-a-CSV-of-Integers-Doubles-Strings-and-then-saving-them-within-an-ArrayList-s": {
+         "6": 1,
+         "5": 1
+      },
+      "https://forums.mulesoft.com/questions/71459/get-csv-file-as-payload-from-java-and-pass-it-to-t.html": {
+         "1": 1
+      },
+      "https://stackoverflow.com/questions/40074840/reading-a-csv-file-into-a-array": {
+         "1": 1
+      },
+      "http://www.java2s.com/Code/Java/Development-Class/CSVfilereader.htm": {
+         "1": 1
+      }
+   },
+   "query1": {
+      "https://www.npmjs.com/package/js-hash-code": {
+         "7": 0,
+         "6": 0,
+         "8": 0,
+         "10": 0,
+         "2": 0,
+         "4": 0
+      },
+      "http://www.java2s.com/Code/Java/Development-Class/MD5String.htm": {
+         "1": 1
+      },
+      "https://thebadprogrammer.com/2012/04/java-md5-hash.html": {
+         "1": 1
+      },
+      "https://www.mkyong.com/java/java-md5-hashing-example/": {
+         "3": 1,
+         "1": 1
+      },
+      "https://www.avajava.com/tutorials/lessons/how-do-i-generate-an-md5-digest-for-a-string.html": {
+         "1": 1
+      },
+      "https://developer.marklogic.com/learn/2006-05-mljam": {
+         "1": 0,
+         "22": 0,
+         "23": 0
+      },
+      "https://stackoverflow.com/questions/44360812/how-can-i-convert-a-md5-hash-to-an-integral-type-in-java": {
+         "1": 1
+      },
+      "http://www.anyexample.com/programming/java/java_simple_class_to_compute_md5_hash.xml": {
+         "3": 1,
+         "1": 1
+      },
+      "https://stackoverflow.com/questions/415953/how-can-i-generate-an-md5-hash": {
+         "16": 1,
+         "10": 1,
+         "12": 1,
+         "23": 1,
+         "25": 1,
+         "27": 0,
+         "6": 1,
+         "28": 1,
+         "4": 1,
+         "13": 1,
+         "29": 1,
+         "24": 1,
+         "8": 0,
+         "11": 1,
+         "7": 1,
+         "19": 0,
+         "30": 1,
+         "9": 1,
+         "18": 1,
+         "26": 1,
+         "2": 1,
+         "5": 1
+      },
+      "http://hashids.org/": {
+         "3": 0
+      },
+      "https://www.programcreek.com/java-api-examples/index.php?api=org.apache.hadoop.io.MD5Hash": {
+         "3": 1,
+         "32": 1,
+         "31": 1,
+         "10": 0,
+         "35": 1,
+         "15": 1,
+         "22": 1,
+         "34": 1,
+         "41": 1,
+         "25": 0,
+         "1": 1,
+         "27": 0,
+         "28": 1,
+         "4": 1,
+         "13": 1,
+         "29": 1,
+         "17": 1,
+         "44": 1,
+         "8": 1,
+         "33": 0,
+         "48": 1,
+         "11": 1,
+         "7": 1,
+         "49": 1,
+         "30": 1,
+         "9": 0,
+         "47": 1,
+         "26": 1,
+         "2": 1,
+         "5": 1
+      },
+      "http://www.twmacinta.com/myjava/fast_md5.php": {
+         "3": 0,
+         "1": 0
+      },
+      "https://community.talend.com/t5/Design-and-Development/How-to-generate-MD5-hash-value/td-p/43927": {
+         "1": 1
+      },
+      "http://www.javadb.com/string-to-md5-hash-in-java/": {
+         "1": 1
+      },
+      "https://www.quickprogrammingtips.com/java/how-to-generate-md5-hash-in-java.html": {
+         "1": 1
+      },
+      "https://stackoverflow.com/questions/2644847/how-to-generate-a-checksum-for-an-java-object": {
+         "3": 1,
+         "2": 0
+      },
+      "https://codereview.stackexchange.com/questions/153182/java-class-to-compute-and-get-a-md5-hash-as-a-string": {
+         "3": 1,
+         "1": 1,
+         "4": 1,
+         "5": 0
+      },
+      "https://dzone.com/articles/get-md5-hash-few-lines-java": {
+         "1": 1
+      },
+      "https://docs.oracle.com/javase/8/docs/api/java/security/MessageDigest.html": {
+         "2": 0
+      },
+      "http://www.nick-prosch.de/?p=937": {
+         "1": 1,
+         "2": 1
+      },
+      "https://stackoverflow.com/questions/2920044/how-can-you-generate-the-same-md5-hashcode-in-c-sharp-and-java": {
+         "1": 1,
+         "2": 1,
+         "4": 1
+      },
+      "http://www.asjava.com/core-java/java-md5-example/": {
+         "3": 1,
+         "1": 1,
+         "2": 1
+      },
+      "http://www.codexpedia.com/java/java-md5-hash-example-one-way-hash/": {
+         "1": 1
+      },
+      "http://www.codejava.net/coding/how-to-calculate-md5-and-sha-hash-values-in-java": {
+         "3": 1,
+         "9": 1,
+         "1": 0,
+         "2": 1,
+         "6": 1,
+         "4": 0
+      },
+      "http://viralpatel.net/blogs/java-md5-hashing-salting-password/": {
+         "1": 1,
+         "2": 1
+      },
+      "http://www.mytecbits.com/tools/cryptography/md5generator": {
+         "1": 1,
+         "2": 1
+      },
+      "https://howtodoinjava.com/core-java/io/how-to-generate-sha-or-md5-file-checksum-hash-in-java/": {
+         "3": 0,
+         "1": 1,
+         "2": 1
+      },
+      "https://stackoverflow.com/questions/17512384/java-how-to-get-unsighned-md5-hash": {
+         "1": 0
+      },
+      "http://www.baeldung.com/java-md5": {
+         "7": 0,
+         "6": 1,
+         "4": 1,
+         "5": 1
+      },
+      "http://www.java2s.com/Code/Java/Development-Class/MD5hashgenerator.htm": {
+         "1": 0
+      },
+      "https://gist.github.com/ikarius/299062/85b6540c99878f50f082aaee236ef15fc78e527c": {
+         "3": 0,
+         "7": 0,
+         "2": 0
+      },
+      "http://javarevisited.blogspot.gr/2013/03/generate-md5-hash-in-java-string-byte-array-example-tutorial.html": {
+         "1": 0
+      },
+      "https://stackoverflow.com/questions/7776116/java-calculate-md5-hash": {
+         "1": 0
+      }
+   },
+   "query2": {
+      "https://www.geeksforgeeks.org/working-udp-datagramsockets-java/": {
+         "8": 1,
+         "10": 0
+      },
+      "https://developer.apple.com/library/content/documentation/NetworkingInternet/Conceptual/NetworkingTopics/Articles/UsingSocketsandSocketStreams.html": {
+         "30": 0,
+         "19": 0,
+         "66": 0,
+         "35": 0
+      },
+      "https://stackoverflow.com/questions/10556829/sending-and-receiving-udp-packets-using-java": {
+         "1": 1
+      },
+      "https://stackoverflow.com/questions/3997459/send-and-receive-serialize-object-on-udp": {
+         "1": 1
+      },
+      "https://michieldemey.be/blog/network-discovery-using-udp-broadcast/": {
+         "3": 1,
+         "4": 0
+      },
+      "http://codesamplez.com/programming/udp-programming-in-java": {
+         "3": 0,
+         "1": 1,
+         "2": 1
+      },
+      "http://www.cs.usfca.edu/~parrt/course/601/lectures/sockets.html": {
+         "9": 0,
+         "2": 0,
+         "13": 0,
+         "14": 0,
+         "11": 0
+      },
+      "https://www.developer.com/java/web/socket-programming-udp-clientserver-application.html": {
+         "1": 1
+      },
+      "https://docs.spring.io/spring-integration/reference/html/ip.html": {
+         "33": 0
+      },
+      "https://nodejs.org/api/dgram.html": {
+         "1": 0,
+         "4": 0
+      },
+      "http://stahlworks.com/dev/article-18-03-send-udp-network-text-java-simple-source-code-example.html": {
+         "1": 1
+      },
+      "https://demey.io/network-discovery-using-udp-broadcast/": {
+         "3": 1,
+         "2": 1,
+         "4": 0
+      },
+      "http://www.informit.com/articles/article.aspx?p=26405&seqNum=4": {
+         "1": 0,
+         "7": 0,
+         "6": 0,
+         "4": 0,
+         "5": 1
+      },
+      "https://msdn.microsoft.com/en-us/library/system.net.sockets.socket(v=vs.110).aspx": {
+         "2": 0
+      },
+      "https://www.javaworld.com/article/2077322/core-java/core-java-sockets-programming-in-java-a-tutorial.html": {
+         "3": 0,
+         "7": 0,
+         "12": 0,
+         "8": 0,
+         "5": 0,
+         "10": 0,
+         "2": 0,
+         "4": 0,
+         "11": 0
+      },
+      "https://doc.akka.io/docs/akka/current/io-udp.html": {
+         "9": 0,
+         "10": 0,
+         "2": 1,
+         "6": 1,
+         "4": 1,
+         "11": 0
+      },
+      "https://www.javaworld.com/article/2077539/learn-java/java-tip-40--object-transport-via-datagram-packets.html": {
+         "3": 1,
+         "1": 1,
+         "2": 0,
+         "4": 0
+      },
+      "https://stackoverflow.com/questions/8562689/need-to-send-a-udp-packet-and-receive-a-response-in-java": {
+         "1": 1
+      },
+      "http://www.baeldung.com/udp-in-java": {
+         "3": 0,
+         "1": 1,
+         "2": 1
+      },
+      "http://www.binarytides.com/udp-socket-programming-in-java/": {
+         "2": 1,
+         "8": 1
+      },
+      "https://www.codeproject.com/Questions/870316/how-to-transfer-a-file-using-UDP-communication-in": {
+         "1": 1,
+         "2": 1
+      },
+      "http://www.java2s.com/Code/Java/Network-Protocol/SendoutUDPpockets.htm": {
+         "1": 1
+      },
+      "https://community.particle.io/t/multicast-udp-tutorial/19900": {
+         "1": 1,
+         "2": 0
+      },
+      "http://www.romaniancoder.com/create-a-udp-client-server-in-java-using-the-producer-consumer-pattern/": {
+         "2": 0,
+         "4": 0
+      },
+      "https://stackoverflow.com/questions/5236620/how-to-send-an-int-through-udp-in-java": {
+         "3": 0,
+         "1": 0,
+         "2": 0
+      },
+      "https://systembash.com/a-simple-java-udp-server-and-udp-client/": {
+         "1": 1,
+         "2": 1
+      },
+      "https://www.hostedgraphite.com/docs/languageguide/lg_java.html": {
+         "5": 0
+      },
+      "https://stackoverflow.com/questions/36743226/java-send-udp-packet-to-dns-server": {
+         "1": 1
+      },
+      "http://tutorials.jenkov.com/java-networking/udp-datagram-sockets.html": {
+         "3": 1,
+         "1": 0,
+         "6": 0,
+         "4": 1,
+         "5": 0
+      },
+      "https://docs.oracle.com/javase/tutorial/networking/datagrams/clientServer.html": {
+         "3": 0,
+         "6": 0,
+         "8": 0,
+         "11": 1,
+         "10": 1,
+         "2": 1,
+         "5": 1
+      },
+      "https://wiki.python.org/moin/UdpCommunication": {
+         "3": 0,
+         "8": 0,
+         "4": 1,
+         "5": 1
+      },
+      "http://www.java-gaming.org/index.php?topic=36130.0": {
+         "1": 1
+      }
+   },
+   "query3": {
+      "https://stackoverflow.com/questions/33865841/java-string-splitstring-int": {
+         "2": 1
+      },
+      "http://javatutorialhq.com/java/lang/string-class-tutorial/split-string-regex-limit-method-example/": {
+         "1": 1
+      },
+      "https://stackoverflow.com/questions/6305675/split-string-with-separator-in-java": {
+         "6": 1,
+         "10": 1
+      },
+      "https://www.ntu.edu.sg/home/ehchua/programming/java/J3d_String.html": {
+         "13": 0,
+         "17": 1,
+         "15": 1
+      },
+      "https://stackoverflow.com/questions/16787099/how-to-split-the-string-into-string-and-integer-in-java": {
+         "3": 0,
+         "6": 1,
+         "4": 0
+      },
+      "http://crunchify.com/java-stringtokenizer-and-string-split-example/": {
+         "1": 1
+      },
+      "http://www.codevscolor.com/2017/11/java-stringtokenizer-example-split-a-string/": {
+         "3": 1,
+         "1": 1
+      },
+      "http://javadevnotes.com/java-split-string-into-arraylist-examples": {
+         "1": 1
+      },
+      "http://javarevisited.blogspot.gr/2011/09/how-to-string-split-example-in-java.html": {
+         "2": 1,
+         "4": 1,
+         "5": 1
+      },
+      "http://winterbe.com/posts/2015/03/25/java8-examples-string-number-math-files/": {
+         "12": 0,
+         "4": 0,
+         "18": 0
+      },
+      "https://kodejava.org/how-do-i-split-a-string-using-scanner-class/": {
+         "1": 1
+      },
+      "http://javadevnotes.com/java-string-split-tutorial-and-examples": {
+         "3": 1,
+         "18": 1
+      },
+      "https://www.mkyong.com/java/java-how-to-split-a-string/": {
+         "3": 1,
+         "6": 1,
+         "5": 1
+      },
+      "http://pages.cs.wisc.edu/~hasti/cs302/examples/Parsing/parseString.html": {
+         "7": 1,
+         "2": 1,
+         "6": 1,
+         "8": 1
+      },
+      "http://www.baeldung.com/string/split": {
+         "3": 1,
+         "2": 1
+      },
+      "https://www.guru99.com/how-to-split-a-string-in-java.html": {
+         "2": 1,
+         "6": 1
+      },
+      "https://www.regular-expressions.info/java.html": {
+         "1": 0
+      },
+      "http://blog.liveedu.tv/java-split-string/": {
+         "2": 1
+      },
+      "https://www.tutorialspoint.com/java/java_string_split.htm": {
+         "2": 1
+      },
+      "https://howtodoinjava.com/core-java/string-class/4-ways-to-split-tokenize-strings-in-java/": {
+         "3": 1,
+         "1": 1,
+         "4": 1,
+         "5": 1
+      },
+      "http://codingbat.com/doc/java-string-indexof-parsing.html": {
+         "3": 1,
+         "7": 1,
+         "1": 1,
+         "2": 0,
+         "6": 1,
+         "5": 0
+      },
+      "http://www.java67.com/2016/01/how-to-split-string-by-comma-in-java-with-example.html": {
+         "1": 1
+      },
+      "http://www.java2novice.com/java_string_examples/Split_sample_code/": {
+         "1": 1
+      },
+      "https://alvinalexander.com/java/edu/pj/pj010006": {
+         "3": 0,
+         "5": 1
+      },
+      "https://stackoverflow.com/questions/3481828/how-to-split-a-string-in-java": {
+         "3": 1,
+         "16": 0,
+         "21": 1,
+         "10": 1,
+         "15": 1,
+         "12": 1,
+         "23": 1,
+         "25": 1,
+         "1": 0,
+         "27": 1,
+         "28": 1,
+         "4": 1,
+         "29": 1,
+         "17": 1,
+         "24": 0,
+         "2": 1,
+         "20": 1,
+         "7": 1,
+         "19": 1,
+         "9": 1,
+         "18": 1,
+         "26": 1,
+         "13": 1,
+         "14": 1,
+         "5": 1
+      },
+      "https://stackoverflow.com/questions/10796160/splitting-a-java-string-by-the-pipe-symbol-using-split": {
+         "3": 1,
+         "1": 1,
+         "2": 1
+      },
+      "https://codereview.stackexchange.com/questions/161920/split-a-long-string-using-recursive-function": {
+         "38": 1,
+         "16": 1,
+         "42": 1,
+         "9": 1,
+         "23": 1,
+         "1": 1,
+         "6": 0
+      },
+      "https://beginnersbook.com/2013/12/java-string-split-method-example/": {
+         "1": 1
+      },
+      "http://www.rgagnon.com/javadetails/java-0438.html": {
+         "6": 0
+      },
+      "https://docs.oracle.com/javase/7/docs/api/java/lang/String.html": {
+         "4": 0
+      },
+      "https://www.w3resource.com/java-tutorial/string/string_split.php": {
+         "3": 1,
+         "8": 1,
+         "6": 1
+      },
+      "http://tutorials.jenkov.com/java-regex/pattern.html": {
+         "3": 0,
+         "7": 0,
+         "1": 0,
+         "2": 0,
+         "6": 1,
+         "4": 0,
+         "5": 1
+      },
+      "https://codereview.stackexchange.com/questions/121756/converting-the-comma-seprated-numeric-string-into-int-array": {
+         "3": 1,
+         "1": 1,
+         "2": 1
+      },
+      "https://www.geeksforgeeks.org/split-string-java-examples/": {
+         "18": 1,
+         "5": 1
+      },
+      "http://www.vogella.com/tutorials/JavaRegularExpressions/article.html": {
+         "12": 1,
+         "7": 0,
+         "9": 0,
+         "1": 1,
+         "8": 1,
+         "10": 1,
+         "2": 1,
+         "4": 1,
+         "11": 1
+      }
+   },
+   "query4": {
+      "http://rbwhitaker.wikidot.com/java-play-audio": {
+         "1": 1,
+         "2": 0
+      },
+      "https://www.developer.com/java/other/article.php/2173111/Java-Sound-Playing-Back-Audio-Files-using-Java.htm": {
+         "12": 1,
+         "4": 0,
+         "9": 0,
+         "17": 1,
+         "1": 0,
+         "8": 1,
+         "13": 1,
+         "14": 0,
+         "15": 0
+      },
+      "https://www.geeksforgeeks.org/play-audio-file-using-java/": {
+         "1": 1
+      },
+      "https://stackoverflow.com/questions/34534732/play-audio-files-in-java": {
+         "1": 1,
+         "2": 0
+      },
+      "https://stackoverflow.com/questions/41331288/java-how-to-play-an-audio-file-like-wav-and-mp3-from-a-file": {
+         "1": 1,
+         "2": 1
+      },
+      "https://www.javaworld.com/article/2077521/learn-java/java-tip-24--how-to-play-audio-in-applications.html": {
+         "1": 1,
+         "2": 1,
+         "4": 1
+      },
+      "https://stackoverflow.com/questions/26305/how-can-i-play-sound-in-java": {
+         "3": 1,
+         "7": 1,
+         "9": 1,
+         "1": 1,
+         "8": 1,
+         "4": 1,
+         "5": 1
+      },
+      "http://forum.codecall.net/topic/58228-playing-simple-sampled-audio-in-java/": {
+         "3": 1,
+         "1": 0,
+         "2": 0
+      },
+      "https://www.daniweb.com/programming/software-development/threads/475808/how-to-play-mp3-files-in-java-using-eclipse": {
+         "1": 1,
+         "2": 1,
+         "7": 1,
+         "5": 1
+      },
+      "https://www.java-tips.org/java-se-tips-100019/35-java-util-jar/2319-play-an-audio-file-from-a-jar-file.html": {
+         "1": 1
+      },
+      "https://developer.android.com/guide/topics/media/mediaplayer.html": {
+         "3": 1,
+         "16": 0,
+         "7": 1,
+         "8": 0,
+         "5": 1,
+         "6": 0,
+         "4": 1,
+         "15": 0
+      },
+      "http://www.datadisk.co.uk/html_docs/java/multimedia.htm": {
+         "3": 1,
+         "1": 0,
+         "2": 1,
+         "6": 0,
+         "4": 0,
+         "5": 0
+      },
+      "https://stackoverflow.com/questions/42955509/how-to-play-a-simple-audio-file-java": {
+         "1": 1
+      },
+      "https://www.codeproject.com/Questions/470205/play-windows-media-audio-file-wma-in-java": {
+         "1": 1
+      },
+      "https://www.mkyong.com/applet/how-to-load-audio-file-in-applet/": {
+         "1": 1
+      },
+      "https://stackoverflow.com/questions/16870064/how-to-play-an-mp3-file-in-java": {
+         "3": 1,
+         "1": 1,
+         "2": 1
+      },
+      "https://alvinalexander.com/java/java-audio-example-java-au-play-sound": {
+         "1": 1,
+         "2": 1
+      },
+      "https://stackoverflow.com/questions/2416935/how-to-play-wav-files-with-java": {
+         "3": 1,
+         "7": 1,
+         "9": 1,
+         "1": 1,
+         "8": 1,
+         "6": 1,
+         "2": 1,
+         "4": 1,
+         "5": 1
+      },
+      "https://www.math.uni-hamburg.de/doc/java/tutorial/sound/playing.html": {
+         "1": 1,
+         "2": 0,
+         "5": 0
+      },
+      "http://www.java2s.com/Code/Java/Development-Class/AnexampleofloadingandplayingasoundusingaClip.htm": {
+         "1": 1
+      },
+      "https://algs4.cs.princeton.edu/code/edu/princeton/cs/algs4/StdAudio.java.html": {
+         "1": 1
+      },
+      "https://www.sitepoint.com/a-step-by-step-guide-to-building-an-android-audio-player-app/": {
+         "36": 0,
+         "40": 1,
+         "31": 1,
+         "21": 1,
+         "23": 0,
+         "8": 0,
+         "17": 0,
+         "10": 0,
+         "33": 0,
+         "11": 1,
+         "7": 1,
+         "22": 1,
+         "27": 0,
+         "15": 1,
+         "14": 0,
+         "5": 0
+      },
+      "https://docstore.mik.ua/orelly/java/awt/ch14_05.htm": {
+         "1": 1,
+         "5": 1
+      },
+      "http://www.onjava.com/pub/a/onjava/excerpt/jenut3_ch17/index.html": {
+         "1": 1
+      },
+      "https://developer.android.com/guide/topics/media/mediarecorder.html": {
+         "3": 1
+      },
+      "https://docs.oracle.com/javase/tutorial/sound/playing.html": {
+         "6": 0,
+         "5": 0
+      },
+      "http://www.jsresources.org/faq_audio.html": {
+         "47": 1,
+         "9": 0
+      },
+      "https://www.ntu.edu.sg/home/ehchua/programming/java/J8c_PlayingSound.html": {
+         "16": 0,
+         "2": 1,
+         "13": 0,
+         "7": 1,
+         "19": 1,
+         "9": 1,
+         "18": 1,
+         "1": 1,
+         "6": 0,
+         "8": 1,
+         "4": 0,
+         "5": 1
+      },
+      "https://stackoverflow.com/questions/6045384/playing-mp3-and-wav-in-java": {
+         "7": 1,
+         "9": 1,
+         "1": 1,
+         "8": 1,
+         "6": 1,
+         "4": 1,
+         "5": 1
+      },
+      "http://www.codejava.net/coding/how-to-play-back-audio-in-java-with-examples": {
+         "16": 0,
+         "4": 1,
+         "2": 0,
+         "10": 0,
+         "20": 1,
+         "11": 1,
+         "7": 0,
+         "19": 0,
+         "9": 1,
+         "1": 1,
+         "15": 1,
+         "6": 1,
+         "13": 0,
+         "14": 0,
+         "5": 0
+      }
+   },
+   "query5": {
+      "https://www.example-code.com/java/ftp_large_file_upload.asp": {
+         "1": 1
+      },
+      "http://www.simplecodestuffs.com/uploading-file-on-ftp-server/": {
+         "1": 1
+      },
+      "http://www.codejava.net/java-se/networking/ftp/java-ftp-file-upload-tutorial-and-example": {
+         "1": 1
+      },
+      "https://stackoverflow.com/questions/5925572/ftpclient-java-upload-file": {
+         "4": 1
+      },
+      "https://examples.javacodegeeks.com/core-java/apache/commons/net-commons/file-upload-to-ftp-server/": {
+         "1": 1
+      },
+      "http://www.beingjavaguys.com/2013/12/upload-files-to-ftp-server.html": {
+         "2": 1
+      },
+      "http://www.java2s.com/Code/Java/Network-Protocol/UploadfiletoFTPserver.htm": {
+         "1": 1
+      },
+      "https://docs.spring.io/spring-integration/reference/html/ftp.html": {
+         "23": 0,
+         "16": 1,
+         "18": 0,
+         "24": 0,
+         "12": 0,
+         "17": 1,
+         "6": 1,
+         "14": 0,
+         "11": 0
+      },
+      "http://www.oodlestechnologies.com/blogs/Download-files-from-FTP-Server-using-Java-Program": {
+         "1": 0
+      },
+      "https://stackoverflow.com/questions/11600988/uploading-a-file-to-a-ftp-server-from-android-phone": {
+         "3": 1,
+         "1": 1,
+         "2": 1
+      },
+      "http://www.jscape.com/blog/bid/73656/Transferring-Files-with-Java-FTP-Library": {
+         "1": 1,
+         "2": 0
+      },
+      "http://www.zehon.com/FTP_tutorial.htm": {
+         "3": 1,
+         "1": 1,
+         "8": 0,
+         "6": 0,
+         "4": 1,
+         "5": 0
+      },
+      "https://stackoverflow.com/questions/11554939/upload-file-directory-with-ftp": {
+         "2": 1
+      },
+      "https://stackoverflow.com/questions/6527664/how-do-you-upload-a-file-to-an-ftp-server": {
+         "1": 1,
+         "2": 1
+      },
+      "http://www.jibble.org/simpleftp/": {
+         "2": 1
+      },
+      "http://www.memorylack.com/2011/02/upload-files-to-ftp-server-using-java.html": {
+         "2": 1
+      },
+      "https://kodejava.org/how-do-i-upload-file-to-ftp-server/": {
+         "1": 1
+      },
+      "https://stackoverflow.com/questions/17454529/uploading-to-ftp-using-java": {
+         "3": 1,
+         "1": 1,
+         "2": 0
+      },
+      "https://commons.apache.org/proper/commons-net/apidocs/org/apache/commons/net/ftp/FTPClient.html": {
+         "3": 0,
+         "16": 0,
+         "61": 1,
+         "2": 0,
+         "4": 0,
+         "5": 0
+      },
+      "http://www.jscape.com/blog/bid/73826/Secure-File-Transfer-with-Java-FTP-Library": {
+         "1": 1,
+         "2": 0
+      },
+      "http://www.kochnielsen.dk/kurt/blog/?p=162": {
+         "1": 1
+      },
+      "http://www.abodeqa.com/2014/08/24/upload-and-download-file-from-ftp-server-using-java-ftp-client/": {
+         "1": 0
+      },
+      "http://www.learn-it-with-examples.com/web-development/java/java-advanced/upload-file-ftp-java.html": {
+         "1": 1
+      }
+   },
+   "query6": {
+      "https://stackoverflow.com/questions/16095965/initializing-a-thread-in-a-static-block": {
+         "1": 1
+      },
+      "https://stackify.com/top-java-software-errors/": {
+         "27": 0,
+         "3": 0,
+         "40": 0,
+         "48": 0,
+         "55": 0,
+         "44": 0,
+         "8": 0,
+         "17": 0,
+         "20": 0,
+         "12": 0,
+         "57": 0,
+         "51": 0,
+         "18": 0,
+         "47": 0,
+         "58": 0,
+         "25": 0,
+         "2": 0,
+         "28": 0,
+         "4": 0,
+         "9": 0
+      },
+      "https://www.w3resource.com/java-tutorial/java-defining-instantiating-and-starting-threads.php": {
+         "3": 0,
+         "2": 0,
+         "6": 1,
+         "8": 1,
+         "5": 0
+      },
+      "https://beginnersbook.com/2014/07/final-keyword-java-final-variable-method-class/": {
+         "3": 0,
+         "7": 0,
+         "9": 0,
+         "1": 0,
+         "12": 0,
+         "10": 0,
+         "5": 0
+      },
+      "https://www.javamex.com/tutorials/threads/thread_runnable_construction.shtml": {
+         "3": 1,
+         "2": 0,
+         "4": 1,
+         "5": 1
+      },
+      "http://tutorials.jenkov.com/java-concurrency/threadlocal.html": {
+         "7": 1,
+         "2": 0
+      },
+      "https://docs.oracle.com/javase/specs/jls/se8/html/jls-12.html": {
+         "6": 0,
+         "8": 0,
+         "10": 0,
+         "4": 0
+      },
+      "https://docs.oracle.com/javase/tutorial/java/javaOO/anonymousclasses.html": {
+         "3": 0,
+         "1": 0,
+         "4": 0
+      },
+      "https://issues.apache.org/jira/browse/LUCENE-6482": {
+         "4": 1
+      },
+      "https://docs.datastax.com/en/developer/java-driver/3.3/manual/": {
+         "1": 0,
+         "13": 0,
+         "15": 0,
+         "6": 0,
+         "4": 0,
+         "11": 0
+      },
+      "https://developer.android.com/reference/java/lang/Thread.html": {
+         "2": 1
+      },
+      "https://www.leepoint.net/JavaBasics/gui/gui-commentary/guicom-main-thread.html": {
+         "2": 0
+      },
+      "https://dzone.com/articles/painless-introduction-javas-threadlocal-storage": {
+         "3": 1,
+         "1": 1
+      },
+      "http://antrix.net/posts/2012/java-lazy-initialization/": {
+         "1": 0,
+         "6": 0
+      },
+      "https://codereview.stackexchange.com/questions/123305/initialize-and-sum-an-array-in-java-using-threads": {
+         "3": 0,
+         "2": 1,
+         "6": 0
+      },
+      "https://www.farside.org.uk/201510/deadlocks_in_java_class_initialisation": {
+         "1": 1
+      },
+      "https://stackoverflow.com/questions/32325627/initialization-of-threads-in-java": {
+         "3": 1,
+         "1": 0,
+         "2": 0,
+         "4": 1
+      },
+      "https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/Semaphore.html": {
+         "2": 0
+      },
+      "http://tutorials.jenkov.com/java-concurrency/creating-and-starting-threads.html": {
+         "7": 1,
+         "10": 1,
+         "9": 1,
+         "11": 1
+      },
+      "https://help.semmle.com/wiki/display/JAVA/Start+of+thread+in+constructor": {
+         "1": 1,
+         "2": 1
+      },
+      "https://stackoverflow.com/questions/8297705/how-to-implement-thread-safe-lazy-initialization": {
+         "6": 0,
+         "2": 0,
+         "10": 0
+      },
+      "http://www.wideskills.com/java-tutorial/java-threads-tutorial": {
+         "1": 1,
+         "2": 1
+      },
+      "https://www.ibm.com/developerworks/library/j-5things15/index.html": {
+         "7": 0,
+         "8": 0
+      },
+      "https://docstore.mik.ua/orelly/java-ent/jnut/ch04_08.htm": {
+         "3": 1,
+         "7": 1,
+         "1": 1,
+         "8": 0,
+         "6": 0,
+         "2": 1,
+         "4": 0,
+         "5": 1
+      },
+      "https://stackoverflow.com/questions/31873542/how-to-initialize-all-threads-of-a-fixed-thread-pool-before-submitting-any-tasks": {
+         "1": 1
+      },
+      "https://www.javaworld.com/article/2074217/java-concurrency/java-101--understanding-java-threads--part-1--introducing-threads-and-runnables.html": {
+         "1": 1,
+         "2": 1,
+         "4": 1
+      },
+      "https://stackoverflow.com/questions/2469957/is-java-class-initialized-by-the-thread-which-use-it-for-the-first-time": {
+         "1": 1
+      },
+      "https://www.ntu.edu.sg/home/ehchua/programming/java/J5e_multithreading.html": {
+         "38": 0,
+         "16": 0,
+         "39": 0,
+         "53": 1,
+         "21": 1,
+         "13": 1,
+         "8": 1,
+         "18": 1,
+         "33": 0,
+         "35": 1,
+         "28": 0,
+         "57": 0,
+         "22": 1,
+         "52": 1,
+         "30": 1,
+         "43": 0,
+         "58": 1,
+         "41": 0,
+         "2": 0
+      },
+      "https://docs.dhtmlx.com/connector__java__init.html": {
+         "7": 0,
+         "5": 0
+      },
+      "https://wiki.sei.cmu.edu/confluence/display/java/TSM02-J.+Do+not+use+background+threads+during+class+initialization": {
+         "3": 1,
+         "1": 1,
+         "4": 1
+      },
+      "http://bruceeckel.github.io/2017/01/13/constructors-are-not-thread-safe/": {
+         "3": 0,
+         "7": 0,
+         "8": 0,
+         "6": 0,
+         "4": 0,
+         "5": 0
+      }
+   },
+   "query7": {
+      "https://www.developer.com/java/data/creating-a-jdbc-application-in-netbeans-a-step-by-step-guide.html": {
+         "9": 1
+      },
+      "https://stackoverflow.com/questions/4320623/connecting-a-microsoft-access-database-to-java-using-jdbc-and-compiling": {
+         "5": 1
+      },
+      "https://alvinalexander.com/java/edu/pj/jdbc/jdbc0002": {
+         "3": 1
+      },
+      "https://medium.com/modernnerd-code/connecting-to-mysql-db-on-aws-ec2-with-jdbc-for-java-91dba3003abb": {
+         "1": 1,
+         "10": 0
+      },
+      "http://www.sqlitetutorial.net/sqlite-java/sqlite-jdbc-driver/": {
+         "5": 1
+      },
+      "https://jdbc.postgresql.org/documentation/80/connect.html": {
+         "7": 1,
+         "6": 1,
+         "5": 1
+      },
+      "https://spring.io/guides/gs/relational-data-access/": {
+         "6": 0
+      },
+      "http://www.informit.com/articles/article.aspx?p=26251&seqNum=3": {
+         "3": 0,
+         "7": 1,
+         "4": 0,
+         "9": 0,
+         "18": 0,
+         "13": 0,
+         "5": 1,
+         "10": 0,
+         "20": 0,
+         "15": 0
+      },
+      "https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/java-rds.html": {
+         "3": 1,
+         "2": 1,
+         "4": 1
+      },
+      "https://docs.databricks.com/spark/latest/data-sources/sql-databases.html": {
+         "2": 0,
+         "14": 0,
+         "4": 1
+      },
+      "https://stackoverflow.com/questions/10915375/create-a-class-to-connect-to-any-database-using-jdbc": {
+         "1": 1
+      },
+      "https://www.ntu.edu.sg/home/ehchua/programming/java/JDBC_Basic2.html": {
+         "13": 1,
+         "19": 1,
+         "9": 1,
+         "14": 0,
+         "17": 0
+      },
+      "https://mariadb.com/kb/en/library/about-mariadb-connector-j/": {
+         "7": 0,
+         "8": 0,
+         "9": 0,
+         "4": 0,
+         "11": 1
+      },
+      "http://www.vogella.com/tutorials/MySQLJava/article.html": {
+         "4": 1,
+         "5": 1
+      },
+      "http://cs-fundamentals.com/java-programming/java-jdbc-connection-tutorial.php": {
+         "15": 1
+      },
+      "https://www.geeksforgeeks.org/establishing-jdbc-connection-in-java/": {
+         "8": 1
+      },
+      "https://stackoverflow.com/questions/2839321/connect-java-to-a-mysql-database": {
+         "3": 1,
+         "12": 1,
+         "10": 1,
+         "1": 0,
+         "8": 1,
+         "5": 1,
+         "6": 1,
+         "2": 0,
+         "4": 1,
+         "11": 1
+      },
+      "http://tutorials.jenkov.com/jdbc/connection.html": {
+         "3": 1,
+         "1": 0,
+         "2": 0,
+         "4": 0
+      },
+      "https://db.apache.org/derby/integrate/plugin_help/derby_app.html": {
+         "1": 1,
+         "2": 0
+      },
+      "https://stackoverflow.com/questions/4832056/java-jdbc-how-to-connect-to-oracle-using-service-name-instead-of-sid": {
+         "5": 1
+      },
+      "https://www.playframework.com/documentation/2.6.x/JavaDatabase": {
+         "12": 1
+      },
+      "https://docs.microsoft.com/en-us/sql/connect/jdbc/connection-url-sample": {
+         "1": 1
+      },
+      "https://neo4j.com/developer/java/": {
+         "3": 0,
+         "5": 1
+      },
+      "https://stackoverflow.com/questions/2451892/how-do-i-connect-to-a-sql-server-2008-database-using-jdbc": {
+         "7": 1,
+         "2": 1
+      },
+      "https://en.wikipedia.org/wiki/Java_Database_Connectivity": {
+         "3": 0,
+         "7": 1,
+         "1": 1,
+         "2": 1,
+         "6": 0,
+         "4": 0,
+         "5": 0
+      },
+      "http://www.xyzws.com/Javafaq/how-to-connect-to-a-database-using-jdbc/166": {
+         "1": 1
+      },
+      "https://alvinalexander.com/java/edu/pj/pj010024": {
+         "1": 1
+      },
+      "https://www.ntu.edu.sg/home/ehchua/programming/java/JDBC_Basic.html": {
+         "7": 1,
+         "10": 1,
+         "14": 1
+      },
+      "http://www.sqlines.com/articles/java/sql_server_jdbc_connection": {
+         "3": 1
+      },
+      "https://docs.microsoft.com/en-us/azure/mysql/connect-java": {
+         "3": 1,
+         "1": 1,
+         "2": 1,
+         "4": 1
+      },
+      "https://docs.oracle.com/javase/tutorial/jdbc/basics/connecting.html": {
+         "1": 1
+      },
+      "https://www.mkyong.com/jdbc/how-to-connect-to-mysql-with-jdbc-driver-java/": {
+         "1": 1
+      },
+      "https://www.tutorialspoint.com/jdbc/jdbc-db-connections.htm": {
+         "12": 0,
+         "2": 0,
+         "6": 1,
+         "4": 0,
+         "11": 1
+      },
+      "http://doc.nuodb.com/Latest/Content/Database-Operations-Using-Java-JDBC-Driver.htm": {
+         "1": 0,
+         "8": 0,
+         "4": 1,
+         "7": 0
+      },
+      "https://devcenter.heroku.com/articles/connecting-to-relational-databases-on-heroku-with-java": {
+         "16": 0,
+         "17": 1,
+         "11": 1,
+         "15": 0
+      },
+      "https://dev.mysql.com/doc/connector-j/5.1/en/connector-j-usagenotes-connect-drivermanager.html": {
+         "2": 1
+      },
+      "http://www.codejava.net/java-se/jdbc/connect-to-a-database-with-jdbc": {
+         "3": 1,
+         "1": 1
+      },
+      "https://www.mkyong.com/jdbc/connect-to-oracle-db-via-jdbc-driver-java/": {
+         "1": 1,
+         "2": 1
+      },
+      "https://docs.microsoft.com/en-us/sql/connect/jdbc/using-the-jdbc-driver": {
+         "1": 1
+      }
+   },
+   "query8": {
+      "https://www.mkyong.com/java/how-to-decompress-files-from-a-zip-file/": {
+         "1": 1
+      },
+      "https://stackoverflow.com/questions/36548755/read-zip-file-content-without-extracting-in-java": {
+         "1": 1,
+         "2": 1
+      },
+      "https://www.java-tips.org/java-se-tips-100019/38-java-util-zip/601-how-to-read-files-within-a-zip-file.html": {
+         "1": 1
+      },
+      "http://www.codejava.net/java-se/file-io/how-to-read-contents-of-a-zip-file-in-java": {
+         "1": 1,
+         "2": 1
+      },
+      "http://www.avajava.com/tutorials/lessons/how-do-i-unzip-the-contents-of-a-zip-file.html": {
+         "2": 1
+      },
+      "https://www.javamex.com/tutorials/compression/zip.shtml": {
+         "1": 1
+      },
+      "http://www.thecoderscorner.com/team-blog/java-and-jvm/12-reading-a-zip-file-from-java-using-zipinputstream/": {
+         "1": 1
+      },
+      "https://stackoverflow.com/questions/46217926/how-to-read-all-java-files-from-a-zip-file": {
+         "3": 1,
+         "1": 1
+      },
+      "http://www.java2novice.com/java-collections-and-util/zip/file-list/": {
+         "1": 1
+      },
+      "https://stackoverflow.com/questions/35313884/how-to-read-files-in-a-zip-file-in-java": {
+         "1": 1
+      },
+      "http://www.dreamincode.net/forums/topic/244086-write-and-read-zip-file-from-java/": {
+         "1": 0,
+         "2": 1
+      },
+      "http://www.discoversdk.com/blog/processing-zip-files-with-java": {
+         "3": 0,
+         "4": 1
+      },
+      "http://blog.alutam.com/2009/10/31/reading-password-protected-zip-files-in-java/": {
+         "1": 0,
+         "2": 1
+      },
+      "http://blog.codeleak.pl/2014/06/listing-zip-file-content-java-8.html": {
+         "3": 0,
+         "7": 1,
+         "1": 1,
+         "2": 1,
+         "6": 0,
+         "4": 0
+      },
+      "https://stackoverflow.com/questions/4473256/reading-text-files-in-a-zip-archive": {
+         "1": 1
+      },
+      "https://stackoverflow.com/questions/15667125/read-content-from-files-which-are-inside-zip-file": {
+         "3": 1,
+         "1": 1,
+         "2": 0,
+         "5": 1
+      },
+      "https://commons.apache.org/proper/commons-compress/examples.html": {
+         "16": 0,
+         "31": 1,
+         "39": 0,
+         "32": 1,
+         "35": 0,
+         "15": 0,
+         "23": 1,
+         "22": 1,
+         "37": 0,
+         "34": 1,
+         "25": 1,
+         "27": 1,
+         "28": 0,
+         "38": 1,
+         "36": 1,
+         "29": 1,
+         "24": 0,
+         "33": 0,
+         "20": 1,
+         "11": 0,
+         "30": 0,
+         "9": 0,
+         "18": 0,
+         "26": 0
+      },
+      "http://www.javatechblog.com/java/java-program-to-zip-and-unzip-files/": {
+         "1": 1,
+         "2": 1,
+         "6": 1,
+         "4": 1,
+         "7": 0
+      },
+      "https://bugs.java.com/view_bug.do?bug_id=6599383": {
+         "1": 1
+      },
+      "http://zetcode.com/java/zipinputstream/": {
+         "12": 0,
+         "7": 1,
+         "13": 0,
+         "8": 0,
+         "10": 1,
+         "2": 1
+      },
+      "https://www.javaworld.com/article/2077548/learn-java/java-tip-49--how-to-extract-java-resources-from-jar-and-zip-archives.html": {
+         "6": 0,
+         "5": 1
+      },
+      "https://stackoverflow.com/questions/23869228/how-to-read-file-from-zip-using-inputstream": {
+         "1": 1,
+         "2": 1
+      },
+      "http://www.speakingcs.com/2015/07/how-to-unzipextract-files-from-zip.html": {
+         "3": 1,
+         "7": 1,
+         "6": 1,
+         "5": 0
+      },
+      "http://www.java2s.com/Code/Java/File-Input-Output/ReadingtheContentsofaZIPFile.htm": {
+         "1": 1
+      },
+      "http://javarevisited.blogspot.gr/2014/06/2-examples-to-read-zip-files-in-java-zipFile-vs-zipInputStream.html": {
+         "1": 1
+      },
+      "https://gcc.gnu.org/bugzilla/show_bug.cgi?id=36560": {
+         "1": 0
+      },
+      "https://www.boraji.com/java-how-to-decompress-files-from-a-zip-file": {
+         "1": 1,
+         "2": 1
+      },
+      "http://www.oracle.com/technetwork/articles/java/compress-1565076.html": {
+         "23": 0,
+         "16": 0,
+         "21": 0,
+         "17": 0,
+         "24": 1,
+         "2": 0,
+         "10": 0,
+         "20": 0,
+         "11": 0,
+         "12": 1,
+         "7": 1,
+         "22": 1,
+         "3": 1,
+         "14": 0,
+         "15": 0,
+         "6": 0,
+         "13": 0,
+         "4": 0,
+         "5": 0
+      },
+      "https://memorynotfound.com/java-7z-seven-zip-example-compress-decompress-file/": {
+         "3": 1,
+         "2": 1
+      },
+      "http://bioinfo2.ugr.es/OReillyReferenceLibrary/java/fclass/ch18_01.htm": {
+         "1": 1,
+         "2": 0
+      },
+      "http://tutorials.jenkov.com/java-zip/zipfile.html": {
+         "3": 1,
+         "2": 1,
+         "6": 0,
+         "4": 1,
+         "5": 0
+      },
+      "https://dalanzg.github.io/tips-tutorials/java/2016/03/22/how-to-zip-a-folder-in-java/": {
+         "1": 1,
+         "2": 0
+      },
+      "http://www.java67.com/2016/12/how-to-create-zip-file-in-java-zipentry-example.html": {
+         "1": 0
+      },
+      "http://www.baeldung.com/java-compress-and-uncompress": {
+         "3": 0,
+         "1": 0,
+         "2": 0,
+         "4": 1
+      },
+      "http://www.opencodez.com/java/zip-file-using-java.htm": {
+         "3": 1,
+         "1": 0,
+         "2": 0
+      }
+   },
+   "query9": {
+      "https://docs.microsoft.com/en-us/azure/store-sendgrid-java-how-to-send-email": {
+         "7": 0,
+         "2": 1,
+         "6": 1,
+         "4": 0,
+         "5": 0
+      },
+      "https://stackoverflow.com/questions/2020088/sending-email-in-android-using-javamail-api-without-using-the-default-built-in-a": {
+         "12": 1,
+         "1": 1,
+         "8": 1,
+         "7": 1,
+         "5": 1
+      },
+      "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-using-sdk-java.html": {
+         "1": 1
+      },
+      "https://www.tutorialspoint.com/java/java_sending_email.htm": {
+         "1": 1,
+         "8": 0,
+         "6": 1,
+         "4": 1
+      },
+      "http://www.codejava.net/java-ee/javamail/send-e-mail-with-attachment-in-java": {
+         "3": 0,
+         "1": 0,
+         "2": 0,
+         "4": 1
+      },
+      "https://documentation.mailgun.com/en/latest/quickstart-sending.html": {
+         "2": 0,
+         "10": 1,
+         "14": 1,
+         "15": 1
+      },
+      "https://stackoverflow.com/questions/73580/how-do-i-send-an-smtp-message-from-java": {
+         "1": 1
+      },
+      "https://stackoverflow.com/questions/5068827/how-do-i-send-an-html-email": {
+         "7": 0,
+         "8": 1
+      },
+      "http://www.oracle.com/webfolder/technetwork/tutorials/obe/java/javamail/javamail.html": {
+         "4": 0,
+         "9": 0,
+         "8": 0,
+         "10": 0,
+         "13": 0,
+         "14": 0,
+         "11": 1
+      },
+      "http://www.javapractices.com/topic/TopicAction.do?Id=144": {
+         "1": 1
+      },
+      "https://www.javaspecialists.eu/archive/Issue131.html": {
+         "1": 0,
+         "7": 1,
+         "6": 1,
+         "4": 0,
+         "5": 0
+      },
+      "http://javarevisited.blogspot.gr/2014/08/how-to-send-email-from-java-program-example.html": {
+         "1": 1
+      },
+      "https://stackoverflow.com/questions/3649014/send-email-using-java": {
+         "3": 1,
+         "12": 1,
+         "10": 1,
+         "13": 0,
+         "9": 1,
+         "1": 1,
+         "8": 1,
+         "6": 1,
+         "2": 1,
+         "15": 0
+      },
+      "http://www.rgagnon.com/javadetails/java-0321.html": {
+         "3": 1,
+         "1": 1,
+         "2": 1
+      },
+      "https://stackoverflow.com/questions/46663/how-can-i-send-an-email-by-java-application-using-gmail-yahoo-or-hotmail": {
+         "12": 1,
+         "7": 1,
+         "9": 1,
+         "1": 1,
+         "8": 0,
+         "5": 1,
+         "6": 1,
+         "2": 1,
+         "4": 1,
+         "11": 1
+      },
+      "https://stackoverflow.com/questions/11356237/sending-mail-from-yahoo-id-to-other-email-ids-using-javamail-api": {
+         "1": 1,
+         "2": 1
+      },
+      "https://dzone.com/articles/nb-ckeditor-javamail-tutorial": {
+         "7": 1,
+         "8": 1,
+         "10": 0,
+         "6": 0
+      },
+      "https://www.quickprogrammingtips.com/java/how-to-send-email-in-java-using-apache-commons.html": {
+         "1": 1
+      },
+      "http://www.opencodez.com/java/java-mail-framework-using-spring-boot.htm": {
+         "2": 1,
+         "6": 1,
+         "5": 1
+      },
+      "https://www.javaworld.com/article/2075785/java-se/javamail-quick-start.html": {
+         "2": 1,
+         "6": 0,
+         "8": 0,
+         "4": 1,
+         "5": 0
+      },
+      "https://commons.apache.org/proper/commons-email/userguide.html": {
+         "3": 1,
+         "1": 1,
+         "2": 1,
+         "4": 1
+      },
+      "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-using-smtp-java.html": {
+         "1": 1
+      },
+      "https://www.developer.com/java/ent/adding-email-support-to-your-java-applications.html": {
+         "3": 0,
+         "7": 0,
+         "1": 1,
+         "6": 0,
+         "4": 1,
+         "5": 0
+      },
+      "https://stackoverflow.com/questions/884943/how-do-i-send-an-e-mail-in-java": {
+         "3": 1,
+         "7": 1,
+         "1": 1,
+         "8": 1,
+         "4": 1,
+         "5": 1
+      },
+      "https://www.mkyong.com/java/javamail-api-sending-email-via-gmail-smtp-example/": {
+         "3": 1,
+         "2": 1
+      },
+      "http://www.avajava.com/tutorials/lessons/how-do-i-send-an-email-in-java.html": {
+         "1": 1
+      },
+      "https://kodejava.org/how-do-i-send-an-email-with-attachment/": {
+         "1": 1
+      },
+      "https://www.eduonix.com/blog/java-programming-2/learn-use-java-mail-api-send-receive-emails/": {
+         "1": 1,
+         "2": 0
+      },
+      "https://www.geeksforgeeks.org/send-email-using-java-program/": {
+         "1": 1,
+         "7": 1,
+         "5": 1
+      },
+      "https://www.javacodegeeks.com/2011/10/sending-emails-with-java.html": {
+         "1": 1,
+         "8": 0,
+         "6": 0,
+         "5": 0
+      },
+      "https://javaee.github.io/javamail/FAQ": {
+         "3": 0,
+         "16": 0,
+         "31": 0,
+         "21": 0,
+         "32": 1,
+         "17": 0,
+         "20": 0,
+         "15": 0,
+         "7": 1,
+         "34": 1,
+         "23": 0,
+         "26": 0,
+         "28": 0,
+         "14": 1,
+         "5": 0
+      },
+      "https://stackoverflow.com/questions/16026462/send-an-email-using-java-netbeans": {
+         "3": 0,
+         "1": 1
+      },
+      "https://community.apigee.com/questions/48119/how-to-send-email-from-java-callout.html": {
+         "2": 1
+      },
+      "https://www.mailjet.com/docs/code/java/": {
+         "1": 1
+      },
+      "https://www.javatpoint.com/example-of-sending-email-using-java-mail-api": {
+         "1": 0
+      }
+   }
+}

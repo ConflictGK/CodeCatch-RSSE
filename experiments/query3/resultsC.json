@@ -1,0 +1,1452 @@
+[
+  {
+    "query": "How to split string",
+    "url": "https://www.tutorialspoint.com/java/java_string_split.htm",
+    "url position": 7,
+    "segments": [
+      {
+        "code": "\nimport java.io.*;\npublic class Test {\n\n   public static void main(String args[]) {\n      String Str = new String(\"Welcome-to-Tutorialspoint.com\");\n      System.out.println(\"Return Value :\" );      \n      \n      for (String retval: Str.split(\"-\")) {\n         System.out.println(retval);\n      }\n   }\n}\n",
+        "in_page_order": 2,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "String.__init__": true
+        },
+        "APIsProjects": {
+          "String.__init__": 525
+        },
+        "APIsFiles": {
+          "String.__init__": 5322
+        },
+        "APIsSnippets": {
+          "String.__init__": 10364
+        },
+        "APIsQualifiedNames": {
+          "String.__init__": "java.lang.String.__init__"
+        },
+        "API_Ratio": 1.0,
+        "readability": false
+      }
+    ]
+  },
+  {
+    "query": "How to split string",
+    "url": "https://stackoverflow.com/questions/3481828/how-to-split-a-string-in-java",
+    "url position": 1,
+    "segments": [
+      {
+        "code": "<pre><code>import java.util.regex.Pattern;\nimport java.util.regex.Matcher;\n\nclass SplitExample\n{\n    private static Pattern twopart = Pattern.compile(\"(\\\\d+)-(\\\\d+)\");\n\n    public static void checkString(String s)\n    {\n        Matcher m = twopart.matcher(s);\n        if (m.matches()) {\n            System.out.println(s + \" matches; first part is \" + m.group(1) +\n                               \", second part is \" + m.group(2) + \".\");\n        } else {\n            System.out.println(s + \" does not match.\");\n        }\n    }\n\n    public static void main(String[] args) {\n        checkString(\"123-4567\");\n        checkString(\"foo-bar\");\n        checkString(\"123-\");\n        checkString(\"-4567\");\n        checkString(\"123-4567-890\");\n    }\n}\n</code></pre>",
+        "in_page_order": 2,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": "60",
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": false,
+        "APIs": {
+          "Pattern.matcher": true,
+          "Matcher.matches": true,
+          "Matcher.group": true
+        },
+        "APIsProjects": {
+          "Pattern.matcher": 409,
+          "Matcher.matches": 262,
+          "Matcher.group": 332
+        },
+        "APIsFiles": {
+          "Pattern.matcher": 2745,
+          "Matcher.matches": 1166,
+          "Matcher.group": 1794
+        },
+        "APIsSnippets": {
+          "Pattern.matcher": 5608,
+          "Matcher.matches": 2206,
+          "Matcher.group": 5652
+        },
+        "APIsQualifiedNames": {
+          "Pattern.matcher": "java.util.regex.Pattern.matcher",
+          "Matcher.matches": "java.util.regex.Matcher.matches",
+          "Matcher.group": "java.util.regex.Matcher.group"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      },
+      {
+        "code": "<pre><code>import java.io.*;\npublic class Splitting\n{\n\n   public static void main(String args[]) \n  {\n      String Str = new String(\"004-034556\");\n      String[] SplittoArray = Str.split(\"-\");\n      String string1= SplittoArray[0];\n      String string2= SplittoArray[1];\n  }\n}\n</code></pre>",
+        "in_page_order": 19,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": "6",
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": false,
+        "APIs": {
+          "String.__init__": true
+        },
+        "APIsProjects": {
+          "String.__init__": 525
+        },
+        "APIsFiles": {
+          "String.__init__": 5322
+        },
+        "APIsSnippets": {
+          "String.__init__": 10364
+        },
+        "APIsQualifiedNames": {
+          "String.__init__": "java.lang.String.__init__"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      },
+      {
+        "code": "<pre><code>import java.util.*;  \npublic class Splitting\n{  \n   public static void main(String[] args) \n   {  \n       StringTokenizer Str = new StringTokenizer(\"004-034556\");  \n       String string1= Str.nextToken(\"-\");\n       String string2= Str.nextToken(\"-\");\n   }      \n}  \n</code></pre>",
+        "in_page_order": 19,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": "6",
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": false,
+        "APIs": {
+          "StringTokenizer.__init__": true,
+          "StringTokenizer.nextToken": true
+        },
+        "APIsProjects": {
+          "StringTokenizer.__init__": 174,
+          "StringTokenizer.nextToken": 166
+        },
+        "APIsFiles": {
+          "StringTokenizer.__init__": 1069,
+          "StringTokenizer.nextToken": 982
+        },
+        "APIsSnippets": {
+          "StringTokenizer.__init__": 1546,
+          "StringTokenizer.nextToken": 2055
+        },
+        "APIsQualifiedNames": {
+          "StringTokenizer.__init__": "java.util.StringTokenizer.__init__",
+          "StringTokenizer.nextToken": "java.util.StringTokenizer.nextToken"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      },
+      {
+        "code": "<pre><code>import java.util.regex.Matcher;\nimport java.util.regex.Pattern;\n\npublic class TrialClass\n{\n    public static void main(String[] args)\n    {\n        Pattern p=Pattern.compile(\"[0-9]+\");\n        Matcher m=p.matcher(\"004-034556\");\n\n        while(m.find())\n        {\n            System.out.println(m.group());\n        }\n    }\n}\n</code></pre>",
+        "in_page_order": 20,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": "5",
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": false,
+        "APIs": {
+          "Pattern.matcher": true,
+          "Matcher.find": true,
+          "Matcher.group": true
+        },
+        "APIsProjects": {
+          "Pattern.matcher": 409,
+          "Matcher.find": 298,
+          "Matcher.group": 332
+        },
+        "APIsFiles": {
+          "Pattern.matcher": 2745,
+          "Matcher.find": 1294,
+          "Matcher.group": 1794
+        },
+        "APIsSnippets": {
+          "Pattern.matcher": 5608,
+          "Matcher.find": 2552,
+          "Matcher.group": 5652
+        },
+        "APIsQualifiedNames": {
+          "Pattern.matcher": "java.util.regex.Pattern.matcher",
+          "Matcher.find": "java.util.regex.Matcher.find",
+          "Matcher.group": "java.util.regex.Matcher.group"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      }
+    ]
+  },
+  {
+    "query": "How to split string",
+    "url": "https://beginnersbook.com/2013/12/java-string-split-method-example/",
+    "url position": 13,
+    "segments": [
+      {
+        "code": "public class SplitExample{\r\n   public static void main(String args[]){\r\n       String str = new String(\"28/12/2013\");\r\n       System.out.println(\"split(String regex):\");\r\n       String array1[]= str.split(\"/\");\r\n       for (String temp: array1){\r\n          System.out.println(temp);\r\n       }\r\n       System.out.println(\"split(String regex, int limit) with limit=2:\");\r\n       String array2[]= str.split(\"/\", 2);\r\n       for (String temp: array2){\r\n          System.out.println(temp);\r\n       }\r\n       System.out.println(\"split(String regex, int limit) with limit=0:\");\r\n       String array3[]= str.split(\"/\", 0);\r\n       for (String temp: array3){\r\n          System.out.println(temp);\r\n       }\r\n       System.out.println(\"split(String regex, int limit) with limit=-5:\");\r\n       String array4[]= str.split(\"/\", -5);\r\n       for (String temp: array4){\r\n          System.out.println(temp);\r\n       }\r\n   }\r\n}",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "String.__init__": true
+        },
+        "APIsProjects": {
+          "String.__init__": 525
+        },
+        "APIsFiles": {
+          "String.__init__": 5322
+        },
+        "APIsSnippets": {
+          "String.__init__": 10364
+        },
+        "APIsQualifiedNames": {
+          "String.__init__": "java.lang.String.__init__"
+        },
+        "API_Ratio": 1.0,
+        "readability": false
+      }
+    ]
+  },
+  {
+    "query": "How to split string",
+    "url": "https://stackoverflow.com/questions/6305675/split-string-with-separator-in-java",
+    "url position": 4,
+    "segments": [
+      {
+        "code": "public class StringUtil {\n\n  private static final String HT = \"\\t\";\n  private static final String CRLF = \"\\r\\n\";\n\n  // This class cannot be instantiated\n  private StringUtil() {\n  }\n\n  /**\n   * Split the string into an array of strings using one of the separator in\n   * 'sep'.\n   * \n   * @param s\n   *            the string to tokenize\n   * @param sep\n   *            a list of separator to use\n   * \n   * @return the array of tokens (an array of size 1 with the original string\n   *         if no separator found)\n   */\n  public static String[] split(final String s, final String sep) {\n    // convert a String s to an Array, the elements\n    // are delimited by sep\n    final Vector<Integer> tokenIndex = new Vector<Integer>(10);\n    final int len = s.length();\n    int i;\n\n    // Find all characters in string matching one of the separators in 'sep'\n    for (i = 0; i < len; i++)\n      if (sep.indexOf(s.charAt(i)) != -1)\n        tokenIndex.addElement(new Integer(i));\n\n    final int size = tokenIndex.size();\n    final String[] elements = new String[size + 1];\n\n    // No separators: return the string as the first element\n    if (size == 0)\n      elements[0] = s;\n    else {\n      // Init indexes\n      int start = 0;\n      int end = (tokenIndex.elementAt(0)).intValue();\n      // Get the first token\n      elements[0] = s.substring(start, end);\n\n      // Get the mid tokens\n      for (i = 1; i < size; i++) {\n        // update indexes\n        start = (tokenIndex.elementAt(i - 1)).intValue() + 1;\n        end = (tokenIndex.elementAt(i)).intValue();\n        elements[i] = s.substring(start, end);\n      }\n      // Get last token\n      start = (tokenIndex.elementAt(i - 1)).intValue() + 1;\n      elements[i] = (start < s.length()) ? s.substring(start) : \"\";\n    }\n\n    return elements;\n  }\n\n}\n",
+        "in_page_order": 10,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": "0",
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Vector.__init__": true,
+          "Vector.size": true,
+          "Vector.elementAt": true
+        },
+        "APIsProjects": {
+          "Vector.__init__": 141,
+          "Vector.size": 101,
+          "Vector.elementAt": 27
+        },
+        "APIsFiles": {
+          "Vector.__init__": 1749,
+          "Vector.size": 609,
+          "Vector.elementAt": 102
+        },
+        "APIsSnippets": {
+          "Vector.__init__": 3341,
+          "Vector.size": 1719,
+          "Vector.elementAt": 258
+        },
+        "APIsQualifiedNames": {
+          "Vector.__init__": "java.util.Vector.__init__",
+          "Vector.size": "java.util.Vector.size",
+          "Vector.elementAt": "java.util.Vector.elementAt"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      }
+    ]
+  },
+  {
+    "query": "How to split string",
+    "url": "https://codereview.stackexchange.com/questions/161920/split-a-long-string-using-recursive-function",
+    "url position": 23,
+    "segments": [
+      {
+        "code": "import java.util.HashMap;\nimport java.util.Iterator;\nimport java.util.Set;\nimport java.util.Stack;\n\npublic class TUEFSplitter {\n\n\n    public static void main(String[] args) {\n        HashMap hm  = new HashMap();\n        String str = \"TUEF12111492911                  0000BP03251021                    100135514576830122016170412PN03N010125NAMEXXXX MIDDLEN LASTNAM0225NAMEXXXX MIDDLEN LASTNAM07082810198108012ID03I010102010210AFFPT8319BID03I0201020602126165040199789001YPT03T010108425188000302039001YPT03T02011022425188000302029001YPT03T03010842518800030203PT03T04011099877939000302019001YEM03E01010210020831102016030201SC10CIBILTUSC2010204020210030830122016040500694250220260211270205PA03A010124610  B WING   SAGAR TECH0224PLAZA ANDHERI KURLA ROAD0323SAKI NAKA JUNCTION NEAR0422BY SAKI NAKA METRO STN0506MUMBAI06022707064000720802031008280620169001YPA03A020122501-B2 EKTA SAFALE CHS0220OLD AGRA ROAD CASTLE0309NILL NAKA0505THANE0602270706400601080204100824062016PA03A030115SAKINAKA MUMBAI06022707064000700802031008310320169001YPA03A0401362B 501 EKATA SAFALE CHS BH. SAIANAND0206MUMBAI06022707064001640802021008310320169001YTL04T0010213NOT DISCLOSED040210050110808230320160908301020161108301120161205272231305272232827000000000000000000000000000300801112016310801032016IQ04I0010108281220160413NOT DISCLOSED0502050606900000IQ04I0020108231220160413NOT DISCLOSED0502050606400000IQ04I0030108251120160413NOT DISCLOSED050210060550000IQ04I0040108260820160413NOT DISCLOSED050210060550000IQ04I0050108120820160413NOT DISCLOSED0502100606100000IQ04I0060108120720160413NOT DISCLOSED050210060550000IQ04I0070108280620160413NOT DISCLOSED050210060550000IQ04I0080108240620160408RBL BANK05021006041000IQ04I0090108310320160413NOT DISCLOSED050210060550000IQ04I0100108200320160413NOT DISCLOSED05021006041000IQ04I0110108010120160413NOT DISCLOSED050210060515000ES0700016210102**\";\n        hm.put(str.substring(0,4),str.substring(4,94));\n        //System.out.println(\"original String length is \" +str.length());   \n        Stack st = new Stack();\n        st.push(\"ES07\");\n        st.push(\"DR03D0\");\n        st.push(\"IQ04I0\");\n        st.push(\"TL04T0\");\n        st.push(\"PA03A\");\n        st.push(\"SC10CIBILTUSC2\");\n        st.push(\"PI03I\");\n        st.push(\"EM03E\");\n        st.push(\"EC03C\");\n        st.push(\"PT03T\");\n        st.push(\"ID03I\");\n        spillter(str.substring(94),hm ,st);\n        System.out.println(\"Size of HashMap is \" +hm.size());\n        Set set = hm.keySet();\n        Iterator it =set.iterator();\n        while (it.hasNext()) {\n            String key = (String) it.next();\n        System.out.println(\"Keyyyy is \" +key);\n        System.out.println(\"Value is \"+hm.get(key));\n        }\n    }\n\n    static String startPoint = \"PN03N01\";\n    static void spillter(String str ,HashMap hm , Stack st)\n    {\n        if(str.contains(startPoint)){           \n            int i= 1;\n            String searchString;\n            if(st.size()>0)\n            {\n                 searchString = st.pop().toString();    \n            }\n            else\n            {\n                searchString = startPoint;\n            }\n\n            while(true)\n               {        \n                   String fsearch;\n                     if(searchString.equals(\"SC10CIBILTUSC2\") ||searchString.equals(\"ES07\") )\n                     {\n                         fsearch = searchString;\n                     }\n                     else                        \n                     {\n                         if(i<=9)\n                         {\n                             fsearch = searchString+\"0\"+i; \n                         }\n                         else\n                         {\n                             fsearch = searchString+i;   \n                         }\n\n                     }\n                  if(str.contains(fsearch))\n                   {\n                       int end = str.indexOf(fsearch);  \n                       if(end == 0)\n                       {\n                           end = str.length();\n                       }\n                       hm.put(startPoint,str.substring(startPoint.length(), end));                     \n                       str = str.substring(end);\n                       startPoint = fsearch;\n                       i++;\n                       if(fsearch.equals(\"SC10CIBILTUSC2\"))                       \n                           {\n                           spillter(str,hm,st); \n                           break;\n                           }                       \n                   }\n                   else\n                   {\n                       if(str.length()>0 && !str.isEmpty())\n                       {\n                           spillter(str,hm,st);                       \n                       }                         \n                       break;\n                   }\n               }\n            return ;\n            }\n        else\n        {\n            return ;\n        }\n\n    }\n}\n",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": true,
+        "APIs": {
+          "HashMap.__init__": true,
+          "HashMap.put": true,
+          "Stack.__init__": true,
+          "Stack.push": true,
+          "HashMap.size": true,
+          "HashMap.keySet": true,
+          "Set.iterator": true,
+          "Iterator.hasNext": true,
+          "Iterator.next": true,
+          "HashMap.get": true,
+          "Stack.size": true,
+          "Stack.pop": true
+        },
+        "APIsProjects": {
+          "HashMap.__init__": 499,
+          "HashMap.put": 408,
+          "Stack.__init__": 129,
+          "Stack.push": 137,
+          "HashMap.size": 154,
+          "HashMap.keySet": 132,
+          "Set.iterator": 273,
+          "Iterator.hasNext": 495,
+          "Iterator.next": 493,
+          "HashMap.get": 365,
+          "Stack.size": 72,
+          "Stack.pop": 141
+        },
+        "APIsFiles": {
+          "HashMap.__init__": 5846,
+          "HashMap.put": 3495,
+          "Stack.__init__": 402,
+          "Stack.push": 476,
+          "HashMap.size": 422,
+          "HashMap.keySet": 323,
+          "Set.iterator": 2083,
+          "Iterator.hasNext": 8455,
+          "Iterator.next": 8900,
+          "HashMap.get": 2707,
+          "Stack.size": 169,
+          "Stack.pop": 493
+        },
+        "APIsSnippets": {
+          "HashMap.__init__": 10694,
+          "HashMap.put": 11494,
+          "Stack.__init__": 590,
+          "Stack.push": 1196,
+          "HashMap.size": 755,
+          "HashMap.keySet": 498,
+          "Set.iterator": 3470,
+          "Iterator.hasNext": 20169,
+          "Iterator.next": 22207,
+          "HashMap.get": 6926,
+          "Stack.size": 276,
+          "Stack.pop": 884
+        },
+        "APIsQualifiedNames": {
+          "HashMap.__init__": "java.util.HashMap.__init__",
+          "HashMap.put": "java.util.HashMap.put",
+          "Stack.__init__": "java.util.Stack.__init__",
+          "Stack.push": "java.util.Stack.push",
+          "HashMap.size": "java.util.HashMap.size",
+          "HashMap.keySet": "java.util.HashMap.keySet",
+          "Set.iterator": "java.util.Set.iterator",
+          "Iterator.hasNext": "java.util.Iterator.hasNext",
+          "Iterator.next": "java.util.Iterator.next",
+          "HashMap.get": "java.util.HashMap.get",
+          "Stack.size": "java.util.Stack.size",
+          "Stack.pop": "java.util.Stack.pop"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      },
+      {
+        "code": "    System.out.println(\"Size of HashMap is \" +hm.size());\n    Set set = hm.keySet();\n    Iterator it =set.iterator();\n    while (it.hasNext()) {\n        String key = (String) it.next();\n        System.out.println(\"Keyyyy is \" +key);\n        System.out.println(\"Value is \"+hm.get(key));\n    }\n",
+        "in_page_order": 6,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Set.iterator": true,
+          "Iterator.hasNext": true,
+          "Iterator.next": true
+        },
+        "APIsProjects": {
+          "Set.iterator": 273,
+          "Iterator.hasNext": 495,
+          "Iterator.next": 493
+        },
+        "APIsFiles": {
+          "Set.iterator": 2083,
+          "Iterator.hasNext": 8455,
+          "Iterator.next": 8900
+        },
+        "APIsSnippets": {
+          "Set.iterator": 3470,
+          "Iterator.hasNext": 20169,
+          "Iterator.next": 22207
+        },
+        "APIsQualifiedNames": {
+          "Set.iterator": "java.util.Set.iterator",
+          "Iterator.hasNext": "java.util.Iterator.hasNext",
+          "Iterator.next": "java.util.Iterator.next"
+        },
+        "API_Ratio": 1.0,
+        "readability": false
+      },
+      {
+        "code": "static void spillter(String str ,HashMap hm , Stack st)\n{\n    if(str.contains(startPoint)) {           \n        int i= 1;\n        String searchString;\n        if(st.size()>0)\n        {\n             searchString = st.pop().toString();    \n        }\n        else\n        {\n            searchString = startPoint;\n        }\n\n        while(true)\n        {        \n           String fsearch;\n           if(searchString.equals(\"SC10CIBILTUSC2\") ||searchString.equals(\"ES07\") )\n           {\n               fsearch = searchString;\n           }\n           else                        \n           {\n               if(i<=9)\n               {\n                   fsearch = searchString+\"0\"+i; \n               }\n               else\n               {\n                   fsearch = searchString+i;   \n               }\n           }\n           if(str.contains(fsearch))\n           {\n                //codes\n                if(fsearch.equals(\"SC10CIBILTUSC2\"))                       \n                {\n                    //codes\n                    break;\n                }                       \n            }\n            else\n            {\n                //codes                      \n                break;\n            }\n        }\n        return ;\n    }\n    else\n    {\n        return ;\n    }\n}\n",
+        "in_page_order": 9,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Stack.size": true,
+          "Stack.pop": true
+        },
+        "APIsProjects": {
+          "Stack.size": 72,
+          "Stack.pop": 141
+        },
+        "APIsFiles": {
+          "Stack.size": 169,
+          "Stack.pop": 493
+        },
+        "APIsSnippets": {
+          "Stack.size": 276,
+          "Stack.pop": 884
+        },
+        "APIsQualifiedNames": {
+          "Stack.size": "java.util.Stack.size",
+          "Stack.pop": "java.util.Stack.pop"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      },
+      {
+        "code": "static void spillter(String str ,HashMap hm , Stack st)\n{\n    if(str.contains(startPoint)) {           \n        int i = 1;\n        String searchString;\n        if(st.size()>0)\n        {\n            searchString = st.pop().toString();    \n        }\n        else\n        {\n            searchString = startPoint;\n        }\n\n        while(true)\n        {        \n            String fsearch;\n            if(searchString.equals(\"SC10CIBILTUSC2\") ||searchString.equals(\"ES07\") )\n            {\n                fsearch = searchString;\n            }\n            else if(i<=9)\n            {\n                fsearch = searchString+\"0\"+i; \n            }\n            else\n            {\n                fsearch = searchString+i;   \n            }\n            if(str.contains(fsearch))\n            {\n                int end = str.indexOf(fsearch);  \n                if(end == 0)\n                {\n                    end = str.length();\n                }\n                hm.put(startPoint,str.substring(startPoint.length(), end));                     \n                str = str.substring(end);\n                startPoint = fsearch;\n                i++;\n                if(fsearch.equals(\"SC10CIBILTUSC2\"))                       \n                {\n                    spillter(str,hm,st); \n                    break;\n                }                       \n            }\n            else\n            {\n                if(str.length()>0 && !str.isEmpty())\n                {\n                    spillter(str,hm,st);                       \n                }                         \n                break;\n            }\n        }\n    }\n}\n",
+        "in_page_order": 16,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "HashMap.put": true,
+          "Stack.size": true,
+          "Stack.pop": true
+        },
+        "APIsProjects": {
+          "HashMap.put": 408,
+          "Stack.size": 72,
+          "Stack.pop": 141
+        },
+        "APIsFiles": {
+          "HashMap.put": 3495,
+          "Stack.size": 169,
+          "Stack.pop": 493
+        },
+        "APIsSnippets": {
+          "HashMap.put": 11494,
+          "Stack.size": 276,
+          "Stack.pop": 884
+        },
+        "APIsQualifiedNames": {
+          "HashMap.put": "java.util.HashMap.put",
+          "Stack.size": "java.util.Stack.size",
+          "Stack.pop": "java.util.Stack.pop"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      },
+      {
+        "code": "HashMap<String, String> hm = new HashMap<>();\n",
+        "in_page_order": 19,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": true,
+        "APIs": {
+          "HashMap.__init__": true
+        },
+        "APIsProjects": {
+          "HashMap.__init__": 499
+        },
+        "APIsFiles": {
+          "HashMap.__init__": 5846
+        },
+        "APIsSnippets": {
+          "HashMap.__init__": 10694
+        },
+        "APIsQualifiedNames": {
+          "HashMap.__init__": "java.util.HashMap.__init__"
+        },
+        "API_Ratio": 1.0,
+        "readability": false
+      },
+      {
+        "code": "Stack<String> st = new Stack<>();\n",
+        "in_page_order": 20,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": true,
+        "APIs": {
+          "Stack.__init__": true
+        },
+        "APIsProjects": {
+          "Stack.__init__": 129
+        },
+        "APIsFiles": {
+          "Stack.__init__": 402
+        },
+        "APIsSnippets": {
+          "Stack.__init__": 590
+        },
+        "APIsQualifiedNames": {
+          "Stack.__init__": "java.util.Stack.__init__"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      },
+      {
+        "code": "Set set = hm.keySet();\nIterator it = set.iterator();\nwhile (it.hasNext()) {\n    String key = (String) it.next();\n",
+        "in_page_order": 23,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Set.iterator": true,
+          "Iterator.hasNext": true,
+          "Iterator.next": true
+        },
+        "APIsProjects": {
+          "Set.iterator": 273,
+          "Iterator.hasNext": 495,
+          "Iterator.next": 493
+        },
+        "APIsFiles": {
+          "Set.iterator": 2083,
+          "Iterator.hasNext": 8455,
+          "Iterator.next": 8900
+        },
+        "APIsSnippets": {
+          "Set.iterator": 3470,
+          "Iterator.hasNext": 20169,
+          "Iterator.next": 22207
+        },
+        "APIsQualifiedNames": {
+          "Set.iterator": "java.util.Set.iterator",
+          "Iterator.hasNext": "java.util.Iterator.hasNext",
+          "Iterator.next": "java.util.Iterator.next"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      },
+      {
+        "code": "private static void spillter(String str, Map<String, String> hm, Stack<String> st) {\n    if (!str.contains(startPoint)) {\n        return;\n    }\n\n    int i = 1;\n    String searchString;\n    if (st.isEmpty()) {\n        searchString = startPoint;\n    } else {\n        searchString = st.pop();\n    }\n\n    while (true) {\n        String fsearch;\n        if (SC10SOMETHING.equals(searchString) || \"ES07\".equals(searchString)) {\n            fsearch = searchString;\n        } else if (i <= 9) {\n            fsearch = searchString + \"0\" + i;\n        } else {\n            fsearch = searchString + i;\n        }\n\n        if (!str.contains(fsearch)) {\n            if (!str.isEmpty()) {\n                spillter(str, hm, st);\n            }\n            return;\n        }\n\n        int end = str.indexOf(fsearch);\n        if (end == 0) {\n            end = str.length();\n        }\n        hm.put(startPoint, str.substring(startPoint.length(), end));\n        str = str.substring(end);\n        startPoint = fsearch;\n        i++;\n        if (SC10SOMETHING.equals(fsearch)) {\n            spillter(str, hm, st);\n            return;\n        }\n    }\n}\n",
+        "in_page_order": 38,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Stack.isEmpty": true,
+          "Stack.pop": true,
+          "Map.put": true
+        },
+        "APIsProjects": {
+          "Stack.isEmpty": 76,
+          "Stack.pop": 141,
+          "Map.put": 628
+        },
+        "APIsFiles": {
+          "Stack.isEmpty": 193,
+          "Stack.pop": 493,
+          "Map.put": 22575
+        },
+        "APIsSnippets": {
+          "Stack.isEmpty": 373,
+          "Stack.pop": 884,
+          "Map.put": 81686
+        },
+        "APIsQualifiedNames": {
+          "Stack.isEmpty": "java.util.Stack.isEmpty",
+          "Stack.pop": "java.util.Stack.pop",
+          "Map.put": "java.util.Map.put"
+        },
+        "API_Ratio": 1.0,
+        "readability": false
+      },
+      {
+        "code": "import java.util.ArrayList;\nimport java.util.HashMap;\nimport java.util.List;\nimport java.util.regex.Matcher;\nimport java.util.regex.Pattern;\n\npublic class TestRegex {\n    private static String testString = \"THAKARE0225RAJENDRA JANKIRAM THAKARE07082810198108012ID03I010102010210AFFPT8319BID03I0201020602126165040199789001YPT03T010108425188000302039001YPT03T02011022425188000302029001YPT03T03010842518800030203PT03T04011099877939000302019001YEM03E01010210020831102016030201SC10CIBILTUSC2010204020210030830122016040500694250220260211270205PA03A010124610  B WING   SAGAR TECH0224PLAZA ANDHERI KURLA ROAD0323SAKI NAKA JUNCTION NEAR0422BY SAKI NAKA METRO STN0506MUMBAI06022707064000720802031008280620169001YPA03A020122501-B2 EKTA SAFALE CHS0220OLD AGRA ROAD CASTLE0309NILL NAKA0505THANE0602270706400601080204100824062016PA03A030115SAKINAKA MUMBAI06022707064000700802031008310320169001YPA03A0401362B 501 EKATA SAFALE CHS BH. SAIANAND0206MUMBAI06022707064001640802021008310320169001YTL04T0010213NOT DISCLOSED040210050110808230320160908301020161108301120161205272231305272232827000000000000000000000000000300801112016310801032016IQ04I0010108281220160413NOT DISCLOSED0502050606900000IQ04I0020108231220160413NOT DISCLOSED0502050606400000IQ04I0030108251120160413NOT DISCLOSED050210060550000IQ04I0040108260820160413NOT DISCLOSED050210060550000IQ04I0050108120820160413NOT DISCLOSED0502100606100000IQ04I0060108120720160413NOT DISCLOSED050210060550000IQ04I0070108280620160413NOT DISCLOSED050210060550000IQ04I0080108240620160408RBL BANK05021006041000IQ04I0090108310320160413NOT DISCLOSED050210060550000IQ04I0100108200320160413NOT DISCLOSED05021006041000IQ04I0110108010120160413NOT DISCLOSED050210060515000ES0700016210102**\";\n    private static HashMap<String, List<String>> parsedMap = new HashMap<String, List<String>>();\n    public static void main(String[] args) {\n        String regex = \"(?=(((DR03D0|IQ04I0|TL04T0|PA03A|SC10CIBILTUSC2|SC10CIBILTUSC2|PI03I|EM03E|EC03C|PT03T|ID03I)(.*?|\\n.*?)(ES07|DR03D0|IQ04I0|TL04T0|PA03A|SC10CIBILTUSC2|SC10CIBILTUSC2|PI03I|EM03E|EC03C|PT03T|ID03I))|((ES07)(.*))))\";\n        Pattern pattern = Pattern.compile(regex);\n        Matcher matcher = pattern.matcher(testString);\n\n        while(matcher.find()) {\n            String key = matcher.group(3);\n            String value = matcher.group(4);\n\n            if(key == null){\n                key = matcher.group(7);\n                value = matcher.group(8);\n            }\n            System.out.println(key + \" => \" + value);\n            List<String>contentsList = parsedMap.get(key);\n            if(contentsList == null) {\n                contentsList = new ArrayList<String>();\n                parsedMap.put(key, contentsList);\n            }\n            contentsList.add(value);\n        }\n        System.out.println(parsedMap);\n        System.out.println(parsedMap.values().size());\n    }\n}\n",
+        "in_page_order": 42,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": true,
+        "APIs": {
+          "Pattern.matcher": true,
+          "Matcher.find": true,
+          "Matcher.group": true,
+          "HashMap.get": true,
+          "List.__init__": true,
+          "HashMap.put": true,
+          "List.add": true,
+          "HashMap.values": true
+        },
+        "APIsProjects": {
+          "Pattern.matcher": 409,
+          "Matcher.find": 298,
+          "Matcher.group": 332,
+          "HashMap.get": 365,
+          "List.__init__": 690,
+          "HashMap.put": 408,
+          "List.add": 720,
+          "HashMap.values": 111
+        },
+        "APIsFiles": {
+          "Pattern.matcher": 2745,
+          "Matcher.find": 1294,
+          "Matcher.group": 1794,
+          "HashMap.get": 2707,
+          "List.__init__": 28857,
+          "HashMap.put": 3495,
+          "List.add": 30122,
+          "HashMap.values": 208
+        },
+        "APIsSnippets": {
+          "Pattern.matcher": 5608,
+          "Matcher.find": 2552,
+          "Matcher.group": 5652,
+          "HashMap.get": 6926,
+          "List.__init__": 59061,
+          "HashMap.put": 11494,
+          "List.add": 92886,
+          "HashMap.values": 288
+        },
+        "APIsQualifiedNames": {
+          "Pattern.matcher": "java.util.regex.Pattern.matcher",
+          "Matcher.find": "java.util.regex.Matcher.find",
+          "Matcher.group": "java.util.regex.Matcher.group",
+          "HashMap.get": "java.util.HashMap.get",
+          "List.__init__": "java.util.List.__init__",
+          "HashMap.put": "java.util.HashMap.put",
+          "List.add": "java.util.List.add",
+          "HashMap.values": "java.util.HashMap.values"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      }
+    ]
+  },
+  {
+    "query": "How to split string",
+    "url": "https://www.w3resource.com/java-tutorial/string/string_split.php",
+    "url position": 21,
+    "segments": [
+      {
+        "code": "public class SplitExample {\r\n   public static void main(String args[]){\r\n       String str = new String(\"28/12/1972\");\r\n       System.out.println();\r\n       System.out.println(\"split(String regex):\");\r\n       String array1[]= str.split(\"/\");\r\n       for (String abc: array1){\r\n          System.out.println(abc);\r\n       }\r\n       System.out.println(\"split(String regex, int limit) with limit=2:\");\r\n       String array2[]= str.split(\"/\", 2);\r\n       for (String abc: array2){\r\n          System.out.println(abc);\r\n       }\r\n       System.out.println(\"split(String regex, int limit) with limit=0:\");\r\n       String array3[]= str.split(\"/\", 0);\r\n       for (String abc: array3){\r\n          System.out.println(abc);\r\n       }\r\n       System.out.println(\"split(String regex, int limit) with limit=-5:\");\r\n       String array4[]= str.split(\"/\", -5);\r\n       for (String abc: array4){\r\n          System.out.println(abc);\r\n          System.out.println();\r\n       }\r\n   }\r\n}\r\n\r\n",
+        "in_page_order": 8,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "String.__init__": true
+        },
+        "APIsProjects": {
+          "String.__init__": 525
+        },
+        "APIsFiles": {
+          "String.__init__": 5322
+        },
+        "APIsSnippets": {
+          "String.__init__": 10364
+        },
+        "APIsQualifiedNames": {
+          "String.__init__": "java.lang.String.__init__"
+        },
+        "API_Ratio": 1.0,
+        "readability": false
+      }
+    ]
+  },
+  {
+    "query": "How to split string",
+    "url": "http://programming.guide/java/split-string-into-arraylist.html",
+    "url position": 26,
+    "segments": [
+      {
+        "code": "input = \"aaa,bbb,ccc\";\n// To array\nString[] arr = input.split(\",\");\n// To fixed-size list\nList<String> l = Arrays.asList(input.split(\",\"));\n// To ArrayList\nList<String> l2 = new ArrayList<>(Arrays.asList(input.split(\",\")));\n",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "List.__init__": true
+        },
+        "APIsProjects": {
+          "List.__init__": 690
+        },
+        "APIsFiles": {
+          "List.__init__": 28857
+        },
+        "APIsSnippets": {
+          "List.__init__": 59061
+        },
+        "APIsQualifiedNames": {
+          "List.__init__": "java.util.List.__init__"
+        },
+        "API_Ratio": 1.0,
+        "readability": false
+      }
+    ]
+  },
+  {
+    "query": "How to split string",
+    "url": "https://kodejava.org/how-do-i-split-a-string-using-scanner-class/",
+    "url position": 25,
+    "segments": [
+      {
+        "code": "package org.kodejava.example.util;\n\nimport java.io.File;\nimport java.io.FileNotFoundException;\nimport java.util.Scanner;\n\npublic class ScannerTokenDemo {\n    public static void main(String[] args) {\n        // This file contains some data as follow:\n        // a, b, c, d\n        // e, f, g, h\n        // i, j, k, l\n        File file = new File(\"data.txt\");\n        try {\n            // Here we use the Scanner class to read file content line-by-line.\n            Scanner scanner = new Scanner(file);\n            while (scanner.hasNextLine()) {\n                String line = scanner.nextLine();\n\n                // From the above line of code we got a line from the file\n                // content. Now we want to split the line with comma as the \n                // character delimiter.\n                Scanner lineScanner = new Scanner(line);\n                lineScanner.useDelimiter(\",\");\n                while (lineScanner.hasNext()) {\n                    // Get each splitted data from the Scanner object and print\n                    // the value.\n                    String part = lineScanner.next();\n                    System.out.print(part + \", \");\n                }                \n                System.out.println();\n            }\n        } catch (FileNotFoundException e) {\n            e.printStackTrace();\n        }\n    }\n}\n",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "File.__init__": true,
+          "Scanner.__init__": true,
+          "Scanner.hasNextLine": true,
+          "Scanner.nextLine": true,
+          "Scanner.useDelimiter": true,
+          "Scanner.hasNext": true,
+          "Scanner.next": true
+        },
+        "APIsProjects": {
+          "File.__init__": 591,
+          "Scanner.__init__": 123,
+          "Scanner.hasNextLine": 34,
+          "Scanner.nextLine": 49,
+          "Scanner.useDelimiter": 25,
+          "Scanner.hasNext": 28,
+          "Scanner.next": 43
+        },
+        "APIsFiles": {
+          "File.__init__": 13065,
+          "Scanner.__init__": 290,
+          "Scanner.hasNextLine": 56,
+          "Scanner.nextLine": 119,
+          "Scanner.useDelimiter": 38,
+          "Scanner.hasNext": 44,
+          "Scanner.next": 58
+        },
+        "APIsSnippets": {
+          "File.__init__": 40468,
+          "Scanner.__init__": 918,
+          "Scanner.hasNextLine": 70,
+          "Scanner.nextLine": 184,
+          "Scanner.useDelimiter": 46,
+          "Scanner.hasNext": 82,
+          "Scanner.next": 180
+        },
+        "APIsQualifiedNames": {
+          "File.__init__": "java.io.File.__init__",
+          "Scanner.__init__": "java.util.Scanner.__init__",
+          "Scanner.hasNextLine": "java.util.Scanner.hasNextLine",
+          "Scanner.nextLine": "java.util.Scanner.nextLine",
+          "Scanner.useDelimiter": "java.util.Scanner.useDelimiter",
+          "Scanner.hasNext": "java.util.Scanner.hasNext",
+          "Scanner.next": "java.util.Scanner.next"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      }
+    ]
+  },
+  {
+    "query": "How to split string",
+    "url": "https://www.mkyong.com/java/java-how-to-split-a-string/",
+    "url position": 9,
+    "segments": [
+      {
+        "code": "\r\npackage com.mkyong.test\r\n\r\nimport java.util.regex.Pattern;\r\n\r\npublic class TestSplit {\r\n\r\n\tpublic static void main(String[] args) {\r\n\r\n\t\tString test = \"abc.def.123\";\r\n\t\tif(test.contains(\".\")){\r\n\t\t\tString[] output = test.split(\"\\\\.\");\r\n\t\t\tif(output.length!=3){\r\n\t\t\t\tthrow new IllegalArgumentException(test + \" - invalid format!\");\r\n\t\t\t}else{\r\n\t\t\t\tSystem.out.println(output[0]);\r\n\t\t\t\tSystem.out.println(output[1]);\r\n\t\t\t\tSystem.out.println(output[2]);\r\n\t\t\t}\r\n\t\t}else{\r\n\t\t\tthrow new IllegalArgumentException(test + \" - invalid format!\");\r\n\t\t}\r\n\t\t\r\n\t}\r\n\r\n}\r\n",
+        "in_page_order": 5,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "IllegalArgumentException.__init__": true
+        },
+        "APIsProjects": {
+          "IllegalArgumentException.__init__": 675
+        },
+        "APIsFiles": {
+          "IllegalArgumentException.__init__": 17475
+        },
+        "APIsSnippets": {
+          "IllegalArgumentException.__init__": 44486
+        },
+        "APIsQualifiedNames": {
+          "IllegalArgumentException.__init__": "org.jboss.weld.exceptions.IllegalArgumentException.__init__"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      },
+      {
+        "code": "\r\npackage com.mkyong.test\r\n\r\nimport java.util.StringTokenizer;\r\n\r\npublic class TestSplit {\r\n\r\n\tpublic static void main(String[] args) {\r\n\r\n\t\tString test = \"abc.def.123\";\r\n\r\n\t\tStringTokenizer token = new StringTokenizer(test, \".\");\r\n\r\n\t\twhile (token.hasMoreTokens()) {\r\n\t\t\tSystem.out.println(token.nextToken());\r\n\t\t}\r\n\t\t\r\n\t}\r\n\r\n}\r\n",
+        "in_page_order": 6,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "StringTokenizer.__init__": true,
+          "StringTokenizer.hasMoreTokens": true,
+          "StringTokenizer.nextToken": true
+        },
+        "APIsProjects": {
+          "StringTokenizer.__init__": 174,
+          "StringTokenizer.hasMoreTokens": 150,
+          "StringTokenizer.nextToken": 166
+        },
+        "APIsFiles": {
+          "StringTokenizer.__init__": 1069,
+          "StringTokenizer.hasMoreTokens": 850,
+          "StringTokenizer.nextToken": 982
+        },
+        "APIsSnippets": {
+          "StringTokenizer.__init__": 1546,
+          "StringTokenizer.hasMoreTokens": 1421,
+          "StringTokenizer.nextToken": 2055
+        },
+        "APIsQualifiedNames": {
+          "StringTokenizer.__init__": "java.util.StringTokenizer.__init__",
+          "StringTokenizer.hasMoreTokens": "java.util.StringTokenizer.hasMoreTokens",
+          "StringTokenizer.nextToken": "java.util.StringTokenizer.nextToken"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      }
+    ]
+  },
+  {
+    "query": "How to split string",
+    "url": "http://winterbe.com/posts/2015/03/25/java8-examples-string-number-math-files/",
+    "url position": 30,
+    "segments": [
+      {
+        "code": "Pattern pattern = Pattern.compile(\".*@gmail\\\\.com\");\nStream.of(\"bob@gmail.com\", \"alice@hotmail.com\")\n    .filter(pattern.asPredicate())\n    .count();\n// => 1\n",
+        "in_page_order": 4,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Pattern.asPredicate": false
+        },
+        "APIsProjects": {},
+        "APIsFiles": {},
+        "APIsSnippets": {},
+        "APIsQualifiedNames": {},
+        "API_Ratio": 0.0,
+        "readability": false
+      },
+      {
+        "code": "List<String> lines = Files.readAllLines(Paths.get(\"res/nashorn1.js\"));\nlines.add(\"print('foobar');\");\nFiles.write(Paths.get(\"res/nashorn1-modified.js\"), lines);\n",
+        "in_page_order": 14,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "List.add": true
+        },
+        "APIsProjects": {
+          "List.add": 720
+        },
+        "APIsFiles": {
+          "List.add": 30122
+        },
+        "APIsSnippets": {
+          "List.add": 92886
+        },
+        "APIsQualifiedNames": {
+          "List.add": "java.util.List.add"
+        },
+        "API_Ratio": 1.0,
+        "readability": false
+      }
+    ]
+  },
+  {
+    "query": "How to split string",
+    "url": "http://www.vogella.com/tutorials/JavaRegularExpressions/article.html",
+    "url position": 32,
+    "segments": [
+      {
+        "code": "package de.vogella.regex.string;\n\nimport org.junit.Before;\nimport org.junit.Test;\n\nimport static org.junit.Assert.assertFalse;\nimport static org.junit.Assert.assertTrue;\n\npublic class StringMatcherTest {\n    private StringMatcher m;\n\n    @Before\n    public void setup(){\n        m = new StringMatcher();\n    }\n\n    @Test\n    public void testIsTrue() {\n        assertTrue(m.isTrue(\"true\"));\n        assertFalse(m.isTrue(\"true2\"));\n        assertFalse(m.isTrue(\"True\"));\n    }\n\n    @Test\n    public void testIsTrueVersion2() {\n        assertTrue(m.isTrueVersion2(\"true\"));\n        assertFalse(m.isTrueVersion2(\"true2\"));\n        assertTrue(m.isTrueVersion2(\"True\"));;\n    }\n\n    @Test\n    public void testIsTrueOrYes() {\n        assertTrue(m.isTrueOrYes(\"true\"));\n        assertTrue(m.isTrueOrYes(\"yes\"));\n        assertTrue(m.isTrueOrYes(\"Yes\"));\n        assertFalse(m.isTrueOrYes(\"no\"));\n    }\n\n    @Test\n    public void testContainsTrue() {\n        assertTrue(m.containsTrue(\"thetruewithin\"));\n    }\n\n    @Test\n    public void testIsThreeLetters() {\n        assertTrue(m.isThreeLetters(\"abc\"));\n        assertFalse(m.isThreeLetters(\"abcd\"));\n    }\n\n    @Test\n    public void testisNoNumberAtBeginning() {\n        assertTrue(m.isNoNumberAtBeginning(\"abc\"));\n        assertFalse(m.isNoNumberAtBeginning(\"1abcd\"));\n        assertTrue(m.isNoNumberAtBeginning(\"a1bcd\"));\n        assertTrue(m.isNoNumberAtBeginning(\"asdfdsf\"));\n    }\n\n    @Test\n    public void testisIntersection() {\n        assertTrue(m.isIntersection(\"1\"));\n        assertFalse(m.isIntersection(\"abcksdfkdskfsdfdsf\"));\n        assertTrue(m.isIntersection(\"skdskfjsmcnxmvjwque484242\"));\n    }\n\n    @Test\n    public void testLessThenThreeHundred() {\n        assertTrue(m.isLessThenThreeHundred(\"288\"));\n        assertFalse(m.isLessThenThreeHundred(\"3288\"));\n        assertFalse(m.isLessThenThreeHundred(\"328 8\"));\n        assertTrue(m.isLessThenThreeHundred(\"1\"));\n        assertTrue(m.isLessThenThreeHundred(\"99\"));\n        assertFalse(m.isLessThenThreeHundred(\"300\"));\n    }\n\n}",
+        "in_page_order": 7,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "StringMatcher.__init__": true,
+          "StringMatcher.isTrue": false,
+          "StringMatcher.isTrueVersion2": false,
+          "StringMatcher.isTrueOrYes": false,
+          "StringMatcher.containsTrue": false,
+          "StringMatcher.isThreeLetters": false,
+          "StringMatcher.isNoNumberAtBeginning": false,
+          "StringMatcher.isIntersection": false,
+          "StringMatcher.isLessThenThreeHundred": false
+        },
+        "APIsProjects": {
+          "StringMatcher.__init__": 5
+        },
+        "APIsFiles": {
+          "StringMatcher.__init__": 7
+        },
+        "APIsSnippets": {
+          "StringMatcher.__init__": 12
+        },
+        "APIsQualifiedNames": {
+          "StringMatcher.__init__": "org.eclipse.ui.internal.misc.StringMatcher.__init__"
+        },
+        "API_Ratio": 0.1111111111111111,
+        "readability": true
+      },
+      {
+        "code": "package de.vogella.regex.test;\n\nimport java.util.regex.Matcher;\nimport java.util.regex.Pattern;\n\npublic class RegexTestPatternMatcher {\n    public static final String EXAMPLE_TEST = \"This is my small example string which I'm going to use for pattern matching.\";\n\n    public static void main(String[] args) {\n        Pattern pattern = Pattern.compile(\"\\\\w+\");\n        // in case you would like to ignore case sensitivity,\n        // you could use this statement:\n        // Pattern pattern = Pattern.compile(\"\\\\s+\", Pattern.CASE_INSENSITIVE);\n        Matcher matcher = pattern.matcher(EXAMPLE_TEST);\n        // check all occurance\n        while (matcher.find()) {\n            System.out.print(\"Start index: \" + matcher.start());\n            System.out.print(\" End index: \" + matcher.end() + \" \");\n            System.out.println(matcher.group());\n        }\n        // now create a new pattern and matcher to replace whitespace with tabs\n        Pattern replace = Pattern.compile(\"\\\\s+\");\n        Matcher matcher2 = replace.matcher(EXAMPLE_TEST);\n        System.out.println(matcher2.replaceAll(\"\\t\"));\n    }\n}",
+        "in_page_order": 8,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Pattern.matcher": true,
+          "Matcher.find": true,
+          "Matcher.start": true,
+          "Matcher.end": true,
+          "Matcher.group": true,
+          "Matcher.replaceAll": true
+        },
+        "APIsProjects": {
+          "Pattern.matcher": 409,
+          "Matcher.find": 298,
+          "Matcher.start": 131,
+          "Matcher.end": 133,
+          "Matcher.group": 332,
+          "Matcher.replaceAll": 60
+        },
+        "APIsFiles": {
+          "Pattern.matcher": 2745,
+          "Matcher.find": 1294,
+          "Matcher.start": 298,
+          "Matcher.end": 287,
+          "Matcher.group": 1794,
+          "Matcher.replaceAll": 104
+        },
+        "APIsSnippets": {
+          "Pattern.matcher": 5608,
+          "Matcher.find": 2552,
+          "Matcher.start": 625,
+          "Matcher.end": 550,
+          "Matcher.group": 5652,
+          "Matcher.replaceAll": 173
+        },
+        "APIsQualifiedNames": {
+          "Pattern.matcher": "java.util.regex.Pattern.matcher",
+          "Matcher.find": "java.util.regex.Matcher.find",
+          "Matcher.start": "java.util.regex.Matcher.start",
+          "Matcher.end": "java.util.regex.Matcher.end",
+          "Matcher.group": "java.util.regex.Matcher.group",
+          "Matcher.replaceAll": "java.util.regex.Matcher.replaceAll"
+        },
+        "API_Ratio": 1.0,
+        "readability": false
+      },
+      {
+        "code": "package de.vogella.regex.numbermatch;\nimport java.util.regex.Matcher;\nimport java.util.regex.Pattern;\n\nimport org.junit.Test;\n\nimport static org.junit.Assert.assertFalse;\nimport static org.junit.Assert.assertTrue;\n\npublic class CheckNumber {\n\n\n    @Test\n    public void testSimpleTrue() {\n        String s= \"1233\";\n        assertTrue(test(s));\n        s= \"0\";\n        assertFalse(test(s));\n        s = \"29 Kasdkf 2300 Kdsdf\";\n        assertTrue(test(s));\n        s = \"99900234\";\n        assertTrue(test(s));\n    }\n\n\n\n\n    public static boolean test (String s){\n        Pattern pattern = Pattern.compile(\"\\\\d{3}\");\n        Matcher matcher = pattern.matcher(s);\n        if (matcher.find()){\n            return true;\n        }\n        return false;\n    }\n\n}",
+        "in_page_order": 11,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Pattern.matcher": true,
+          "Matcher.find": true
+        },
+        "APIsProjects": {
+          "Pattern.matcher": 409,
+          "Matcher.find": 298
+        },
+        "APIsFiles": {
+          "Pattern.matcher": 2745,
+          "Matcher.find": 1294
+        },
+        "APIsSnippets": {
+          "Pattern.matcher": 5608,
+          "Matcher.find": 2552
+        },
+        "APIsQualifiedNames": {
+          "Pattern.matcher": "java.util.regex.Pattern.matcher",
+          "Matcher.find": "java.util.regex.Matcher.find"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      },
+      {
+        "code": "package de.vogella.regex.weblinks;\n\nimport java.io.BufferedReader;\nimport java.io.IOException;\nimport java.io.InputStreamReader;\nimport java.net.MalformedURLException;\nimport java.net.URL;\nimport java.util.ArrayList;\nimport java.util.List;\nimport java.util.regex.Matcher;\nimport java.util.regex.Pattern;\n\npublic class LinkGetter {\n    private Pattern htmltag;\n    private Pattern link;\n\n    public LinkGetter() {\n        htmltag = Pattern.compile(\"<a\\\\b[^>]*href=\\\"[^>]*>(.*?)</a>\");\n        link = Pattern.compile(\"href=\\\"[^>]*\\\">\");\n    }\n\n    public List<String> getLinks(String url) {\n        List<String> links = new ArrayList<String>();\n        try {\n            BufferedReader bufferedReader = new BufferedReader(\n                    new InputStreamReader(new URL(url).openStream()));\n            String s;\n            StringBuilder builder = new StringBuilder();\n            while ((s = bufferedReader.readLine()) != null) {\n                builder.append(s);\n            }\n\n            Matcher tagmatch = htmltag.matcher(builder.toString());\n            while (tagmatch.find()) {\n                Matcher matcher = link.matcher(tagmatch.group());\n                matcher.find();\n                String link = matcher.group().replaceFirst(\"href=\\\"\", \"\")\n                        .replaceFirst(\"\\\">\", \"\")\n                        .replaceFirst(\"\\\"[\\\\s]?target=\\\"[a-zA-Z_0-9]*\", \"\");\n                if (valid(link)) {\n                    links.add(makeAbsolute(url, link));\n                }\n            }\n        } catch (MalformedURLException e) {\n            e.printStackTrace();\n        } catch (IOException e) {\n            e.printStackTrace();\n        }\n        return links;\n    }\n\n    private boolean valid(String s) {\n        if (s.matches(\"javascript:.*|mailto:.*\")) {\n            return false;\n        }\n        return true;\n    }\n\n    private String makeAbsolute(String url, String link) {\n        if (link.matches(\"http://.*\")) {\n            return link;\n        }\n        if (link.matches(\"/.*\") && url.matches(\".*$[^/]\")) {\n            return url + \"/\" + link;\n        }\n        if (link.matches(\"[^/].*\") && url.matches(\".*[^/]\")) {\n            return url + \"/\" + link;\n        }\n        if (link.matches(\"/.*\") && url.matches(\".*[/]\")) {\n            return url + link;\n        }\n        if (link.matches(\"/.*\") && url.matches(\".*[^/]\")) {\n            return url + link;\n        }\n        throw new RuntimeException(\"Cannot make the link absolute. Url: \" + url\n                + \" Link \" + link);\n    }\n}",
+        "in_page_order": 12,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": true,
+        "APIs": {
+          "List.__init__": true,
+          "URL.__init__": true,
+          "InputStreamReader.__init__": true,
+          "BufferedReader.__init__": true,
+          "StringBuilder.__init__": true,
+          "BufferedReader.readLine": true,
+          "StringBuilder.toString": true,
+          "Pattern.matcher": true,
+          "Matcher.find": true,
+          "Matcher.group": true,
+          "List.add": true,
+          "RuntimeException.__init__": true
+        },
+        "APIsProjects": {
+          "List.__init__": 690,
+          "URL.__init__": 380,
+          "InputStreamReader.__init__": 463,
+          "BufferedReader.__init__": 450,
+          "StringBuilder.__init__": 662,
+          "BufferedReader.readLine": 429,
+          "StringBuilder.toString": 651,
+          "Pattern.matcher": 409,
+          "Matcher.find": 298,
+          "Matcher.group": 332,
+          "List.add": 720,
+          "RuntimeException.__init__": 606
+        },
+        "APIsFiles": {
+          "List.__init__": 28857,
+          "URL.__init__": 2050,
+          "InputStreamReader.__init__": 2683,
+          "BufferedReader.__init__": 2803,
+          "StringBuilder.__init__": 20643,
+          "BufferedReader.readLine": 2480,
+          "StringBuilder.toString": 19289,
+          "Pattern.matcher": 2745,
+          "Matcher.find": 1294,
+          "Matcher.group": 1794,
+          "List.add": 30122,
+          "RuntimeException.__init__": 14398
+        },
+        "APIsSnippets": {
+          "List.__init__": 59061,
+          "URL.__init__": 4004,
+          "InputStreamReader.__init__": 3903,
+          "BufferedReader.__init__": 4179,
+          "StringBuilder.__init__": 30174,
+          "BufferedReader.readLine": 4047,
+          "StringBuilder.toString": 28699,
+          "Pattern.matcher": 5608,
+          "Matcher.find": 2552,
+          "Matcher.group": 5652,
+          "List.add": 92886,
+          "RuntimeException.__init__": 37177
+        },
+        "APIsQualifiedNames": {
+          "List.__init__": "java.util.List.__init__",
+          "URL.__init__": "java.net.URL.__init__",
+          "InputStreamReader.__init__": "java.io.InputStreamReader.__init__",
+          "BufferedReader.__init__": "java.io.BufferedReader.__init__",
+          "StringBuilder.__init__": "java.lang.StringBuilder.__init__",
+          "BufferedReader.readLine": "java.io.BufferedReader.readLine",
+          "StringBuilder.toString": "java.lang.StringBuilder.toString",
+          "Pattern.matcher": "java.util.regex.Pattern.matcher",
+          "Matcher.find": "java.util.regex.Matcher.find",
+          "Matcher.group": "java.util.regex.Matcher.group",
+          "List.add": "java.util.List.add",
+          "RuntimeException.__init__": "java.lang.RuntimeException.__init__"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      }
+    ]
+  },
+  {
+    "query": "How to split string",
+    "url": "http://www.codevscolor.com/2017/11/java-stringtokenizer-example-split-a-string/",
+    "url position": 35,
+    "segments": [
+      {
+        "code": "import java.util.Scanner;\r\nimport java.util.StringTokenizer;\r\n\r\npublic class Main {\r\n\r\n    /**\r\n     * Utility functions for System.out.println() and System.out.print()\r\n     */\r\n    private static void print(String str) {\r\n        System.out.print(str);\r\n    }\r\n\r\n    private static void println(String str) {\r\n        System.out.println(str);\r\n    }\r\n\r\n    public static void main(String args[]) {\r\n        Scanner scanner = new Scanner(System.in);\r\n\r\n        String userInputString;\r\n\r\n        println(\"Please enter a string with multiple words : \");\r\n        userInputString = scanner.nextLine();\r\n        \r\n        StringTokenizer tokenizer = new StringTokenizer(userInputString, \" \");\r\n\r\n        while(tokenizer.hasMoreTokens())\r\n        {\r\n            print(tokenizer.countTokens() + \" words remaining to print . Current word : \");\r\n            println(tokenizer.nextToken());\r\n        }\r\n\r\n    }\r\n}\r\n",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Scanner.__init__": true,
+          "Scanner.nextLine": true,
+          "StringTokenizer.__init__": true,
+          "StringTokenizer.hasMoreTokens": true,
+          "StringTokenizer.countTokens": true,
+          "StringTokenizer.nextToken": true
+        },
+        "APIsProjects": {
+          "Scanner.__init__": 123,
+          "Scanner.nextLine": 49,
+          "StringTokenizer.__init__": 174,
+          "StringTokenizer.hasMoreTokens": 150,
+          "StringTokenizer.countTokens": 78,
+          "StringTokenizer.nextToken": 166
+        },
+        "APIsFiles": {
+          "Scanner.__init__": 290,
+          "Scanner.nextLine": 119,
+          "StringTokenizer.__init__": 1069,
+          "StringTokenizer.hasMoreTokens": 850,
+          "StringTokenizer.countTokens": 172,
+          "StringTokenizer.nextToken": 982
+        },
+        "APIsSnippets": {
+          "Scanner.__init__": 918,
+          "Scanner.nextLine": 184,
+          "StringTokenizer.__init__": 1546,
+          "StringTokenizer.hasMoreTokens": 1421,
+          "StringTokenizer.countTokens": 223,
+          "StringTokenizer.nextToken": 2055
+        },
+        "APIsQualifiedNames": {
+          "Scanner.__init__": "java.util.Scanner.__init__",
+          "Scanner.nextLine": "java.util.Scanner.nextLine",
+          "StringTokenizer.__init__": "java.util.StringTokenizer.__init__",
+          "StringTokenizer.hasMoreTokens": "java.util.StringTokenizer.hasMoreTokens",
+          "StringTokenizer.countTokens": "java.util.StringTokenizer.countTokens",
+          "StringTokenizer.nextToken": "java.util.StringTokenizer.nextToken"
+        },
+        "API_Ratio": 1.0,
+        "readability": false
+      },
+      {
+        "code": "import java.util.Scanner;\r\nimport java.util.StringTokenizer;\r\n\r\npublic class Main {\r\n\r\n    /**\r\n     * Utility functions for System.out.println() and System.out.print()\r\n     */\r\n    private static void print(String str) {\r\n        System.out.print(str);\r\n    }\r\n\r\n    private static void println(String str) {\r\n        System.out.println(str);\r\n    }\r\n\r\n    public static void main(String args[]) {\r\n        Scanner scanner = new Scanner(System.in);\r\n\r\n        String userInputString;\r\n\r\n        println(\"Please enter a string with multiple words : \");\r\n        userInputString = scanner.nextLine();\r\n\r\n        StringTokenizer tokenizer = new StringTokenizer(userInputString, \"$\");\r\n\r\n        while(tokenizer.hasMoreTokens())\r\n        {\r\n            print(tokenizer.countTokens() + \" words remaining to print . Current word : \");\r\n            println(tokenizer.nextToken());\r\n        }\r\n\r\n    }\r\n}\r\n",
+        "in_page_order": 3,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Scanner.__init__": true,
+          "Scanner.nextLine": true,
+          "StringTokenizer.__init__": true,
+          "StringTokenizer.hasMoreTokens": true,
+          "StringTokenizer.countTokens": true,
+          "StringTokenizer.nextToken": true
+        },
+        "APIsProjects": {
+          "Scanner.__init__": 123,
+          "Scanner.nextLine": 49,
+          "StringTokenizer.__init__": 174,
+          "StringTokenizer.hasMoreTokens": 150,
+          "StringTokenizer.countTokens": 78,
+          "StringTokenizer.nextToken": 166
+        },
+        "APIsFiles": {
+          "Scanner.__init__": 290,
+          "Scanner.nextLine": 119,
+          "StringTokenizer.__init__": 1069,
+          "StringTokenizer.hasMoreTokens": 850,
+          "StringTokenizer.countTokens": 172,
+          "StringTokenizer.nextToken": 982
+        },
+        "APIsSnippets": {
+          "Scanner.__init__": 918,
+          "Scanner.nextLine": 184,
+          "StringTokenizer.__init__": 1546,
+          "StringTokenizer.hasMoreTokens": 1421,
+          "StringTokenizer.countTokens": 223,
+          "StringTokenizer.nextToken": 2055
+        },
+        "APIsQualifiedNames": {
+          "Scanner.__init__": "java.util.Scanner.__init__",
+          "Scanner.nextLine": "java.util.Scanner.nextLine",
+          "StringTokenizer.__init__": "java.util.StringTokenizer.__init__",
+          "StringTokenizer.hasMoreTokens": "java.util.StringTokenizer.hasMoreTokens",
+          "StringTokenizer.countTokens": "java.util.StringTokenizer.countTokens",
+          "StringTokenizer.nextToken": "java.util.StringTokenizer.nextToken"
+        },
+        "API_Ratio": 1.0,
+        "readability": false
+      }
+    ]
+  },
+  {
+    "query": "How to split string",
+    "url": "https://www.ntu.edu.sg/home/ehchua/programming/java/J3d_String.html",
+    "url position": 37,
+    "segments": [
+      {
+        "code": "\r\nString str1 = \"Java is Hot\";           // Implicit construction via string literal\r\nString str2 = new String(\"I'm cool\");  // Explicit construction via new",
+        "in_page_order": 4,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "String.__init__": true
+        },
+        "APIsProjects": {
+          "String.__init__": 525
+        },
+        "APIsFiles": {
+          "String.__init__": 5322
+        },
+        "APIsSnippets": {
+          "String.__init__": 10364
+        },
+        "APIsQualifiedNames": {
+          "String.__init__": "java.lang.String.__init__"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      },
+      {
+        "code": "\r\nString s1 = \"Hello\";              // String literal\r\nString s2 = \"Hello\";              // String literal\r\nString s3 = s1;                   // same reference\r\nString s4 = new String(\"Hello\");  // String object\r\nString s5 = new String(\"Hello\");  // String object",
+        "in_page_order": 5,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "String.__init__": true
+        },
+        "APIsProjects": {
+          "String.__init__": 525
+        },
+        "APIsFiles": {
+          "String.__init__": 5322
+        },
+        "APIsSnippets": {
+          "String.__init__": 10364
+        },
+        "APIsQualifiedNames": {
+          "String.__init__": "java.lang.String.__init__"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      },
+      {
+        "code": "\r\n// Create a string of YYYY-MM-DD HH:MM:SS\r\nint year = 2010, month = 10, day = 10;\r\nint hour = 10, minute = 10, second = 10;\r\nString dateStr = new StringBuilder()\r\n      .append(year).append(\"-\").append(month).append(\"-\").append(day).append(\" \")\r\n      .append(hour).append(\":\").append(minute).append(\":\").append(second).toString();\r\nSystem.out.println(dateStr);\r\n   \r\n// StringBuilder is more efficient than String concatenation\r\nString anotherDataStr = year + \"-\" + month + \"-\" + day + \" \" + hour + \":\" + minute + \":\" + second;\r\nSystem.out.println(anotherDataStr);",
+        "in_page_order": 9,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "StringBuilder.__init__": true
+        },
+        "APIsProjects": {
+          "StringBuilder.__init__": 662
+        },
+        "APIsFiles": {
+          "StringBuilder.__init__": 20643
+        },
+        "APIsSnippets": {
+          "StringBuilder.__init__": 30174
+        },
+        "APIsQualifiedNames": {
+          "StringBuilder.__init__": "java.lang.StringBuilder.__init__"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      },
+      {
+        "code": "\r\nString msg = new StringBuffer().append(\"a\").append(\"b\").append(\"c\").toString();",
+        "in_page_order": 11,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": true,
+        "APIs": {
+          "StringBuffer.__init__": true
+        },
+        "APIsProjects": {
+          "StringBuffer.__init__": 364
+        },
+        "APIsFiles": {
+          "StringBuffer.__init__": 5424
+        },
+        "APIsSnippets": {
+          "StringBuffer.__init__": 8242
+        },
+        "APIsQualifiedNames": {
+          "StringBuffer.__init__": "java.lang.StringBuffer.__init__"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      },
+      {
+        "code": "\r\n// Reversing a long String via a String vs. a StringBuffer\r\npublic class StringsBenchMark {\r\n   public static void main(String[] args) {\r\n      long beginTime, elapsedTime;\r\n \r\n      // Build a long string\r\n      String str = \"\";\r\n      int size = 16536;\r\n      char ch = 'a';\r\n      beginTime = System.nanoTime();   // Reference time in nanoseconds\r\n      for (int count = 0; count < size; ++count) {\r\n         str += ch;\r\n         ++ch;\r\n         if (ch > 'z') {\r\n            ch = 'a';\r\n         }\r\n      }\r\n      elapsedTime = System.nanoTime() - beginTime;\r\n      System.out.println(\"Elapsed Time is \" + elapsedTime/1000 + \" usec (Build String)\");\r\n \r\n      // Reverse a String by building another String character-by-character in the reverse order\r\n      String strReverse = \"\";\r\n      beginTime = System.nanoTime();\r\n      for (int pos = str.length() - 1; pos >= 0 ; pos--) {\r\n         strReverse += str.charAt(pos);   // Concatenate\r\n      }\r\n      elapsedTime = System.nanoTime() - beginTime;\r\n      System.out.println(\"Elapsed Time is \" + elapsedTime/1000 + \" usec (Using String to reverse)\");\r\n \r\n      // Reverse a String via an empty StringBuffer by appending characters in the reverse order\r\n      beginTime = System.nanoTime();\r\n      StringBuffer sBufferReverse = new StringBuffer(size);\r\n      for (int pos = str.length() - 1; pos >= 0 ; pos--) {\r\n         sBufferReverse.append(str.charAt(pos));      // append\r\n      }\r\n      elapsedTime = System.nanoTime() - beginTime;\r\n      System.out.println(\"Elapsed Time is \" + elapsedTime/1000 + \" usec (Using StringBuffer to reverse)\");\r\n \r\n      // Reverse a String by creating a StringBuffer with the given String and invoke its reverse()\r\n      beginTime = System.nanoTime();\r\n      StringBuffer sBufferReverseMethod = new StringBuffer(str);\r\n      sBufferReverseMethod.reverse();     // use reverse() method\r\n      elapsedTime = System.nanoTime() - beginTime;\r\n      System.out.println(\"Elapsed Time is \" + elapsedTime/1000 + \" usec (Using StringBuffer's reverse() method)\");\r\n \r\n      // Reverse a String via an empty StringBuilder by appending characters in the reverse order\r\n      beginTime = System.nanoTime();\r\n      StringBuilder sBuilderReverse = new StringBuilder(size);\r\n      for (int pos = str.length() - 1; pos >= 0 ; pos--) {\r\n         sBuilderReverse.append(str.charAt(pos));\r\n      }\r\n      elapsedTime = System.nanoTime() - beginTime;\r\n      System.out.println(\"Elapsed Time is \" + elapsedTime/1000 + \" usec (Using StringBuilder to reverse)\");\r\n \r\n      // Reverse a String by creating a StringBuilder with the given String and invoke its reverse()\r\n      beginTime = System.nanoTime();\r\n      StringBuffer sBuilderReverseMethod = new StringBuffer(str);\r\n      sBuilderReverseMethod.reverse();\r\n      elapsedTime = System.nanoTime() - beginTime;\r\n      System.out.println(\"Elapsed Time is \" + elapsedTime/1000 + \" usec (Using StringBuidler's reverse() method)\");\r\n   }\r\n}",
+        "in_page_order": 13,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": true,
+        "APIs": {
+          "long": true,
+          "StringBuffer.__init__": true,
+          "StringBuffer.reverse": true,
+          "StringBuilder.__init__": true
+        },
+        "APIsProjects": {
+          "long": 444,
+          "StringBuffer.__init__": 364,
+          "StringBuffer.reverse": 4,
+          "StringBuilder.__init__": 662
+        },
+        "APIsFiles": {
+          "long": 3960,
+          "StringBuffer.__init__": 5424,
+          "StringBuffer.reverse": 4,
+          "StringBuilder.__init__": 20643
+        },
+        "APIsSnippets": {
+          "long": 6309,
+          "StringBuffer.__init__": 8242,
+          "StringBuffer.reverse": 5,
+          "StringBuilder.__init__": 30174
+        },
+        "APIsQualifiedNames": {
+          "StringBuffer.__init__": "java.lang.StringBuffer.__init__",
+          "StringBuilder.__init__": "java.lang.StringBuilder.__init__"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      },
+      {
+        "code": "\r\n// Reverse the words in a String using StringTokenizer\r\nimport java.util.StringTokenizer;\r\npublic class StringTokenizerTest {\r\n   public static void main(String[] args) {\r\n      String str = \"Monday Tuesday Wednesday Thursday Friday Saturday Sunday\";\r\n      String strReverse;\r\n      StringBuilder sb = new StringBuilder();\r\n      StringTokenizer st = new StringTokenizer(str);\r\n   \r\n      while (st.hasMoreTokens()) {\r\n         sb.insert(0, st.nextToken());\r\n         if (st.hasMoreTokens()) {\r\n            sb.insert(0, \" \");\r\n         }\r\n      }\r\n      strReverse = sb.toString();\r\n      System.out.println(strReverse);\r\n   }\r\n}",
+        "in_page_order": 15,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "StringBuilder.__init__": true,
+          "StringTokenizer.__init__": true,
+          "StringTokenizer.hasMoreTokens": true,
+          "StringTokenizer.nextToken": true,
+          "StringBuilder.insert": true,
+          "StringBuilder.toString": true
+        },
+        "APIsProjects": {
+          "StringBuilder.__init__": 662,
+          "StringTokenizer.__init__": 174,
+          "StringTokenizer.hasMoreTokens": 150,
+          "StringTokenizer.nextToken": 166,
+          "StringBuilder.insert": 86,
+          "StringBuilder.toString": 651
+        },
+        "APIsFiles": {
+          "StringBuilder.__init__": 20643,
+          "StringTokenizer.__init__": 1069,
+          "StringTokenizer.hasMoreTokens": 850,
+          "StringTokenizer.nextToken": 982,
+          "StringBuilder.insert": 190,
+          "StringBuilder.toString": 19289
+        },
+        "APIsSnippets": {
+          "StringBuilder.__init__": 30174,
+          "StringTokenizer.__init__": 1546,
+          "StringTokenizer.hasMoreTokens": 1421,
+          "StringTokenizer.nextToken": 2055,
+          "StringBuilder.insert": 486,
+          "StringBuilder.toString": 28699
+        },
+        "APIsQualifiedNames": {
+          "StringBuilder.__init__": "java.lang.StringBuilder.__init__",
+          "StringTokenizer.__init__": "java.util.StringTokenizer.__init__",
+          "StringTokenizer.hasMoreTokens": "java.util.StringTokenizer.hasMoreTokens",
+          "StringTokenizer.nextToken": "java.util.StringTokenizer.nextToken",
+          "StringBuilder.toString": "java.lang.StringBuilder.toString"
+        },
+        "API_Ratio": 1.0,
+        "readability": false
+      },
+      {
+        "code": "\r\n// Reverse the words in a String using split() method of the String class\r\npublic class StringSplitTest {\r\n   public static void main(String[] args) {\r\n      String str = \"Monday Tuesday Wednesday Thursday Friday Saturday Sunday\";\r\n      String[] tokens = str.split(\"\\\\s\");  // white space '\\s' as delimiter\r\n      StringBuilder sb = new StringBuilder();\r\n      for (int i = 0; i < tokens.length; ++i) {\r\n         sb.insert(0, tokens[i]);\r\n         if (i < tokens.length - 1) {\r\n            sb.insert(0, \" \");\r\n         }\r\n      }\r\n      String strReverse = sb.toString();\r\n      System.out.println(strReverse);\r\n   }\r\n}",
+        "in_page_order": 17,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "StringBuilder.__init__": true,
+          "StringBuilder.toString": true
+        },
+        "APIsProjects": {
+          "StringBuilder.__init__": 662,
+          "StringBuilder.toString": 651
+        },
+        "APIsFiles": {
+          "StringBuilder.__init__": 20643,
+          "StringBuilder.toString": 19289
+        },
+        "APIsSnippets": {
+          "StringBuilder.__init__": 30174,
+          "StringBuilder.toString": 28699
+        },
+        "APIsQualifiedNames": {
+          "StringBuilder.__init__": "java.lang.StringBuilder.__init__",
+          "StringBuilder.toString": "java.lang.StringBuilder.toString"
+        },
+        "API_Ratio": 1.0,
+        "readability": false
+      }
+    ]
+  }
+]

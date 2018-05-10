@@ -1,0 +1,12 @@
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+/**
+ * A simple example program that reads a text file line by line using Java 8.
+ */
+public class ReadTextFileExample {
+    public static void main(String[] args) throws IOException {
+        Files.lines(Paths.get("c:\\temp\\testfile.txt")).forEach(System.out::println);
+    }
+}

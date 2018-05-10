@@ -1,0 +1,5 @@
+
+Path file = ...;
+byte[] buf = ...;
+Files.write(file, buf);
+

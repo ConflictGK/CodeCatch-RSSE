@@ -1,0 +1,2 @@
+for(String line: FileUtils.readLines("my-text-file"))
+    System.out.println(line);

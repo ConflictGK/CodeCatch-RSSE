@@ -1,0 +1,1746 @@
+{
+   "num_snippets_per_cluster": [
+      19,
+      13,
+      13,
+      10,
+      10
+   ],
+   "num_clusters": 5,
+   "clusters": [
+      {
+         "cluster_snippets": [
+            {
+               "Cluster": 0,
+               "Code": "\r\nimport java.math.BigInteger;\r\nimport java.security.MessageDigest;\r\nimport java.security.NoSuchAlgorithmException;\r\npublic class MD5Hash {\r\n \r\n\tprivate final static String salt=\"DGE$5SGr@3VsHYUMas2323E4d57vfBfFSTRU@!DSH(*%FDSdfg13sgfsg\";\r\n\t\r\n    public static void main(String[] args) {\r\n            String password = \"thisismypassword\";\r\n            String empty =  null;\r\n            String msg = \"This is a text message.\";\r\n            System.out.println(password+\" MD5 hashed to>>>>>>> \" + md5Hash(password));\r\n            System.out.println(empty+\" MD5 hashed to>>>>>>> \" + md5Hash(null));\r\n            System.out.println(msg+\" MD5 hashed to>>>>>>> \" + md5Hash(msg));\r\n    }\r\n\r\n    //Takes a string, and converts it to md5 hashed string.\r\n    public static String md5Hash(String message) {\r\n        String md5 = \"\";\r\n        if(null == message) \r\n        \treturn null;\r\n        \r\n        message = message+salt;//adding a salt to the string before it gets hashed.\r\n        try {\r\n\t        MessageDigest digest = MessageDigest.getInstance(\"MD5\");//Create MessageDigest object for MD5\r\n\t        digest.update(message.getBytes(), 0, message.length());//Update input string in message digest\r\n\t        md5 = new BigInteger(1, digest.digest()).toString(16);//Converts message digest value in base 16 (hex)\r\n \r\n        } catch (NoSuchAlgorithmException e) {\r\n            e.printStackTrace();\r\n        }\r\n        return md5;\r\n    }\r\n}\r\n",
+               "LOC": 36,
+               "Url": "http://www.codexpedia.com/java/java-md5-hash-example-one-way-hash/",
+               "Score": 1.0,
+               "API_Weights": 21.8349887694,
+               "API_Qualified_Names": {
+                  "MessageDigest.update": "java.security.MessageDigest.update",
+                  "MessageDigest.digest": "java.security.MessageDigest.digest",
+                  "BigInteger.__init__": "java.math.BigInteger.__init__"
+               },
+               "Url_Position": 18,
+               "In_Page_Order": 1,
+               "Num_API_Calls": 3,
+               "Dist_Center": 0.0755903205,
+               "MethodInvocations": [
+                  "BigInteger.__init__",
+                  "MessageDigest.digest",
+                  "MessageDigest.update"
+               ]
+            },
+            {
+               "Cluster": 0,
+               "Code": "private String md5(String s) {\n    try {\n        MessageDigest m = MessageDigest.getInstance(\"MD5\");\n        m.update(s.getBytes(), 0, s.length());\n        BigInteger i = new BigInteger(1,m.digest());\n        return String.format(\"%1$032x\", i);         \n    } catch (NoSuchAlgorithmException e) {\n        e.printStackTrace();\n    }\n    return null;\n}\n",
+               "LOC": 12,
+               "Url": "https://stackoverflow.com/questions/415953/how-can-i-generate-an-md5-hash",
+               "Score": 1.0,
+               "API_Weights": 21.8349887694,
+               "API_Qualified_Names": {
+                  "MessageDigest.update": "java.security.MessageDigest.update",
+                  "MessageDigest.digest": "java.security.MessageDigest.digest",
+                  "BigInteger.__init__": "java.math.BigInteger.__init__"
+               },
+               "Url_Position": 1,
+               "In_Page_Order": 13,
+               "Num_API_Calls": 3,
+               "Dist_Center": 0.0755903205,
+               "MethodInvocations": [
+                  "BigInteger.__init__",
+                  "MessageDigest.digest",
+                  "MessageDigest.update"
+               ]
+            },
+            {
+               "Cluster": 0,
+               "Code": "\nimport java.security.*;\nimport java.math.*;\n\npublic class MD5 {\n   public static void main(String args[]) throws Exception{\n      String s=\"This is a test\";\n      MessageDigest m=MessageDigest.getInstance(\"MD5\");\n      m.update(s.getBytes(),0,s.length());\n      System.out.println(\"MD5: \"+new BigInteger(1,m.digest()).toString(16));\n   }\n}",
+               "LOC": 12,
+               "Url": "https://dzone.com/articles/get-md5-hash-few-lines-java",
+               "Score": 1.0,
+               "API_Weights": 21.8349887694,
+               "API_Qualified_Names": {
+                  "MessageDigest.update": "java.security.MessageDigest.update",
+                  "MessageDigest.digest": "java.security.MessageDigest.digest",
+                  "BigInteger.__init__": "java.math.BigInteger.__init__"
+               },
+               "Url_Position": 9,
+               "In_Page_Order": 1,
+               "Num_API_Calls": 3,
+               "Dist_Center": 0.0755903205,
+               "MethodInvocations": [
+                  "BigInteger.__init__",
+                  "MessageDigest.digest",
+                  "MessageDigest.update"
+               ]
+            },
+            {
+               "Cluster": 0,
+               "Code": "MessageDigest md5 = MessageDigest.getInstance(\"MD5\");\nmd5.update(StandardCharsets.UTF_8.encode(string));\nreturn String.format(\"%032x\", new BigInteger(1, md5.digest()));\n",
+               "LOC": 4,
+               "Url": "https://stackoverflow.com/questions/415953/how-can-i-generate-an-md5-hash",
+               "Score": 1.0,
+               "API_Weights": 21.8349887694,
+               "API_Qualified_Names": {
+                  "MessageDigest.update": "java.security.MessageDigest.update",
+                  "MessageDigest.digest": "java.security.MessageDigest.digest",
+                  "BigInteger.__init__": "java.math.BigInteger.__init__"
+               },
+               "Url_Position": 1,
+               "In_Page_Order": 8,
+               "Num_API_Calls": 3,
+               "Dist_Center": 0.0755903205,
+               "MethodInvocations": [
+                  "BigInteger.__init__",
+                  "MessageDigest.digest",
+                  "MessageDigest.update"
+               ]
+            },
+            {
+               "Cluster": 0,
+               "Code": "import java.security.*;\nimport java.math.*;\n\npublic class MD5 {\n    public static void main(String args[]) throws Exception{\n        String s=\"This is a test\";\n        MessageDigest m=MessageDigest.getInstance(\"MD5\");\n        m.update(s.getBytes(),0,s.length());\n        System.out.println(\"MD5: \"+new BigInteger(1,m.digest()).toString(16));\n    }\n}\n",
+               "LOC": 12,
+               "Url": "https://stackoverflow.com/questions/415953/how-can-i-generate-an-md5-hash",
+               "Score": 1.0,
+               "API_Weights": 21.8349887694,
+               "API_Qualified_Names": {
+                  "MessageDigest.update": "java.security.MessageDigest.update",
+                  "MessageDigest.digest": "java.security.MessageDigest.digest",
+                  "BigInteger.__init__": "java.math.BigInteger.__init__"
+               },
+               "Url_Position": 1,
+               "In_Page_Order": 9,
+               "Num_API_Calls": 3,
+               "Dist_Center": 0.0755903205,
+               "MethodInvocations": [
+                  "BigInteger.__init__",
+                  "MessageDigest.digest",
+                  "MessageDigest.update"
+               ]
+            },
+            {
+               "Cluster": 0,
+               "Code": "String plaintext = \"your text here\";\nMessageDigest m = MessageDigest.getInstance(\"MD5\");\nm.reset();\nm.update(plaintext.getBytes());\nbyte[] digest = m.digest();\nBigInteger bigInt = new BigInteger(1,digest);\nString hashtext = bigInt.toString(16);\n// Now we need to zero pad it if you actually want the full 32 chars.\nwhile(hashtext.length() < 32 ){\n  hashtext = \"0\"+hashtext;\n}\n",
+               "LOC": 12,
+               "Url": "https://stackoverflow.com/questions/415953/how-can-i-generate-an-md5-hash",
+               "Score": 0.8442034568,
+               "API_Weights": 27.5062929081,
+               "API_Qualified_Names": {
+                  "MessageDigest.reset": "java.security.MessageDigest.reset",
+                  "MessageDigest.update": "java.security.MessageDigest.update",
+                  "MessageDigest.digest": "java.security.MessageDigest.digest",
+                  "BigInteger.__init__": "java.math.BigInteger.__init__",
+                  "BigInteger.toString": "java.math.BigInteger.toString"
+               },
+               "Url_Position": 1,
+               "In_Page_Order": 4,
+               "Num_API_Calls": 5,
+               "Dist_Center": 0.1209352063,
+               "MethodInvocations": [
+                  "BigInteger.__init__",
+                  "BigInteger.toString",
+                  "MessageDigest.digest",
+                  "MessageDigest.reset",
+                  "MessageDigest.update"
+               ]
+            },
+            {
+               "Cluster": 0,
+               "Code": "public static String md5encryption(String text)\n    {   String hashtext = null;\n        try \n        {\n            String plaintext = text;\n            MessageDigest m = MessageDigest.getInstance(\"MD5\");\n            m.reset();\n            m.update(plaintext.getBytes());\n            byte[] digest = m.digest();\n            BigInteger bigInt = new BigInteger(1,digest);\n            hashtext = bigInt.toString(16);\n            // Now we need to zero pad it if you actually want the full 32 chars.\n            while(hashtext.length() < 32 ){\n              hashtext = \"0\"+hashtext;   \n            }\n        } catch (Exception e1) \n        {\n            // TODO: handle exception\n            JOptionPane.showMessageDialog(null,e1.getClass().getName() + \": \" + e1.getMessage());   \n        }\n        return hashtext;     \n    }\n",
+               "LOC": 23,
+               "Url": "https://stackoverflow.com/questions/415953/how-can-i-generate-an-md5-hash",
+               "Score": 0.8442034568,
+               "API_Weights": 27.5062929081,
+               "API_Qualified_Names": {
+                  "MessageDigest.reset": "java.security.MessageDigest.reset",
+                  "MessageDigest.update": "java.security.MessageDigest.update",
+                  "MessageDigest.digest": "java.security.MessageDigest.digest",
+                  "BigInteger.__init__": "java.math.BigInteger.__init__",
+                  "BigInteger.toString": "java.math.BigInteger.toString"
+               },
+               "Url_Position": 1,
+               "In_Page_Order": 25,
+               "Num_API_Calls": 5,
+               "Dist_Center": 0.1209352063,
+               "MethodInvocations": [
+                  "BigInteger.__init__",
+                  "BigInteger.toString",
+                  "MessageDigest.digest",
+                  "MessageDigest.reset",
+                  "MessageDigest.update"
+               ]
+            },
+            {
+               "Cluster": 0,
+               "Code": "import java.math.BigInteger;\nimport java.security.MessageDigest;\n\npublic class Test\n{\n    public static void main(String[] args) throws Exception\n    {\n        byte[] bytes = { 0x35, 0x24, 0x76, 0x12 };\n        MessageDigest m = MessageDigest.getInstance(\"MD5\");\n        byte[] digest = m.digest(bytes);\n        String hash = new BigInteger(1, digest).toString(16);\n        System.out.println(hash);\n    }\n}\n",
+               "LOC": 15,
+               "Url": "https://stackoverflow.com/questions/2920044/how-can-you-generate-the-same-md5-hashcode-in-c-sharp-and-java",
+               "Score": 0.7617224235,
+               "API_Weights": 14.2496837405,
+               "API_Qualified_Names": {
+                  "MessageDigest.digest": "java.security.MessageDigest.digest",
+                  "BigInteger.__init__": "java.math.BigInteger.__init__"
+               },
+               "Url_Position": 4,
+               "In_Page_Order": 1,
+               "Num_API_Calls": 2,
+               "Dist_Center": 0.1449414709,
+               "MethodInvocations": [
+                  "MessageDigest.digest",
+                  "BigInteger.__init__"
+               ]
+            },
+            {
+               "Cluster": 0,
+               "Code": "public static String getHashMD5(String string) {\n    try {\n        MessageDigest md = MessageDigest.getInstance(\"MD5\");\n        BigInteger bi = new BigInteger(1, md.digest(string.getBytes()));\n        return bi.toString(16);\n    } catch (NoSuchAlgorithmException ex) {\n        Logger.getLogger(MD5Utils.class\n                .getName()).log(Level.SEVERE, null, ex);\n\n        return \"\";\n    }\n}\n",
+               "LOC": 13,
+               "Url": "https://stackoverflow.com/questions/415953/how-can-i-generate-an-md5-hash",
+               "Score": 0.5399350549,
+               "API_Weights": 18.1158892532,
+               "API_Qualified_Names": {
+                  "MessageDigest.digest": "java.security.MessageDigest.digest",
+                  "BigInteger.__init__": "java.math.BigInteger.__init__",
+                  "BigInteger.toString": "java.math.BigInteger.toString"
+               },
+               "Url_Position": 1,
+               "In_Page_Order": 23,
+               "Num_API_Calls": 3,
+               "Dist_Center": 0.2094931143,
+               "MethodInvocations": [
+                  "BigInteger.toString",
+                  "MessageDigest.digest",
+                  "BigInteger.__init__"
+               ]
+            },
+            {
+               "Cluster": 0,
+               "Code": " import java.math.BigInteger;\n import java.security.MessageDigest;\n import java.security.NoSuchAlgorithmException;\n\n/**\n* MD5 encryption\n*\n* @author Hongten\n*\n*/\npublic class MD5 {\n\n public static void main(String[] args) {\n     System.out.println(MD5.getMD5(\"123456\"));\n }\n\n /**\n  * Use md5 encoded code value\n  *\n  * @param sInput\n  * clearly\n  * @ return md5 encrypted password\n  */\n public static String getMD5(String sInput) {\n\n     String algorithm = \"\";\n     if (sInput == null) {\n         return \"null\";\n     }\n     try {\n         algorithm = System.getProperty(\"MD5.algorithm\", \"MD5\");\n     } catch (SecurityException se) {\n     }\n     MessageDigest md = null;\n     try {\n         md = MessageDigest.getInstance(algorithm);\n     } catch (NoSuchAlgorithmException e) {\n         e.printStackTrace();\n     }\n     byte buffer[] = sInput.getBytes();\n\n     for (int count = 0; count < sInput.length(); count++) {\n         md.update(buffer, 0, count);\n     }\n     byte bDigest[] = md.digest();\n     BigInteger bi = new BigInteger(bDigest);\n     return (bi.toString(16));\n }\n}\n",
+               "LOC": 50,
+               "Url": "https://stackoverflow.com/questions/415953/how-can-i-generate-an-md5-hash",
+               "Score": 0.5399350549,
+               "API_Weights": 18.1158892532,
+               "API_Qualified_Names": {
+                  "MessageDigest.digest": "java.security.MessageDigest.digest",
+                  "BigInteger.__init__": "java.math.BigInteger.__init__",
+                  "BigInteger.toString": "java.math.BigInteger.toString"
+               },
+               "Url_Position": 1,
+               "In_Page_Order": 28,
+               "Num_API_Calls": 3,
+               "Dist_Center": 0.2094931143,
+               "MethodInvocations": [
+                  "BigInteger.toString",
+                  "MessageDigest.digest",
+                  "BigInteger.__init__"
+               ]
+            },
+            {
+               "Cluster": 0,
+               "Code": "@Test\r\npublic void givenPassword_whenHashing_thenVerifying() \r\n  throws NoSuchAlgorithmException {\r\n    String hash = \"35454B055CC325EA1AF2126E27707052\";\r\n    String password = \"ILoveJava\";\r\n        \r\n    MessageDigest md = MessageDigest.getInstance(\"MD5\");\r\n    md.update(password.getBytes());\r\n    byte[] digest = md.digest();\r\n    String myHash = DatatypeConverter\r\n      .printHexBinary(digest).toUpperCase();\r\n        \r\n    assertThat(myHash.equals(hash)).isTrue();\r\n}",
+               "LOC": 14,
+               "Url": "http://www.baeldung.com/java-md5",
+               "Score": 0.4411512633,
+               "API_Weights": 14.1191530975,
+               "API_Qualified_Names": {
+                  "MessageDigest.update": "java.security.MessageDigest.update",
+                  "MessageDigest.digest": "java.security.MessageDigest.digest"
+               },
+               "Url_Position": 6,
+               "In_Page_Order": 4,
+               "Num_API_Calls": 2,
+               "Dist_Center": 0.2382443282,
+               "MethodInvocations": [
+                  "MessageDigest.digest",
+                  "MessageDigest.update"
+               ]
+            },
+            {
+               "Cluster": 0,
+               "Code": "MessageDigest digest = MessageDigest.getInstance(algorithm);\n\nbyte[] inputBytes = // get bytes array from message\n\ndigest.update(inputBytes);\n\nbyte[] hashedBytes = digest.digest();\n\n// convert hash bytes to string (usually in hexadecimal form)",
+               "LOC": 9,
+               "Url": "http://www.codejava.net/coding/how-to-calculate-md5-and-sha-hash-values-in-java",
+               "Score": 0.4411512633,
+               "API_Weights": 14.1191530975,
+               "API_Qualified_Names": {
+                  "MessageDigest.update": "java.security.MessageDigest.update",
+                  "MessageDigest.digest": "java.security.MessageDigest.digest"
+               },
+               "Url_Position": 13,
+               "In_Page_Order": 2,
+               "Num_API_Calls": 2,
+               "Dist_Center": 0.2382443282,
+               "MethodInvocations": [
+                  "MessageDigest.digest",
+                  "MessageDigest.update"
+               ]
+            },
+            {
+               "Cluster": 0,
+               "Code": "@Test\r\npublic void givenFile_generatingChecksum_thenVerifying() \r\n  throws NoSuchAlgorithmException, IOException {\r\n    String filename = \"src/test/resources/test_md5.txt\";\r\n    String checksum = \"5EB63BBBE01EEED093CB22BB8F5ACDC3\";\r\n        \r\n    MessageDigest md = MessageDigest.getInstance(\"MD5\");\r\n    md.update(Files.readAllBytes(Paths.get(filename)));\r\n    byte[] digest = md.digest();\r\n    String myChecksum = DatatypeConverter\r\n      .printHexBinary(digest).toUpperCase();\r\n        \r\n    assertThat(myChecksum.equals(checksum)).isTrue();\r\n}",
+               "LOC": 14,
+               "Url": "http://www.baeldung.com/java-md5",
+               "Score": 0.4411512633,
+               "API_Weights": 14.1191530975,
+               "API_Qualified_Names": {
+                  "MessageDigest.update": "java.security.MessageDigest.update",
+                  "MessageDigest.digest": "java.security.MessageDigest.digest"
+               },
+               "Url_Position": 6,
+               "In_Page_Order": 5,
+               "Num_API_Calls": 2,
+               "Dist_Center": 0.2382443282,
+               "MethodInvocations": [
+                  "MessageDigest.digest",
+                  "MessageDigest.update"
+               ]
+            },
+            {
+               "Cluster": 0,
+               "Code": "final MessageDigest messageDigest = MessageDigest.getInstance(\"MD5\");\nmessageDigest.reset();\nmessageDigest.update(string.getBytes(Charset.forName(\"UTF8\")));\nfinal byte[] resultByte = messageDigest.digest();\nfinal String result = new String(Hex.encodeHex(resultByte));\n",
+               "LOC": 6,
+               "Url": "https://stackoverflow.com/questions/415953/how-can-i-generate-an-md5-hash",
+               "Score": 0.3656885026,
+               "API_Weights": 18.2426287479,
+               "API_Qualified_Names": {
+                  "MessageDigest.reset": "java.security.MessageDigest.reset",
+                  "MessageDigest.update": "java.security.MessageDigest.update",
+                  "MessageDigest.digest": "java.security.MessageDigest.digest",
+                  "String.__init__": "java.lang.String.__init__"
+               },
+               "Url_Position": 1,
+               "In_Page_Order": 6,
+               "Num_API_Calls": 4,
+               "Dist_Center": 0.260207911,
+               "MethodInvocations": [
+                  "String.__init__",
+                  "MessageDigest.digest",
+                  "MessageDigest.update",
+                  "MessageDigest.reset"
+               ]
+            },
+            {
+               "Cluster": 0,
+               "Code": "import java.io.FileInputStream;\r\nimport java.io.UnsupportedEncodingException;\r\nimport java.math.BigInteger;\r\nimport java.security.MessageDigest;\r\nimport java.security.NoSuchAlgorithmException;\r\n\r\npublic class MD5 {\r\n    public static String getMD5(String input) {\r\n        byte[] source;\r\n        try {\r\n            //Get byte according by specified coding.\r\n            source = input.getBytes(\"UTF-8\");\r\n        } catch (UnsupportedEncodingException e) {\r\n            source = input.getBytes();\r\n        }\r\n        String result = null;\r\n        char hexDigits[] = {'0', '1', '2', '3', '4', '5', '6', '7',\r\n                '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};\r\n        try {\r\n            MessageDigest md = MessageDigest.getInstance(\"MD5\");\r\n            md.update(source);\r\n            //The result should be one 128 integer\r\n            byte temp[] = md.digest();\r\n            char str[] = new char[16 * 2];\r\n            int k = 0;\r\n            for (int i = 0; i < 16; i++) {\r\n                byte byte0 = temp[i];\r\n                str[k++] = hexDigits[byte0 >>> 4 & 0xf];\r\n                str[k++] = hexDigits[byte0 & 0xf];\r\n            }\r\n            result = new String(str);\r\n        } catch (Exception e) {\r\n            e.printStackTrace();\r\n        }\r\n        return result;\r\n    }\r\n\r\n    public static void main(String[] args) throws NoSuchAlgorithmException {\r\n        System.out.println(getMD5(\"Javarmi.com\"));\r\n    }\r\n}",
+               "LOC": 41,
+               "Url": "http://www.asjava.com/core-java/java-md5-example/",
+               "Score": 0.3478222131,
+               "API_Weights": 16.4375301219,
+               "API_Qualified_Names": {
+                  "MessageDigest.update": "java.security.MessageDigest.update",
+                  "MessageDigest.digest": "java.security.MessageDigest.digest",
+                  "String.__init__": "java.lang.String.__init__"
+               },
+               "Url_Position": 12,
+               "In_Page_Order": 2,
+               "Num_API_Calls": 3,
+               "Dist_Center": 0.2654079292,
+               "MethodInvocations": [
+                  "String.__init__",
+                  "MessageDigest.digest",
+                  "MessageDigest.update"
+               ]
+            },
+            {
+               "Cluster": 0,
+               "Code": "package Md5Generator;\n\n/**\n *\n * @author jacob\n */\n import java.io.IOException;\n import java.security.*;\n import java.nio.file.Files;\n import java.nio.file.Paths;\n import java.nio.file.Path;\n\n /**\n  * The point of this class it to compute the MD5 sum of a file\n  */\n public class Md5 {\n// two instance variables, one to store the file path and one to store the MD5 sum\nprivate String path;\nprivate String md5Sum;\n\n/**\n * Constructor that takes a file path and and calcs the MD5 sum\n *\n * @param filePath the string that contains the full path to the file\n */\npublic Md5(String filePath) {\n    path = filePath;\n    calcMd5(path);\n}\n\nprivate void calcMd5(String filePath) {\n    //create a messagedigest object to compute an MD5 sum\n    try {\n        MessageDigest md = MessageDigest.getInstance(\"MD5\");\n        //create a input stream to get the bytes of the file\n        Path path = Paths.get(filePath);\n        //read the bytes from the file and put them in the message digest\n        md.update(Files.readAllBytes(path));\n        //digest the bytes and generate an MD5 sum thats stored in an array of bytes\n        byte[] hash = md.digest();\n        //convert the byte array to its hex counter parts and store it as a string\n        md5Sum = toHexString(hash);\n    } catch (IOException | NoSuchAlgorithmException ex) {\n        ex.printStackTrace();\n    }\n\n}\n\nprivate String toHexString(byte[] bytes) {\n    char[] hexArray = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};\n    char[] hexChars = new char[bytes.length * 2];\n    int v;\n    for (int j = 0; j < bytes.length; j++) {\n        v = bytes[j] & 0xFF;\n        hexChars[j * 2] = hexArray[v / 16];\n        hexChars[j * 2 + 1] = hexArray[v % 16];\n    }\n    return new String(hexChars);\n}\n\n/**\n * Returns the MD5 sum as a String\n *\n * @return the string that contains the MD5 sum\n */\npublic String getMd5Sum() {\n    return md5Sum;\n}\n}\n",
+               "LOC": 70,
+               "Url": "https://codereview.stackexchange.com/questions/153182/java-class-to-compute-and-get-a-md5-hash-as-a-string",
+               "Score": 0.3478222131,
+               "API_Weights": 16.4375301219,
+               "API_Qualified_Names": {
+                  "MessageDigest.update": "java.security.MessageDigest.update",
+                  "MessageDigest.digest": "java.security.MessageDigest.digest",
+                  "String.__init__": "java.lang.String.__init__"
+               },
+               "Url_Position": 10,
+               "In_Page_Order": 1,
+               "Num_API_Calls": 3,
+               "Dist_Center": 0.2654079292,
+               "MethodInvocations": [
+                  "String.__init__",
+                  "MessageDigest.digest",
+                  "MessageDigest.update"
+               ]
+            },
+            {
+               "Cluster": 0,
+               "Code": "import java.math.BigInteger;\r\nimport java.security.MessageDigest;\r\n \r\npublic class MD5 {\r\n    public static String GenerateHash(String input) {\r\n        MessageDigest objMD = MessageDigest.getInstance(\"MD5\");\r\n        byte[] bytMD = mobjMDd.digest(input.getBytes());\r\n        BigInteger intNumber = new BigInteger(1, bytMD);\r\n        String strHashCode = intNumber.toString(16);\r\n\t\t\r\n        // pad with 0 if the hexa digits are less then 32.\r\n        while (strHashCode.length() < 32) {\r\n            strHashCode = \"0\" + strHashCode;\r\n        }\r\n        return strHashCode;\r\n    }\r\n}",
+               "LOC": 17,
+               "Url": "http://www.mytecbits.com/tools/cryptography/md5generator",
+               "Score": 0.3232169646,
+               "API_Weights": 11.5820411845,
+               "API_Qualified_Names": {
+                  "BigInteger.__init__": "java.math.BigInteger.__init__",
+                  "BigInteger.toString": "java.math.BigInteger.toString"
+               },
+               "Url_Position": 35,
+               "In_Page_Order": 2,
+               "Num_API_Calls": 2,
+               "Dist_Center": 0.2725693344,
+               "MethodInvocations": [
+                  "BigInteger.toString",
+                  "BigInteger.__init__"
+               ]
+            },
+            {
+               "Cluster": 0,
+               "Code": "import java.io.FileInputStream;\r\nimport java.io.UnsupportedEncodingException;\r\nimport java.math.BigInteger;\r\nimport java.security.MessageDigest;\r\nimport java.security.NoSuchAlgorithmException;\r\n\r\npublic class MD5 {\r\n    public static String getMD5(String input) {\r\n        try {\r\n            MessageDigest md = MessageDigest.getInstance(\"MD5\");\r\n            byte[] messageDigest = md.digest(input.getBytes());\r\n            BigInteger number = new BigInteger(1, messageDigest);\r\n            String hashtext = number.toString(16);\r\n            // Now we need to zero pad it if you actually want the full 32 chars.\r\n            while (hashtext.length() < 32) {\r\n                hashtext = \"0\" + hashtext;\r\n            }\r\n            return hashtext;\r\n        }\r\n        catch (NoSuchAlgorithmException e) {\r\n            throw new RuntimeException(e);\r\n        }\r\n    }\r\n\r\n    public static void main(String[] args) throws NoSuchAlgorithmException {\r\n        System.out.println(getMD5(\"Javarmi.com\"));\r\n    }\r\n}",
+               "LOC": 28,
+               "Url": "http://www.asjava.com/core-java/java-md5-example/",
+               "Score": 0.1862657748,
+               "API_Weights": 18.8332766109,
+               "API_Qualified_Names": {
+                  "MessageDigest.digest": "java.security.MessageDigest.digest",
+                  "BigInteger.__init__": "java.math.BigInteger.__init__",
+                  "BigInteger.toString": "java.math.BigInteger.toString",
+                  "RuntimeException.__init__": "java.lang.RuntimeException.__init__"
+               },
+               "Url_Position": 12,
+               "In_Page_Order": 1,
+               "Num_API_Calls": 4,
+               "Dist_Center": 0.3124292435,
+               "MethodInvocations": [
+                  "BigInteger.toString",
+                  "MessageDigest.digest",
+                  "BigInteger.__init__",
+                  "RuntimeException.__init__"
+               ]
+            },
+            {
+               "Cluster": 0,
+               "Code": "\nprivate BigInteger checksum(Object obj) throws IOException, NoSuchAlgorithmException {\n\n    if (obj == null) {\n      return BigInteger.ZERO;   \n    }\n\n    ByteArrayOutputStream baos = new ByteArrayOutputStream();\n    ObjectOutputStream oos = new ObjectOutputStream(baos);\n    oos.writeObject(obj);\n    oos.close();\n\n    MessageDigest m = MessageDigest.getInstance(\"SHA1\");\n    m.update(baos.toByteArray());\n\n    return new BigInteger(1, m.digest());\n}\n",
+               "LOC": 18,
+               "Url": "https://stackoverflow.com/questions/2644847/how-to-generate-a-checksum-for-an-java-object",
+               "Score": 0.0,
+               "API_Weights": 23.9158373752,
+               "API_Qualified_Names": {
+                  "ByteArrayOutputStream.__init__": "java.io.ByteArrayOutputStream.__init__",
+                  "ObjectOutputStream.__init__": "java.io.ObjectOutputStream.__init__",
+                  "ObjectOutputStream.writeObject": "java.io.ObjectOutputStream.writeObject",
+                  "ObjectOutputStream.close": "java.io.ObjectOutputStream.close",
+                  "ByteArrayOutputStream.toByteArray": "java.io.ByteArrayOutputStream.toByteArray",
+                  "MessageDigest.update": "java.security.MessageDigest.update",
+                  "MessageDigest.digest": "java.security.MessageDigest.digest",
+                  "BigInteger.__init__": "java.math.BigInteger.__init__"
+               },
+               "Url_Position": 5,
+               "In_Page_Order": 2,
+               "Num_API_Calls": 8,
+               "Dist_Center": 0.3666422582,
+               "MethodInvocations": [
+                  "ObjectOutputStream.__init__",
+                  "BigInteger.__init__",
+                  "ByteArrayOutputStream.toByteArray",
+                  "ByteArrayOutputStream.__init__",
+                  "MessageDigest.digest",
+                  "ObjectOutputStream.writeObject",
+                  "ObjectOutputStream.close",
+                  "MessageDigest.update"
+               ]
+            }
+         ],
+         "avg_cluster_api_weights": 19.07764712446807,
+         "top_apis_by_cluster": [
+            "biginteger.__init__",
+            "messagedigest.update",
+            "messagedigest.digest",
+            "biginteger.tostring",
+            "string.__init__",
+            "messagedigest.reset",
+            "runtimeexception.__init__",
+            "bytearrayoutputstream.__init__"
+         ]
+      },
+      {
+         "cluster_snippets": [
+            {
+               "Cluster": 1,
+               "Code": "    public static string ConvertStringToMD5(string ClearText)\n{\n\n    byte[] ByteData = Encoding.ASCII.GetBytes(ClearText);\n    //MD5 creating MD5 object.\n    MD5 oMd5 = MD5.Create();\n    //Hash deerini hesaplayalm.\n    byte[] HashData = oMd5.ComputeHash(ByteData);\n\n    //convert byte array to hex format\n    StringBuilder oSb = new StringBuilder();\n\n    for (int x = 0; x < HashData.Length; x++)\n    {\n        //hexadecimal string value\n        oSb.Append(HashData[x].ToString(\"x2\"));\n    }\n",
+               "LOC": 18,
+               "Url": "https://stackoverflow.com/questions/2920044/how-can-you-generate-the-same-md5-hashcode-in-c-sharp-and-java",
+               "Score": 1.0,
+               "API_Weights": 4.1573638964,
+               "API_Qualified_Names": {
+                  "StringBuilder.__init__": "java.lang.StringBuilder.__init__"
+               },
+               "Url_Position": 4,
+               "In_Page_Order": 2,
+               "Num_API_Calls": 2,
+               "Dist_Center": 0.1162924191,
+               "MethodInvocations": [
+                  "MD5.ComputeHash",
+                  "StringBuilder.__init__"
+               ]
+            },
+            {
+               "Cluster": 1,
+               "Code": "public static string Generate(string strInput)\r\n{\r\n    MD5 md5 = new MD5CryptoServiceProvider();\r\n\r\n    //provide the string in byte format to the ComputeHash method.\r\n    //This method returns the MD5 hash code in byte array\r\n    byte[] arrHash = md5.ComputeHash(Encoding.UTF8.GetBytes(strInput));\r\n\r\n    // use a Stringbuilder to append the bytes from the array to create a hash code string.\r\n    StringBuilder sbHash = new StringBuilder();\r\n\r\n    // Loop through byte array of the hashed code and format each byte as a hexadecimal code.\r\n    for (int i = 0; i < arrHash.Length; i++)\r\n    {\r\n    sbHash.Append(arrHash[i].ToString(\"x2\"));\r\n    }\r\n\r\n    // Return the hexadecimal MD5 hash code string.\r\n    return sbHash.ToString();\r\n}",
+               "LOC": 20,
+               "Url": "http://www.mytecbits.com/tools/cryptography/md5generator",
+               "Score": 0.8677072562,
+               "API_Weights": 7.0158863662,
+               "API_Qualified_Names": {
+                  "MD5.__init__": "org.apache.avro.ipc.MD5.__init__",
+                  "StringBuilder.__init__": "java.lang.StringBuilder.__init__"
+               },
+               "Url_Position": 35,
+               "In_Page_Order": 1,
+               "Num_API_Calls": 4,
+               "Dist_Center": 0.143996355,
+               "MethodInvocations": [
+                  "MD5.ComputeHash",
+                  "StringBuilder.__init__",
+                  "MD5.__init__",
+                  "StringBuilder.ToString"
+               ]
+            },
+            {
+               "Cluster": 1,
+               "Code": "using System;\nusing System.Security.Cryptography;\nusing System.Text;\n\nclass Test\n{\n    static void Main()\n    {\n        byte[] bytes = { 0x35, 0x24, 0x76, 0x12 };\n        MD5 md5 = new MD5CryptoServiceProvider();\n        byte[] result = md5.ComputeHash(bytes);\n        StringBuilder sb = new StringBuilder();\n        for (int i = 0; i < result.Length; i++)\n        {\n            sb.Append(result[i].ToString(\"x2\"));\n        }\n        Console.WriteLine(sb);\n    }\n}\n",
+               "LOC": 20,
+               "Url": "https://stackoverflow.com/questions/2920044/how-can-you-generate-the-same-md5-hashcode-in-c-sharp-and-java",
+               "Score": 0.7799713219,
+               "API_Weights": 5.8022443298,
+               "API_Qualified_Names": {
+                  "MD5.__init__": "org.apache.avro.ipc.MD5.__init__",
+                  "StringBuilder.__init__": "java.lang.StringBuilder.__init__"
+               },
+               "Url_Position": 4,
+               "In_Page_Order": 1,
+               "Num_API_Calls": 3,
+               "Dist_Center": 0.1623694768,
+               "MethodInvocations": [
+                  "MD5.ComputeHash",
+                  "StringBuilder.__init__",
+                  "MD5.__init__"
+               ]
+            },
+            {
+               "Cluster": 1,
+               "Code": "<pre class=\"prettyprint\">protected static String getTraceSignature(String input) throws IOException {\n  Path inputPath = new Path(input);\n  FileSystem fs = inputPath.getFileSystem(new Configuration());\n  FileStatus status = fs.getFileStatus(inputPath);\n  Path qPath = fs.makeQualified(status.getPath());\n  String traceID = status.getModificationTime() + qPath.toString()\n                   + status.getOwner() + status.getLen();\n  return MD5Hash.digest(traceID).toString();\n}\n </pre>",
+               "LOC": 10,
+               "Url": "https://www.programcreek.com/java-api-examples/index.php?api=org.apache.hadoop.io.MD5Hash",
+               "Score": 0.5428760969,
+               "API_Weights": 10.5830052443,
+               "API_Qualified_Names": {
+                  "Path.__init__": "com.sandwich.koan.path.PathToEnlightenment.Path.__init__",
+                  "Configuration.__init__": "net.minecraftforge.common.config.Configuration.__init__",
+                  "Path.getFileSystem": "java.nio.file.Path.getFileSystem",
+                  "FileSystem.getFileStatus": "org.apache.hadoop.fs.FileSystem.getFileStatus",
+                  "FileStatus.getPath": "eu.stratosphere.core.fs.FileStatus.getPath",
+                  "FileSystem.makeQualified": "org.apache.hadoop.fs.FileSystem.makeQualified",
+                  "FileStatus.getLen": "org.apache.hadoop.fs.FileStatus.getLen"
+               },
+               "Url_Position": 38,
+               "In_Page_Order": 13,
+               "Num_API_Calls": 7,
+               "Dist_Center": 0.2120205061,
+               "MethodInvocations": [
+                  "FileStatus.getLen",
+                  "FileSystem.makeQualified",
+                  "FileStatus.getPath",
+                  "Path.__init__",
+                  "FileSystem.getFileStatus",
+                  "Configuration.__init__",
+                  "Path.getFileSystem"
+               ]
+            },
+            {
+               "Cluster": 1,
+               "Code": "<pre class=\"prettyprint\">protected static String getTraceSignature(String input) throws IOException {\n  Path inputPath = new Path(input);\n  FileSystem fs = inputPath.getFileSystem(new Configuration());\n  FileStatus status = fs.getFileStatus(inputPath);\n  Path qPath = fs.makeQualified(status.getPath());\n  String traceID = status.getModificationTime() + qPath.toString()\n                   + status.getOwner() + status.getLen();\n  return MD5Hash.digest(traceID).toString();\n}\n </pre>",
+               "LOC": 10,
+               "Url": "https://www.programcreek.com/java-api-examples/index.php?api=org.apache.hadoop.io.MD5Hash",
+               "Score": 0.5428760969,
+               "API_Weights": 10.5830052443,
+               "API_Qualified_Names": {
+                  "Path.__init__": "com.sandwich.koan.path.PathToEnlightenment.Path.__init__",
+                  "Configuration.__init__": "net.minecraftforge.common.config.Configuration.__init__",
+                  "Path.getFileSystem": "java.nio.file.Path.getFileSystem",
+                  "FileSystem.getFileStatus": "org.apache.hadoop.fs.FileSystem.getFileStatus",
+                  "FileStatus.getPath": "eu.stratosphere.core.fs.FileStatus.getPath",
+                  "FileSystem.makeQualified": "org.apache.hadoop.fs.FileSystem.makeQualified",
+                  "FileStatus.getLen": "org.apache.hadoop.fs.FileStatus.getLen"
+               },
+               "Url_Position": 38,
+               "In_Page_Order": 9,
+               "Num_API_Calls": 7,
+               "Dist_Center": 0.2120205061,
+               "MethodInvocations": [
+                  "FileStatus.getLen",
+                  "FileSystem.makeQualified",
+                  "FileStatus.getPath",
+                  "Path.__init__",
+                  "FileSystem.getFileStatus",
+                  "Configuration.__init__",
+                  "Path.getFileSystem"
+               ]
+            },
+            {
+               "Cluster": 1,
+               "Code": "<pre class=\"prettyprint\">protected static String getTraceSignature(String input) throws IOException {\n  Path inputPath = new Path(input);\n  FileSystem fs = inputPath.getFileSystem(new Configuration());\n  FileStatus status = fs.getFileStatus(inputPath);\n  Path qPath = fs.makeQualified(status.getPath());\n  String traceID = status.getModificationTime() + qPath.toString()\n                   + status.getOwner() + status.getLen();\n  return MD5Hash.digest(traceID).toString();\n}\n </pre>",
+               "LOC": 10,
+               "Url": "https://www.programcreek.com/java-api-examples/index.php?api=org.apache.hadoop.io.MD5Hash",
+               "Score": 0.5428760969,
+               "API_Weights": 10.5830052443,
+               "API_Qualified_Names": {
+                  "Path.__init__": "com.sandwich.koan.path.PathToEnlightenment.Path.__init__",
+                  "Configuration.__init__": "net.minecraftforge.common.config.Configuration.__init__",
+                  "Path.getFileSystem": "java.nio.file.Path.getFileSystem",
+                  "FileSystem.getFileStatus": "org.apache.hadoop.fs.FileSystem.getFileStatus",
+                  "FileStatus.getPath": "eu.stratosphere.core.fs.FileStatus.getPath",
+                  "FileSystem.makeQualified": "org.apache.hadoop.fs.FileSystem.makeQualified",
+                  "FileStatus.getLen": "org.apache.hadoop.fs.FileStatus.getLen"
+               },
+               "Url_Position": 38,
+               "In_Page_Order": 11,
+               "Num_API_Calls": 7,
+               "Dist_Center": 0.2120205061,
+               "MethodInvocations": [
+                  "FileStatus.getLen",
+                  "FileSystem.makeQualified",
+                  "FileStatus.getPath",
+                  "Path.__init__",
+                  "FileSystem.getFileStatus",
+                  "Configuration.__init__",
+                  "Path.getFileSystem"
+               ]
+            },
+            {
+               "Cluster": 1,
+               "Code": "<pre class=\"prettyprint\">protected static String getTraceSignature(String input) throws IOException {\n  Path inputPath = new Path(input);\n  FileSystem fs = inputPath.getFileSystem(new Configuration());\n  FileStatus status = fs.getFileStatus(inputPath);\n  Path qPath = fs.makeQualified(status.getPath());\n  String traceID = status.getModificationTime() + qPath.toString()\n                   + status.getOwner() + status.getLen();\n  return MD5Hash.digest(traceID).toString();\n}\n </pre>",
+               "LOC": 10,
+               "Url": "https://www.programcreek.com/java-api-examples/index.php?api=org.apache.hadoop.io.MD5Hash",
+               "Score": 0.5428760969,
+               "API_Weights": 10.5830052443,
+               "API_Qualified_Names": {
+                  "Path.__init__": "com.sandwich.koan.path.PathToEnlightenment.Path.__init__",
+                  "Configuration.__init__": "net.minecraftforge.common.config.Configuration.__init__",
+                  "Path.getFileSystem": "java.nio.file.Path.getFileSystem",
+                  "FileSystem.getFileStatus": "org.apache.hadoop.fs.FileSystem.getFileStatus",
+                  "FileStatus.getPath": "eu.stratosphere.core.fs.FileStatus.getPath",
+                  "FileSystem.makeQualified": "org.apache.hadoop.fs.FileSystem.makeQualified",
+                  "FileStatus.getLen": "org.apache.hadoop.fs.FileStatus.getLen"
+               },
+               "Url_Position": 38,
+               "In_Page_Order": 15,
+               "Num_API_Calls": 7,
+               "Dist_Center": 0.2120205061,
+               "MethodInvocations": [
+                  "FileStatus.getLen",
+                  "FileSystem.makeQualified",
+                  "FileStatus.getPath",
+                  "Path.__init__",
+                  "FileSystem.getFileStatus",
+                  "Configuration.__init__",
+                  "Path.getFileSystem"
+               ]
+            },
+            {
+               "Cluster": 1,
+               "Code": "\nprivate static String getFileChecksum(MessageDigest digest, File file) throws IOException\n{\n\t//Get file input stream for reading the file content\n\tFileInputStream fis = new FileInputStream(file);\n\t\n\t//Create byte array to read data in chunks\n\tbyte[] byteArray = new byte[1024];\n\tint bytesCount = 0; \n\t \n\t//Read file data and update in message digest\n\twhile ((bytesCount = fis.read(byteArray)) != -1) {\n\t\tdigest.update(byteArray, 0, bytesCount);\n\t};\n\t\n\t//close the stream; We don't need it now.\n\tfis.close();\n\t\n\t//Get the hash's bytes\n\tbyte[] bytes = digest.digest();\n\t\n\t//This bytes[] has bytes in decimal format;\n\t//Convert it to hexadecimal format\n\tStringBuilder sb = new StringBuilder();\n\tfor(int i=0; i< bytes.length ;i++)\n\t{\n\t\tsb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));\n\t}\n\t\n\t//return complete hash\n   return sb.toString();\n}\n",
+               "LOC": 33,
+               "Url": "https://howtodoinjava.com/core-java/io/how-to-generate-sha-or-md5-file-checksum-hash-in-java/",
+               "Score": 0.3994014015,
+               "API_Weights": 5.1671700992,
+               "API_Qualified_Names": {
+                  "FileInputStream.__init__": "java.io.FileInputStream.__init__",
+                  "FileInputStream.read": "java.io.FileInputStream.read",
+                  "FileInputStream.close": "java.io.FileInputStream.close",
+                  "MessageDigest.digest": "java.security.MessageDigest.digest",
+                  "StringBuilder.__init__": "java.lang.StringBuilder.__init__",
+                  "StringBuilder.toString": "java.lang.StringBuilder.toString"
+               },
+               "Url_Position": 16,
+               "In_Page_Order": 1,
+               "Num_API_Calls": 6,
+               "Dist_Center": 0.2420660978,
+               "MethodInvocations": [
+                  "FileInputStream.read",
+                  "FileInputStream.close",
+                  "MessageDigest.digest",
+                  "StringBuilder.__init__",
+                  "FileInputStream.__init__",
+                  "StringBuilder.toString"
+               ]
+            },
+            {
+               "Cluster": 1,
+               "Code": "\n\n    MD5 md5 = new MD5();\n    md5.Update(myString, null);\n    String hash = md5.asHex();\n\n",
+               "LOC": 7,
+               "Url": "http://www.twmacinta.com/myjava/fast_md5.php",
+               "Score": 0.0263794868,
+               "API_Weights": 2.858572268,
+               "API_Qualified_Names": {
+                  "MD5.__init__": "org.apache.avro.ipc.MD5.__init__"
+               },
+               "Url_Position": 37,
+               "In_Page_Order": 3,
+               "Num_API_Calls": 3,
+               "Dist_Center": 0.3201820617,
+               "MethodInvocations": [
+                  "MD5.__init__",
+                  "MD5.asHex",
+                  "MD5.Update"
+               ]
+            },
+            {
+               "Cluster": 1,
+               "Code": "public final class MD5 {\npublic enum SaltOption {\n    BEFORE, AFTER, BOTH, NONE;\n}\nprivate static final String ALG = \"MD5\";\n//For conversion to 2-char hex\nprivate static final char[] digits = {\n    '0' , '1' , '2' , '3' , '4' , '5' ,\n    '6' , '7' , '8' , '9' , 'a' , 'b' ,\n    'c' , 'd' , 'e' , 'f' , 'g' , 'h' ,\n    'i' , 'j' , 'k' , 'l' , 'm' , 'n' ,\n    'o' , 'p' , 'q' , 'r' , 's' , 't' ,\n    'u' , 'v' , 'w' , 'x' , 'y' , 'z'\n};\n\nprivate SaltOption opt;\n\n/**\n * Added the SaltOption constructor since everybody\n * has their own standards when it comes to salting\n * hashes.\n * \n * This gives the developer the option...\n * \n * @param option The salt option to use, BEFORE, AFTER, BOTH or NONE.\n */\npublic MD5(final SaltOption option) {\n    //TODO: Add Char Encoding options too... I was too lazy!\n    this.opt = option;\n}\n\n/**\n * \n * Returns the salted MD5 checksum of the text passed in as an argument.\n * \n * If the salt is an empty byte array - no salt is applied.\n * \n * @param txt The text to run through the MD5 algorithm.\n * @param salt The salt value in bytes.\n * @return The salted MD5 checksum as a <code>byte[]</code>\n * @throws NoSuchAlgorithmException\n */\nprivate byte[] createChecksum(final String txt, final byte[] salt) throws NoSuchAlgorithmException {\n    final MessageDigest complete = MessageDigest.getInstance(ALG);\n    if(opt.equals(SaltOption.BEFORE) || opt.equals(SaltOption.BOTH)) {\n        complete.update(salt);\n    }\n    complete.update(txt.getBytes());\n    if(opt.equals(SaltOption.AFTER) || opt.equals(SaltOption.BOTH)) {\n        complete.update(salt);\n    }\n    return complete.digest();\n}\n\n/**\n * \n * Returns the salted MD5 checksum of the file passed in as an argument.\n * \n * If the salt is an empty byte array - no salt is applied.\n * \n * @param fle The file to run through the MD5 algorithm.\n * @param salt The salt value in bytes.\n * @return The salted MD5 checksum as a <code>byte[]</code>\n * @throws IOException\n * @throws NoSuchAlgorithmException\n */\nprivate byte[] createChecksum(final File fle, final byte[] salt)\n        throws IOException, NoSuchAlgorithmException {\n    final byte[] buffer = new byte[1024];\n    final MessageDigest complete = MessageDigest.getInstance(ALG);\n            if(opt.equals(SaltOption.BEFORE) || opt.equals(SaltOption.BOTH)) {\n            complete.update(salt);\n        }\n    int numRead;\n    InputStream fis = null;\n    try {\n        fis = new FileInputStream(fle);\n        do {\n            numRead = fis.read(buffer);\n            if (numRead > 0) {\n                complete.update(buffer, 0, numRead);\n            }\n        } while (numRead != -1);\n    } finally {\n    if (fis != null) {\n            fis.close();\n        }\n    }\n            if(opt.equals(SaltOption.AFTER) || opt.equals(SaltOption.BOTH)) {\n            complete.update(salt);\n        }\n    return complete.digest();\n}\n\n/**\n * \n * Efficiently converts a byte array to its 2 char per byte hex equivalent.\n * \n * This was adapted from JDK code in the Integer class, I just didn't like\n * having to use substrings once I got the result...\n *\n * @param b The byte array to convert\n * @return The converted String, 2 chars per byte...\n */\nprivate String convertToHex(final byte[] b) {\n    int x;\n    int charPos;\n    int radix;\n    int mask;\n    final char[] buf = new char[32];\n    final char[] tmp = new char[3];\n    final StringBuilder md5 = new StringBuilder();\n    for (int i = 0; i < b.length; i++) {\n        x = (b[i] & 0xFF) | 0x100;\n        charPos = 32;\n        radix = 1 << 4;\n        mask = radix - 1;\n        do {\n            buf[--charPos] = digits[x & mask];\n            x >>>= 4;\n        } while (x != 0);\n        System.arraycopy(buf, charPos, tmp, 0, (32 - charPos));\n        md5.append(Arrays.copyOfRange(tmp, 1, 3));\n    }\n    return md5.toString();\n}\n\n/**\n * \n * Returns the salted MD5 checksum of the file passed in as an argument.\n * \n * @param fle The file you want want to run through the MD5 algorithm.\n * @param salt The salt value in bytes\n * @return The salted MD5 checksum as a 2 char per byte HEX <code>String</code>\n * @throws NoSuchAlgorithmException\n * @throws IOException\n */\npublic String getMD5Checksum(final File fle, final byte[] salt)\n        throws NoSuchAlgorithmException, IOException {\n    return convertToHex(createChecksum(fle, salt));\n}\n\n/**\n * \n * Returns the MD5 checksum of the file passed in as an argument.\n * \n * @param fle The file you want want to run through the MD5 algorithm.\n * @return The MD5 checksum as a 2 char per byte HEX <code>String</code>\n * @throws NoSuchAlgorithmException\n * @throws IOException\n */\npublic String getMD5Checksum(final File fle)\n        throws NoSuchAlgorithmException, IOException {\n    return convertToHex(createChecksum(fle, new byte[0]));\n}\n\n/**\n * \n * Returns the salted MD5 checksum of the text passed in as an argument.\n * \n * @param txt The text you want want to run through the MD5 algorithm.\n * @param salt The salt value in bytes.\n * @return The salted MD5 checksum as a 2 char per byte HEX <code>String</code>\n * @throws NoSuchAlgorithmException\n * @throws IOException\n */\npublic String getMD5Checksum(final String txt, final byte[] salt)\n        throws NoSuchAlgorithmException {\n    return convertToHex(createChecksum(txt, salt));\n}\n\n/**\n * \n * Returns the MD5 checksum of the text passed in as an argument.\n * \n * @param txt The text you want want to run through the MD5 algorithm.\n * @return The MD5 checksum as a 2 char per byte HEX <code>String</code>\n * @throws NoSuchAlgorithmException\n * @throws IOException\n */\npublic String getMD5Checksum(final String txt)\n        throws NoSuchAlgorithmException {\n\n    return convertToHex(createChecksum(txt, new byte[0]));\n}\n}\n",
+               "LOC": 187,
+               "Url": "https://stackoverflow.com/questions/415953/how-can-i-generate-an-md5-hash",
+               "Score": 0.0,
+               "API_Weights": 6.1044658896,
+               "API_Qualified_Names": {
+                  "MessageDigest.update": "java.security.MessageDigest.update",
+                  "MessageDigest.digest": "java.security.MessageDigest.digest",
+                  "InputStream.__init__": "java.io.InputStream.__init__",
+                  "InputStream.read": "java.io.InputStream.read",
+                  "InputStream.close": "java.io.InputStream.close",
+                  "StringBuilder.__init__": "java.lang.StringBuilder.__init__",
+                  "StringBuilder.toString": "java.lang.StringBuilder.toString"
+               },
+               "Url_Position": 1,
+               "In_Page_Order": 30,
+               "Num_API_Calls": 10,
+               "Dist_Center": 0.3257062922,
+               "MethodInvocations": [
+                  "InputStream.close",
+                  "SaltOption.equals",
+                  "InputStream.__init__",
+                  "MessageDigest.digest",
+                  "StringBuilder.__init__",
+                  "InputStream.read",
+                  "MessageDigest.update",
+                  "StringBuilder.toString",
+                  "IOException.fle",
+                  "IOException.txt"
+               ]
+            }
+         ],
+         "avg_cluster_api_weights": 7.343772382613411,
+         "top_apis_by_cluster": [
+            "stringbuilder.__init__",
+            "md5.computehash",
+            "md5.__init__",
+            "path.getfilesystem",
+            "filestatus.getlen",
+            "filestatus.getpath",
+            "filesystem.getfilestatus",
+            "filesystem.makequalified"
+         ]
+      },
+      {
+         "cluster_snippets": [
+            {
+               "Cluster": 2,
+               "Code": "public static String getChecksum(Serializable object) throws IOException, NoSuchAlgorithmException {\n    ByteArrayOutputStream baos = null;\n    ObjectOutputStream oos = null;\n    try {\n        baos = new ByteArrayOutputStream();\n        oos = new ObjectOutputStream(baos);\n        oos.writeObject(object);\n        MessageDigest md = MessageDigest.getInstance(\"MD5\");\n        byte[] thedigest = md.digest(baos.toByteArray());\n        return DatatypeConverter.printHexBinary(thedigest);\n    } finally {\n        oos.close();\n        baos.close();\n    }\n}\n",
+               "LOC": 16,
+               "Url": "https://stackoverflow.com/questions/2644847/how-to-generate-a-checksum-for-an-java-object",
+               "Score": 1.0,
+               "API_Weights": 4.1082705225,
+               "API_Qualified_Names": {
+                  "ByteArrayOutputStream.__init__": "java.io.ByteArrayOutputStream.__init__",
+                  "ObjectOutputStream.__init__": "java.io.ObjectOutputStream.__init__",
+                  "ObjectOutputStream.writeObject": "java.io.ObjectOutputStream.writeObject",
+                  "ByteArrayOutputStream.toByteArray": "java.io.ByteArrayOutputStream.toByteArray",
+                  "MessageDigest.digest": "java.security.MessageDigest.digest",
+                  "ObjectOutputStream.close": "java.io.ObjectOutputStream.close",
+                  "ByteArrayOutputStream.close": "java.io.ByteArrayOutputStream.close"
+               },
+               "Url_Position": 5,
+               "In_Page_Order": 3,
+               "Num_API_Calls": 7,
+               "Dist_Center": 0.0409024429,
+               "MethodInvocations": [
+                  "ObjectOutputStream.__init__",
+                  "ByteArrayOutputStream.toByteArray",
+                  "ByteArrayOutputStream.__init__",
+                  "ByteArrayOutputStream.close",
+                  "MessageDigest.digest",
+                  "ObjectOutputStream.writeObject",
+                  "ObjectOutputStream.close"
+               ]
+            },
+            {
+               "Cluster": 2,
+               "Code": "package com.javadb.example;import org.apache.commons.codec.binary.Hex;import java.io.ByteArrayInputStream;import java.io.IOException;import java.io.InputStream;import java.nio.charset.StandardCharsets;import java.security.DigestInputStream;import java.security.MessageDigest;import java.security.NoSuchAlgorithmException;public class Example {public byte[] stringToMD5(String value) {byte[] hash = null;try {MessageDigest md5 = MessageDigest.getInstance(\"MD5\");InputStream stream = new ByteArrayInputStream(value.getBytes(StandardCharsets.UTF_8));DigestInputStream inputStream = new DigestInputStream(stream, md5);while (inputStream.read() != -1);hash = md5.digest();} catch (NoSuchAlgorithmException | IOException e) {e.printStackTrace();System.exit(-1);}return hash;}public static void main(String[] args) {Example example = new Example();byte[] hash = example.stringToMD5(\"some_password\");//convert to hexadecimal formatString hex = new String(Hex.encodeHex(hash));System.out.println(hex);System.out.println(\"Length of hash: \" + hash.length);System.out.println(\"Length of hex string: \" + hex.length());}}",
+               "LOC": 1,
+               "Url": "http://www.javadb.com/string-to-md5-hash-in-java/",
+               "Score": 0.4514645949,
+               "API_Weights": 6.2561327165,
+               "API_Qualified_Names": {
+                  "InputStream.__init__": "java.io.InputStream.__init__",
+                  "DigestInputStream.__init__": "java.security.DigestInputStream.__init__",
+                  "DigestInputStream.read": "java.security.DigestInputStream.read",
+                  "MessageDigest.digest": "java.security.MessageDigest.digest"
+               },
+               "Url_Position": 17,
+               "In_Page_Order": 1,
+               "Num_API_Calls": 4,
+               "Dist_Center": 0.2188704579,
+               "MethodInvocations": [
+                  "DigestInputStream.read",
+                  "InputStream.__init__",
+                  "DigestInputStream.__init__",
+                  "MessageDigest.digest"
+               ]
+            },
+            {
+               "Cluster": 2,
+               "Code": "import java.security.MessageDigest;\nimport java.util.Scanner;\nimport javax.xml.bind.DatatypeConverter;\n\n/**\n * Demonstrates how to generate MD5 hash using Java\n * @author JJ\n */\npublic class MD5HashGenerator {\n\n    public static void main(String[] args) {\n        Scanner sn = new Scanner(System.in);\n        System.out.print(\"Please enter data for which MD5 is required:\");\n        String data = sn.nextLine();\n        \n        MD5HashGenerator sj = new MD5HashGenerator();\n        String hash = sj.getMD5Hash(data);\n        System.out.println(\"The MD5 (hexadecimal encoded) hash is:\"+hash);\n    }\n\n    /**\n     * Returns a hexadecimal encoded MD5 hash for the input String.\n     * @param data\n     * @return \n     */\n    private String getMD5Hash(String data) {\n        String result = null;\n        try {\n            MessageDigest digest = MessageDigest.getInstance(\"MD5\");\n            byte[] hash = digest.digest(data.getBytes(\"UTF-8\"));\n            return bytesToHex(hash); // make it printable\n        }catch(Exception ex) {\n            ex.printStackTrace();\n        }\n        return result;\n    }\n    \n    /**\n     * Use javax.xml.bind.DatatypeConverter class in JDK to convert byte array\n     * to a hexadecimal string. Note that this generates hexadecimal in upper case.\n     * @param hash\n     * @return \n     */\n    private String  bytesToHex(byte[] hash) {\n        return DatatypeConverter.printHexBinary(hash);\n    }\n}",
+               "LOC": 47,
+               "Url": "https://www.quickprogrammingtips.com/java/how-to-generate-md5-hash-in-java.html",
+               "Score": 0.4434457644,
+               "API_Weights": 3.6593215945,
+               "API_Qualified_Names": {
+                  "Scanner.__init__": "java.util.Scanner.__init__",
+                  "Scanner.nextLine": "java.util.Scanner.nextLine",
+                  "MessageDigest.digest": "java.security.MessageDigest.digest"
+               },
+               "Url_Position": 14,
+               "In_Page_Order": 1,
+               "Num_API_Calls": 5,
+               "Dist_Center": 0.2214721047,
+               "MethodInvocations": [
+                  "MessageDigest.digest",
+                  "MD5HashGenerator.__init__",
+                  "Scanner.nextLine",
+                  "MD5HashGenerator.getMD5Hash",
+                  "Scanner.__init__"
+               ]
+            },
+            {
+               "Cluster": 2,
+               "Code": "private static String hashFile(File file, String algorithm)\n\t\tthrows HashGenerationException {\n\ttry (FileInputStream inputStream = new FileInputStream(file)) {\n\t\tMessageDigest digest = MessageDigest.getInstance(algorithm);\n\n\t\tbyte[] bytesBuffer = new byte[1024];\n\t\tint bytesRead = -1;\n\n\t\twhile ((bytesRead = inputStream.read(bytesBuffer)) != -1) {\n\t\t\tdigest.update(bytesBuffer, 0, bytesRead);\n\t\t}\n\n\t\tbyte[] hashedBytes = digest.digest();\n\n\t\treturn convertByteArrayToHexString(hashedBytes);\n\t} catch (NoSuchAlgorithmException | IOException ex) {\n\t\tthrow new HashGenerationException(\n\t\t\t\t\"Could not generate hash from file\", ex);\n\t}\n}",
+               "LOC": 20,
+               "Url": "http://www.codejava.net/coding/how-to-calculate-md5-and-sha-hash-values-in-java",
+               "Score": 0.4219134535,
+               "API_Weights": 3.9898320377,
+               "API_Qualified_Names": {
+                  "MessageDigest.digest": "java.security.MessageDigest.digest"
+               },
+               "Url_Position": 13,
+               "In_Page_Order": 9,
+               "Num_API_Calls": 3,
+               "Dist_Center": 0.2284580943,
+               "MethodInvocations": [
+                  "AM.__init__",
+                  "MessageDigest.digest",
+                  "HashGenerationException.__init__"
+               ]
+            },
+            {
+               "Cluster": 2,
+               "Code": "<pre class=\"prettyprint\">/**\n * Verify that the previously saved md5 for the given file matches\n * expectedMd5.\n *\n * @throws IOException\n */\npublic static void verifySavedMD5(File dataFile, MD5Hash expectedMD5)\n    throws IOException {\n  MD5Hash storedHash = readStoredMd5ForFile(dataFile);\n  // Check the hash itself\n  if (!expectedMD5.equals(storedHash)) {\n    throw new IOException(\n        \"File \" + dataFile + \" did not match stored MD5 checksum \" +\n            \" (stored: \" + storedHash + \", computed: \" + expectedMD5);\n  }\n}\n </pre>",
+               "LOC": 17,
+               "Url": "https://www.programcreek.com/java-api-examples/index.php?api=org.apache.hadoop.io.MD5Hash",
+               "Score": 0.4055935847,
+               "API_Weights": 5.6177487519,
+               "API_Qualified_Names": {
+                  "IOException.__init__": "java.io.IOException.__init__"
+               },
+               "Url_Position": 38,
+               "In_Page_Order": 27,
+               "Num_API_Calls": 2,
+               "Dist_Center": 0.2337529479,
+               "MethodInvocations": [
+                  "MD5Hash.equals",
+                  "IOException.__init__"
+               ]
+            },
+            {
+               "Cluster": 2,
+               "Code": "<pre class=\"prettyprint\">/**\n * Moves fsimage.ckpt to fsImage and edits.new to edits\n * Reopens the new edits file.\n * \n * @param newImageSignature the signature of the new image\n */\nvoid rollFSImage(CheckpointSignature newImageSignature) throws IOException {\n  MD5Hash newImageDigest = newImageSignature.getImageDigest();\n  if (!newImageDigest.equals(checkpointImageDigest)) {\n    throw new IOException(\n        \"Checkpoint image is corrupt: expecting an MD5 checksum of\" +\n        newImageDigest + \" but is \" + checkpointImageDigest);\n  }\n  rollFSImage(newImageSignature.getImageDigest());\n}\n </pre>",
+               "LOC": 16,
+               "Url": "https://www.programcreek.com/java-api-examples/index.php?api=org.apache.hadoop.io.MD5Hash",
+               "Score": 0.2807187875,
+               "API_Weights": 8.8132522438,
+               "API_Qualified_Names": {
+                  "IOException.__init__": "java.io.IOException.__init__",
+                  "IOException": "java.io.IOException.IOException"
+               },
+               "Url_Position": 38,
+               "In_Page_Order": 22,
+               "Num_API_Calls": 4,
+               "Dist_Center": 0.2742675975,
+               "MethodInvocations": [
+                  "IOException",
+                  "MD5Hash.equals",
+                  "CheckpointSignature.getImageDigest",
+                  "IOException.__init__"
+               ]
+            },
+            {
+               "Cluster": 2,
+               "Code": "<pre class=\"prettyprint\">/**\n * Moves fsimage.ckpt to fsImage and edits.new to edits\n * Reopens the new edits file.\n * \n * @param newImageSignature the signature of the new image\n */\nvoid rollFSImage(CheckpointSignature newImageSignature) throws IOException {\n  MD5Hash newImageDigest = newImageSignature.getImageDigest();\n  if (!newImageDigest.equals(checkpointImageDigest)) {\n    throw new IOException(\n        \"Checkpoint image is corrupt: expecting an MD5 checksum of\" +\n        newImageDigest + \" but is \" + checkpointImageDigest);\n  }\n  rollFSImage(newImageSignature.getImageDigest());\n}\n </pre>",
+               "LOC": 16,
+               "Url": "https://www.programcreek.com/java-api-examples/index.php?api=org.apache.hadoop.io.MD5Hash",
+               "Score": 0.2807187875,
+               "API_Weights": 8.8132522438,
+               "API_Qualified_Names": {
+                  "IOException.__init__": "java.io.IOException.__init__",
+                  "IOException": "java.io.IOException.IOException"
+               },
+               "Url_Position": 38,
+               "In_Page_Order": 26,
+               "Num_API_Calls": 4,
+               "Dist_Center": 0.2742675975,
+               "MethodInvocations": [
+                  "IOException",
+                  "MD5Hash.equals",
+                  "CheckpointSignature.getImageDigest",
+                  "IOException.__init__"
+               ]
+            },
+            {
+               "Cluster": 2,
+               "Code": "<pre class=\"prettyprint\">/**\n * Moves fsimage.ckpt to fsImage and edits.new to edits\n * Reopens the new edits file.\n * \n * @param newImageSignature the signature of the new image\n */\nvoid rollFSImage(CheckpointSignature newImageSignature) throws IOException {\n  MD5Hash newImageDigest = newImageSignature.getImageDigest();\n  if (!newImageDigest.equals(checkpointImageDigest)) {\n    throw new IOException(\n        \"Checkpoint image is corrupt: expecting an MD5 checksum of\" +\n        newImageDigest + \" but is \" + checkpointImageDigest);\n  }\n  rollFSImage(newImageSignature.getImageDigest());\n}\n </pre>",
+               "LOC": 16,
+               "Url": "https://www.programcreek.com/java-api-examples/index.php?api=org.apache.hadoop.io.MD5Hash",
+               "Score": 0.2807187875,
+               "API_Weights": 8.8132522438,
+               "API_Qualified_Names": {
+                  "IOException.__init__": "java.io.IOException.__init__",
+                  "IOException": "java.io.IOException.IOException"
+               },
+               "Url_Position": 38,
+               "In_Page_Order": 28,
+               "Num_API_Calls": 4,
+               "Dist_Center": 0.2742675975,
+               "MethodInvocations": [
+                  "IOException",
+                  "MD5Hash.equals",
+                  "CheckpointSignature.getImageDigest",
+                  "IOException.__init__"
+               ]
+            },
+            {
+               "Cluster": 2,
+               "Code": "<pre class=\"prettyprint\">/**\n * Read dataFile and compute its MD5 checksum.\n */\npublic static MD5Hash computeMd5ForFile(File dataFile) throws IOException {\n  InputStream in = new FileInputStream(dataFile);\n  try {\n    MessageDigest digester = MD5Hash.getDigester();\n    DigestInputStream dis = new DigestInputStream(in, digester);\n    IOUtils.copyBytes(dis, new IOUtils.NullOutputStream(), 128*1024);\n    \n    return new MD5Hash(digester.digest());\n  } finally {\n    IOUtils.closeStream(in);\n  }\n}\n </pre>",
+               "LOC": 16,
+               "Url": "https://www.programcreek.com/java-api-examples/index.php?api=org.apache.hadoop.io.MD5Hash",
+               "Score": 0.2744886895,
+               "API_Weights": 8.5816103638,
+               "API_Qualified_Names": {
+                  "InputStream.__init__": "java.io.InputStream.__init__",
+                  "DigestInputStream.__init__": "java.security.DigestInputStream.__init__",
+                  "NullOutputStream.__init__": "org.apache.commons.io.output.NullOutputStream.__init__",
+                  "MessageDigest.digest": "java.security.MessageDigest.digest",
+                  "MD5Hash.__init__": "org.apache.hadoop.io.MD5Hash.__init__"
+               },
+               "Url_Position": 38,
+               "In_Page_Order": 1,
+               "Num_API_Calls": 5,
+               "Dist_Center": 0.276288904,
+               "MethodInvocations": [
+                  "MD5Hash.__init__",
+                  "InputStream.__init__",
+                  "MessageDigest.digest",
+                  "NullOutputStream.__init__",
+                  "DigestInputStream.__init__"
+               ]
+            },
+            {
+               "Cluster": 2,
+               "Code": "<pre class=\"prettyprint\">/**\n * Read dataFile and compute its MD5 checksum.\n */\npublic static MD5Hash computeMd5ForFile(File dataFile) throws IOException {\n  InputStream in = new FileInputStream(dataFile);\n  try {\n    MessageDigest digester = MD5Hash.getDigester();\n    DigestInputStream dis = new DigestInputStream(in, digester);\n    IOUtils.copyBytes(dis, new IOUtils.NullOutputStream(), 128*1024);\n    \n    return new MD5Hash(digester.digest());\n  } finally {\n    IOUtils.closeStream(in);\n  }\n}\n </pre>",
+               "LOC": 16,
+               "Url": "https://www.programcreek.com/java-api-examples/index.php?api=org.apache.hadoop.io.MD5Hash",
+               "Score": 0.2744886895,
+               "API_Weights": 8.5816103638,
+               "API_Qualified_Names": {
+                  "InputStream.__init__": "java.io.InputStream.__init__",
+                  "DigestInputStream.__init__": "java.security.DigestInputStream.__init__",
+                  "NullOutputStream.__init__": "org.apache.commons.io.output.NullOutputStream.__init__",
+                  "MessageDigest.digest": "java.security.MessageDigest.digest",
+                  "MD5Hash.__init__": "org.apache.hadoop.io.MD5Hash.__init__"
+               },
+               "Url_Position": 38,
+               "In_Page_Order": 4,
+               "Num_API_Calls": 5,
+               "Dist_Center": 0.276288904,
+               "MethodInvocations": [
+                  "MD5Hash.__init__",
+                  "InputStream.__init__",
+                  "MessageDigest.digest",
+                  "NullOutputStream.__init__",
+                  "DigestInputStream.__init__"
+               ]
+            },
+            {
+               "Cluster": 2,
+               "Code": "<pre class=\"prettyprint\">/**\n * Read dataFile and compute its MD5 checksum.\n */\npublic static MD5Hash computeMd5ForFile(File dataFile) throws IOException {\n  InputStream in = new FileInputStream(dataFile);\n  try {\n    MessageDigest digester = MD5Hash.getDigester();\n    DigestInputStream dis = new DigestInputStream(in, digester);\n    IOUtils.copyBytes(dis, new IOUtils.NullOutputStream(), 128*1024);\n    \n    return new MD5Hash(digester.digest());\n  } finally {\n    IOUtils.closeStream(in);\n  }\n}\n </pre>",
+               "LOC": 16,
+               "Url": "https://www.programcreek.com/java-api-examples/index.php?api=org.apache.hadoop.io.MD5Hash",
+               "Score": 0.2744886895,
+               "API_Weights": 8.5816103638,
+               "API_Qualified_Names": {
+                  "InputStream.__init__": "java.io.InputStream.__init__",
+                  "DigestInputStream.__init__": "java.security.DigestInputStream.__init__",
+                  "NullOutputStream.__init__": "org.apache.commons.io.output.NullOutputStream.__init__",
+                  "MessageDigest.digest": "java.security.MessageDigest.digest",
+                  "MD5Hash.__init__": "org.apache.hadoop.io.MD5Hash.__init__"
+               },
+               "Url_Position": 38,
+               "In_Page_Order": 3,
+               "Num_API_Calls": 5,
+               "Dist_Center": 0.276288904,
+               "MethodInvocations": [
+                  "MD5Hash.__init__",
+                  "InputStream.__init__",
+                  "MessageDigest.digest",
+                  "NullOutputStream.__init__",
+                  "DigestInputStream.__init__"
+               ]
+            },
+            {
+               "Cluster": 2,
+               "Code": "<pre class=\"prettyprint\">/**\n * Roll the image.\n */\npublic void saveDigestAndRenameCheckpointImage(long txid, MD5Hash digest)\n    throws IOException {\n  MD5Hash storedDigest = checkpointImageDigests.get(txid);\n  if (storedDigest == null || !storedDigest.equals(digest)) {\n    throw new IOException(\"Digest of data written: \" + storedDigest\n        + \" does not match requested digest: \" + digest + \" for txid: \"\n        + txid + \", journal: \" + journalId);\n  }\n  imageManager.saveDigestAndRenameCheckpointImage(txid, digest);\n  checkpointImageDigests.remove(txid);\n}\n </pre>",
+               "LOC": 15,
+               "Url": "https://www.programcreek.com/java-api-examples/index.php?api=org.apache.hadoop.io.MD5Hash",
+               "Score": 0.155474224,
+               "API_Weights": 5.6177487519,
+               "API_Qualified_Names": {
+                  "IOException.__init__": "java.io.IOException.__init__"
+               },
+               "Url_Position": 38,
+               "In_Page_Order": 25,
+               "Num_API_Calls": 2,
+               "Dist_Center": 0.314902215,
+               "MethodInvocations": [
+                  "MD5Hash.equals",
+                  "IOException.__init__"
+               ]
+            },
+            {
+               "Cluster": 2,
+               "Code": "private static String hashString(String message, String algorithm)\n\t\tthrows HashGenerationException {\n\n\ttry {\n\t\tMessageDigest digest = MessageDigest.getInstance(algorithm);\n\t\tbyte[] hashedBytes = digest.digest(message.getBytes(\"UTF-8\"));\n\n\t\treturn convertByteArrayToHexString(hashedBytes);\n\t} catch (NoSuchAlgorithmException | UnsupportedEncodingException ex) {\n\t\tthrow new HashGenerationException(\n\t\t\t\t\"Could not generate hash from String\", ex);\n\t}\n}",
+               "LOC": 13,
+               "Url": "http://www.codejava.net/coding/how-to-calculate-md5-and-sha-hash-values-in-java",
+               "Score": 0.0,
+               "API_Weights": 3.2478443244,
+               "API_Qualified_Names": {
+                  "MessageDigest.digest": "java.security.MessageDigest.digest"
+               },
+               "Url_Position": 13,
+               "In_Page_Order": 3,
+               "Num_API_Calls": 2,
+               "Dist_Center": 0.365344609,
+               "MethodInvocations": [
+                  "HashGenerationException.__init__",
+                  "MessageDigest.digest"
+               ]
+            }
+         ],
+         "avg_cluster_api_weights": 6.513960501733957,
+         "top_apis_by_cluster": [
+            "md5hash.equals",
+            "ioexception.__init__",
+            "digestinputstream.__init__",
+            "inputstream.__init__",
+            "messagedigest.digest",
+            "ioexception",
+            "checkpointsignature.getimagedigest",
+            "nulloutputstream.__init__"
+         ]
+      },
+      {
+         "cluster_snippets": [
+            {
+               "Cluster": 3,
+               "Code": "package net.codejava.security;\n\nimport java.io.UnsupportedEncodingException;\nimport java.security.MessageDigest;\nimport java.security.NoSuchAlgorithmException;\n\n/**\n * Hash functions utility class.\n * @author www.codejava.net\n *\n */\npublic class HashGeneratorUtils {\n\tprivate HashGeneratorUtils() {\n\n\t}\n\n\tpublic static String generateMD5(String message) throws HashGenerationException {\n\t\treturn hashString(message, \"MD5\");\n\t}\n\n\tpublic static String generateSHA1(String message) throws HashGenerationException {\n\t\treturn hashString(message, \"SHA-1\");\n\t}\n\n\tpublic static String generateSHA256(String message) throws HashGenerationException {\n\t\treturn hashString(message, \"SHA-256\");\n\t}\n\n\tprivate static String hashString(String message, String algorithm)\n\t\t\tthrows HashGenerationException {\n\n\t\ttry {\n\t\t\tMessageDigest digest = MessageDigest.getInstance(algorithm);\n\t\t\tbyte[] hashedBytes = digest.digest(message.getBytes(\"UTF-8\"));\n\n\t\t\treturn convertByteArrayToHexString(hashedBytes);\n\t\t} catch (NoSuchAlgorithmException | UnsupportedEncodingException ex) {\n\t\t\tthrow new HashGenerationException(\n\t\t\t\t\t\"Could not generate hash from String\", ex);\n\t\t}\n\t}\n\n\tprivate static String convertByteArrayToHexString(byte[] arrayBytes) {\n\t\tStringBuffer stringBuffer = new StringBuffer();\n\t\tfor (int i = 0; i < arrayBytes.length; i++) {\n\t\t\tstringBuffer.append(Integer.toString((arrayBytes[i] & 0xff) + 0x100, 16)\n\t\t\t\t\t.substring(1));\n\t\t}\n\t\treturn stringBuffer.toString();\n\t}\n}",
+               "LOC": 51,
+               "Url": "http://www.codejava.net/coding/how-to-calculate-md5-and-sha-hash-values-in-java",
+               "Score": 1.0,
+               "API_Weights": 15.6047985269,
+               "API_Qualified_Names": {
+                  "MessageDigest.digest": "java.security.MessageDigest.digest",
+                  "StringBuffer.__init__": "java.lang.StringBuffer.__init__",
+                  "StringBuffer.toString": "java.lang.StringBuffer.toString"
+               },
+               "Url_Position": 13,
+               "In_Page_Order": 6,
+               "Num_API_Calls": 4,
+               "Dist_Center": 0.0368850383,
+               "MethodInvocations": [
+                  "StringBuffer.toString",
+                  "HashGenerationException.__init__",
+                  "MessageDigest.digest",
+                  "StringBuffer.__init__"
+               ]
+            },
+            {
+               "Cluster": 3,
+               "Code": "public class Hash {\n    /**\n     * \n     * @param txt, text in plain format\n     * @param hashType MD5 OR SHA1\n     * @return hash in hashType \n     */\n    public static String getHash(String txt, String hashType) {\n        try {\n                    java.security.MessageDigest md = java.security.MessageDigest.getInstance(hashType);\n                    byte[] array = md.digest(txt.getBytes());\n                    StringBuffer sb = new StringBuffer();\n                    for (int i = 0; i < array.length; ++i) {\n                        sb.append(Integer.toHexString((array[i] & 0xFF) | 0x100).substring(1,3));\n                 }\n                    return sb.toString();\n            } catch (java.security.NoSuchAlgorithmException e) {\n                //error action\n            }\n            return null;\n    }\n\n    public static String md5(String txt) {\n        return Hash.getHash(txt, \"MD5\");\n    }\n\n    public static String sha1(String txt) {\n        return Hash.getHash(txt, \"SHA1\");\n    }\n}\n",
+               "LOC": 31,
+               "Url": "https://stackoverflow.com/questions/415953/how-can-i-generate-an-md5-hash",
+               "Score": 0.9050605912,
+               "API_Weights": 14.9232032017,
+               "API_Qualified_Names": {
+                  "MessageDigest.digest": "java.security.MessageDigest.digest",
+                  "StringBuffer.__init__": "java.lang.StringBuffer.__init__",
+                  "StringBuffer.toString": "java.lang.StringBuffer.toString"
+               },
+               "Url_Position": 1,
+               "In_Page_Order": 12,
+               "Num_API_Calls": 3,
+               "Dist_Center": 0.0743479434,
+               "MethodInvocations": [
+                  "StringBuffer.toString",
+                  "MessageDigest.digest",
+                  "StringBuffer.__init__"
+               ]
+            },
+            {
+               "Cluster": 3,
+               "Code": "public String MD5(String md5) {\n   try {\n        java.security.MessageDigest md = java.security.MessageDigest.getInstance(\"MD5\");\n        byte[] array = md.digest(md5.getBytes());\n        StringBuffer sb = new StringBuffer();\n        for (int i = 0; i < array.length; ++i) {\n          sb.append(Integer.toHexString((array[i] & 0xFF) | 0x100).substring(1,3));\n       }\n        return sb.toString();\n    } catch (java.security.NoSuchAlgorithmException e) {\n    }\n    return null;\n}\n",
+               "LOC": 14,
+               "Url": "https://stackoverflow.com/questions/415953/how-can-i-generate-an-md5-hash",
+               "Score": 0.9050605912,
+               "API_Weights": 14.9232032017,
+               "API_Qualified_Names": {
+                  "MessageDigest.digest": "java.security.MessageDigest.digest",
+                  "StringBuffer.__init__": "java.lang.StringBuffer.__init__",
+                  "StringBuffer.toString": "java.lang.StringBuffer.toString"
+               },
+               "Url_Position": 1,
+               "In_Page_Order": 5,
+               "Num_API_Calls": 3,
+               "Dist_Center": 0.0743479434,
+               "MethodInvocations": [
+                  "StringBuffer.toString",
+                  "MessageDigest.digest",
+                  "StringBuffer.__init__"
+               ]
+            },
+            {
+               "Cluster": 3,
+               "Code": "public static String md5( String input ) {\n    try {\n        java.security.MessageDigest md = java.security.MessageDigest.getInstance(\"MD5\");\n        byte[] array = md.digest(input.getBytes( \"UTF-8\" ));\n        StringBuffer sb = new StringBuffer();\n        for (int i = 0; i < array.length; i++) {\n            sb.append( String.format( \"%02x\", array[i]));\n        }\n        return sb.toString();\n    } catch ( NoSuchAlgorithmException | UnsupportedEncodingException e) {\n        return null;            \n    }\n\n}\n",
+               "LOC": 15,
+               "Url": "https://stackoverflow.com/questions/415953/how-can-i-generate-an-md5-hash",
+               "Score": 0.9050605912,
+               "API_Weights": 14.9232032017,
+               "API_Qualified_Names": {
+                  "MessageDigest.digest": "java.security.MessageDigest.digest",
+                  "StringBuffer.__init__": "java.lang.StringBuffer.__init__",
+                  "StringBuffer.toString": "java.lang.StringBuffer.toString"
+               },
+               "Url_Position": 1,
+               "In_Page_Order": 24,
+               "Num_API_Calls": 3,
+               "Dist_Center": 0.0743479434,
+               "MethodInvocations": [
+                  "StringBuffer.toString",
+                  "MessageDigest.digest",
+                  "StringBuffer.__init__"
+               ]
+            },
+            {
+               "Cluster": 3,
+               "Code": "\r\npackage com.mkyong.test;\r\n\r\nimport java.io.FileInputStream;\r\nimport java.security.MessageDigest;\r\n\r\npublic class MD5CheckSumExample \r\n{\r\n    public static void main(String[] args)throws Exception\r\n    {\r\n        MessageDigest md = MessageDigest.getInstance(\"MD5\");\r\n        FileInputStream fis = new FileInputStream(\"c:\\\\loging.log\");\r\n        \r\n        byte[] dataBytes = new byte[1024];\r\n     \r\n        int nread = 0; \r\n        while ((nread = fis.read(dataBytes)) != -1) {\r\n          md.update(dataBytes, 0, nread);\r\n        };\r\n        byte[] mdbytes = md.digest();\r\n     \r\n        //convert the byte to hex format method 1\r\n        StringBuffer sb = new StringBuffer();\r\n        for (int i = 0; i < mdbytes.length; i++) {\r\n          sb.append(Integer.toString((mdbytes[i] & 0xff) + 0x100, 16).substring(1));\r\n        }\r\n\r\n        System.out.println(\"Digest(in hex format):: \" + sb.toString());\r\n        \r\n        //convert the byte to hex format method 2\r\n        StringBuffer hexString = new StringBuffer();\r\n    \tfor (int i=0;i<mdbytes.length;i++) {\r\n    \t\tString hex=Integer.toHexString(0xff & mdbytes[i]);\r\n   \t     \tif(hex.length()==1) hexString.append('0');\r\n   \t     \thexString.append(hex);\r\n    \t}\r\n    \tSystem.out.println(\"Digest(in hex format):: \" + hexString.toString());\r\n    }\r\n}\r\n",
+               "LOC": 40,
+               "Url": "https://www.mkyong.com/java/java-md5-hashing-example/",
+               "Score": 0.7494356606,
+               "API_Weights": 17.1760476349,
+               "API_Qualified_Names": {
+                  "FileInputStream.__init__": "java.io.FileInputStream.__init__",
+                  "FileInputStream.read": "java.io.FileInputStream.read",
+                  "MessageDigest.digest": "java.security.MessageDigest.digest",
+                  "StringBuffer.__init__": "java.lang.StringBuffer.__init__",
+                  "StringBuffer.toString": "java.lang.StringBuffer.toString"
+               },
+               "Url_Position": 7,
+               "In_Page_Order": 1,
+               "Num_API_Calls": 5,
+               "Dist_Center": 0.1357572368,
+               "MethodInvocations": [
+                  "FileInputStream.read",
+                  "MessageDigest.digest",
+                  "StringBuffer.__init__",
+                  "FileInputStream.__init__",
+                  "StringBuffer.toString"
+               ]
+            },
+            {
+               "Cluster": 3,
+               "Code": "    public static void main(String[] args) throws Exception {\r\n        MessageDigest md = MessageDigest.getInstance(\"MD5\");\r\n        FileInputStream fis = new FileInputStream(\"c:\\\\apache\\\\cxf.jar\");\r\n\r\n        byte[] dataBytes = new byte[1024];\r\n\r\n        int nread = 0;\r\n        while ((nread = fis.read(dataBytes)) != -1) {\r\n            md.update(dataBytes, 0, nread);\r\n        };\r\n        byte[] mdbytes = md.digest();\r\n        StringBuffer sb = new StringBuffer();\r\n        for (int i = 0; i < mdbytes.length; i++) {\r\n            sb.append(Integer.toString((mdbytes[i] & 0xff) + 0x100, 16).substring(1));\r\n        }\r\n        System.out.println(\"Digest(in hex format):: \" + sb.toString());\r\n    }",
+               "LOC": 17,
+               "Url": "http://www.asjava.com/core-java/java-md5-example/",
+               "Score": 0.7494356606,
+               "API_Weights": 17.1760476349,
+               "API_Qualified_Names": {
+                  "FileInputStream.__init__": "java.io.FileInputStream.__init__",
+                  "FileInputStream.read": "java.io.FileInputStream.read",
+                  "MessageDigest.digest": "java.security.MessageDigest.digest",
+                  "StringBuffer.__init__": "java.lang.StringBuffer.__init__",
+                  "StringBuffer.toString": "java.lang.StringBuffer.toString"
+               },
+               "Url_Position": 12,
+               "In_Page_Order": 3,
+               "Num_API_Calls": 5,
+               "Dist_Center": 0.1357572368,
+               "MethodInvocations": [
+                  "FileInputStream.read",
+                  "MessageDigest.digest",
+                  "StringBuffer.__init__",
+                  "FileInputStream.__init__",
+                  "StringBuffer.toString"
+               ]
+            },
+            {
+               "Cluster": 3,
+               "Code": "\r\nimport java.io.UnsupportedEncodingException; \r\nimport java.security.MessageDigest; \r\nimport java.security.NoSuchAlgorithmException; \r\n\r\npublic class AeSimpleMD5 { \r\n\r\n    private static String convertToHex(byte[] data) { \r\n        StringBuffer buf = new StringBuffer();\r\n        for (int i = 0; i < data.length; i++) { \r\n            int halfbyte = (data[i] >>> 4) & 0x0F;\r\n            int two_halfs = 0;\r\n            do { \r\n                if ((0 <= halfbyte) && (halfbyte <= 9)) \r\n                    buf.append((char) ('0' + halfbyte));\r\n                else \r\n                    buf.append((char) ('a' + (halfbyte - 10)));\r\n                halfbyte = data[i] & 0x0F;\r\n            } while(two_halfs++ < 1);\r\n        } \r\n        return buf.toString();\r\n    } \r\n\r\n    public static String MD5(String text) \r\n    throws NoSuchAlgorithmException, UnsupportedEncodingException  { \r\n        MessageDigest md;\r\n        md = MessageDigest.getInstance(\"MD5\");\r\n        byte[] md5hash = new byte[32];\r\n        md.update(text.getBytes(\"iso-8859-1\"), 0, text.length());\r\n        md5hash = md.digest();\r\n        return convertToHex(md5hash);\r\n    } \r\n} \r\n",
+               "LOC": 34,
+               "Url": "http://www.anyexample.com/programming/java/java_simple_class_to_compute_md5_hash.xml",
+               "Score": 0.734990097,
+               "API_Weights": 16.8338614096,
+               "API_Qualified_Names": {
+                  "StringBuffer.__init__": "java.lang.StringBuffer.__init__",
+                  "StringBuffer.toString": "java.lang.StringBuffer.toString",
+                  "MessageDigest.update": "java.security.MessageDigest.update",
+                  "MessageDigest.digest": "java.security.MessageDigest.digest"
+               },
+               "Url_Position": 11,
+               "In_Page_Order": 1,
+               "Num_API_Calls": 4,
+               "Dist_Center": 0.1414574279,
+               "MethodInvocations": [
+                  "StringBuffer.toString",
+                  "MessageDigest.digest",
+                  "StringBuffer.__init__",
+                  "MessageDigest.update"
+               ]
+            },
+            {
+               "Cluster": 3,
+               "Code": "\r\npackage com.mkyong.test;\r\n\r\nimport java.security.MessageDigest;\r\n\r\npublic class MD5HashingExample \r\n{\r\n    public static void main(String[] args)throws Exception\r\n    {\r\n    \tString password = \"123456\";\r\n    \t\r\n        MessageDigest md = MessageDigest.getInstance(\"MD5\");\r\n        md.update(password.getBytes());\r\n        \r\n        byte byteData[] = md.digest();\r\n \r\n        //convert the byte to hex format method 1\r\n        StringBuffer sb = new StringBuffer();\r\n        for (int i = 0; i < byteData.length; i++) {\r\n         sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));\r\n        }\r\n     \r\n        System.out.println(\"Digest(in hex format):: \" + sb.toString());\r\n        \r\n        //convert the byte to hex format method 2\r\n        StringBuffer hexString = new StringBuffer();\r\n    \tfor (int i=0;i<byteData.length;i++) {\r\n    \t\tString hex=Integer.toHexString(0xff & byteData[i]);\r\n   \t     \tif(hex.length()==1) hexString.append('0');\r\n   \t     \thexString.append(hex);\r\n    \t}\r\n    \tSystem.out.println(\"Digest(in hex format):: \" + hexString.toString());\r\n    }\r\n}\r\n",
+               "LOC": 35,
+               "Url": "https://www.mkyong.com/java/java-md5-hashing-example/",
+               "Score": 0.734990097,
+               "API_Weights": 16.8338614096,
+               "API_Qualified_Names": {
+                  "MessageDigest.update": "java.security.MessageDigest.update",
+                  "MessageDigest.digest": "java.security.MessageDigest.digest",
+                  "StringBuffer.__init__": "java.lang.StringBuffer.__init__",
+                  "StringBuffer.toString": "java.lang.StringBuffer.toString"
+               },
+               "Url_Position": 7,
+               "In_Page_Order": 3,
+               "Num_API_Calls": 4,
+               "Dist_Center": 0.1414574279,
+               "MethodInvocations": [
+                  "StringBuffer.__init__",
+                  "MessageDigest.digest",
+                  "MessageDigest.update",
+                  "StringBuffer.toString"
+               ]
+            },
+            {
+               "Cluster": 3,
+               "Code": "private static String convertByteArrayToHexString(byte[] arrayBytes) {\n\tStringBuffer stringBuffer = new StringBuffer();\n\tfor (int i = 0; i < arrayBytes.length; i++) {\n\t\tstringBuffer.append(Integer.toString((arrayBytes[i] & 0xff) + 0x100, 16)\n\t\t\t\t.substring(1));\n\t}\n\treturn stringBuffer.toString();\n}",
+               "LOC": 8,
+               "Url": "http://www.codejava.net/coding/how-to-calculate-md5-and-sha-hash-values-in-java",
+               "Score": 0.7271690667,
+               "API_Weights": 11.8940991557,
+               "API_Qualified_Names": {
+                  "StringBuffer.__init__": "java.lang.StringBuffer.__init__",
+                  "StringBuffer.toString": "java.lang.StringBuffer.toString"
+               },
+               "Url_Position": 13,
+               "In_Page_Order": 4,
+               "Num_API_Calls": 2,
+               "Dist_Center": 0.1445435912,
+               "MethodInvocations": [
+                  "StringBuffer.toString",
+                  "StringBuffer.__init__"
+               ]
+            },
+            {
+               "Cluster": 3,
+               "Code": "package digest;\r\n\r\nimport java.security.MessageDigest;\r\n\r\npublic class MD5Digest {\r\n\r\n\tpublic static void main(String[] args) throws Exception {\r\n\r\n\t\tif (args.length != 1) {\r\n\t\t\tSystem.err.println(\"String to MD5 digest should be first and only parameter\");\r\n\t\t\treturn;\r\n\t\t}\r\n\t\tString original = args[0];\r\n\t\tMessageDigest md = MessageDigest.getInstance(\"MD5\");\r\n\t\tmd.update(original.getBytes());\r\n\t\tbyte[] digest = md.digest();\r\n\t\tStringBuffer sb = new StringBuffer();\r\n\t\tfor (byte b : digest) {\r\n\t\t\tsb.append(String.format(\"%02x\", b & 0xff));\r\n\t\t}\r\n\r\n\t\tSystem.out.println(\"original:\" + original);\r\n\t\tSystem.out.println(\"digested(hex):\" + sb.toString());\r\n\t}\r\n\r\n}\r\n",
+               "LOC": 27,
+               "Url": "https://www.avajava.com/tutorials/lessons/how-do-i-generate-an-md5-digest-for-a-string.html",
+               "Score": 0.6831335709,
+               "API_Weights": 17.5335888442,
+               "API_Qualified_Names": {
+                  "MessageDigest.update": "java.security.MessageDigest.update",
+                  "MessageDigest.digest": "java.security.MessageDigest.digest",
+                  "StringBuffer.__init__": "java.lang.StringBuffer.__init__",
+                  "StringBuffer.toString": "java.lang.StringBuffer.toString"
+               },
+               "Url_Position": 8,
+               "In_Page_Order": 1,
+               "Num_API_Calls": 5,
+               "Dist_Center": 0.1619199117,
+               "MethodInvocations": [
+                  "MessageDigest.digest",
+                  "StringBuffer.__init__",
+                  "StringBuffer.toString",
+                  "MessageDigest.update",
+                  "StringBuffer.append"
+               ]
+            },
+            {
+               "Cluster": 3,
+               "Code": "    private String getMD5Digest(byte[] buffer) {\n    String resultHash = null;\n    try {\n        MessageDigest md5 = MessageDigest.getInstance(\"MD5\");\n\n        byte[] result = new byte[md5.getDigestLength()];\n        md5.reset();\n        md5.update(buffer);\n        result = md5.digest();\n\n        StringBuffer buf = new StringBuffer(result.length * 2);\n\n        for (int i = 0; i < result.length; i++) {\n            int intVal = result[i] & 0xff;\n            if (intVal < 0x10) {\n                buf.append(\"0\");\n            }\n            buf.append(Integer.toHexString(intVal));\n        }\n\n        resultHash = buf.toString();\n    } catch (NoSuchAlgorithmException e) {\n    }\n    return resultHash;\n}\n",
+               "LOC": 26,
+               "Url": "https://stackoverflow.com/questions/2920044/how-can-you-generate-the-same-md5-hashcode-in-c-sharp-and-java",
+               "Score": 0.457998892,
+               "API_Weights": 17.9318211352,
+               "API_Qualified_Names": {
+                  "MessageDigest.getDigestLength": "java.security.MessageDigest.getDigestLength",
+                  "MessageDigest.reset": "java.security.MessageDigest.reset",
+                  "MessageDigest.update": "java.security.MessageDigest.update",
+                  "MessageDigest.digest": "java.security.MessageDigest.digest",
+                  "StringBuffer.__init__": "java.lang.StringBuffer.__init__",
+                  "StringBuffer.toString": "java.lang.StringBuffer.toString"
+               },
+               "Url_Position": 4,
+               "In_Page_Order": 2,
+               "Num_API_Calls": 6,
+               "Dist_Center": 0.2507576159,
+               "MethodInvocations": [
+                  "MessageDigest.digest",
+                  "MessageDigest.reset",
+                  "StringBuffer.__init__",
+                  "MessageDigest.getDigestLength",
+                  "StringBuffer.toString",
+                  "MessageDigest.update"
+               ]
+            },
+            {
+               "Cluster": 3,
+               "Code": "import java.security.MessageDigest;\nimport java.security.NoSuchAlgorithmException;\n\npublic class MD5Example {\n\npublic static void main(String[] args) throws Exception {\n\n    final String inputString = \"Hello MD5\";\n\n    System.out.println(\"MD5 hex for '\" + inputString + \"' :\");\n    System.out.println(getMD5Hex(inputString));\n}\n\npublic static String getMD5Hex(final String inputString) throws NoSuchAlgorithmException {\n\n    MessageDigest md = MessageDigest.getInstance(\"MD5\");\n    md.update(inputString.getBytes());\n\n    byte[] digest = md.digest();\n\n    return convertByteToHex(digest);\n}\n\nprivate static String convertByteToHex(byte[] byteData) {\n\n    StringBuilder sb = new StringBuilder();\n    for (int i = 0; i < byteData.length; i++) {\n        sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));\n    }\n\n    return sb.toString();\n}\n}\n",
+               "LOC": 34,
+               "Url": "https://stackoverflow.com/questions/415953/how-can-i-generate-an-md5-hash",
+               "Score": 0.0628311232,
+               "API_Weights": 6.1901407491,
+               "API_Qualified_Names": {
+                  "MessageDigest.update": "java.security.MessageDigest.update",
+                  "MessageDigest.digest": "java.security.MessageDigest.digest",
+                  "StringBuilder.__init__": "java.lang.StringBuilder.__init__",
+                  "StringBuilder.toString": "java.lang.StringBuilder.toString"
+               },
+               "Url_Position": 1,
+               "In_Page_Order": 16,
+               "Num_API_Calls": 4,
+               "Dist_Center": 0.4066900448,
+               "MethodInvocations": [
+                  "StringBuilder.__init__",
+                  "MessageDigest.digest",
+                  "MessageDigest.update",
+                  "StringBuilder.toString"
+               ]
+            },
+            {
+               "Cluster": 3,
+               "Code": "\r\nimport java.io.BufferedReader; \r\nimport java.io.IOException; \r\nimport java.io.InputStreamReader; \r\nimport java.io.UnsupportedEncodingException; \r\nimport java.security.NoSuchAlgorithmException; \r\n\r\npublic class Ex01 { \r\n\r\n    public static void main(String[] args) throws IOException { \r\n        BufferedReader userInput = new BufferedReader (new InputStreamReader(System.in));\r\n\r\n        System.out.println(\"Enter string:\");\r\n        String rawString = userInput.readLine();\r\n\r\n        try { \r\n            System.out.println(\"MD5 hash of string: \" + AeSimpleMD5.MD5(rawString));\r\n        } catch (NoSuchAlgorithmException e) { \r\n            // TODO Auto-generated catch block \r\n            e.printStackTrace();\r\n        } catch (UnsupportedEncodingException e) { \r\n            // TODO Auto-generated catch block \r\n            e.printStackTrace();\r\n        } \r\n    } \r\n} \r\n",
+               "LOC": 27,
+               "Url": "http://www.anyexample.com/programming/java/java_simple_class_to_compute_md5_hash.xml",
+               "Score": 0.0,
+               "API_Weights": 1.7320508076,
+               "API_Qualified_Names": {
+                  "InputStreamReader.__init__": "java.io.InputStreamReader.__init__",
+                  "BufferedReader.__init__": "java.io.BufferedReader.__init__",
+                  "BufferedReader.readLine": "java.io.BufferedReader.readLine"
+               },
+               "Url_Position": 11,
+               "In_Page_Order": 3,
+               "Num_API_Calls": 3,
+               "Dist_Center": 0.4314830832,
+               "MethodInvocations": [
+                  "BufferedReader.readLine",
+                  "BufferedReader.__init__",
+                  "InputStreamReader.__init__"
+               ]
+            }
+         ],
+         "avg_cluster_api_weights": 14.128917454840765,
+         "top_apis_by_cluster": [
+            "stringbuffer.tostring",
+            "stringbuffer.__init__",
+            "messagedigest.digest",
+            "messagedigest.update",
+            "fileinputstream.__init__",
+            "fileinputstream.read",
+            "stringbuffer.append",
+            "hashgenerationexception.__init__"
+         ]
+      },
+      {
+         "cluster_snippets": [
+            {
+               "Cluster": 4,
+               "Code": "<pre class=\"prettyprint\">/**\n * Save the contents of the FS image to the file.\n */\nvoid saveFSImage(File newFile) throws IOException {\n  FSNamesystem fsNamesys = FSNamesystem.getFSNamesystem();\n  FSDirectory fsDir = fsNamesys.dir;\n  long startTime = FSNamesystem.now();\n  //\n  // Write out data\n  //\n  FileOutputStream fstream = new FileOutputStream(newFile);\n  MessageDigest digester = MD5Hash.getDigester();\n  DigestOutputStream fout = new DigestOutputStream(fstream, digester);\n  DataOutputStream out = new DataOutputStream(fout);\n  long numOfBytesWritten = 0;\n  try {\n    out.writeInt(FSConstants.LAYOUT_VERSION);\n    out.writeInt(namespaceID);\n    out.writeLong(fsDir.rootDir.numItemsInTree());\n    out.writeLong(fsNamesys.getGenerationStamp());\n    \n    out.writeBoolean(compressImage);\n    if (compressImage) {\n      String codecClassName = saveCodec.getClass().getCanonicalName();\n      Text.writeString(out, codecClassName);\n      out = new DataOutputStream(saveCodec.createOutputStream(fout));\n      LOG.info(\"Saving image file \" + newFile +\n          \" compressed using codec \" + codecClassName);\n    } else {\n      out = new DataOutputStream(new BufferedOutputStream(fout));\n    }\n    \n    byte[] byteStore = new byte[4*FSConstants.MAX_PATH_LENGTH];\n    ByteBuffer strbuf = ByteBuffer.wrap(byteStore);\n    // save the root\n    saveINode2Image(strbuf, fsDir.rootDir, out);\n    // save the rest of the nodes\n    saveImage(strbuf, 0, fsDir.rootDir, out);\n    fsNamesys.saveFilesUnderConstruction(out);\n    strbuf = null;\n    \n    out.flush();\n    fstream.getChannel().force(true);\n    numOfBytesWritten = fstream.getChannel().position();\n  } finally {\n    out.close();\n  }\n  // set md5 of the saved image\n  imageDigest = new MD5Hash(digester.digest());\n\n  long imageFileLen = newFile.length();\n  if (numOfBytesWritten != imageFileLen) {\n    throw new IOException(\"Something is wrong: write \" + numOfBytesWritten +\n        \" bytes but the image file length is \" + imageFileLen);\n  }\n  LOG.info(\"Image file of size \" + imageFileLen + \" saved in \" \n      + (FSNamesystem.now() - startTime)/1000 + \" seconds.\");\n}\n </pre>",
+               "LOC": 59,
+               "Url": "https://www.programcreek.com/java-api-examples/index.php?api=org.apache.hadoop.io.MD5Hash",
+               "Score": 1.0,
+               "API_Weights": 10.9782846128,
+               "API_Qualified_Names": {
+                  "FileOutputStream.__init__": "java.io.FileOutputStream.__init__",
+                  "DigestOutputStream.__init__": "java.security.DigestOutputStream.__init__",
+                  "DataOutputStream.__init__": "java.io.DataOutputStream.__init__",
+                  "DataOutputStream.writeInt": "java.io.DataOutputStream.writeInt",
+                  "DataOutputStream.writeLong": "java.io.DataOutputStream.writeLong",
+                  "DataOutputStream.writeBoolean": "java.io.DataOutputStream.writeBoolean",
+                  "BufferedOutputStream.__init__": "java.io.BufferedOutputStream.__init__",
+                  "DataOutputStream.flush": "java.io.DataOutputStream.flush",
+                  "FileOutputStream.getChannel": "java.io.FileOutputStream.getChannel",
+                  "DataOutputStream.close": "java.io.DataOutputStream.close",
+                  "MessageDigest.digest": "java.security.MessageDigest.digest",
+                  "MD5Hash.__init__": "org.apache.hadoop.io.MD5Hash.__init__",
+                  "File.length": "java.io.File.length",
+                  "IOException.__init__": "java.io.IOException.__init__"
+               },
+               "Url_Position": 38,
+               "In_Page_Order": 33,
+               "Num_API_Calls": 16,
+               "Dist_Center": 0.0895090719,
+               "MethodInvocations": [
+                  "MD5Hash.__init__",
+                  "DigestOutputStream.__init__",
+                  "DataOutputStream.writeInt",
+                  "MessageDigest.digest",
+                  "DataOutputStream.flush",
+                  "FileOutputStream.__init__",
+                  "BufferedOutputStream.__init__",
+                  "FSNamesystem.saveFilesUnderConstruction",
+                  "FSNamesystem.getGenerationStamp",
+                  "FileOutputStream.getChannel",
+                  "IOException.__init__",
+                  "File.length",
+                  "DataOutputStream.__init__",
+                  "DataOutputStream.writeBoolean",
+                  "DataOutputStream.close",
+                  "DataOutputStream.writeLong"
+               ]
+            },
+            {
+               "Cluster": 4,
+               "Code": "<pre class=\"prettyprint\">/**\n * Get block checksum (MD5 of CRC32).\n * @param in\n */\nvoid getBlockChecksum(DataInputStream in) throws IOException {\n  final Block block = new Block(in.readLong(), 0 , in.readLong());\n\n  DataOutputStream out = null;\n  final MetaDataInputStream metadataIn = datanode.data.getMetaDataInputStream(block);\n  final DataInputStream checksumIn = new DataInputStream(new BufferedInputStream(\n      metadataIn, BUFFER_SIZE));\n\n  try {\n    //read metadata file\n    final BlockMetadataHeader header = BlockMetadataHeader.readHeader(checksumIn);\n    final DataChecksum checksum = header.getChecksum(); \n    final int bytesPerCRC = checksum.getBytesPerChecksum();\n    final long crcPerBlock = (metadataIn.getLength()\n        - BlockMetadataHeader.getHeaderSize())/checksum.getChecksumSize();\n    \n    //compute block checksum\n    final MD5Hash md5 = MD5Hash.digest(checksumIn);\n\n    if (LOG.isDebugEnabled()) {\n      LOG.debug(\"block=\" + block + \", bytesPerCRC=\" + bytesPerCRC\n          + \", crcPerBlock=\" + crcPerBlock + \", md5=\" + md5);\n    }\n\n    //write reply\n    out = new DataOutputStream(\n        NetUtils.getOutputStream(s, datanode.socketWriteTimeout));\n    out.writeShort(DataTransferProtocol.OP_STATUS_SUCCESS);\n    out.writeInt(bytesPerCRC);\n    out.writeLong(crcPerBlock);\n    md5.write(out);\n    out.flush();\n  } finally {\n    IOUtils.closeStream(out);\n    IOUtils.closeStream(checksumIn);\n    IOUtils.closeStream(metadataIn);\n  }\n}\n </pre>",
+               "LOC": 43,
+               "Url": "https://www.programcreek.com/java-api-examples/index.php?api=org.apache.hadoop.io.MD5Hash",
+               "Score": 0.8421333219,
+               "API_Weights": 18.4534674453,
+               "API_Qualified_Names": {
+                  "DataInputStream.readLong": "java.io.DataInputStream.readLong",
+                  "Block.__init__": "com.ochafik.lang.jnaerator.parser.Statement.Block.__init__",
+                  "BufferedInputStream.__init__": "java.io.BufferedInputStream.__init__",
+                  "DataInputStream.__init__": "java.io.DataInputStream.__init__",
+                  "BlockMetadataHeader.getChecksum": "org.apache.hadoop.hdfs.server.datanode.BlockMetadataHeader.getChecksum",
+                  "DataChecksum.getBytesPerChecksum": "org.apache.hadoop.util.DataChecksum.getBytesPerChecksum",
+                  "DataChecksum.getChecksumSize": "org.apache.hadoop.util.DataChecksum.getChecksumSize",
+                  "DataOutputStream.__init__": "java.io.DataOutputStream.__init__",
+                  "DataOutputStream.writeShort": "java.io.DataOutputStream.writeShort",
+                  "DataOutputStream.writeInt": "java.io.DataOutputStream.writeInt",
+                  "DataOutputStream.writeLong": "java.io.DataOutputStream.writeLong",
+                  "MD5Hash.write": "org.apache.hadoop.io.MD5Hash.write",
+                  "DataOutputStream.flush": "java.io.DataOutputStream.flush"
+               },
+               "Url_Position": 38,
+               "In_Page_Order": 8,
+               "Num_API_Calls": 13,
+               "Dist_Center": 0.1458785058,
+               "MethodInvocations": [
+                  "DataChecksum.getChecksumSize",
+                  "Block.__init__",
+                  "MD5Hash.write",
+                  "DataOutputStream.writeInt",
+                  "BufferedInputStream.__init__",
+                  "DataOutputStream.writeShort",
+                  "DataOutputStream.flush",
+                  "DataInputStream.readLong",
+                  "DataOutputStream.__init__",
+                  "DataChecksum.getBytesPerChecksum",
+                  "DataOutputStream.writeLong",
+                  "DataInputStream.__init__",
+                  "BlockMetadataHeader.getChecksum"
+               ]
+            },
+            {
+               "Cluster": 4,
+               "Code": "<pre class=\"prettyprint\">/**\n * Get block checksum (MD5 of CRC32).\n * @param in\n */\nvoid getBlockChecksum(DataInputStream in) throws IOException {\n  final Block block = new Block(in.readLong(), 0 , in.readLong());\n\n  DataOutputStream out = null;\n  final MetaDataInputStream metadataIn = datanode.data.getMetaDataInputStream(block);\n  final DataInputStream checksumIn = new DataInputStream(new BufferedInputStream(\n      metadataIn, BUFFER_SIZE));\n\n  updateCurrentThreadName(\"getting checksum for block \" + block);\n  try {\n    //read metadata file\n    final BlockMetadataHeader header = BlockMetadataHeader.readHeader(checksumIn);\n    final DataChecksum checksum = header.getChecksum(); \n    final int bytesPerCRC = checksum.getBytesPerChecksum();\n    final long crcPerBlock = (metadataIn.getLength()\n        - BlockMetadataHeader.getHeaderSize())/checksum.getChecksumSize();\n    \n    //compute block checksum\n    final MD5Hash md5 = MD5Hash.digest(checksumIn);\n\n    if (LOG.isDebugEnabled()) {\n      LOG.debug(\"block=\" + block + \", bytesPerCRC=\" + bytesPerCRC\n          + \", crcPerBlock=\" + crcPerBlock + \", md5=\" + md5);\n    }\n\n    //write reply\n    out = new DataOutputStream(\n        NetUtils.getOutputStream(s, datanode.socketWriteTimeout));\n    out.writeShort(DataTransferProtocol.OP_STATUS_SUCCESS);\n    out.writeInt(bytesPerCRC);\n    out.writeLong(crcPerBlock);\n    md5.write(out);\n    out.flush();\n  } finally {\n    IOUtils.closeStream(out);\n    IOUtils.closeStream(checksumIn);\n    IOUtils.closeStream(metadataIn);\n  }\n}\n </pre>",
+               "LOC": 44,
+               "Url": "https://www.programcreek.com/java-api-examples/index.php?api=org.apache.hadoop.io.MD5Hash",
+               "Score": 0.8421333219,
+               "API_Weights": 18.4534674453,
+               "API_Qualified_Names": {
+                  "DataInputStream.readLong": "java.io.DataInputStream.readLong",
+                  "Block.__init__": "com.ochafik.lang.jnaerator.parser.Statement.Block.__init__",
+                  "BufferedInputStream.__init__": "java.io.BufferedInputStream.__init__",
+                  "DataInputStream.__init__": "java.io.DataInputStream.__init__",
+                  "BlockMetadataHeader.getChecksum": "org.apache.hadoop.hdfs.server.datanode.BlockMetadataHeader.getChecksum",
+                  "DataChecksum.getBytesPerChecksum": "org.apache.hadoop.util.DataChecksum.getBytesPerChecksum",
+                  "DataChecksum.getChecksumSize": "org.apache.hadoop.util.DataChecksum.getChecksumSize",
+                  "DataOutputStream.__init__": "java.io.DataOutputStream.__init__",
+                  "DataOutputStream.writeShort": "java.io.DataOutputStream.writeShort",
+                  "DataOutputStream.writeInt": "java.io.DataOutputStream.writeInt",
+                  "DataOutputStream.writeLong": "java.io.DataOutputStream.writeLong",
+                  "MD5Hash.write": "org.apache.hadoop.io.MD5Hash.write",
+                  "DataOutputStream.flush": "java.io.DataOutputStream.flush"
+               },
+               "Url_Position": 38,
+               "In_Page_Order": 29,
+               "Num_API_Calls": 13,
+               "Dist_Center": 0.1458785058,
+               "MethodInvocations": [
+                  "DataChecksum.getChecksumSize",
+                  "Block.__init__",
+                  "MD5Hash.write",
+                  "DataOutputStream.writeInt",
+                  "BufferedInputStream.__init__",
+                  "DataOutputStream.writeShort",
+                  "DataOutputStream.flush",
+                  "DataInputStream.readLong",
+                  "DataOutputStream.__init__",
+                  "DataChecksum.getBytesPerChecksum",
+                  "DataOutputStream.writeLong",
+                  "DataInputStream.__init__",
+                  "BlockMetadataHeader.getChecksum"
+               ]
+            },
+            {
+               "Cluster": 4,
+               "Code": "<pre class=\"prettyprint\">/**\n * Get block checksum (MD5 of CRC32).\n * @param in\n */\nvoid getBlockChecksum(DataInputStream in) throws IOException {\n  final Block block = new Block(in.readLong(), 0 , in.readLong());\n\n  DataOutputStream out = null;\n  final MetaDataInputStream metadataIn = datanode.data.getMetaDataInputStream(block);\n  final DataInputStream checksumIn = new DataInputStream(new BufferedInputStream(\n      metadataIn, BUFFER_SIZE));\n\n  updateCurrentThreadName(\"getting checksum for block \" + block);\n  try {\n    //read metadata file\n    final BlockMetadataHeader header = BlockMetadataHeader.readHeader(checksumIn);\n    final DataChecksum checksum = header.getChecksum(); \n    final int bytesPerCRC = checksum.getBytesPerChecksum();\n    final long crcPerBlock = (metadataIn.getLength()\n        - BlockMetadataHeader.getHeaderSize())/checksum.getChecksumSize();\n    \n    //compute block checksum\n    final MD5Hash md5 = MD5Hash.digest(checksumIn);\n\n    if (LOG.isDebugEnabled()) {\n      LOG.debug(\"block=\" + block + \", bytesPerCRC=\" + bytesPerCRC\n          + \", crcPerBlock=\" + crcPerBlock + \", md5=\" + md5);\n    }\n\n    //write reply\n    out = new DataOutputStream(\n        NetUtils.getOutputStream(s, datanode.socketWriteTimeout));\n    out.writeShort(DataTransferProtocol.OP_STATUS_SUCCESS);\n    out.writeInt(bytesPerCRC);\n    out.writeLong(crcPerBlock);\n    md5.write(out);\n    out.flush();\n  } finally {\n    IOUtils.closeStream(out);\n    IOUtils.closeStream(checksumIn);\n    IOUtils.closeStream(metadataIn);\n  }\n}\n </pre>",
+               "LOC": 44,
+               "Url": "https://www.programcreek.com/java-api-examples/index.php?api=org.apache.hadoop.io.MD5Hash",
+               "Score": 0.8421333219,
+               "API_Weights": 18.4534674453,
+               "API_Qualified_Names": {
+                  "DataInputStream.readLong": "java.io.DataInputStream.readLong",
+                  "Block.__init__": "com.ochafik.lang.jnaerator.parser.Statement.Block.__init__",
+                  "BufferedInputStream.__init__": "java.io.BufferedInputStream.__init__",
+                  "DataInputStream.__init__": "java.io.DataInputStream.__init__",
+                  "BlockMetadataHeader.getChecksum": "org.apache.hadoop.hdfs.server.datanode.BlockMetadataHeader.getChecksum",
+                  "DataChecksum.getBytesPerChecksum": "org.apache.hadoop.util.DataChecksum.getBytesPerChecksum",
+                  "DataChecksum.getChecksumSize": "org.apache.hadoop.util.DataChecksum.getChecksumSize",
+                  "DataOutputStream.__init__": "java.io.DataOutputStream.__init__",
+                  "DataOutputStream.writeShort": "java.io.DataOutputStream.writeShort",
+                  "DataOutputStream.writeInt": "java.io.DataOutputStream.writeInt",
+                  "DataOutputStream.writeLong": "java.io.DataOutputStream.writeLong",
+                  "MD5Hash.write": "org.apache.hadoop.io.MD5Hash.write",
+                  "DataOutputStream.flush": "java.io.DataOutputStream.flush"
+               },
+               "Url_Position": 38,
+               "In_Page_Order": 31,
+               "Num_API_Calls": 13,
+               "Dist_Center": 0.1458785058,
+               "MethodInvocations": [
+                  "DataChecksum.getChecksumSize",
+                  "Block.__init__",
+                  "MD5Hash.write",
+                  "DataOutputStream.writeInt",
+                  "BufferedInputStream.__init__",
+                  "DataOutputStream.writeShort",
+                  "DataOutputStream.flush",
+                  "DataInputStream.readLong",
+                  "DataOutputStream.__init__",
+                  "DataChecksum.getBytesPerChecksum",
+                  "DataOutputStream.writeLong",
+                  "DataInputStream.__init__",
+                  "BlockMetadataHeader.getChecksum"
+               ]
+            },
+            {
+               "Cluster": 4,
+               "Code": "<pre class=\"prettyprint\">/**\n * Get block checksum (MD5 of CRC32).\n * @param in\n */\nvoid getBlockChecksum(DataInputStream in) throws IOException {\n  final Block block = new Block(in.readLong(), 0 , in.readLong());\n\n  DataOutputStream out = null;\n  final MetaDataInputStream metadataIn = datanode.data.getMetaDataInputStream(block);\n  final DataInputStream checksumIn = new DataInputStream(new BufferedInputStream(\n      metadataIn, BUFFER_SIZE));\n\n  try {\n    //read metadata file\n    final BlockMetadataHeader header = BlockMetadataHeader.readHeader(checksumIn);\n    final DataChecksum checksum = header.getChecksum(); \n    final int bytesPerCRC = checksum.getBytesPerChecksum();\n    final long crcPerBlock = (metadataIn.getLength()\n        - BlockMetadataHeader.getHeaderSize())/checksum.getChecksumSize();\n    \n    //compute block checksum\n    final MD5Hash md5 = MD5Hash.digest(checksumIn);\n\n    if (LOG.isDebugEnabled()) {\n      LOG.debug(\"block=\" + block + \", bytesPerCRC=\" + bytesPerCRC\n          + \", crcPerBlock=\" + crcPerBlock + \", md5=\" + md5);\n    }\n\n    //write reply\n    out = new DataOutputStream(\n        NetUtils.getOutputStream(s, datanode.socketWriteTimeout));\n    out.writeShort(DataTransferProtocol.OP_STATUS_SUCCESS);\n    out.writeInt(bytesPerCRC);\n    out.writeLong(crcPerBlock);\n    md5.write(out);\n    out.flush();\n  } finally {\n    IOUtils.closeStream(out);\n    IOUtils.closeStream(checksumIn);\n    IOUtils.closeStream(metadataIn);\n  }\n}\n </pre>",
+               "LOC": 43,
+               "Url": "https://www.programcreek.com/java-api-examples/index.php?api=org.apache.hadoop.io.MD5Hash",
+               "Score": 0.8421333219,
+               "API_Weights": 18.4534674453,
+               "API_Qualified_Names": {
+                  "DataInputStream.readLong": "java.io.DataInputStream.readLong",
+                  "Block.__init__": "com.ochafik.lang.jnaerator.parser.Statement.Block.__init__",
+                  "BufferedInputStream.__init__": "java.io.BufferedInputStream.__init__",
+                  "DataInputStream.__init__": "java.io.DataInputStream.__init__",
+                  "BlockMetadataHeader.getChecksum": "org.apache.hadoop.hdfs.server.datanode.BlockMetadataHeader.getChecksum",
+                  "DataChecksum.getBytesPerChecksum": "org.apache.hadoop.util.DataChecksum.getBytesPerChecksum",
+                  "DataChecksum.getChecksumSize": "org.apache.hadoop.util.DataChecksum.getChecksumSize",
+                  "DataOutputStream.__init__": "java.io.DataOutputStream.__init__",
+                  "DataOutputStream.writeShort": "java.io.DataOutputStream.writeShort",
+                  "DataOutputStream.writeInt": "java.io.DataOutputStream.writeInt",
+                  "DataOutputStream.writeLong": "java.io.DataOutputStream.writeLong",
+                  "MD5Hash.write": "org.apache.hadoop.io.MD5Hash.write",
+                  "DataOutputStream.flush": "java.io.DataOutputStream.flush"
+               },
+               "Url_Position": 38,
+               "In_Page_Order": 30,
+               "Num_API_Calls": 13,
+               "Dist_Center": 0.1458785058,
+               "MethodInvocations": [
+                  "DataChecksum.getChecksumSize",
+                  "Block.__init__",
+                  "MD5Hash.write",
+                  "DataOutputStream.writeInt",
+                  "BufferedInputStream.__init__",
+                  "DataOutputStream.writeShort",
+                  "DataOutputStream.flush",
+                  "DataInputStream.readLong",
+                  "DataOutputStream.__init__",
+                  "DataChecksum.getBytesPerChecksum",
+                  "DataOutputStream.writeLong",
+                  "DataInputStream.__init__",
+                  "BlockMetadataHeader.getChecksum"
+               ]
+            },
+            {
+               "Cluster": 4,
+               "Code": "<pre class=\"prettyprint\">private MD5Hash writeDataAndAssertContents(\n    TestImageUploadStreamInjectionHandler h, int iteration)\n    throws IOException {\n\n  // check write digest\n  MessageDigest digester = MD5Hash.getDigester();\n\n  // create stream\n  HttpImageUploadStream ius = new HttpImageUploadStream(httpAddrs, JID, FAKE_NSINFO,\n      startTxId + iteration, 1, bufferSize, maxNumChunks);\n\n  DigestOutputStream ds = new DigestOutputStream(ius, digester);\n  DataOutputStream dos = new DataOutputStream(ds);\n\n  // write actual data\n  byte[] written = writeData(dos, 10240);\n\n  // flush\n  dos.flush();\n\n  // get written hash\n  MD5Hash hash = new MD5Hash(digester.digest());\n\n  // close the stream\n  dos.close();\n  assertContents(cluster, written, startTxId + iteration, hash, h);\n\n  // roll image\n  qjm.saveDigestAndRenameCheckpointImage(startTxId + iteration, hash);\n\n  // final assert of the contents\n  // get contents using input stream obtained from qjm\n  InputStream is = qjm.getImageInputStream(startTxId + iteration)\n      .getInputStream();\n  byte[] contents = new byte[written.length];\n  is.read(contents);\n  assertTrue(Arrays.equals(written, contents));\n\n  return hash;\n}\n </pre>",
+               "LOC": 41,
+               "Url": "https://www.programcreek.com/java-api-examples/index.php?api=org.apache.hadoop.io.MD5Hash",
+               "Score": 0.7907550897,
+               "API_Weights": 6.585299118,
+               "API_Qualified_Names": {
+                  "DigestOutputStream.__init__": "java.security.DigestOutputStream.__init__",
+                  "DataOutputStream.__init__": "java.io.DataOutputStream.__init__",
+                  "DataOutputStream.flush": "java.io.DataOutputStream.flush",
+                  "MessageDigest.digest": "java.security.MessageDigest.digest",
+                  "MD5Hash.__init__": "org.apache.hadoop.io.MD5Hash.__init__",
+                  "DataOutputStream.close": "java.io.DataOutputStream.close",
+                  "InputStream.read": "java.io.InputStream.read"
+               },
+               "Url_Position": 38,
+               "In_Page_Order": 7,
+               "Num_API_Calls": 8,
+               "Dist_Center": 0.1642241243,
+               "MethodInvocations": [
+                  "MD5Hash.__init__",
+                  "DigestOutputStream.__init__",
+                  "MessageDigest.digest",
+                  "DataOutputStream.flush",
+                  "DataOutputStream.__init__",
+                  "HttpImageUploadStream.__init__",
+                  "DataOutputStream.close",
+                  "InputStream.read"
+               ]
+            },
+            {
+               "Cluster": 4,
+               "Code": "<pre class=\"prettyprint\">/**\n * Get block checksum (MD5 of CRC32).\n * \n * @param in\n */\nvoid getBlockChecksum(DataInputStream in, VersionAndOpcode versionAndOpcode)\n\t\tthrows IOException {\n\t// header\n\tBlockChecksumHeader blockChecksumHeader = new BlockChecksumHeader(\n\t\t\tversionAndOpcode);\n\tblockChecksumHeader.readFields(in);\n\tfinal int namespaceId = blockChecksumHeader.getNamespaceId();\n\tfinal Block block = new Block(blockChecksumHeader.getBlockId(), 0,\n\t\t\tblockChecksumHeader.getGenStamp());\n\n\tDataOutputStream out = null;\n\tfinal MetaDataInputStream metadataIn = datanode.data\n\t\t\t.getMetaDataInputStream(namespaceId, block);\n\tfinal DataInputStream checksumIn = new DataInputStream(\n\t\t\tnew BufferedInputStream(metadataIn, BUFFER_SIZE));\n\n\tupdateCurrentThreadName(\"getting checksum for block \" + block);\n\ttry {\n\t\t// read metadata file\n\t\tfinal BlockMetadataHeader header = BlockMetadataHeader\n\t\t\t\t.readHeader(checksumIn);\n\t\tfinal DataChecksum checksum = header.getChecksum();\n\t\tfinal int bytesPerCRC = checksum.getBytesPerChecksum();\n\t\tfinal long crcPerBlock = (metadataIn.getLength() - BlockMetadataHeader\n\t\t\t\t.getHeaderSize()) / checksum.getChecksumSize();\n\n\t\t// compute block checksum\n\t\tfinal MD5Hash md5 = MD5Hash.digest(checksumIn);\n\n\t\tif (LOG.isDebugEnabled()) {\n\t\t\tLOG.debug(\"block=\" + block + \", bytesPerCRC=\" + bytesPerCRC\n\t\t\t\t\t+ \", crcPerBlock=\" + crcPerBlock + \", md5=\" + md5);\n\t\t}\n\n\t\t// write reply\n\t\tout = new DataOutputStream(NetUtils.getOutputStream(s,\n\t\t\t\tdatanode.socketWriteTimeout));\n\t\tout.writeShort(DataTransferProtocol.OP_STATUS_SUCCESS);\n\t\tout.writeInt(bytesPerCRC);\n\t\tout.writeLong(crcPerBlock);\n\t\tmd5.write(out);\n\t\tout.flush();\n\t} finally {\n\t\tIOUtils.closeStream(out);\n\t\tIOUtils.closeStream(checksumIn);\n\t\tIOUtils.closeStream(metadataIn);\n\t}\n}\n </pre>",
+               "LOC": 54,
+               "Url": "https://www.programcreek.com/java-api-examples/index.php?api=org.apache.hadoop.io.MD5Hash",
+               "Score": 0.6710006786,
+               "API_Weights": 18.7367353089,
+               "API_Qualified_Names": {
+                  "Block.__init__": "com.ochafik.lang.jnaerator.parser.Statement.Block.__init__",
+                  "BufferedInputStream.__init__": "java.io.BufferedInputStream.__init__",
+                  "DataInputStream.__init__": "java.io.DataInputStream.__init__",
+                  "BlockMetadataHeader.getChecksum": "org.apache.hadoop.hdfs.server.datanode.BlockMetadataHeader.getChecksum",
+                  "DataChecksum.getBytesPerChecksum": "org.apache.hadoop.util.DataChecksum.getBytesPerChecksum",
+                  "DataChecksum.getChecksumSize": "org.apache.hadoop.util.DataChecksum.getChecksumSize",
+                  "DataOutputStream.__init__": "java.io.DataOutputStream.__init__",
+                  "DataOutputStream.writeShort": "java.io.DataOutputStream.writeShort",
+                  "DataOutputStream.writeInt": "java.io.DataOutputStream.writeInt",
+                  "DataOutputStream.writeLong": "java.io.DataOutputStream.writeLong",
+                  "MD5Hash.write": "org.apache.hadoop.io.MD5Hash.write",
+                  "DataOutputStream.flush": "java.io.DataOutputStream.flush"
+               },
+               "Url_Position": 38,
+               "In_Page_Order": 32,
+               "Num_API_Calls": 17,
+               "Dist_Center": 0.2069848161,
+               "MethodInvocations": [
+                  "BlockChecksumHeader.getBlockId",
+                  "DataChecksum.getChecksumSize",
+                  "BlockChecksumHeader.getGenStamp",
+                  "MD5Hash.write",
+                  "BlockChecksumHeader.readFields",
+                  "DataOutputStream.writeInt",
+                  "BufferedInputStream.__init__",
+                  "DataOutputStream.writeShort",
+                  "DataOutputStream.flush",
+                  "BlockChecksumHeader.getNamespaceId",
+                  "BlockMetadataHeader.getChecksum",
+                  "DataOutputStream.__init__",
+                  "DataChecksum.getBytesPerChecksum",
+                  "BlockChecksumHeader.__init__",
+                  "DataOutputStream.writeLong",
+                  "DataInputStream.__init__",
+                  "Block.__init__"
+               ]
+            },
+            {
+               "Cluster": 4,
+               "Code": "@Test\r\npublic void givenFile_whenChecksumUsingGuava_thenVerifying() \r\n  throws IOException {\r\n    String filename = \"src/test/resources/test_md5.txt\";\r\n    String checksum = \"5EB63BBBE01EEED093CB22BB8F5ACDC3\";\r\n        \r\n    HashCode hash = com.google.common.io.Files\r\n      .hash(new File(filename), Hashing.md5());\r\n    String myChecksum = hash.toString()\r\n      .toUpperCase();\r\n        \r\n    assertThat(myChecksum.equals(checksum)).isTrue();\r\n}",
+               "LOC": 13,
+               "Url": "http://www.baeldung.com/java-md5",
+               "Score": 0.5503183981,
+               "API_Weights": 1.4142135624,
+               "API_Qualified_Names": {
+                  "File.__init__": "java.io.File.__init__",
+                  "HashCode.toString": "com.google.common.hash.HashCode.toString"
+               },
+               "Url_Position": 6,
+               "In_Page_Order": 7,
+               "Num_API_Calls": 2,
+               "Dist_Center": 0.2500768221,
+               "MethodInvocations": [
+                  "File.__init__",
+                  "HashCode.toString"
+               ]
+            },
+            {
+               "Cluster": 4,
+               "Code": "Hasher hasher = Hashing.md5().newHasher();\nhasher.putString(\"my string\");\nbyte[] md5 = hasher.hash().asBytes();\n",
+               "LOC": 4,
+               "Url": "https://stackoverflow.com/questions/415953/how-can-i-generate-an-md5-hash",
+               "Score": 0.3668310263,
+               "API_Weights": 1.4142135624,
+               "API_Qualified_Names": {
+                  "Hasher.putString": "com.google.common.hash.Hasher.putString",
+                  "Hasher.hash": "com.google.common.hash.Hasher.hash"
+               },
+               "Url_Position": 1,
+               "In_Page_Order": 10,
+               "Num_API_Calls": 2,
+               "Dist_Center": 0.3155946337,
+               "MethodInvocations": [
+                  "Hasher.hash",
+                  "Hasher.putString"
+               ]
+            },
+            {
+               "Cluster": 4,
+               "Code": "public class Hasher {\n    /**\n     * Gets the md5 hash of the passed in bytes\n     *\n     * @param bytes The bytes to determine the md5 hash of\n     * @return a String containing the md5 hash string\n     */\n    public String getMd5Hash(byte[] bytes) {\n        Formatter fm = new Formatter();\n        MessageDigest digest = null;\n        try {\n            digest = MessageDigest.getInstance(\"MD5\");\n            digest.update(bytes);\n            bytes = digest.digest();\n            for (byte b : bytes) {\n                fm.format(\"%02x\", b);\n            }\n        } catch (NoSuchAlgorithmException e) {\n            System.out.println(\"Exception: \" + e);\n        }\n        return fm.out().toString();\n    }\n    public static void main(String[] args) {\n        Hasher hasher = new Hasher();\n        String hash = hasher.getMd5Hash(\"what is the md5 hash of this?\".getBytes());\n        System.out.println(\"hash = \" + hash);\n    }\n}",
+               "LOC": 28,
+               "Url": "https://thebadprogrammer.com/2012/04/java-md5-hash.html",
+               "Score": -2.220446049e-16,
+               "API_Weights": 2.740956578,
+               "API_Qualified_Names": {
+                  "Formatter.__init__": "java.util.Formatter.__init__",
+                  "MessageDigest.update": "java.security.MessageDigest.update",
+                  "MessageDigest.digest": "java.security.MessageDigest.digest",
+                  "Formatter.format": "java.util.Formatter.format",
+                  "Formatter.out": "java.util.Formatter.out",
+                  "Hasher.__init__": "org.eclipse.jgit.treewalk.filter.ByteArraySet.Hasher.__init__"
+               },
+               "Url_Position": 40,
+               "In_Page_Order": 1,
+               "Num_API_Calls": 7,
+               "Dist_Center": 0.4465789398,
+               "MethodInvocations": [
+                  "Formatter.__init__",
+                  "Formatter.format",
+                  "Hasher.__init__",
+                  "MessageDigest.digest",
+                  "Formatter.out",
+                  "MessageDigest.update",
+                  "Hasher.getMd5Hash"
+               ]
+            }
+         ],
+         "avg_cluster_api_weights": 11.568357252377563,
+         "top_apis_by_cluster": [
+            "dataoutputstream.__init__",
+            "dataoutputstream.flush",
+            "dataoutputstream.writeint",
+            "dataoutputstream.writelong",
+            "dataoutputstream.writeshort",
+            "datachecksum.getbytesperchecksum",
+            "md5hash.write",
+            "block.__init__"
+         ]
+      }
+   ]
+}

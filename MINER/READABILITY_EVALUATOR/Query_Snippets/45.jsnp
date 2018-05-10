@@ -1,0 +1,3 @@
+String content;
+
+content = new String(Files.readAllBytes(Paths.get("sample.txt")));

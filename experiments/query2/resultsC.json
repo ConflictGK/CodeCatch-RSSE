@@ -1,0 +1,2527 @@
+[
+  {
+    "query": "How to send packet via UDP",
+    "url": "https://docs.oracle.com/javase/tutorial/networking/datagrams/clientServer.html",
+    "url position": 10,
+    "segments": [
+      {
+        "code": "\nimport java.io.*;\n\npublic class QuoteServer {\n    public static void main(String[] args) throws IOException {\n        new QuoteServerThread().start();\n    }\n}\n",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "QuoteServerThread.__init__": false
+        },
+        "APIsProjects": {},
+        "APIsFiles": {},
+        "APIsSnippets": {},
+        "APIsQualifiedNames": {},
+        "API_Ratio": 0.0,
+        "readability": false
+      },
+      {
+        "code": "\npublic QuoteServerThread() throws IOException {\n    this(\"QuoteServer\");\n}\n\npublic QuoteServerThread(String name) throws IOException {\n    super(name);\n    socket = new DatagramSocket(4445);\n\n    try {\n        in = new BufferedReader(new FileReader(\"one-liners.txt\"));\n    }   \n    catch (FileNotFoundException e){\n        System.err.println(\"Couldn't open quote file.  Serving time instead.\");\n    }\n}  \n",
+        "in_page_order": 2,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "DatagramSocket.__init__": true,
+          "FileReader.__init__": true,
+          "BufferedReader.__init__": true
+        },
+        "APIsProjects": {
+          "DatagramSocket.__init__": 50,
+          "FileReader.__init__": 232,
+          "BufferedReader.__init__": 450
+        },
+        "APIsFiles": {
+          "DatagramSocket.__init__": 125,
+          "FileReader.__init__": 957,
+          "BufferedReader.__init__": 2803
+        },
+        "APIsSnippets": {
+          "DatagramSocket.__init__": 293,
+          "FileReader.__init__": 1316,
+          "BufferedReader.__init__": 4179
+        },
+        "APIsQualifiedNames": {
+          "DatagramSocket.__init__": "java.net.DatagramSocket.__init__",
+          "FileReader.__init__": "java.io.FileReader.__init__",
+          "BufferedReader.__init__": "java.io.BufferedReader.__init__"
+        },
+        "API_Ratio": 1.0,
+        "readability": false
+      },
+      {
+        "code": "\nbyte[] buf = new byte[256];\nDatagramPacket packet = new DatagramPacket(buf, buf.length);\nsocket.receive(packet);\n",
+        "in_page_order": 3,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "DatagramPacket.__init__": true
+        },
+        "APIsProjects": {
+          "DatagramPacket.__init__": 51
+        },
+        "APIsFiles": {
+          "DatagramPacket.__init__": 146
+        },
+        "APIsSnippets": {
+          "DatagramPacket.__init__": 320
+        },
+        "APIsQualifiedNames": {
+          "DatagramPacket.__init__": "java.net.DatagramPacket.__init__"
+        },
+        "API_Ratio": 1.0,
+        "readability": false
+      },
+      {
+        "code": "\nString dString = null;\nif (in == null)\n    dString = new Date().toString();\nelse\n    dString = getNextQuote();\nbuf = dString.getBytes();\n",
+        "in_page_order": 4,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Date.__init__": true
+        },
+        "APIsProjects": {
+          "Date.__init__": 441
+        },
+        "APIsFiles": {
+          "Date.__init__": 5276
+        },
+        "APIsSnippets": {
+          "Date.__init__": 13241
+        },
+        "APIsQualifiedNames": {
+          "Date.__init__": "java.util.Date.__init__"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      },
+      {
+        "code": "\nInetAddress address = packet.getAddress();\nint port = packet.getPort();\npacket = new DatagramPacket(buf, buf.length, address, port);\nsocket.send(packet);\n",
+        "in_page_order": 5,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "DatagramPacket.__init__": true
+        },
+        "APIsProjects": {
+          "DatagramPacket.__init__": 51
+        },
+        "APIsFiles": {
+          "DatagramPacket.__init__": 146
+        },
+        "APIsSnippets": {
+          "DatagramPacket.__init__": 320
+        },
+        "APIsQualifiedNames": {
+          "DatagramPacket.__init__": "java.net.DatagramPacket.__init__"
+        },
+        "API_Ratio": 1.0,
+        "readability": false
+      },
+      {
+        "code": "\nDatagramSocket socket = new DatagramSocket();\n",
+        "in_page_order": 9,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": true,
+        "APIs": {
+          "DatagramSocket.__init__": true
+        },
+        "APIsProjects": {
+          "DatagramSocket.__init__": 50
+        },
+        "APIsFiles": {
+          "DatagramSocket.__init__": 125
+        },
+        "APIsSnippets": {
+          "DatagramSocket.__init__": 293
+        },
+        "APIsQualifiedNames": {
+          "DatagramSocket.__init__": "java.net.DatagramSocket.__init__"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      },
+      {
+        "code": "\nbyte[] buf = new byte[256];\nInetAddress address = InetAddress.getByName(args[0]);\nDatagramPacket packet = new DatagramPacket(buf, buf.length, \n                                address, 4445);\nsocket.send(packet);\n",
+        "in_page_order": 10,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "DatagramPacket.__init__": true
+        },
+        "APIsProjects": {
+          "DatagramPacket.__init__": 51
+        },
+        "APIsFiles": {
+          "DatagramPacket.__init__": 146
+        },
+        "APIsSnippets": {
+          "DatagramPacket.__init__": 320
+        },
+        "APIsQualifiedNames": {
+          "DatagramPacket.__init__": "java.net.DatagramPacket.__init__"
+        },
+        "API_Ratio": 1.0,
+        "readability": false
+      },
+      {
+        "code": "\npacket = new DatagramPacket(buf, buf.length);\nsocket.receive(packet);\nString received = new String(packet.getData(), 0, packet.getLength());\nSystem.out.println(\"Quote of the Moment: \" + received);\n",
+        "in_page_order": 11,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "DatagramPacket.__init__": true,
+          "String.__init__": true
+        },
+        "APIsProjects": {
+          "DatagramPacket.__init__": 51,
+          "String.__init__": 525
+        },
+        "APIsFiles": {
+          "DatagramPacket.__init__": 146,
+          "String.__init__": 5322
+        },
+        "APIsSnippets": {
+          "DatagramPacket.__init__": 320,
+          "String.__init__": 10364
+        },
+        "APIsQualifiedNames": {
+          "DatagramPacket.__init__": "java.net.DatagramPacket.__init__",
+          "String.__init__": "java.lang.String.__init__"
+        },
+        "API_Ratio": 1.0,
+        "readability": false
+      }
+    ]
+  },
+  {
+    "query": "How to send packet via UDP",
+    "url": "https://stackoverflow.com/questions/10556829/sending-and-receiving-udp-packets-using-java",
+    "url position": 1,
+    "segments": [
+      {
+        "code": "import java.io.IOException;\nimport java.net.*;\n\npublic class Receiver {\n\n    public static void main(String[] args) {\n        int port = args.length == 0 ? 57 : Integer.parseInt(args[0]);\n        new Receiver().run(port);\n    }\n\n    public void run(int port) {    \n      try {\n        DatagramSocket serverSocket = new DatagramSocket(port);\n        byte[] receiveData = new byte[8];\n\n        System.out.printf(\"Listening on udp:%s:%d%n\",\n                InetAddress.getLocalHost().getHostAddress(), port);     \n        DatagramPacket receivePacket = new DatagramPacket(receiveData,\n                           receiveData.length);\n\n        while(true)\n        {\n              serverSocket.receive(receivePacket);\n              String sentence = new String( receivePacket.getData(), 0,\n                                 receivePacket.getLength() );\n              System.out.println(\"RECEIVED: \" + sentence);\n              // now send acknowledgement packet back to sender     \n              InetAddress IPAddress = receivePacket.getAddress();\n              String sendString = \"polo\";\n              byte[] sendData = sendString.getBytes(\"UTF-8\");\n              DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length,\n                   IPAddress, receivePacket.getPort());\n              serverSocket.send(sendPacket);\n        }\n      } catch (IOException e) {\n              System.out.println(e);\n      }\n      // should close serverSocket in finally block\n    }\n}\n",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": false,
+        "answer_votes": "28",
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Receiver.__init__": true,
+          "DatagramSocket.__init__": true,
+          "DatagramPacket.__init__": true,
+          "DatagramSocket.receive": true,
+          "DatagramPacket.getLength": true,
+          "DatagramPacket.getData": true,
+          "String.__init__": true,
+          "DatagramPacket.getAddress": true,
+          "DatagramPacket.getPort": true,
+          "DatagramSocket.send": true
+        },
+        "APIsProjects": {
+          "Receiver.__init__": 18,
+          "DatagramSocket.__init__": 50,
+          "DatagramPacket.__init__": 51,
+          "DatagramSocket.receive": 27,
+          "DatagramPacket.getLength": 30,
+          "DatagramPacket.getData": 35,
+          "String.__init__": 525,
+          "DatagramPacket.getAddress": 21,
+          "DatagramPacket.getPort": 16,
+          "DatagramSocket.send": 31
+        },
+        "APIsFiles": {
+          "Receiver.__init__": 34,
+          "DatagramSocket.__init__": 125,
+          "DatagramPacket.__init__": 146,
+          "DatagramSocket.receive": 58,
+          "DatagramPacket.getLength": 60,
+          "DatagramPacket.getData": 66,
+          "String.__init__": 5322,
+          "DatagramPacket.getAddress": 43,
+          "DatagramPacket.getPort": 24,
+          "DatagramSocket.send": 65
+        },
+        "APIsSnippets": {
+          "Receiver.__init__": 46,
+          "DatagramSocket.__init__": 293,
+          "DatagramPacket.__init__": 320,
+          "DatagramSocket.receive": 96,
+          "DatagramPacket.getLength": 126,
+          "DatagramPacket.getData": 117,
+          "String.__init__": 10364,
+          "DatagramPacket.getAddress": 82,
+          "DatagramPacket.getPort": 34,
+          "DatagramSocket.send": 122
+        },
+        "APIsQualifiedNames": {
+          "Receiver.__init__": "com.nokia.dempsy.messagetransport.Receiver.__init__",
+          "DatagramSocket.__init__": "java.net.DatagramSocket.__init__",
+          "DatagramPacket.__init__": "java.net.DatagramPacket.__init__",
+          "DatagramSocket.receive": "java.net.DatagramSocket.receive",
+          "DatagramPacket.getLength": "java.net.DatagramPacket.getLength",
+          "DatagramPacket.getData": "java.net.DatagramPacket.getData",
+          "String.__init__": "java.lang.String.__init__",
+          "DatagramPacket.getAddress": "java.net.DatagramPacket.getAddress",
+          "DatagramPacket.getPort": "java.net.DatagramPacket.getPort",
+          "DatagramSocket.send": "java.net.DatagramSocket.send"
+        },
+        "API_Ratio": 1.0,
+        "readability": false
+      }
+    ]
+  },
+  {
+    "query": "How to send packet via UDP",
+    "url": "http://tutorials.jenkov.com/java-networking/udp-datagram-sockets.html",
+    "url position": 12,
+    "segments": [
+      {
+        "code": "\nbyte[] buffer = new byte[65508];\nInetAddress address = InetAddress.getByName(\"jenkov.com\");\n\nDatagramPacket packet = new DatagramPacket(\n    buffer, buffer.length, address, 9000);\n",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "DatagramPacket.__init__": true
+        },
+        "APIsProjects": {
+          "DatagramPacket.__init__": 51
+        },
+        "APIsFiles": {
+          "DatagramPacket.__init__": 146
+        },
+        "APIsSnippets": {
+          "DatagramPacket.__init__": 320
+        },
+        "APIsQualifiedNames": {
+          "DatagramPacket.__init__": "java.net.DatagramPacket.__init__"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      },
+      {
+        "code": "\nDatagramSocket datagramSocket = new DatagramSocket();\n",
+        "in_page_order": 2,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": true,
+        "APIs": {
+          "DatagramSocket.__init__": true
+        },
+        "APIsProjects": {
+          "DatagramSocket.__init__": 50
+        },
+        "APIsFiles": {
+          "DatagramSocket.__init__": 125
+        },
+        "APIsSnippets": {
+          "DatagramSocket.__init__": 293
+        },
+        "APIsQualifiedNames": {
+          "DatagramSocket.__init__": "java.net.DatagramSocket.__init__"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      },
+      {
+        "code": "\nDatagramSocket datagramSocket = new DatagramSocket();\n\nbyte[] buffer = \"0123456789\".getBytes();\nInetAddress receiverAddress = InetAddress.getLocalHost();\n\nDatagramPacket packet = new DatagramPacket(\n        buffer, buffer.length, receiverAddress, 80);\ndatagramSocket.send(packet);\n",
+        "in_page_order": 4,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "DatagramSocket.__init__": true,
+          "DatagramPacket.__init__": true,
+          "DatagramSocket.send": true
+        },
+        "APIsProjects": {
+          "DatagramSocket.__init__": 50,
+          "DatagramPacket.__init__": 51,
+          "DatagramSocket.send": 31
+        },
+        "APIsFiles": {
+          "DatagramSocket.__init__": 125,
+          "DatagramPacket.__init__": 146,
+          "DatagramSocket.send": 65
+        },
+        "APIsSnippets": {
+          "DatagramSocket.__init__": 293,
+          "DatagramPacket.__init__": 320,
+          "DatagramSocket.send": 122
+        },
+        "APIsQualifiedNames": {
+          "DatagramSocket.__init__": "java.net.DatagramSocket.__init__",
+          "DatagramPacket.__init__": "java.net.DatagramPacket.__init__",
+          "DatagramSocket.send": "java.net.DatagramSocket.send"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      },
+      {
+        "code": "\nDatagramSocket datagramSocket = new DatagramSocket(80);\n\nbyte[] buffer = new byte[10];\nDatagramPacket packet = new DatagramPacket(buffer, buffer.length);\n\ndatagramSocket.receive(packet);\n",
+        "in_page_order": 5,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "DatagramSocket.__init__": true,
+          "DatagramPacket.__init__": true,
+          "DatagramSocket.receive": true
+        },
+        "APIsProjects": {
+          "DatagramSocket.__init__": 50,
+          "DatagramPacket.__init__": 51,
+          "DatagramSocket.receive": 27
+        },
+        "APIsFiles": {
+          "DatagramSocket.__init__": 125,
+          "DatagramPacket.__init__": 146,
+          "DatagramSocket.receive": 58
+        },
+        "APIsSnippets": {
+          "DatagramSocket.__init__": 293,
+          "DatagramPacket.__init__": 320,
+          "DatagramSocket.receive": 96
+        },
+        "APIsQualifiedNames": {
+          "DatagramSocket.__init__": "java.net.DatagramSocket.__init__",
+          "DatagramPacket.__init__": "java.net.DatagramPacket.__init__",
+          "DatagramSocket.receive": "java.net.DatagramSocket.receive"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      }
+    ]
+  },
+  {
+    "query": "How to send packet via UDP",
+    "url": "https://stackoverflow.com/questions/36743226/java-send-udp-packet-to-dns-server",
+    "url position": 2,
+    "segments": [
+      {
+        "code": "import java.io.ByteArrayInputStream;\nimport java.io.ByteArrayOutputStream;\nimport java.io.DataInputStream;\nimport java.io.DataOutputStream;\nimport java.io.IOException;\nimport java.net.DatagramPacket;\nimport java.net.DatagramSocket;\nimport java.net.InetAddress;\n\n/**\n * A quick and dirty example of query DNS A record and log response.\n * This code has no error handling.\n *\n */\n\npublic class DNSClient {\n    private static final String DNS_SERVER_ADDRESS = \"8.8.8.8\";\n    private static final int DNS_SERVER_PORT = 53;\n\n    public static void main(String[] args) throws IOException {\n        String domain = \"google.com\";\n        InetAddress ipAddress = InetAddress.getByName(DNS_SERVER_ADDRESS);\n\n        ByteArrayOutputStream baos = new ByteArrayOutputStream();\n        DataOutputStream dos = new DataOutputStream(baos);\n\n        // *** Build a DNS Request Frame ****\n\n        // Identifier: A 16-bit identification field generated by the device that creates the DNS query. \n        // It is copied by the server into the response, so it can be used by that device to match that \n        // query to the corresponding reply received from a DNS server. This is used in a manner similar \n        // to how the Identifier field is used in many of the ICMP message types.\n        dos.writeShort(0x1234);\n\n        // Write Query Flags\n        dos.writeShort(0x0100);\n\n        // Question Count: Specifies the number of questions in the Question section of the message.\n        dos.writeShort(0x0001);\n\n        // Answer Record Count: Specifies the number of resource records in the Answer section of the message.\n        dos.writeShort(0x0000);\n\n        // Authority Record Count: Specifies the number of resource records in the Authority section of \n        // the message. (NS stands for name server)\n        dos.writeShort(0x0000);\n\n        // Additional Record Count: Specifies the number of resource records in the Additional section of the message.\n        dos.writeShort(0x0000);\n\n        String[] domainParts = domain.split(\"\\\\.\");\n        System.out.println(domain + \" has \" + domainParts.length + \" parts\");\n\n        for (int i = 0; i<domainParts.length; i++) {\n            System.out.println(\"Writing: \" + domainParts[i]);\n            byte[] domainBytes = domainParts[i].getBytes(\"UTF-8\");\n            dos.writeByte(domainBytes.length);\n            dos.write(domainBytes);\n        }\n\n        // No more parts\n        dos.writeByte(0x00);\n\n        // Type 0x01 = A (Host Request)\n        dos.writeShort(0x0001);\n\n        // Class 0x01 = IN\n        dos.writeShort(0x0001);\n\n        byte[] dnsFrame = baos.toByteArray();\n\n        System.out.println(\"Sending: \" + dnsFrame.length + \" bytes\");\n        for (int i =0; i< dnsFrame.length; i++) {\n            System.out.print(\"0x\" + String.format(\"%x\", dnsFrame[i]) + \" \" );\n        }\n\n        // *** Send DNS Request Frame ***\n        DatagramSocket socket = new DatagramSocket();\n        DatagramPacket dnsReqPacket = new DatagramPacket(dnsFrame, dnsFrame.length, ipAddress, DNS_SERVER_PORT);\n        socket.send(dnsReqPacket);\n\n        // Await response from DNS server\n        byte[] buf = new byte[1024];\n        DatagramPacket packet = new DatagramPacket(buf, buf.length);\n        socket.receive(packet);\n\n        System.out.println(\"\\n\\nReceived: \" + packet.getLength() + \" bytes\");\n\n        for (int i = 0; i < packet.getLength(); i++) {\n            System.out.print(\" 0x\" + String.format(\"%x\", buf[i]) + \" \" );\n        }\n        System.out.println(\"\\n\");\n\n\n        DataInputStream din = new DataInputStream(new ByteArrayInputStream(buf));\n        System.out.println(\"Transaction ID: 0x\" + String.format(\"%x\", din.readShort()));\n        System.out.println(\"Flags: 0x\" + String.format(\"%x\", din.readShort()));\n        System.out.println(\"Questions: 0x\" + String.format(\"%x\", din.readShort()));\n        System.out.println(\"Answers RRs: 0x\" + String.format(\"%x\", din.readShort()));\n        System.out.println(\"Authority RRs: 0x\" + String.format(\"%x\", din.readShort()));\n        System.out.println(\"Additional RRs: 0x\" + String.format(\"%x\", din.readShort()));\n\n        int recLen = 0;\n        while ((recLen = din.readByte()) > 0) {\n            byte[] record = new byte[recLen];\n\n            for (int i = 0; i < recLen; i++) {\n                record[i] = din.readByte();\n            }\n\n            System.out.println(\"Record: \" + new String(record, \"UTF-8\"));\n        }\n\n        System.out.println(\"Record Type: 0x\" + String.format(\"%x\", din.readShort()));\n        System.out.println(\"Class: 0x\" + String.format(\"%x\", din.readShort()));\n\n        System.out.println(\"Field: 0x\" + String.format(\"%x\", din.readShort()));\n        System.out.println(\"Type: 0x\" + String.format(\"%x\", din.readShort()));\n        System.out.println(\"Class: 0x\" + String.format(\"%x\", din.readShort()));\n        System.out.println(\"TTL: 0x\" + String.format(\"%x\", din.readInt()));\n\n        short addrLen = din.readShort();\n        System.out.println(\"Len: 0x\" + String.format(\"%x\", addrLen));\n\n        System.out.print(\"Address: \");\n        for (int i = 0; i < addrLen; i++ ) {\n            System.out.print(\"\" + String.format(\"%d\", (din.readByte() & 0xFF)) + \".\");\n        }\n    }\n\n}\n",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": false,
+        "answer_votes": "6",
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": true,
+        "APIs": {
+          "ByteArrayOutputStream.__init__": true,
+          "DataOutputStream.__init__": true,
+          "DataOutputStream.writeShort": true,
+          "DataOutputStream.writeByte": true,
+          "ByteArrayOutputStream.toByteArray": true,
+          "DatagramSocket.__init__": true,
+          "DatagramPacket.__init__": true,
+          "DatagramSocket.send": true,
+          "DatagramSocket.receive": true,
+          "DatagramPacket.getLength": true,
+          "ByteArrayInputStream.__init__": true,
+          "DataInputStream.__init__": true,
+          "DataInputStream.readShort": true,
+          "DataInputStream.readByte": true,
+          "DataInputStream.readInt": true
+        },
+        "APIsProjects": {
+          "ByteArrayOutputStream.__init__": 447,
+          "DataOutputStream.__init__": 160,
+          "DataOutputStream.writeShort": 43,
+          "DataOutputStream.writeByte": 39,
+          "ByteArrayOutputStream.toByteArray": 418,
+          "DatagramSocket.__init__": 50,
+          "DatagramPacket.__init__": 51,
+          "DatagramSocket.send": 31,
+          "DatagramSocket.receive": 27,
+          "DatagramPacket.getLength": 30,
+          "ByteArrayInputStream.__init__": 385,
+          "DataInputStream.__init__": 161,
+          "DataInputStream.readShort": 33,
+          "DataInputStream.readByte": 42,
+          "DataInputStream.readInt": 85
+        },
+        "APIsFiles": {
+          "ByteArrayOutputStream.__init__": 3528,
+          "DataOutputStream.__init__": 802,
+          "DataOutputStream.writeShort": 104,
+          "DataOutputStream.writeByte": 90,
+          "ByteArrayOutputStream.toByteArray": 2862,
+          "DatagramSocket.__init__": 125,
+          "DatagramPacket.__init__": 146,
+          "DatagramSocket.send": 65,
+          "DatagramSocket.receive": 58,
+          "DatagramPacket.getLength": 60,
+          "ByteArrayInputStream.__init__": 2918,
+          "DataInputStream.__init__": 922,
+          "DataInputStream.readShort": 87,
+          "DataInputStream.readByte": 88,
+          "DataInputStream.readInt": 284
+        },
+        "APIsSnippets": {
+          "ByteArrayOutputStream.__init__": 6155,
+          "DataOutputStream.__init__": 1084,
+          "DataOutputStream.writeShort": 266,
+          "DataOutputStream.writeByte": 333,
+          "ByteArrayOutputStream.toByteArray": 5168,
+          "DatagramSocket.__init__": 293,
+          "DatagramPacket.__init__": 320,
+          "DatagramSocket.send": 122,
+          "DatagramSocket.receive": 96,
+          "DatagramPacket.getLength": 126,
+          "ByteArrayInputStream.__init__": 5225,
+          "DataInputStream.__init__": 1246,
+          "DataInputStream.readShort": 213,
+          "DataInputStream.readByte": 163,
+          "DataInputStream.readInt": 890
+        },
+        "APIsQualifiedNames": {
+          "ByteArrayOutputStream.__init__": "java.io.ByteArrayOutputStream.__init__",
+          "DataOutputStream.__init__": "java.io.DataOutputStream.__init__",
+          "DataOutputStream.writeShort": "java.io.DataOutputStream.writeShort",
+          "DataOutputStream.writeByte": "java.io.DataOutputStream.writeByte",
+          "ByteArrayOutputStream.toByteArray": "java.io.ByteArrayOutputStream.toByteArray",
+          "DatagramSocket.__init__": "java.net.DatagramSocket.__init__",
+          "DatagramPacket.__init__": "java.net.DatagramPacket.__init__",
+          "DatagramSocket.send": "java.net.DatagramSocket.send",
+          "DatagramSocket.receive": "java.net.DatagramSocket.receive",
+          "DatagramPacket.getLength": "java.net.DatagramPacket.getLength",
+          "ByteArrayInputStream.__init__": "java.io.ByteArrayInputStream.__init__",
+          "DataInputStream.__init__": "java.io.DataInputStream.__init__",
+          "DataInputStream.readShort": "java.io.DataInputStream.readShort",
+          "DataInputStream.readByte": "java.io.DataInputStream.readByte",
+          "DataInputStream.readInt": "java.io.DataInputStream.readInt"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      }
+    ]
+  },
+  {
+    "query": "How to send packet via UDP",
+    "url": "http://www.baeldung.com/udp-in-java",
+    "url position": 6,
+    "segments": [
+      {
+        "code": "public class EchoServer extends Thread {\r\n\r\n    private DatagramSocket socket;\r\n    private boolean running;\r\n    private byte[] buf = new byte[256];\r\n\r\n    public EchoServer() {\r\n        socket = new DatagramSocket(4445);\r\n    }\r\n\r\n    public void run() {\r\n        running = true;\r\n\r\n        while (running) {\r\n            DatagramPacket packet \r\n              = new DatagramPacket(buf, buf.length);\r\n            socket.receive(packet);\r\n            \r\n            InetAddress address = packet.getAddress();\r\n            int port = packet.getPort();\r\n            packet = new DatagramPacket(buf, buf.length, address, port);\r\n            String received \r\n              = new String(packet.getData(), 0, packet.getLength());\r\n            \r\n            if (received.equals(\"end\")) {\r\n                running = false;\r\n                continue;\r\n            }\r\n            socket.send(packet);\r\n        }\r\n        socket.close();\r\n    }\r\n}",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "DatagramSocket.__init__": true,
+          "DatagramPacket.__init__": true,
+          "DatagramSocket.receive": true,
+          "DatagramPacket.getAddress": true,
+          "DatagramPacket.getPort": true,
+          "DatagramPacket.getLength": true,
+          "DatagramPacket.getData": true,
+          "String.__init__": true,
+          "DatagramSocket.send": true,
+          "DatagramSocket.close": true
+        },
+        "APIsProjects": {
+          "DatagramSocket.__init__": 50,
+          "DatagramPacket.__init__": 51,
+          "DatagramSocket.receive": 27,
+          "DatagramPacket.getAddress": 21,
+          "DatagramPacket.getPort": 16,
+          "DatagramPacket.getLength": 30,
+          "DatagramPacket.getData": 35,
+          "String.__init__": 525,
+          "DatagramSocket.send": 31,
+          "DatagramSocket.close": 41
+        },
+        "APIsFiles": {
+          "DatagramSocket.__init__": 125,
+          "DatagramPacket.__init__": 146,
+          "DatagramSocket.receive": 58,
+          "DatagramPacket.getAddress": 43,
+          "DatagramPacket.getPort": 24,
+          "DatagramPacket.getLength": 60,
+          "DatagramPacket.getData": 66,
+          "String.__init__": 5322,
+          "DatagramSocket.send": 65,
+          "DatagramSocket.close": 102
+        },
+        "APIsSnippets": {
+          "DatagramSocket.__init__": 293,
+          "DatagramPacket.__init__": 320,
+          "DatagramSocket.receive": 96,
+          "DatagramPacket.getAddress": 82,
+          "DatagramPacket.getPort": 34,
+          "DatagramPacket.getLength": 126,
+          "DatagramPacket.getData": 117,
+          "String.__init__": 10364,
+          "DatagramSocket.send": 122,
+          "DatagramSocket.close": 221
+        },
+        "APIsQualifiedNames": {
+          "DatagramSocket.__init__": "java.net.DatagramSocket.__init__",
+          "DatagramPacket.__init__": "java.net.DatagramPacket.__init__",
+          "DatagramSocket.receive": "java.net.DatagramSocket.receive",
+          "DatagramPacket.getAddress": "java.net.DatagramPacket.getAddress",
+          "DatagramPacket.getPort": "java.net.DatagramPacket.getPort",
+          "DatagramPacket.getLength": "java.net.DatagramPacket.getLength",
+          "DatagramPacket.getData": "java.net.DatagramPacket.getData",
+          "String.__init__": "java.lang.String.__init__",
+          "DatagramSocket.send": "java.net.DatagramSocket.send",
+          "DatagramSocket.close": "java.net.DatagramSocket.close"
+        },
+        "API_Ratio": 1.0,
+        "readability": false
+      },
+      {
+        "code": "public class EchoClient {\r\n    private DatagramSocket socket;\r\n    private InetAddress address;\r\n\r\n    private byte[] buf;\r\n\r\n    public EchoClient() {\r\n        socket = new DatagramSocket();\r\n        address = InetAddress.getByName(\"localhost\");\r\n    }\r\n\r\n    public String sendEcho(String msg) {\r\n        buf = msg.getBytes();\r\n        DatagramPacket packet \r\n          = new DatagramPacket(buf, buf.length, address, 4445);\r\n        socket.send(packet);\r\n        packet = new DatagramPacket(buf, buf.length);\r\n        socket.receive(packet);\r\n        String received = new String(\r\n          packet.getData(), 0, packet.getLength());\r\n        return received;\r\n    }\r\n\r\n    public void close() {\r\n        socket.close();\r\n    }\r\n}",
+        "in_page_order": 2,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "DatagramSocket.__init__": true,
+          "DatagramPacket.__init__": true,
+          "DatagramSocket.send": true,
+          "DatagramSocket.receive": true,
+          "DatagramPacket.getLength": true,
+          "DatagramPacket.getData": true,
+          "String.__init__": true,
+          "DatagramSocket.close": true
+        },
+        "APIsProjects": {
+          "DatagramSocket.__init__": 50,
+          "DatagramPacket.__init__": 51,
+          "DatagramSocket.send": 31,
+          "DatagramSocket.receive": 27,
+          "DatagramPacket.getLength": 30,
+          "DatagramPacket.getData": 35,
+          "String.__init__": 525,
+          "DatagramSocket.close": 41
+        },
+        "APIsFiles": {
+          "DatagramSocket.__init__": 125,
+          "DatagramPacket.__init__": 146,
+          "DatagramSocket.send": 65,
+          "DatagramSocket.receive": 58,
+          "DatagramPacket.getLength": 60,
+          "DatagramPacket.getData": 66,
+          "String.__init__": 5322,
+          "DatagramSocket.close": 102
+        },
+        "APIsSnippets": {
+          "DatagramSocket.__init__": 293,
+          "DatagramPacket.__init__": 320,
+          "DatagramSocket.send": 122,
+          "DatagramSocket.receive": 96,
+          "DatagramPacket.getLength": 126,
+          "DatagramPacket.getData": 117,
+          "String.__init__": 10364,
+          "DatagramSocket.close": 221
+        },
+        "APIsQualifiedNames": {
+          "DatagramSocket.__init__": "java.net.DatagramSocket.__init__",
+          "DatagramPacket.__init__": "java.net.DatagramPacket.__init__",
+          "DatagramSocket.send": "java.net.DatagramSocket.send",
+          "DatagramSocket.receive": "java.net.DatagramSocket.receive",
+          "DatagramPacket.getLength": "java.net.DatagramPacket.getLength",
+          "DatagramPacket.getData": "java.net.DatagramPacket.getData",
+          "String.__init__": "java.lang.String.__init__",
+          "DatagramSocket.close": "java.net.DatagramSocket.close"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      },
+      {
+        "code": "public class UDPTest {\r\n    EchoClient client;\r\n\r\n    @Before\r\n    public void setup(){\r\n        new EchoServer().start();\r\n        client = new EchoClient();\r\n    }\r\n\r\n    @Test\r\n    public void whenCanSendAndReceivePacket_thenCorrect() {\r\n        String echo = client.sendEcho(\"hello server\");\r\n        assertEquals(\"hello server\", echo);\r\n        echo = client.sendEcho(\"server is working\");\r\n        assertFalse(echo.equals(\"hello server\"));\r\n    }\r\n\r\n    @After\r\n    public void tearDown() {\r\n        client.sendEcho(\"end\");\r\n        client.close();\r\n    }\r\n}",
+        "in_page_order": 3,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "EchoServer.__init__": true,
+          "EchoClient.__init__": false,
+          "EchoClient.sendEcho": false,
+          "EchoClient.close": false
+        },
+        "APIsProjects": {
+          "EchoServer.__init__": 3
+        },
+        "APIsFiles": {
+          "EchoServer.__init__": 3
+        },
+        "APIsSnippets": {
+          "EchoServer.__init__": 4
+        },
+        "APIsQualifiedNames": {},
+        "API_Ratio": 0.25,
+        "readability": true
+      }
+    ]
+  },
+  {
+    "query": "How to send packet via UDP",
+    "url": "http://www.java2s.com/Code/Java/Network-Protocol/SendoutUDPpockets.htm",
+    "url position": 7,
+    "segments": [
+      {
+        "code": "   \n\nimport java.io.*;\nimport java.net.*;\n\npublic class UDPSend {\n  public static void main(String args[]) {\n    try {\n      String host = \"www.java2s.com\";\n      int port = 90;\n\n      byte[] message = \"Java Source and Support\".getBytes();\n\n      // Get the internet address of the specified host\n      InetAddress address = InetAddress.getByName(host);\n\n      // Initialize a datagram packet with data and address\n      DatagramPacket packet = new DatagramPacket(message, message.length,\n          address, port);\n\n      // Create a datagram socket, send the packet through it, close it.\n      DatagramSocket dsocket = new DatagramSocket();\n      dsocket.send(packet);\n      dsocket.close();\n    } catch (Exception e) {\n      System.err.println(e);\n    }\n  }\n}\n\n           \n         \n    \n    \n  \n",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "DatagramPacket.__init__": true,
+          "DatagramSocket.__init__": true,
+          "DatagramSocket.send": true,
+          "DatagramSocket.close": true
+        },
+        "APIsProjects": {
+          "DatagramPacket.__init__": 51,
+          "DatagramSocket.__init__": 50,
+          "DatagramSocket.send": 31,
+          "DatagramSocket.close": 41
+        },
+        "APIsFiles": {
+          "DatagramPacket.__init__": 146,
+          "DatagramSocket.__init__": 125,
+          "DatagramSocket.send": 65,
+          "DatagramSocket.close": 102
+        },
+        "APIsSnippets": {
+          "DatagramPacket.__init__": 320,
+          "DatagramSocket.__init__": 293,
+          "DatagramSocket.send": 122,
+          "DatagramSocket.close": 221
+        },
+        "APIsQualifiedNames": {
+          "DatagramPacket.__init__": "java.net.DatagramPacket.__init__",
+          "DatagramSocket.__init__": "java.net.DatagramSocket.__init__",
+          "DatagramSocket.send": "java.net.DatagramSocket.send",
+          "DatagramSocket.close": "java.net.DatagramSocket.close"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      }
+    ]
+  },
+  {
+    "query": "How to send packet via UDP",
+    "url": "https://stackoverflow.com/questions/5236620/how-to-send-an-int-through-udp-in-java",
+    "url position": 5,
+    "segments": [
+      {
+        "code": "import java.io.*;\n\npublic class Main {\n    public static void main(String[] args) throws Exception {\n        final ByteArrayOutputStream byteOut = new ByteArrayOutputStream();\n        final DataOutputStream dataOut = new DataOutputStream(byteOut);\n        dataOut.writeInt(1);\n        dataOut.writeDouble(1.2);\n        dataOut.writeLong(4l);\n        dataOut.close(); // or dataOut.flush()\n        final byte[] bytes = byteOutStream.toByteArray();\n        final ByteArrayInputStream byteIn = new ByteArrayInputStream(bytes);\n        final DataInputStream dataIn = new DataInputStream(byteIn);\n        final int integ = dataIn.readInt();\n        final double doub = dataIn.readDouble();\n        final long lon = dataIn.readLong();\n        System.out.println(integ);\n        System.out.println(doub);\n        System.out.println(lon);\n    }\n",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": true,
+        "answer_votes": "8",
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "ByteArrayOutputStream.__init__": true,
+          "DataOutputStream.__init__": true,
+          "DataOutputStream.writeInt": true,
+          "DataOutputStream.writeDouble": true,
+          "DataOutputStream.writeLong": true,
+          "DataOutputStream.close": true,
+          "ByteArrayInputStream.__init__": true,
+          "DataInputStream.__init__": true,
+          "DataInputStream.readInt": true,
+          "DataInputStream.readDouble": true,
+          "DataInputStream.readLong": true
+        },
+        "APIsProjects": {
+          "ByteArrayOutputStream.__init__": 447,
+          "DataOutputStream.__init__": 160,
+          "DataOutputStream.writeInt": 86,
+          "DataOutputStream.writeDouble": 21,
+          "DataOutputStream.writeLong": 52,
+          "DataOutputStream.close": 111,
+          "ByteArrayInputStream.__init__": 385,
+          "DataInputStream.__init__": 161,
+          "DataInputStream.readInt": 85,
+          "DataInputStream.readDouble": 20,
+          "DataInputStream.readLong": 44
+        },
+        "APIsFiles": {
+          "ByteArrayOutputStream.__init__": 3528,
+          "DataOutputStream.__init__": 802,
+          "DataOutputStream.writeInt": 285,
+          "DataOutputStream.writeDouble": 32,
+          "DataOutputStream.writeLong": 119,
+          "DataOutputStream.close": 519,
+          "ByteArrayInputStream.__init__": 2918,
+          "DataInputStream.__init__": 922,
+          "DataInputStream.readInt": 284,
+          "DataInputStream.readDouble": 28,
+          "DataInputStream.readLong": 109
+        },
+        "APIsSnippets": {
+          "ByteArrayOutputStream.__init__": 6155,
+          "DataOutputStream.__init__": 1084,
+          "DataOutputStream.writeInt": 862,
+          "DataOutputStream.writeDouble": 42,
+          "DataOutputStream.writeLong": 298,
+          "DataOutputStream.close": 755,
+          "ByteArrayInputStream.__init__": 5225,
+          "DataInputStream.__init__": 1246,
+          "DataInputStream.readInt": 890,
+          "DataInputStream.readDouble": 47,
+          "DataInputStream.readLong": 227
+        },
+        "APIsQualifiedNames": {
+          "ByteArrayOutputStream.__init__": "java.io.ByteArrayOutputStream.__init__",
+          "DataOutputStream.__init__": "java.io.DataOutputStream.__init__",
+          "DataOutputStream.writeInt": "java.io.DataOutputStream.writeInt",
+          "DataOutputStream.writeDouble": "java.io.DataOutputStream.writeDouble",
+          "DataOutputStream.writeLong": "java.io.DataOutputStream.writeLong",
+          "DataOutputStream.close": "java.io.DataOutputStream.close",
+          "ByteArrayInputStream.__init__": "java.io.ByteArrayInputStream.__init__",
+          "DataInputStream.__init__": "java.io.DataInputStream.__init__",
+          "DataInputStream.readInt": "java.io.DataInputStream.readInt",
+          "DataInputStream.readDouble": "java.io.DataInputStream.readDouble",
+          "DataInputStream.readLong": "java.io.DataInputStream.readLong"
+        },
+        "API_Ratio": 1.0,
+        "readability": false
+      },
+      {
+        "code": "ObjectInputStream os = new ObjectInputStream(bin);\nos.readInt();\n",
+        "in_page_order": 2,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": "2",
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": true,
+        "APIs": {
+          "ObjectInputStream.__init__": true,
+          "ObjectInputStream.readInt": true
+        },
+        "APIsProjects": {
+          "ObjectInputStream.__init__": 194,
+          "ObjectInputStream.readInt": 66
+        },
+        "APIsFiles": {
+          "ObjectInputStream.__init__": 699,
+          "ObjectInputStream.readInt": 304
+        },
+        "APIsSnippets": {
+          "ObjectInputStream.__init__": 990,
+          "ObjectInputStream.readInt": 562
+        },
+        "APIsQualifiedNames": {
+          "ObjectInputStream.__init__": "java.io.ObjectInputStream.__init__",
+          "ObjectInputStream.readInt": "java.io.ObjectInputStream.readInt"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      },
+      {
+        "code": "    DatagramSocket socket = new DatagramSocket(1989);\n    DatagramPacket packet = new DatagramPacket(new byte[256] , 256);\n\n    socket.receive(packet);\n\n    System.out.print(new String(packet.getData()));\n",
+        "in_page_order": 3,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": "1",
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "DatagramSocket.__init__": true,
+          "DatagramPacket.__init__": true,
+          "DatagramSocket.receive": true,
+          "DatagramPacket.getData": true,
+          "String.__init__": true
+        },
+        "APIsProjects": {
+          "DatagramSocket.__init__": 50,
+          "DatagramPacket.__init__": 51,
+          "DatagramSocket.receive": 27,
+          "DatagramPacket.getData": 35,
+          "String.__init__": 525
+        },
+        "APIsFiles": {
+          "DatagramSocket.__init__": 125,
+          "DatagramPacket.__init__": 146,
+          "DatagramSocket.receive": 58,
+          "DatagramPacket.getData": 66,
+          "String.__init__": 5322
+        },
+        "APIsSnippets": {
+          "DatagramSocket.__init__": 293,
+          "DatagramPacket.__init__": 320,
+          "DatagramSocket.receive": 96,
+          "DatagramPacket.getData": 117,
+          "String.__init__": 10364
+        },
+        "APIsQualifiedNames": {
+          "DatagramSocket.__init__": "java.net.DatagramSocket.__init__",
+          "DatagramPacket.__init__": "java.net.DatagramPacket.__init__",
+          "DatagramSocket.receive": "java.net.DatagramSocket.receive",
+          "DatagramPacket.getData": "java.net.DatagramPacket.getData",
+          "String.__init__": "java.lang.String.__init__"
+        },
+        "API_Ratio": 1.0,
+        "readability": false
+      }
+    ]
+  },
+  {
+    "query": "How to send packet via UDP",
+    "url": "https://stackoverflow.com/questions/8562689/need-to-send-a-udp-packet-and-receive-a-response-in-java",
+    "url position": 4,
+    "segments": [
+      {
+        "code": "import java.io.*;\nimport java.net.*;\n\nclass UDPClient\n{\n   public static void main(String args[]) throws Exception\n   {\n      BufferedReader inFromUser =\n         new BufferedReader(new InputStreamReader(System.in));\n      DatagramSocket clientSocket = new DatagramSocket();\n      InetAddress IPAddress = InetAddress.getByName(\"localhost\");\n      byte[] sendData = new byte[1024];\n      byte[] receiveData = new byte[1024];\n      String sentence = inFromUser.readLine();\n      sendData = sentence.getBytes();\n      DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, IPAddress, 9876);\n      clientSocket.send(sendPacket);\n      DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);\n      clientSocket.receive(receivePacket);\n      String modifiedSentence = new String(receivePacket.getData());\n      System.out.println(\"FROM SERVER:\" + modifiedSentence);\n      clientSocket.close();\n   }\n}\n",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": true,
+        "answer_votes": "10",
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "InputStreamReader.__init__": true,
+          "BufferedReader.__init__": true,
+          "DatagramSocket.__init__": true,
+          "BufferedReader.readLine": true,
+          "DatagramPacket.__init__": true,
+          "DatagramSocket.send": true,
+          "DatagramSocket.receive": true,
+          "DatagramPacket.getData": true,
+          "String.__init__": true,
+          "DatagramSocket.close": true
+        },
+        "APIsProjects": {
+          "InputStreamReader.__init__": 463,
+          "BufferedReader.__init__": 450,
+          "DatagramSocket.__init__": 50,
+          "BufferedReader.readLine": 429,
+          "DatagramPacket.__init__": 51,
+          "DatagramSocket.send": 31,
+          "DatagramSocket.receive": 27,
+          "DatagramPacket.getData": 35,
+          "String.__init__": 525,
+          "DatagramSocket.close": 41
+        },
+        "APIsFiles": {
+          "InputStreamReader.__init__": 2683,
+          "BufferedReader.__init__": 2803,
+          "DatagramSocket.__init__": 125,
+          "BufferedReader.readLine": 2480,
+          "DatagramPacket.__init__": 146,
+          "DatagramSocket.send": 65,
+          "DatagramSocket.receive": 58,
+          "DatagramPacket.getData": 66,
+          "String.__init__": 5322,
+          "DatagramSocket.close": 102
+        },
+        "APIsSnippets": {
+          "InputStreamReader.__init__": 3903,
+          "BufferedReader.__init__": 4179,
+          "DatagramSocket.__init__": 293,
+          "BufferedReader.readLine": 4047,
+          "DatagramPacket.__init__": 320,
+          "DatagramSocket.send": 122,
+          "DatagramSocket.receive": 96,
+          "DatagramPacket.getData": 117,
+          "String.__init__": 10364,
+          "DatagramSocket.close": 221
+        },
+        "APIsQualifiedNames": {
+          "InputStreamReader.__init__": "java.io.InputStreamReader.__init__",
+          "BufferedReader.__init__": "java.io.BufferedReader.__init__",
+          "DatagramSocket.__init__": "java.net.DatagramSocket.__init__",
+          "BufferedReader.readLine": "java.io.BufferedReader.readLine",
+          "DatagramPacket.__init__": "java.net.DatagramPacket.__init__",
+          "DatagramSocket.send": "java.net.DatagramSocket.send",
+          "DatagramSocket.receive": "java.net.DatagramSocket.receive",
+          "DatagramPacket.getData": "java.net.DatagramPacket.getData",
+          "String.__init__": "java.lang.String.__init__",
+          "DatagramSocket.close": "java.net.DatagramSocket.close"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      }
+    ]
+  },
+  {
+    "query": "How to send packet via UDP",
+    "url": "https://systembash.com/a-simple-java-udp-server-and-udp-client/",
+    "url position": 8,
+    "segments": [
+      {
+        "code": "import java.io.*;\r\nimport java.net.*;\r\n\r\nclass UDPServer\r\n{\r\n   public static void main(String args[]) throws Exception\r\n      {\r\n         DatagramSocket serverSocket = new DatagramSocket(9876);\r\n            byte[] receiveData = new byte[1024];\r\n            byte[] sendData = new byte[1024];\r\n            while(true)\r\n               {\r\n                  DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);\r\n                  serverSocket.receive(receivePacket);\r\n                  String sentence = new String( receivePacket.getData());\r\n                  System.out.println(\"RECEIVED: \" + sentence);\r\n                  InetAddress IPAddress = receivePacket.getAddress();\r\n                  int port = receivePacket.getPort();\r\n                  String capitalizedSentence = sentence.toUpperCase();\r\n                  sendData = capitalizedSentence.getBytes();\r\n                  DatagramPacket sendPacket =\r\n                  new DatagramPacket(sendData, sendData.length, IPAddress, port);\r\n                  serverSocket.send(sendPacket);\r\n               }\r\n      }\r\n}",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "DatagramSocket.__init__": true,
+          "DatagramPacket.__init__": true,
+          "DatagramSocket.receive": true,
+          "DatagramPacket.getData": true,
+          "String.__init__": true,
+          "DatagramPacket.getAddress": true,
+          "DatagramPacket.getPort": true,
+          "DatagramSocket.send": true
+        },
+        "APIsProjects": {
+          "DatagramSocket.__init__": 50,
+          "DatagramPacket.__init__": 51,
+          "DatagramSocket.receive": 27,
+          "DatagramPacket.getData": 35,
+          "String.__init__": 525,
+          "DatagramPacket.getAddress": 21,
+          "DatagramPacket.getPort": 16,
+          "DatagramSocket.send": 31
+        },
+        "APIsFiles": {
+          "DatagramSocket.__init__": 125,
+          "DatagramPacket.__init__": 146,
+          "DatagramSocket.receive": 58,
+          "DatagramPacket.getData": 66,
+          "String.__init__": 5322,
+          "DatagramPacket.getAddress": 43,
+          "DatagramPacket.getPort": 24,
+          "DatagramSocket.send": 65
+        },
+        "APIsSnippets": {
+          "DatagramSocket.__init__": 293,
+          "DatagramPacket.__init__": 320,
+          "DatagramSocket.receive": 96,
+          "DatagramPacket.getData": 117,
+          "String.__init__": 10364,
+          "DatagramPacket.getAddress": 82,
+          "DatagramPacket.getPort": 34,
+          "DatagramSocket.send": 122
+        },
+        "APIsQualifiedNames": {
+          "DatagramSocket.__init__": "java.net.DatagramSocket.__init__",
+          "DatagramPacket.__init__": "java.net.DatagramPacket.__init__",
+          "DatagramSocket.receive": "java.net.DatagramSocket.receive",
+          "DatagramPacket.getData": "java.net.DatagramPacket.getData",
+          "String.__init__": "java.lang.String.__init__",
+          "DatagramPacket.getAddress": "java.net.DatagramPacket.getAddress",
+          "DatagramPacket.getPort": "java.net.DatagramPacket.getPort",
+          "DatagramSocket.send": "java.net.DatagramSocket.send"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      },
+      {
+        "code": "import java.io.*;\r\nimport java.net.*;\r\n\r\nclass UDPClient\r\n{\r\n   public static void main(String args[]) throws Exception\r\n   {\r\n      BufferedReader inFromUser =\r\n         new BufferedReader(new InputStreamReader(System.in));\r\n      DatagramSocket clientSocket = new DatagramSocket();\r\n      InetAddress IPAddress = InetAddress.getByName(\"localhost\");\r\n      byte[] sendData = new byte[1024];\r\n      byte[] receiveData = new byte[1024];\r\n      String sentence = inFromUser.readLine();\r\n      sendData = sentence.getBytes();\r\n      DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, IPAddress, 9876);\r\n      clientSocket.send(sendPacket);\r\n      DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);\r\n      clientSocket.receive(receivePacket);\r\n      String modifiedSentence = new String(receivePacket.getData());\r\n      System.out.println(\"FROM SERVER:\" + modifiedSentence);\r\n      clientSocket.close();\r\n   }\r\n}",
+        "in_page_order": 2,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "InputStreamReader.__init__": true,
+          "BufferedReader.__init__": true,
+          "DatagramSocket.__init__": true,
+          "BufferedReader.readLine": true,
+          "DatagramPacket.__init__": true,
+          "DatagramSocket.send": true,
+          "DatagramSocket.receive": true,
+          "DatagramPacket.getData": true,
+          "String.__init__": true,
+          "DatagramSocket.close": true
+        },
+        "APIsProjects": {
+          "InputStreamReader.__init__": 463,
+          "BufferedReader.__init__": 450,
+          "DatagramSocket.__init__": 50,
+          "BufferedReader.readLine": 429,
+          "DatagramPacket.__init__": 51,
+          "DatagramSocket.send": 31,
+          "DatagramSocket.receive": 27,
+          "DatagramPacket.getData": 35,
+          "String.__init__": 525,
+          "DatagramSocket.close": 41
+        },
+        "APIsFiles": {
+          "InputStreamReader.__init__": 2683,
+          "BufferedReader.__init__": 2803,
+          "DatagramSocket.__init__": 125,
+          "BufferedReader.readLine": 2480,
+          "DatagramPacket.__init__": 146,
+          "DatagramSocket.send": 65,
+          "DatagramSocket.receive": 58,
+          "DatagramPacket.getData": 66,
+          "String.__init__": 5322,
+          "DatagramSocket.close": 102
+        },
+        "APIsSnippets": {
+          "InputStreamReader.__init__": 3903,
+          "BufferedReader.__init__": 4179,
+          "DatagramSocket.__init__": 293,
+          "BufferedReader.readLine": 4047,
+          "DatagramPacket.__init__": 320,
+          "DatagramSocket.send": 122,
+          "DatagramSocket.receive": 96,
+          "DatagramPacket.getData": 117,
+          "String.__init__": 10364,
+          "DatagramSocket.close": 221
+        },
+        "APIsQualifiedNames": {
+          "InputStreamReader.__init__": "java.io.InputStreamReader.__init__",
+          "BufferedReader.__init__": "java.io.BufferedReader.__init__",
+          "DatagramSocket.__init__": "java.net.DatagramSocket.__init__",
+          "BufferedReader.readLine": "java.io.BufferedReader.readLine",
+          "DatagramPacket.__init__": "java.net.DatagramPacket.__init__",
+          "DatagramSocket.send": "java.net.DatagramSocket.send",
+          "DatagramSocket.receive": "java.net.DatagramSocket.receive",
+          "DatagramPacket.getData": "java.net.DatagramPacket.getData",
+          "String.__init__": "java.lang.String.__init__",
+          "DatagramSocket.close": "java.net.DatagramSocket.close"
+        },
+        "API_Ratio": 1.0,
+        "readability": false
+      }
+    ]
+  },
+  {
+    "query": "How to send packet via UDP",
+    "url": "http://codesamplez.com/programming/udp-programming-in-java",
+    "url position": 13,
+    "segments": [
+      {
+        "code": "\r\natagramSocket  socket;\r\ntry{\r\n         socket \t\t\t= new DatagramSocket();\r\n         String requestData \t\t= \"'Hello World' via UDP in JAVA\";\r\n         byte [] m \t\t\t\t= requestData.getBytes();\r\n         InetAddress aHost \t\t= InetAddress.getByName(\"myhostname\");\r\n         int serverPort \t\t\t= 1234;\r\n         DatagramPacket request \t= new DatagramPacket(m, requestData.length(), aHost, serverPort);\r\n         socket.send(request);\r\n         byte [] buffer = new byte[1000];\r\n         DatagramPacket reply = new DatagramPacket(buffer, buffer.length);\r\n         socket.setSoTimeout(2000);\r\n         this.socket.receive(reply);\r\n}\r\ncatch(SocketTimeoutException e){\r\n\te.printStackTrace();\r\n}\r\ncatch(Exception e){\r\n        e.printStackTrace();\r\n}finally{\r\n\tsocket.close();\r\n}\r\n",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "atagramSocket.__init__": false,
+          "DatagramPacket.__init__": true,
+          "atagramSocket.send": false,
+          "atagramSocket.setSoTimeout": false,
+          "atagramSocket.close": false
+        },
+        "APIsProjects": {
+          "DatagramPacket.__init__": 51
+        },
+        "APIsFiles": {
+          "DatagramPacket.__init__": 146
+        },
+        "APIsSnippets": {
+          "DatagramPacket.__init__": 320
+        },
+        "APIsQualifiedNames": {
+          "DatagramPacket.__init__": "java.net.DatagramPacket.__init__"
+        },
+        "API_Ratio": 0.2,
+        "readability": false
+      },
+      {
+        "code": "\r\nDatagramSocket \tsocket;\r\nDatagramPacket \trequest;\r\n\r\nwhile(true)\r\n{\r\n      String data = null;\r\n                \r\n       try {\r\n\t\tbuffer \t\t\t= new byte[this.DGRAM_LENGTH];\r\n\t\trequest \t\t= new DatagramPacket(buffer, buffer.length);\r\n\t\tsocket.receive(this.request);\r\n\t\tdata = new String(this.request.getData());\r\n\t\tString request = data.trim();\r\n                //do your processing with request data\r\n                //Sending response \r\n                String response = \"Test Reply from UDP server!\";\r\n                DatagramPacket reply = new DatagramPacket(response.getBytes(), response.length(), request.getAddress(), request.getPort());\r\n\t\tthis.socket.send(reply);\r\n\t}\r\n\tcatch(Exception err) {\r\n\t\terr.printStackTrace();\r\n\t} \r\n}\r\n\r\n",
+        "in_page_order": 2,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "DatagramPacket.__init__": true,
+          "DatagramSocket.receive": true,
+          "String.__init__": true
+        },
+        "APIsProjects": {
+          "DatagramPacket.__init__": 51,
+          "DatagramSocket.receive": 27,
+          "String.__init__": 525
+        },
+        "APIsFiles": {
+          "DatagramPacket.__init__": 146,
+          "DatagramSocket.receive": 58,
+          "String.__init__": 5322
+        },
+        "APIsSnippets": {
+          "DatagramPacket.__init__": 320,
+          "DatagramSocket.receive": 96,
+          "String.__init__": 10364
+        },
+        "APIsQualifiedNames": {
+          "DatagramPacket.__init__": "java.net.DatagramPacket.__init__",
+          "DatagramSocket.receive": "java.net.DatagramSocket.receive",
+          "String.__init__": "java.lang.String.__init__"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      }
+    ]
+  },
+  {
+    "query": "How to send packet via UDP",
+    "url": "https://www.javaworld.com/article/2077539/learn-java/java-tip-40--object-transport-via-datagram-packets.html",
+    "url position": 16,
+    "segments": [
+      {
+        "code": "//Object Output\nimport java.net.*;\nimport java.io.*;\n//The sample class to be sent: Factory\nclass Factory implements Serializable\n{  private void writeObject(ObjectOutputStream out) throws IOException  \n{    out.defaultWriteObject();  }\n  private void readObject(ObjectInputStream in)\n               throws IOException, ClassNotFoundException  \n{    in.defaultReadObject();  }\n}\npublic class ShowObjOutput\n{  public static void main(String[] arg)  \n{    try    \n{      ObjectOutputStream os;\n      Socket sock = new Socket(\"panda.cs.uno.edu\", 6000);\n //panda is the host name\n      Factory fa = new Factory();\n      os = new ObjectOutputStream( new\n             BufferedOutputStream(sock.getOutputStream()));\n      os.writeObject(fa);\n    }\n    catch (IOException ex)\n    {}\n  }\n}\n",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "ObjectOutputStream.defaultWriteObject": true,
+          "ObjectInputStream.defaultReadObject": true,
+          "Socket.__init__": true,
+          "Factory.__init__": true,
+          "Socket.getOutputStream": true,
+          "BufferedOutputStream.__init__": true,
+          "ObjectOutputStream.__init__": true,
+          "ObjectOutputStream.writeObject": true
+        },
+        "APIsProjects": {
+          "ObjectOutputStream.defaultWriteObject": 75,
+          "ObjectInputStream.defaultReadObject": 97,
+          "Socket.__init__": 139,
+          "Factory.__init__": 68,
+          "Socket.getOutputStream": 143,
+          "BufferedOutputStream.__init__": 179,
+          "ObjectOutputStream.__init__": 203,
+          "ObjectOutputStream.writeObject": 205
+        },
+        "APIsFiles": {
+          "ObjectOutputStream.defaultWriteObject": 535,
+          "ObjectInputStream.defaultReadObject": 617,
+          "Socket.__init__": 403,
+          "Factory.__init__": 308,
+          "Socket.getOutputStream": 463,
+          "BufferedOutputStream.__init__": 622,
+          "ObjectOutputStream.__init__": 739,
+          "ObjectOutputStream.writeObject": 966
+        },
+        "APIsSnippets": {
+          "ObjectOutputStream.defaultWriteObject": 563,
+          "ObjectInputStream.defaultReadObject": 643,
+          "Socket.__init__": 709,
+          "Factory.__init__": 455,
+          "Socket.getOutputStream": 784,
+          "BufferedOutputStream.__init__": 789,
+          "ObjectOutputStream.__init__": 1011,
+          "ObjectOutputStream.writeObject": 1713
+        },
+        "APIsQualifiedNames": {
+          "ObjectOutputStream.defaultWriteObject": "java.io.ObjectOutputStream.defaultWriteObject",
+          "ObjectInputStream.defaultReadObject": "java.io.ObjectInputStream.defaultReadObject",
+          "Socket.__init__": "java.net.Socket.__init__",
+          "Factory.__init__": "org.apache.zookeeper.server.NIOServerCnxn.Factory.__init__",
+          "Socket.getOutputStream": "java.net.Socket.getOutputStream",
+          "BufferedOutputStream.__init__": "java.io.BufferedOutputStream.__init__",
+          "ObjectOutputStream.__init__": "java.io.ObjectOutputStream.__init__",
+          "ObjectOutputStream.writeObject": "java.io.ObjectOutputStream.writeObject"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      },
+      {
+        "code": "//Object Input\nimport java.net.*;\nimport java.io.*;\npublic class ShowObjInput\n{  public static void main(String[] arg)\n  {    try    \n{      ObjectInputStream is;\n      ServerSocket servSock = new ServerSocket(6000);\n      Sock sock;\n      sock = servSock.accept();\n      is = new ObjectInputStream( new\n               BufferedInputStream(sock.getInputStream()));\n      Factory o = (Factory)is.readObject();\n    }    catch (IOException ex)\n    {}\n  }\n}\n",
+        "in_page_order": 2,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "ServerSocket.__init__": true,
+          "ServerSocket.accept": true,
+          "Sock.getInputStream": false,
+          "BufferedInputStream.__init__": true,
+          "ObjectInputStream.__init__": true,
+          "ObjectInputStream.readObject": true
+        },
+        "APIsProjects": {
+          "ServerSocket.__init__": 132,
+          "ServerSocket.accept": 98,
+          "BufferedInputStream.__init__": 224,
+          "ObjectInputStream.__init__": 194,
+          "ObjectInputStream.readObject": 197
+        },
+        "APIsFiles": {
+          "ServerSocket.__init__": 335,
+          "ServerSocket.accept": 234,
+          "BufferedInputStream.__init__": 793,
+          "ObjectInputStream.__init__": 699,
+          "ObjectInputStream.readObject": 888
+        },
+        "APIsSnippets": {
+          "ServerSocket.__init__": 510,
+          "ServerSocket.accept": 386,
+          "BufferedInputStream.__init__": 1031,
+          "ObjectInputStream.__init__": 990,
+          "ObjectInputStream.readObject": 1579
+        },
+        "APIsQualifiedNames": {
+          "ServerSocket.__init__": "java.net.ServerSocket.__init__",
+          "ServerSocket.accept": "java.net.ServerSocket.accept",
+          "BufferedInputStream.__init__": "java.io.BufferedInputStream.__init__",
+          "ObjectInputStream.__init__": "java.io.ObjectInputStream.__init__",
+          "ObjectInputStream.readObject": "java.io.ObjectInputStream.readObject"
+        },
+        "API_Ratio": 0.8333333333333334,
+        "readability": true
+      },
+      {
+        "code": "import java.io.*;\nimport java.net.*;\npublic class Sender\n{  public void sendTo(Object o, String hostName, int desPort)  \n{    try    \n{      InetAddress address = InetAddress.getByName(hostName);\n      ByteArrayOutputStream byteStream = new\n          ByteArrayOutputStream(5000);\n      ObjectOutputStream os = new ObjectOutputStream(new\n                              BufferedOutputStream(byteStream));\n      os.flush();\n      os.writeObject(o);\n      os.flush();\n      //retrieves byte array\n      byte[] sendBuf = byteStream.toByteArray();\n      DatagramPacket packet = new DatagramPacket(\n                          sendBuf, sendBuf.length, address, desPort);\n      int byteCount = packet.getLength();\n      dSock.send(packet);\n      os.close();\n    }\n    catch (UnknownHostException e)\n    {\n      System.err.println(\"Exception:  \" + e);\n      e.printStackTrace();    }\n    catch (IOException e)    { e.printStackTrace();\n }\n  }\n}\n",
+        "in_page_order": 3,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "ByteArrayOutputStream.__init__": true,
+          "BufferedOutputStream.__init__": true,
+          "ObjectOutputStream.__init__": true,
+          "ObjectOutputStream.flush": true,
+          "ObjectOutputStream.writeObject": true,
+          "ByteArrayOutputStream.toByteArray": true,
+          "DatagramPacket.__init__": true,
+          "DatagramPacket.getLength": true,
+          "ObjectOutputStream.close": true
+        },
+        "APIsProjects": {
+          "ByteArrayOutputStream.__init__": 447,
+          "BufferedOutputStream.__init__": 179,
+          "ObjectOutputStream.__init__": 203,
+          "ObjectOutputStream.flush": 71,
+          "ObjectOutputStream.writeObject": 205,
+          "ByteArrayOutputStream.toByteArray": 418,
+          "DatagramPacket.__init__": 51,
+          "DatagramPacket.getLength": 30,
+          "ObjectOutputStream.close": 152
+        },
+        "APIsFiles": {
+          "ByteArrayOutputStream.__init__": 3528,
+          "BufferedOutputStream.__init__": 622,
+          "ObjectOutputStream.__init__": 739,
+          "ObjectOutputStream.flush": 182,
+          "ObjectOutputStream.writeObject": 966,
+          "ByteArrayOutputStream.toByteArray": 2862,
+          "DatagramPacket.__init__": 146,
+          "DatagramPacket.getLength": 60,
+          "ObjectOutputStream.close": 470
+        },
+        "APIsSnippets": {
+          "ByteArrayOutputStream.__init__": 6155,
+          "BufferedOutputStream.__init__": 789,
+          "ObjectOutputStream.__init__": 1011,
+          "ObjectOutputStream.flush": 225,
+          "ObjectOutputStream.writeObject": 1713,
+          "ByteArrayOutputStream.toByteArray": 5168,
+          "DatagramPacket.__init__": 320,
+          "DatagramPacket.getLength": 126,
+          "ObjectOutputStream.close": 654
+        },
+        "APIsQualifiedNames": {
+          "ByteArrayOutputStream.__init__": "java.io.ByteArrayOutputStream.__init__",
+          "BufferedOutputStream.__init__": "java.io.BufferedOutputStream.__init__",
+          "ObjectOutputStream.__init__": "java.io.ObjectOutputStream.__init__",
+          "ObjectOutputStream.flush": "java.io.ObjectOutputStream.flush",
+          "ObjectOutputStream.writeObject": "java.io.ObjectOutputStream.writeObject",
+          "ByteArrayOutputStream.toByteArray": "java.io.ByteArrayOutputStream.toByteArray",
+          "DatagramPacket.__init__": "java.net.DatagramPacket.__init__",
+          "DatagramPacket.getLength": "java.net.DatagramPacket.getLength",
+          "ObjectOutputStream.close": "java.io.ObjectOutputStream.close"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      },
+      {
+        "code": "import java.io.*;\nimport java.net.*;\npublic class Receiver\n{  public Object recvObjFrom()  \n{    try\n    {\n      byte[] recvBuf = new byte[5000];\n      DatagramPacket packet = new DatagramPacket(recvBuf,\n                                                 recvBuf.length);\n      dSock.receive(packet);\n      int byteCount = packet.getLength();\n      ByteArrayInputStream byteStream = new\n                                  ByteArrayInputStream(recvBuf);\n      ObjectInputStream is = new\n           ObjectInputStream(new BufferedInputStream(byteStream));\n      Object o = is.readObject();\n      is.close();\n      return(o);\n    }\n    catch (IOException e)\n    {\n      System.err.println(\"Exception:  \" + e);\n      e.printStackTrace();\n    }\n    catch (ClassNotFoundException e)\n    { e.printStackTrace(); }\n    return(null);  }\n}\n",
+        "in_page_order": 4,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "DatagramPacket.__init__": true,
+          "DatagramPacket.getLength": true,
+          "ByteArrayInputStream.__init__": true,
+          "BufferedInputStream.__init__": true,
+          "ObjectInputStream.__init__": true,
+          "ObjectInputStream.readObject": true,
+          "ObjectInputStream.close": true
+        },
+        "APIsProjects": {
+          "DatagramPacket.__init__": 51,
+          "DatagramPacket.getLength": 30,
+          "ByteArrayInputStream.__init__": 385,
+          "BufferedInputStream.__init__": 224,
+          "ObjectInputStream.__init__": 194,
+          "ObjectInputStream.readObject": 197,
+          "ObjectInputStream.close": 124
+        },
+        "APIsFiles": {
+          "DatagramPacket.__init__": 146,
+          "DatagramPacket.getLength": 60,
+          "ByteArrayInputStream.__init__": 2918,
+          "BufferedInputStream.__init__": 793,
+          "ObjectInputStream.__init__": 699,
+          "ObjectInputStream.readObject": 888,
+          "ObjectInputStream.close": 337
+        },
+        "APIsSnippets": {
+          "DatagramPacket.__init__": 320,
+          "DatagramPacket.getLength": 126,
+          "ByteArrayInputStream.__init__": 5225,
+          "BufferedInputStream.__init__": 1031,
+          "ObjectInputStream.__init__": 990,
+          "ObjectInputStream.readObject": 1579,
+          "ObjectInputStream.close": 475
+        },
+        "APIsQualifiedNames": {
+          "DatagramPacket.__init__": "java.net.DatagramPacket.__init__",
+          "DatagramPacket.getLength": "java.net.DatagramPacket.getLength",
+          "ByteArrayInputStream.__init__": "java.io.ByteArrayInputStream.__init__",
+          "BufferedInputStream.__init__": "java.io.BufferedInputStream.__init__",
+          "ObjectInputStream.__init__": "java.io.ObjectInputStream.__init__",
+          "ObjectInputStream.readObject": "java.io.ObjectInputStream.readObject",
+          "ObjectInputStream.close": "java.io.ObjectInputStream.close"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      }
+    ]
+  },
+  {
+    "query": "How to send packet via UDP",
+    "url": "https://www.javaworld.com/article/2077322/core-java/core-java-sockets-programming-in-java-a-tutorial.html",
+    "url position": 17,
+    "segments": [
+      {
+        "code": "    Socket MyClient;\n    MyClient = new Socket(\"Machine name\", PortNumber);\n",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": true,
+        "APIs": {
+          "Socket.__init__": true
+        },
+        "APIsProjects": {
+          "Socket.__init__": 139
+        },
+        "APIsFiles": {
+          "Socket.__init__": 403
+        },
+        "APIsSnippets": {
+          "Socket.__init__": 709
+        },
+        "APIsQualifiedNames": {
+          "Socket.__init__": "java.net.Socket.__init__"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      },
+      {
+        "code": "    Socket MyClient;\n    try {\n           MyClient = new Socket(\"Machine name\", PortNumber);\n    }\n    catch (IOException e) {\n        System.out.println(e);\n    }\n",
+        "in_page_order": 2,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Socket.__init__": true
+        },
+        "APIsProjects": {
+          "Socket.__init__": 139
+        },
+        "APIsFiles": {
+          "Socket.__init__": 403
+        },
+        "APIsSnippets": {
+          "Socket.__init__": 709
+        },
+        "APIsQualifiedNames": {
+          "Socket.__init__": "java.net.Socket.__init__"
+        },
+        "API_Ratio": 1.0,
+        "readability": false
+      },
+      {
+        "code": "    ServerSocket MyService;\n    try {\n       MyServerice = new ServerSocket(PortNumber);\n        }\n        catch (IOException e) {\n           System.out.println(e);\n        }\n",
+        "in_page_order": 3,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "ServerSocket.__init__": true
+        },
+        "APIsProjects": {
+          "ServerSocket.__init__": 132
+        },
+        "APIsFiles": {
+          "ServerSocket.__init__": 335
+        },
+        "APIsSnippets": {
+          "ServerSocket.__init__": 510
+        },
+        "APIsQualifiedNames": {
+          "ServerSocket.__init__": "java.net.ServerSocket.__init__"
+        },
+        "API_Ratio": 1.0,
+        "readability": false
+      },
+      {
+        "code": "    DataInputStream input;\n    try {\n       input = new DataInputStream(MyClient.getInputStream());\n    }\n    catch (IOException e) {\n       System.out.println(e);\n    }\n",
+        "in_page_order": 5,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "DataInputStream.__init__": true
+        },
+        "APIsProjects": {
+          "DataInputStream.__init__": 161
+        },
+        "APIsFiles": {
+          "DataInputStream.__init__": 922
+        },
+        "APIsSnippets": {
+          "DataInputStream.__init__": 1246
+        },
+        "APIsQualifiedNames": {
+          "DataInputStream.__init__": "java.io.DataInputStream.__init__"
+        },
+        "API_Ratio": 1.0,
+        "readability": false
+      },
+      {
+        "code": "    DataInputStream input;\n    try {\n       input = new DataInputStream(serviceSocket.getInputStream());\n    }\n    catch (IOException e) {\n       System.out.println(e);\n    }\n",
+        "in_page_order": 6,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "DataInputStream.__init__": true
+        },
+        "APIsProjects": {
+          "DataInputStream.__init__": 161
+        },
+        "APIsFiles": {
+          "DataInputStream.__init__": 922
+        },
+        "APIsSnippets": {
+          "DataInputStream.__init__": 1246
+        },
+        "APIsQualifiedNames": {
+          "DataInputStream.__init__": "java.io.DataInputStream.__init__"
+        },
+        "API_Ratio": 1.0,
+        "readability": false
+      },
+      {
+        "code": "    PrintStream output;\n    try {\n       output = new PrintStream(MyClient.getOutputStream());\n    }\n    catch (IOException e) {\n       System.out.println(e);\n    }\n",
+        "in_page_order": 7,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "PrintStream.__init__": true
+        },
+        "APIsProjects": {
+          "PrintStream.__init__": 185
+        },
+        "APIsFiles": {
+          "PrintStream.__init__": 777
+        },
+        "APIsSnippets": {
+          "PrintStream.__init__": 1219
+        },
+        "APIsQualifiedNames": {
+          "PrintStream.__init__": "java.io.PrintStream.__init__"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      },
+      {
+        "code": "    DataOutputStream output;\n    try {\n       output = new DataOutputStream(MyClient.getOutputStream());\n    }\n    catch (IOException e) {\n       System.out.println(e);\n    }\n",
+        "in_page_order": 8,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "DataOutputStream.__init__": true
+        },
+        "APIsProjects": {
+          "DataOutputStream.__init__": 160
+        },
+        "APIsFiles": {
+          "DataOutputStream.__init__": 802
+        },
+        "APIsSnippets": {
+          "DataOutputStream.__init__": 1084
+        },
+        "APIsQualifiedNames": {
+          "DataOutputStream.__init__": "java.io.DataOutputStream.__init__"
+        },
+        "API_Ratio": 1.0,
+        "readability": false
+      },
+      {
+        "code": "    PrintStream output;\n    try {\n       output = new PrintStream(serviceSocket.getOutputStream());\n    }\n    catch (IOException e) {\n       System.out.println(e);\n    }\n",
+        "in_page_order": 9,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "PrintStream.__init__": true
+        },
+        "APIsProjects": {
+          "PrintStream.__init__": 185
+        },
+        "APIsFiles": {
+          "PrintStream.__init__": 777
+        },
+        "APIsSnippets": {
+          "PrintStream.__init__": 1219
+        },
+        "APIsQualifiedNames": {
+          "PrintStream.__init__": "java.io.PrintStream.__init__"
+        },
+        "API_Ratio": 1.0,
+        "readability": false
+      },
+      {
+        "code": "import java.io.*;\nimport java.net.*;\npublic class smtpClient {\n    public static void main(String[] args) {\n// declaration section:\n// smtpClient: our client socket\n// os: output stream\n// is: input stream\n        Socket smtpSocket = null;  \n        DataOutputStream os = null;\n        DataInputStream is = null;\n// Initialization section:\n// Try to open a socket on port 25\n// Try to open input and output streams\n        try {\n            smtpSocket = new Socket(\"hostname\", 25);\n            os = new DataOutputStream(smtpSocket.getOutputStream());\n            is = new DataInputStream(smtpSocket.getInputStream());\n        } catch (UnknownHostException e) {\n            System.err.println(\"Don't know about host: hostname\");\n        } catch (IOException e) {\n            System.err.println(\"Couldn't get I/O for the connection to: hostname\");\n        }\n// If everything has been initialized then we want to write some data\n// to the socket we have opened a connection to on port 25\n    if (smtpSocket != null && os != null && is != null) {\n            try {\n// The capital string before each colon has a special meaning to SMTP\n// you may want to read the SMTP specification, RFC1822/3\n        os.writeBytes(\"HELO\\n\");    \n                os.writeBytes(\"MAIL From: k3is@fundy.csd.unbsj.ca\\n\");\n                os.writeBytes(\"RCPT To: k3is@fundy.csd.unbsj.ca\\n\");\n                os.writeBytes(\"DATA\\n\");\n                os.writeBytes(\"From: k3is@fundy.csd.unbsj.ca\\n\");\n                os.writeBytes(\"Subject: testing\\n\");\n                os.writeBytes(\"Hi there\\n\"); // message body\n                os.writeBytes(\"\\n.\\n\");\n        os.writeBytes(\"QUIT\");\n// keep on reading from/to the socket till we receive the \"Ok\" from SMTP,\n// once we received that then we want to break.\n                String responseLine;\n                while ((responseLine = is.readLine()) != null) {\n                    System.out.println(\"Server: \" + responseLine);\n                    if (responseLine.indexOf(\"Ok\") != -1) {\n                      break;\n                    }\n                }\n// clean up:\n// close the output stream\n// close the input stream\n// close the socket\n        os.close();\n                is.close();\n                smtpSocket.close();   \n            } catch (UnknownHostException e) {\n                System.err.println(\"Trying to connect to unknown host: \" + e);\n            } catch (IOException e) {\n                System.err.println(\"IOException:  \" + e);\n            }\n        }\n    }           \n}\n",
+        "in_page_order": 12,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": true,
+        "APIs": {
+          "Socket.__init__": true,
+          "Socket.getOutputStream": true,
+          "DataOutputStream.__init__": true,
+          "Socket.getInputStream": true,
+          "DataInputStream.__init__": true,
+          "DataOutputStream.writeBytes": true,
+          "DataInputStream.readLine": true,
+          "DataOutputStream.close": true,
+          "DataInputStream.close": true,
+          "Socket.close": true
+        },
+        "APIsProjects": {
+          "Socket.__init__": 139,
+          "Socket.getOutputStream": 143,
+          "DataOutputStream.__init__": 160,
+          "Socket.getInputStream": 134,
+          "DataInputStream.__init__": 161,
+          "DataOutputStream.writeBytes": 48,
+          "DataInputStream.readLine": 11,
+          "DataOutputStream.close": 111,
+          "DataInputStream.close": 94,
+          "Socket.close": 152
+        },
+        "APIsFiles": {
+          "Socket.__init__": 403,
+          "Socket.getOutputStream": 463,
+          "DataOutputStream.__init__": 802,
+          "Socket.getInputStream": 439,
+          "DataInputStream.__init__": 922,
+          "DataOutputStream.writeBytes": 173,
+          "DataInputStream.readLine": 16,
+          "DataOutputStream.close": 519,
+          "DataInputStream.close": 340,
+          "Socket.close": 532
+        },
+        "APIsSnippets": {
+          "Socket.__init__": 709,
+          "Socket.getOutputStream": 784,
+          "DataOutputStream.__init__": 1084,
+          "Socket.getInputStream": 716,
+          "DataInputStream.__init__": 1246,
+          "DataOutputStream.writeBytes": 489,
+          "DataInputStream.readLine": 32,
+          "DataOutputStream.close": 755,
+          "DataInputStream.close": 477,
+          "Socket.close": 1011
+        },
+        "APIsQualifiedNames": {
+          "Socket.__init__": "java.net.Socket.__init__",
+          "Socket.getOutputStream": "java.net.Socket.getOutputStream",
+          "DataOutputStream.__init__": "java.io.DataOutputStream.__init__",
+          "Socket.getInputStream": "java.net.Socket.getInputStream",
+          "DataInputStream.__init__": "java.io.DataInputStream.__init__",
+          "DataOutputStream.writeBytes": "java.io.DataOutputStream.writeBytes",
+          "DataInputStream.readLine": "java.io.DataInputStream.readLine",
+          "DataOutputStream.close": "java.io.DataOutputStream.close",
+          "DataInputStream.close": "java.io.DataInputStream.close",
+          "Socket.close": "java.net.Socket.close"
+        },
+        "API_Ratio": 1.0,
+        "readability": false
+      }
+    ]
+  },
+  {
+    "query": "How to send packet via UDP",
+    "url": "https://demey.io/network-discovery-using-udp-broadcast/",
+    "url position": 22,
+    "segments": [
+      {
+        "code": "        // Find the server using UDP broadcast\n        try {\n          //Open a random port to send the package\n          c = new DatagramSocket();\n          c.setBroadcast(true);\n\n          byte[] sendData = \"DISCOVER_FUIFSERVER_REQUEST\".getBytes();\n\n          //Try the 255.255.255.255 first\n          try {\n            DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, InetAddress.getByName(\"255.255.255.255\"), 8888);\n            c.send(sendPacket);\n            System.out.println(getClass().getName() + \">>> Request packet sent to: 255.255.255.255 (DEFAULT)\");\n          } catch (Exception e) {\n          }\n\n          // Broadcast the message over all the network interfaces\n          Enumeration interfaces = NetworkInterface.getNetworkInterfaces();\n          while (interfaces.hasMoreElements()) {\n            NetworkInterface networkInterface = interfaces.nextElement();\n\n            if (networkInterface.isLoopback() || !networkInterface.isUp()) {\n              continue; // Don't want to broadcast to the loopback interface\n            }\n\n            for (InterfaceAddress interfaceAddress : networkInterface.getInterfaceAddresses()) {\n              InetAddress broadcast = interfaceAddress.getBroadcast();\n              if (broadcast == null) {\n                continue;\n              }\n\n              // Send the broadcast package!\n              try {\n                DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, broadcast, 8888);\n                c.send(sendPacket);\n              } catch (Exception e) {\n              }\n\n              System.out.println(getClass().getName() + \">>> Request packet sent to: \" + broadcast.getHostAddress() + \"; Interface: \" + networkInterface.getDisplayName());\n            }\n          }\n\n          System.out.println(getClass().getName() + \">>> Done looping over all network interfaces. Now waiting for a reply!\");\n\n          //Wait for a response\n          byte[] recvBuf = new byte[15000];\n          DatagramPacket receivePacket = new DatagramPacket(recvBuf, recvBuf.length);\n          c.receive(receivePacket);\n\n          //We have a response\n          System.out.println(getClass().getName() + \">>> Broadcast response from server: \" + receivePacket.getAddress().getHostAddress());\n\n          //Check if the message is correct\n          String message = new String(receivePacket.getData()).trim();\n          if (message.equals(\"DISCOVER_FUIFSERVER_RESPONSE\")) {\n            //DO SOMETHING WITH THE SERVER'S IP (for example, store it in your controller)\n            Controller_Base.setServerIp(receivePacket.getAddress());\n          }\n\n          //Close the port!\n          c.close();\n        } catch (IOException ex) {\n          Logger.getLogger(LoginWindow.class.getName()).log(Level.SEVERE, null, ex);\n        }\n",
+        "in_page_order": 3,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": true,
+        "APIs": {
+          "DatagramSocket.__init__": true,
+          "DatagramPacket.__init__": true,
+          "Enumeration.hasMoreElements": true,
+          "Enumeration.nextElement": true,
+          "NetworkInterface.isUp": true,
+          "NetworkInterface.getDisplayName": true,
+          "InetAddress.getHostAddress": true,
+          "DatagramPacket.getAddress": true,
+          "DatagramPacket.getData": true,
+          "String.__init__": true
+        },
+        "APIsProjects": {
+          "DatagramSocket.__init__": 50,
+          "DatagramPacket.__init__": 51,
+          "Enumeration.hasMoreElements": 253,
+          "Enumeration.nextElement": 254,
+          "NetworkInterface.isUp": 8,
+          "NetworkInterface.getDisplayName": 12,
+          "InetAddress.getHostAddress": 101,
+          "DatagramPacket.getAddress": 21,
+          "DatagramPacket.getData": 35,
+          "String.__init__": 525
+        },
+        "APIsFiles": {
+          "DatagramSocket.__init__": 125,
+          "DatagramPacket.__init__": 146,
+          "Enumeration.hasMoreElements": 1722,
+          "Enumeration.nextElement": 1704,
+          "NetworkInterface.isUp": 10,
+          "NetworkInterface.getDisplayName": 18,
+          "InetAddress.getHostAddress": 294,
+          "DatagramPacket.getAddress": 43,
+          "DatagramPacket.getData": 66,
+          "String.__init__": 5322
+        },
+        "APIsSnippets": {
+          "DatagramSocket.__init__": 293,
+          "DatagramPacket.__init__": 320,
+          "Enumeration.hasMoreElements": 3084,
+          "Enumeration.nextElement": 3031,
+          "NetworkInterface.isUp": 14,
+          "NetworkInterface.getDisplayName": 37,
+          "InetAddress.getHostAddress": 466,
+          "DatagramPacket.getAddress": 82,
+          "DatagramPacket.getData": 117,
+          "String.__init__": 10364
+        },
+        "APIsQualifiedNames": {
+          "DatagramSocket.__init__": "java.net.DatagramSocket.__init__",
+          "DatagramPacket.__init__": "java.net.DatagramPacket.__init__",
+          "Enumeration.hasMoreElements": "java.util.Enumeration.hasMoreElements",
+          "Enumeration.nextElement": "java.util.Enumeration.nextElement",
+          "NetworkInterface.isUp": "java.net.NetworkInterface.isUp",
+          "NetworkInterface.getDisplayName": "java.net.NetworkInterface.getDisplayName",
+          "InetAddress.getHostAddress": "java.net.InetAddress.getHostAddress",
+          "DatagramPacket.getAddress": "java.net.DatagramPacket.getAddress",
+          "DatagramPacket.getData": "java.net.DatagramPacket.getData",
+          "String.__init__": "java.lang.String.__init__"
+        },
+        "API_Ratio": 1.0,
+        "readability": false
+      },
+      {
+        "code": "Thread discoveryThread = new Thread(DiscoveryThread.getInstance());\ndiscoveryThread.start();\n",
+        "in_page_order": 4,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": true,
+        "APIs": {
+          "Thread.__init__": true,
+          "Thread.start": true
+        },
+        "APIsProjects": {
+          "Thread.__init__": 464,
+          "Thread.start": 326
+        },
+        "APIsFiles": {
+          "Thread.__init__": 3187,
+          "Thread.start": 1776
+        },
+        "APIsSnippets": {
+          "Thread.__init__": 5242,
+          "Thread.start": 2947
+        },
+        "APIsQualifiedNames": {
+          "Thread.__init__": "java.lang.Thread.__init__",
+          "Thread.start": "java.lang.Thread.start"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      }
+    ]
+  },
+  {
+    "query": "How to send packet via UDP",
+    "url": "http://stahlworks.com/dev/article-18-03-send-udp-network-text-java-simple-source-code-example.html",
+    "url position": 32,
+    "segments": [
+      {
+        "code": "\n/*\n   Example how to send UDP text in Java.\nSee also: sfk netlog.\n\n   -  copy this to a file netlog.java\n   -  javac netlog.java\n-  run: dview -net\n      under Linux/Mac: wine dview.exe -net -linux &\n   -  java netlog\n*/\n\nimport java.io.*;\nimport java.net.*;\n\npublic class netlog\n{\n   public static DatagramSocket clSocket = null;\n   public static InetAddress clAddress = null;\n   public static int iClPort = -1;\n   static int iClRequest = 1;\n\n   public static void init(String sHost, int iPort) throws Throwable\n   {\n      clAddress = InetAddress.getByName(sHost);\n      iClPort = iPort;\n      clSocket = new DatagramSocket();\n   }\n\n   public static void log(String sTextIn) throws Throwable\n   {\n      String sText   = sTextIn+\"\\n\";\n\n      // change all [red] to compact color codes \\x1Fr\n      byte[] abData1 = sText.getBytes();\n      int    iSize1  = abData1.length;\n      byte[] abData2 = new byte[iSize1+100];\n\n      // keep 100 bytes space for header\n      int i2=100;\n      for (int i1=0; i1<iSize1;)\n      {\n         if (abData1[i1]=='[') {\n            i1++;\n            if (i1>=iSize1)\n               break;\n            abData2[i2++] = (byte)0x1F;\n            abData2[i2++] = abData1[i1++];\n            while (i1<iSize1 && abData1[i1]!=']')\n               i1++;\n            if (i1<iSize1)\n               i1++;\n         } else {\n            abData2[i2++] = abData1[i1++];\n         }\n      }\n      int iTextSize = i2-100;\n\n      // add sfktxt header before text\n      String sHead = \":sfktxt:v100,req\"+iClRequest+\",cs1\\n\\n\";\n      iClRequest++;\n      byte abHead[] = sHead.getBytes();\n      int iHeadLen  = abHead.length;\n      for (int i=0; i<iHeadLen; i++)\n         abData2[100-iHeadLen+i] = abHead[i];\n      int iStartOff = 100-iHeadLen;\n      int iFullSize = iHeadLen+iTextSize;\n\n      DatagramPacket packet = new DatagramPacket(abData2,\n         iStartOff, iFullSize, clAddress, iClPort);\n\n      clSocket.send(packet);\n   }\n\n   public static void main(String args[]) throws Throwable\n   {\n      netlog.init(\"localhost\", 21323);\n\n      netlog.log(\"[Red]Foo[def] and [Blue]bar[def] went \"\n                +\"to the [Green]zoo[def].\");\n   }\n}\n",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "DatagramSocket.__init__": true,
+          "DatagramPacket.__init__": true,
+          "DatagramSocket.send": true
+        },
+        "APIsProjects": {
+          "DatagramSocket.__init__": 50,
+          "DatagramPacket.__init__": 51,
+          "DatagramSocket.send": 31
+        },
+        "APIsFiles": {
+          "DatagramSocket.__init__": 125,
+          "DatagramPacket.__init__": 146,
+          "DatagramSocket.send": 65
+        },
+        "APIsSnippets": {
+          "DatagramSocket.__init__": 293,
+          "DatagramPacket.__init__": 320,
+          "DatagramSocket.send": 122
+        },
+        "APIsQualifiedNames": {
+          "DatagramSocket.__init__": "java.net.DatagramSocket.__init__",
+          "DatagramPacket.__init__": "java.net.DatagramPacket.__init__",
+          "DatagramSocket.send": "java.net.DatagramSocket.send"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      }
+    ]
+  },
+  {
+    "query": "How to send packet via UDP",
+    "url": "http://www.java-gaming.org/index.php?topic=36130.0",
+    "url position": 31,
+    "segments": [
+      {
+        "code": "class Connection{ String NAME; InetAddress IP; int PORT;   DatagramSocket DSOCKET; boolean ENABLED = true; public Connection(InetAddress ip, int port,String name) {  IP = ip;  PORT = port;  NAME = name;  try  {   DSOCKET = new DatagramSocket();   receive();   send();  }catch(Exception e){} } public void send() {  Thread sendthread = new Thread()  {   public void run()   {    try    {     byte[] sendData;     while(ENABLED)     {       try       {         String message = \"Hello there!\";         sendData = new byte[message.getBytes().length];         sendData = message.getBytes();         DatagramPacket sendPacket = new DatagramPacket(sendData,sendData.length,IP,PORT);         DSOCKET.send(sendPacket);       }catch(Exception e){System.out.println(\"NetSendError: \" + e);}     }     DSOCKET.close();    }catch(Exception e){}   }   };  sendthread.start(); } public void receive() {  Thread thread = new Thread()  {   public void run()   {    byte[] receiveData;    try    {     DSOCKET.setSoTimeout(1000);     while(ENABLED)     {      receiveData = new byte[4096];      DatagramPacket receivePacket = new DatagramPacket(receiveData,receiveData.length);      DSOCKET.receive(receivePacket);      String message = new String(receivePacket.getData());      System.out.println(\"CLIENT received message: \" + message);     }    }catch(Exception e){}   }  };  thread.start(); }}",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "DatagramSocket.__init__": true,
+          "DatagramSocket.close": true,
+          "DatagramSocket.send": true,
+          "DatagramPacket.__init__": true,
+          "Thread.__init__": true,
+          "Thread.start": true,
+          "String.__init__": true,
+          "DatagramSocket.receive": true,
+          "DatagramSocket.setSoTimeout": true,
+          "DatagramPacket.getData": true
+        },
+        "APIsProjects": {
+          "DatagramSocket.__init__": 50,
+          "DatagramSocket.close": 41,
+          "DatagramSocket.send": 31,
+          "DatagramPacket.__init__": 51,
+          "Thread.__init__": 464,
+          "Thread.start": 326,
+          "String.__init__": 525,
+          "DatagramSocket.receive": 27,
+          "DatagramSocket.setSoTimeout": 16,
+          "DatagramPacket.getData": 35
+        },
+        "APIsFiles": {
+          "DatagramSocket.__init__": 125,
+          "DatagramSocket.close": 102,
+          "DatagramSocket.send": 65,
+          "DatagramPacket.__init__": 146,
+          "Thread.__init__": 3187,
+          "Thread.start": 1776,
+          "String.__init__": 5322,
+          "DatagramSocket.receive": 58,
+          "DatagramSocket.setSoTimeout": 22,
+          "DatagramPacket.getData": 66
+        },
+        "APIsSnippets": {
+          "DatagramSocket.__init__": 293,
+          "DatagramSocket.close": 221,
+          "DatagramSocket.send": 122,
+          "DatagramPacket.__init__": 320,
+          "Thread.__init__": 5242,
+          "Thread.start": 2947,
+          "String.__init__": 10364,
+          "DatagramSocket.receive": 96,
+          "DatagramSocket.setSoTimeout": 54,
+          "DatagramPacket.getData": 117
+        },
+        "APIsQualifiedNames": {
+          "DatagramSocket.__init__": "java.net.DatagramSocket.__init__",
+          "DatagramSocket.close": "java.net.DatagramSocket.close",
+          "DatagramSocket.send": "java.net.DatagramSocket.send",
+          "DatagramPacket.__init__": "java.net.DatagramPacket.__init__",
+          "Thread.__init__": "java.lang.Thread.__init__",
+          "Thread.start": "java.lang.Thread.start",
+          "String.__init__": "java.lang.String.__init__",
+          "DatagramSocket.receive": "java.net.DatagramSocket.receive",
+          "DatagramSocket.setSoTimeout": "java.net.DatagramSocket.setSoTimeout",
+          "DatagramPacket.getData": "java.net.DatagramPacket.getData"
+        },
+        "API_Ratio": 1.0,
+        "readability": false
+      }
+    ]
+  },
+  {
+    "query": "How to send packet via UDP",
+    "url": "https://www.hostedgraphite.com/docs/languageguide/lg_java.html",
+    "url position": 36,
+    "segments": [
+      {
+        "code": "URLFetchService fetcher= URLFetchServiceFactory.getURLFetchService();\nString data = \"foo 1.2\";\nString key  = \"YOUR_API_KEY\";\n\nString authHeaderString = \"Basic \" + Base64.encodeBase64String(key).getBytes(\"ISO-8859-1\");\nHTTPHeader authHeader   = new HTTPHeader(\"Authorization\", authHeaderString);\n\nHTTPRequest request = new HTTPRequest(\"https://www.hostedgraphite.com/api/v1/sink\", HTTPMethod.POST);\nrequest.getFetchOptions().setDeadline(10);\nrequest.setHeader(authHeader);\n\nrequest.setPayload(data.getBytes());\nHTTPResponse response = fetcher.fetch(request);\n",
+        "in_page_order": 5,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "HTTPHeader.__init__": true,
+          "HTTPRequest.__init__": true,
+          "HTTPRequest.getFetchOptions": false,
+          "HTTPRequest.setHeader": false,
+          "HTTPRequest.setPayload": true,
+          "URLFetchService.fetch": true
+        },
+        "APIsProjects": {
+          "HTTPHeader.__init__": 5,
+          "HTTPRequest.__init__": 7,
+          "HTTPRequest.setPayload": 6,
+          "URLFetchService.fetch": 5
+        },
+        "APIsFiles": {
+          "HTTPHeader.__init__": 8,
+          "HTTPRequest.__init__": 16,
+          "HTTPRequest.setPayload": 10,
+          "URLFetchService.fetch": 6
+        },
+        "APIsSnippets": {
+          "HTTPHeader.__init__": 23,
+          "HTTPRequest.__init__": 19,
+          "HTTPRequest.setPayload": 10,
+          "URLFetchService.fetch": 9
+        },
+        "APIsQualifiedNames": {
+          "HTTPHeader.__init__": "com.google.appengine.api.urlfetch.HTTPHeader.__init__",
+          "HTTPRequest.__init__": "com.google.appengine.api.urlfetch.HTTPRequest.__init__",
+          "HTTPRequest.setPayload": "com.google.appengine.api.urlfetch.HTTPRequest.setPayload",
+          "URLFetchService.fetch": "com.google.appengine.api.urlfetch.URLFetchService.fetch"
+        },
+        "API_Ratio": 0.6666666666666666,
+        "readability": false
+      }
+    ]
+  },
+  {
+    "query": "How to send packet via UDP",
+    "url": "https://michieldemey.be/blog/network-discovery-using-udp-broadcast/",
+    "url position": 24,
+    "segments": [
+      {
+        "code": "        // Find the server using UDP broadcast\r\n        try {\r\n          //Open a random port to send the package\r\n          c = new DatagramSocket();\r\n          c.setBroadcast(true);\r\n\r\n          byte[] sendData = \"DISCOVER_FUIFSERVER_REQUEST\".getBytes();\r\n\r\n          //Try the 255.255.255.255 first\r\n          try {\r\n            DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, InetAddress.getByName(\"255.255.255.255\"), 8888);\r\n            c.send(sendPacket);\r\n            System.out.println(getClass().getName() + \">>> Request packet sent to: 255.255.255.255 (DEFAULT)\");\r\n          } catch (Exception e) {\r\n          }\r\n\r\n          // Broadcast the message over all the network interfaces\r\n          Enumeration interfaces = NetworkInterface.getNetworkInterfaces();\r\n          while (interfaces.hasMoreElements()) {\r\n            NetworkInterface networkInterface = interfaces.nextElement();\r\n\r\n            if (networkInterface.isLoopback() || !networkInterface.isUp()) {\r\n              continue; // Don't want to broadcast to the loopback interface\r\n            }\r\n\r\n            for (InterfaceAddress interfaceAddress : networkInterface.getInterfaceAddresses()) {\r\n              InetAddress broadcast = interfaceAddress.getBroadcast();\r\n              if (broadcast == null) {\r\n                continue;\r\n              }\r\n\r\n              // Send the broadcast package!\r\n              try {\r\n                DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, broadcast, 8888);\r\n                c.send(sendPacket);\r\n              } catch (Exception e) {\r\n              }\r\n\r\n              System.out.println(getClass().getName() + \">>> Request packet sent to: \" + broadcast.getHostAddress() + \"; Interface: \" + networkInterface.getDisplayName());\r\n            }\r\n          }\r\n\r\n          System.out.println(getClass().getName() + \">>> Done looping over all network interfaces. Now waiting for a reply!\");\r\n\r\n          //Wait for a response\r\n          byte[] recvBuf = new byte[15000];\r\n          DatagramPacket receivePacket = new DatagramPacket(recvBuf, recvBuf.length);\r\n          c.receive(receivePacket);\r\n\r\n          //We have a response\r\n          System.out.println(getClass().getName() + \">>> Broadcast response from server: \" + receivePacket.getAddress().getHostAddress());\r\n\r\n          //Check if the message is correct\r\n          String message = new String(receivePacket.getData()).trim();\r\n          if (message.equals(\"DISCOVER_FUIFSERVER_RESPONSE\")) {\r\n            //DO SOMETHING WITH THE SERVER'S IP (for example, store it in your controller)\r\n            Controller_Base.setServerIp(receivePacket.getAddress());\r\n          }\r\n\r\n          //Close the port!\r\n          c.close();\r\n        } catch (IOException ex) {\r\n          Logger.getLogger(LoginWindow.class.getName()).log(Level.SEVERE, null, ex);\r\n        }",
+        "in_page_order": 3,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": true,
+        "APIs": {
+          "DatagramSocket.__init__": true,
+          "DatagramPacket.__init__": true,
+          "Enumeration.hasMoreElements": true,
+          "Enumeration.nextElement": true,
+          "NetworkInterface.isUp": true,
+          "NetworkInterface.getDisplayName": true,
+          "InetAddress.getHostAddress": true,
+          "DatagramPacket.getAddress": true,
+          "DatagramPacket.getData": true,
+          "String.__init__": true
+        },
+        "APIsProjects": {
+          "DatagramSocket.__init__": 50,
+          "DatagramPacket.__init__": 51,
+          "Enumeration.hasMoreElements": 253,
+          "Enumeration.nextElement": 254,
+          "NetworkInterface.isUp": 8,
+          "NetworkInterface.getDisplayName": 12,
+          "InetAddress.getHostAddress": 101,
+          "DatagramPacket.getAddress": 21,
+          "DatagramPacket.getData": 35,
+          "String.__init__": 525
+        },
+        "APIsFiles": {
+          "DatagramSocket.__init__": 125,
+          "DatagramPacket.__init__": 146,
+          "Enumeration.hasMoreElements": 1722,
+          "Enumeration.nextElement": 1704,
+          "NetworkInterface.isUp": 10,
+          "NetworkInterface.getDisplayName": 18,
+          "InetAddress.getHostAddress": 294,
+          "DatagramPacket.getAddress": 43,
+          "DatagramPacket.getData": 66,
+          "String.__init__": 5322
+        },
+        "APIsSnippets": {
+          "DatagramSocket.__init__": 293,
+          "DatagramPacket.__init__": 320,
+          "Enumeration.hasMoreElements": 3084,
+          "Enumeration.nextElement": 3031,
+          "NetworkInterface.isUp": 14,
+          "NetworkInterface.getDisplayName": 37,
+          "InetAddress.getHostAddress": 466,
+          "DatagramPacket.getAddress": 82,
+          "DatagramPacket.getData": 117,
+          "String.__init__": 10364
+        },
+        "APIsQualifiedNames": {
+          "DatagramSocket.__init__": "java.net.DatagramSocket.__init__",
+          "DatagramPacket.__init__": "java.net.DatagramPacket.__init__",
+          "Enumeration.hasMoreElements": "java.util.Enumeration.hasMoreElements",
+          "Enumeration.nextElement": "java.util.Enumeration.nextElement",
+          "NetworkInterface.isUp": "java.net.NetworkInterface.isUp",
+          "NetworkInterface.getDisplayName": "java.net.NetworkInterface.getDisplayName",
+          "InetAddress.getHostAddress": "java.net.InetAddress.getHostAddress",
+          "DatagramPacket.getAddress": "java.net.DatagramPacket.getAddress",
+          "DatagramPacket.getData": "java.net.DatagramPacket.getData",
+          "String.__init__": "java.lang.String.__init__"
+        },
+        "API_Ratio": 1.0,
+        "readability": false
+      },
+      {
+        "code": "Thread discoveryThread = new Thread(DiscoveryThread.getInstance());\r\n    discoveryThread.start();",
+        "in_page_order": 4,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": true,
+        "APIs": {
+          "Thread.__init__": true,
+          "Thread.start": true
+        },
+        "APIsProjects": {
+          "Thread.__init__": 464,
+          "Thread.start": 326
+        },
+        "APIsFiles": {
+          "Thread.__init__": 3187,
+          "Thread.start": 1776
+        },
+        "APIsSnippets": {
+          "Thread.__init__": 5242,
+          "Thread.start": 2947
+        },
+        "APIsQualifiedNames": {
+          "Thread.__init__": "java.lang.Thread.__init__",
+          "Thread.start": "java.lang.Thread.start"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      }
+    ]
+  },
+  {
+    "query": "How to send packet via UDP",
+    "url": "http://www.romaniancoder.com/create-a-udp-client-server-in-java-using-the-producer-consumer-pattern/",
+    "url position": 39,
+    "segments": [
+      {
+        "code": "import java.io.IOException;\r\nimport java.net.*;\r\n\r\npublic class UdpUnicastServer implements Runnable {\r\n    /**\r\n     * The port where the client is listening.\r\n     */\r\n    private final int clientPort;\r\n\r\n    public UdpUnicastServer(int clientPort) {\r\n        this.clientPort = clientPort;\r\n    }\r\n\r\n    @Override\r\n    public void run() {\r\n        /**\r\n         * Create a new server socket and bind it to a free port. I have chosen\r\n         * one in the 49152 - 65535 range, which are allocated for internal applications\r\n         */\r\n        try (DatagramSocket serverSocket = new DatagramSocket(50000)) {\r\n            // The server will generate 10000 messages and send them to the client\r\n            // Each message will be sent at a 2 ms interval\r\n            for (int i = 0; i < 10000; i++) {\r\n                String message = \"Message number \" + i;\r\n                DatagramPacket datagramPacket = new DatagramPacket(\r\n                        message.getBytes(),\r\n                        message.length(),\r\n                        InetAddress.getLocalHost(),\r\n                        clientPort\r\n                );\r\n                serverSocket.send(datagramPacket);\r\n\r\n                // Wait 2 ms before sending the next message\r\n                Thread.sleep(2);\r\n            }\r\n        } catch (SocketException e) {\r\n            e.printStackTrace();\r\n        } catch (UnknownHostException e) {\r\n            e.printStackTrace();\r\n        } catch (IOException e) {\r\n            e.printStackTrace();\r\n        } catch (InterruptedException e) {\r\n            e.printStackTrace();\r\n        }\r\n    }\r\n}",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "AM.__init__": true
+        },
+        "APIsProjects": {
+          "AM.__init__": 62
+        },
+        "APIsFiles": {
+          "AM.__init__": 555
+        },
+        "APIsSnippets": {
+          "AM.__init__": 987
+        },
+        "APIsQualifiedNames": {},
+        "API_Ratio": 1.0,
+        "readability": true
+      },
+      {
+        "code": "import java.io.IOException;\r\nimport java.net.DatagramPacket;\r\nimport java.net.DatagramSocket;\r\nimport java.net.SocketException;\r\nimport java.util.concurrent.BlockingQueue;\r\n\r\npublic class UdpUnicastClient implements Runnable {\r\n    private final int port;\r\n    private final BlockingQueue<byte[]> messageQueue;\r\n\r\n    public UdpUnicastClient(int port, BlockingQueue<byte[]> messageQueue) {\r\n        this.port = port;\r\n        this.messageQueue = messageQueue;\r\n    }\r\n\r\n    @Override\r\n    public void run() {\r\n        /**\r\n         * Bind the client socket to the port on which you expect to\r\n         * read incoming messages\r\n         */\r\n        try (DatagramSocket clientSocket = new DatagramSocket(port)) {\r\n            // Set a timeout of 3000 ms for the client.\r\n            clientSocket.setSoTimeout(3000);\r\n            while (true) {\r\n                /**\r\n                 * Create a byte array buffer to store incoming data. If the message length\r\n                 * exceeds the length of your buffer, then the message will be truncated. To avoid this,\r\n                 * you can simply instantiate the buffer with the maximum UDP packet size, which\r\n                 * is 65506\r\n                 */\r\n                byte[] buffer = new byte[65507];\r\n                DatagramPacket datagramPacket = new DatagramPacket(buffer, 0, buffer.length);\r\n\r\n                /**\r\n                 * The receive method will wait for 3000 ms for data.\r\n                 * After that, the client will throw a timeout exception.\r\n                 */\r\n                clientSocket.receive(datagramPacket);\r\n\r\n                /**\r\n                 * Add the data contained in the datagram packet to the message\r\n                 * queue.The 'put' method will block if the message queue is full,\r\n                 * until there is space to store the new message.\r\n                 */\r\n                this.messageQueue.put(datagramPacket.getData());\r\n            }\r\n        } catch (SocketException e) {\r\n            e.printStackTrace();\r\n        } catch (IOException e) {\r\n            System.out.println(\"Timeout. Client is closing.\");\r\n        } catch (InterruptedException e) {\r\n            e.printStackTrace();\r\n        }\r\n    }\r\n}",
+        "in_page_order": 2,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "AM.__init__": true,
+          "DatagramPacket.__init__": true,
+          "DatagramPacket.getData": true
+        },
+        "APIsProjects": {
+          "AM.__init__": 62,
+          "DatagramPacket.__init__": 51,
+          "DatagramPacket.getData": 35
+        },
+        "APIsFiles": {
+          "AM.__init__": 555,
+          "DatagramPacket.__init__": 146,
+          "DatagramPacket.getData": 66
+        },
+        "APIsSnippets": {
+          "AM.__init__": 987,
+          "DatagramPacket.__init__": 320,
+          "DatagramPacket.getData": 117
+        },
+        "APIsQualifiedNames": {
+          "DatagramPacket.__init__": "java.net.DatagramPacket.__init__",
+          "DatagramPacket.getData": "java.net.DatagramPacket.getData"
+        },
+        "API_Ratio": 1.0,
+        "readability": true
+      },
+      {
+        "code": "import java.util.concurrent.ArrayBlockingQueue;\r\nimport java.util.concurrent.BlockingQueue;\r\nimport java.util.concurrent.ExecutorService;\r\nimport java.util.concurrent.Executors;\r\n\r\npublic class Main {\r\n\r\n    public static void main(String[] args) {\r\n        int port = 50001;\r\n\r\n        /**\r\n         * The initial capacity for the blocking collection needs to be fine tuned\r\n         * based on your application requirements.\r\n         */\r\n        BlockingQueue<byte[]> messageQueue = new ArrayBlockingQueue<>(1200);\r\n\r\n        UdpUnicastServer server = new UdpUnicastServer(port);\r\n        // message queue is shared between UDP client and Data Processor\r\n        UdpUnicastClient client = new UdpUnicastClient(port, messageQueue);\r\n        DataProcessor dataProcessor = new DataProcessor(messageQueue);\r\n\r\n        /**\r\n         * Execute the components as 3 different threads\r\n         */\r\n        ExecutorService executorService = Executors.newFixedThreadPool(3);\r\n        executorService.submit(client);\r\n        executorService.submit(server);\r\n        executorService.submit(dataProcessor);\r\n    }\r\n}",
+        "in_page_order": 4,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "BlockingQueue.__init__": true,
+          "UdpUnicastServer.__init__": false,
+          "UdpUnicastClient.__init__": false,
+          "DataProcessor.__init__": false,
+          "ExecutorService.submit": true
+        },
+        "APIsProjects": {
+          "BlockingQueue.__init__": 91,
+          "ExecutorService.submit": 193
+        },
+        "APIsFiles": {
+          "BlockingQueue.__init__": 205,
+          "ExecutorService.submit": 692
+        },
+        "APIsSnippets": {
+          "BlockingQueue.__init__": 345,
+          "ExecutorService.submit": 3471
+        },
+        "APIsQualifiedNames": {
+          "BlockingQueue.__init__": "java.util.concurrent.BlockingQueue.__init__",
+          "ExecutorService.submit": "java.util.concurrent.ExecutorService.submit"
+        },
+        "API_Ratio": 0.4,
+        "readability": true
+      }
+    ]
+  },
+  {
+    "query": "How to send packet via UDP",
+    "url": "https://www.codeproject.com/Questions/870316/how-to-transfer-a-file-using-UDP-communication-in",
+    "url position": 27,
+    "segments": [
+      {
+        "code": "//client code\r\npublic class UDPSend {\r\nDatagramSocket clientSocket;\r\n    DatagramPacket sendPacket, receivePacket;\r\n    private InputStream inStream = null;\r\n    String checkSumValue;\r\n    public void communicate() {\r\n        byte[] sendData = new byte[1024];\r\n        byte[] receiveData = new byte[1024];\r\n        String path = \"text1.txt\", checkSumValue;\r\n        try {\r\n            FileReader fr = new FileReader(\"client.properties\");\r\n            Properties prop = new Properties();\r\n            prop.load(fr);\r\n            String serverHostname = prop.getProperty(\"ipAddress\");\r\n            int port = Integer.parseInt(prop.getProperty(\"port\"));\r\n            System.out.println(\"Host: \" + serverHostname);\r\n            System.out.println(\"Port: \" + port);\r\n//            BufferedReader inFromUser =\r\n//                    new BufferedReader(new InputStreamReader(System.in));\r\n            clientSocket = new DatagramSocket();\r\n            InetAddress ipAddress = InetAddress.getByName(serverHostname);\r\n            System.out.println(\"Attempting to connect to \" + ipAddress + \" via UDP \" + port);\r\n            checkSumValue = doMD5(path);\r\n            sendData = checkSumValue.getBytes();\r\n            sendPacket = new DatagramPacket(sendData, sendData.length, ipAddress, port);\r\n            clientSocket.send(sendPacket);\r\n            System.out.println(\"Client Checksum sent to server : \" + new String(sendPacket.getData()));\r\n//            int reply;\r\n            receivePacket = new DatagramPacket(receiveData, receiveData.length);\r\n            clientSocket.receive(receivePacket);\r\n            String res =new String(receivePacket.getData());\r\n//            reply=receivePacket.getData();\r\n//             reply=Integer.parseInt(res);\r\n            System.out.println(\"Reply: \"+ res);\r\n\r\n            if (res.equalsIgnoreCase(\"n\")) {\r\n            fileTransfer(path);\r\n            clientSocket.close();\r\n            }\r\n            else{\r\n            Thread.sleep(2000);\r\n            clientSocket.close();\r\n            }\r\n        } catch (Exception ex) {\r\n            System.out.println(\"Exception :\" + ex.getMessage());\r\n        }\r\n    }\r\n\r\n    public String doMD5(String path) {\r\n        try {\r\n            MessageDigest md = MessageDigest.getInstance(\"MD5\");\r\n            FileInputStream fis = new FileInputStream(path);\r\n\r\n            byte[] dataBytes = new byte[1024];\r\n\r\n            int nread = 0;\r\n            while ((nread = fis.read(dataBytes)) != -1) {\r\n                md.update(dataBytes, 0, nread);\r\n            };\r\n            byte[] mdbytes = md.digest();\r\n            StringBuffer sb = new StringBuffer();\r\n            for (int i = 0; i < mdbytes.length; i++) {\r\n                sb.append(Integer.toString((mdbytes[i] & 0xff) + 0x100, 16).substring(1));\r\n            }\r\n            checkSumValue = sb.toString();\r\n            System.out.println(\"Digest(in hex format):: \" + checkSumValue);\r\n        } catch (Exception ex) {\r\n            System.out.println(\"Exception : \" + ex.getMessage());\r\n        }\r\n        return checkSumValue;\r\n    }\r\n    public void fileTransfer(String path){\r\n        try {\r\n            FileInputStream fstream = new FileInputStream(\"text1.txt\");\r\n            DataInputStream in = new DataInputStream(fstream);\r\n            BufferedReader br = new BufferedReader(new InputStreamReader(in));\r\n\r\n            File file = new File(\"text1.txt\");\r\n            FileInputStream fis = new FileInputStream(file);\r\n            byte[] fsize = new byte[(int) file.length()];\r\n            int size = fis.read(fsize);\r\n            System.out.println(\"Size = \" + size);\r\n            InetAddress addr = InetAddress.getByName(\"localhost\");\r\n            byte[] buf = new byte[10000];\r\n            String DataLine;\r\n            while ((DataLine = br.readLine()) != null) {\r\n//                DatagramPacket packet = new DatagramPacket(DataLine.getBytes(), DataLine.length(), addr, 4555);\r\n                receivePacket=new DatagramPacket(DataLine.getBytes(), DataLine.length());\r\n                System.out.println(DataLine);\r\n                DatagramSocket socket = new DatagramSocket();\r\n                socket.send(receivePacket);\r\n                System.out.println(\"Sent Packet: \"+new String(receivePacket.getData()));\r\n            }\r\n        } catch (Exception ex) {\r\n            System.out.println(\"Exception in file: \" + ex.getMessage());\r\n        }\r\n    }\r\n}",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": true,
+        "APIs": {
+          "FileReader.__init__": true,
+          "Properties.__init__": true,
+          "Properties.load": true,
+          "Properties.getProperty": true,
+          "DatagramSocket.__init__": true,
+          "DatagramPacket.__init__": true,
+          "DatagramSocket.send": true,
+          "DatagramPacket.getData": true,
+          "String.__init__": true,
+          "DatagramSocket.receive": true,
+          "DatagramSocket.close": true,
+          "FileInputStream.__init__": true,
+          "FileInputStream.read": true,
+          "MessageDigest.digest": true,
+          "StringBuffer.__init__": true,
+          "StringBuffer.toString": true,
+          "DataInputStream.__init__": true,
+          "InputStreamReader.__init__": true,
+          "BufferedReader.__init__": true,
+          "File.__init__": true,
+          "File.length": true,
+          "BufferedReader.readLine": true
+        },
+        "APIsProjects": {
+          "FileReader.__init__": 232,
+          "Properties.__init__": 302,
+          "Properties.load": 230,
+          "Properties.getProperty": 247,
+          "DatagramSocket.__init__": 50,
+          "DatagramPacket.__init__": 51,
+          "DatagramSocket.send": 31,
+          "DatagramPacket.getData": 35,
+          "String.__init__": 525,
+          "DatagramSocket.receive": 27,
+          "DatagramSocket.close": 41,
+          "FileInputStream.__init__": 443,
+          "FileInputStream.read": 123,
+          "MessageDigest.digest": 206,
+          "StringBuffer.__init__": 364,
+          "StringBuffer.toString": 359,
+          "DataInputStream.__init__": 161,
+          "InputStreamReader.__init__": 463,
+          "BufferedReader.__init__": 450,
+          "File.__init__": 591,
+          "File.length": 260,
+          "BufferedReader.readLine": 429
+        },
+        "APIsFiles": {
+          "FileReader.__init__": 957,
+          "Properties.__init__": 2658,
+          "Properties.load": 853,
+          "Properties.getProperty": 1506,
+          "DatagramSocket.__init__": 125,
+          "DatagramPacket.__init__": 146,
+          "DatagramSocket.send": 65,
+          "DatagramPacket.getData": 66,
+          "String.__init__": 5322,
+          "DatagramSocket.receive": 58,
+          "DatagramSocket.close": 102,
+          "FileInputStream.__init__": 2808,
+          "FileInputStream.read": 263,
+          "MessageDigest.digest": 574,
+          "StringBuffer.__init__": 5424,
+          "StringBuffer.toString": 5055,
+          "DataInputStream.__init__": 922,
+          "InputStreamReader.__init__": 2683,
+          "BufferedReader.__init__": 2803,
+          "File.__init__": 13065,
+          "File.length": 942,
+          "BufferedReader.readLine": 2480
+        },
+        "APIsSnippets": {
+          "FileReader.__init__": 1316,
+          "Properties.__init__": 4618,
+          "Properties.load": 1058,
+          "Properties.getProperty": 5289,
+          "DatagramSocket.__init__": 293,
+          "DatagramPacket.__init__": 320,
+          "DatagramSocket.send": 122,
+          "DatagramPacket.getData": 117,
+          "String.__init__": 10364,
+          "DatagramSocket.receive": 96,
+          "DatagramSocket.close": 221,
+          "FileInputStream.__init__": 4023,
+          "FileInputStream.read": 358,
+          "MessageDigest.digest": 813,
+          "StringBuffer.__init__": 8242,
+          "StringBuffer.toString": 9905,
+          "DataInputStream.__init__": 1246,
+          "InputStreamReader.__init__": 3903,
+          "BufferedReader.__init__": 4179,
+          "File.__init__": 40468,
+          "File.length": 1590,
+          "BufferedReader.readLine": 4047
+        },
+        "APIsQualifiedNames": {
+          "FileReader.__init__": "java.io.FileReader.__init__",
+          "Properties.__init__": "java.util.Properties.__init__",
+          "Properties.load": "java.util.Properties.load",
+          "Properties.getProperty": "java.util.Properties.getProperty",
+          "DatagramSocket.__init__": "java.net.DatagramSocket.__init__",
+          "DatagramPacket.__init__": "java.net.DatagramPacket.__init__",
+          "DatagramSocket.send": "java.net.DatagramSocket.send",
+          "DatagramPacket.getData": "java.net.DatagramPacket.getData",
+          "String.__init__": "java.lang.String.__init__",
+          "DatagramSocket.receive": "java.net.DatagramSocket.receive",
+          "DatagramSocket.close": "java.net.DatagramSocket.close",
+          "FileInputStream.__init__": "java.io.FileInputStream.__init__",
+          "FileInputStream.read": "java.io.FileInputStream.read",
+          "MessageDigest.digest": "java.security.MessageDigest.digest",
+          "StringBuffer.__init__": "java.lang.StringBuffer.__init__",
+          "StringBuffer.toString": "java.lang.StringBuffer.toString",
+          "DataInputStream.__init__": "java.io.DataInputStream.__init__",
+          "InputStreamReader.__init__": "java.io.InputStreamReader.__init__",
+          "BufferedReader.__init__": "java.io.BufferedReader.__init__",
+          "File.__init__": "java.io.File.__init__",
+          "File.length": "java.io.File.length",
+          "BufferedReader.readLine": "java.io.BufferedReader.readLine"
+        },
+        "API_Ratio": 1.0,
+        "readability": false
+      },
+      {
+        "code": "//server code\r\npublic class UDPReceive {\r\n\r\n    String checkSumValue;\r\n    DatagramSocket serverSocket;\r\n    DatagramPacket receivePacket, sendpacket;\r\n    private OutputStream ouStream = null;\r\n\r\n    public void communicate() {\r\n        try {\r\n            String path = \"text1.txt\";\r\n            FileReader fr = new FileReader(\"server.properties\");\r\n            Properties prop = new Properties();\r\n            prop.load(fr);\r\n            int port = Integer.parseInt(prop.getProperty(\"port\"));\r\n            serverSocket = new DatagramSocket(port);\r\n            byte[] receiveData = new byte[1024];\r\n            byte[] sendData = new byte[1024];\r\n            receivePacket = new DatagramPacket(receiveData, receiveData.length);\r\n            serverSocket.receive(receivePacket);\r\n            InetAddress IPAddress = receivePacket.getAddress();\r\n            System.out.println(\"Waiting for datagram packet. . .\\n\");\r\n            checkSumValue = new String(doMD5(path));\r\n            String msg = new String(receivePacket.getData());\r\n            System.out.println(\"Checksum of Client: \" + msg);\r\n            if (checkSumValue.equalsIgnoreCase(msg)) {\r\n                System.out.println(\"The file didn't update\");\r\n                String reply = \"y\";\r\n//                String r=new String(reply.);\r\n//                ouStream.write(reply);\r\n                sendData = reply.getBytes();\r\n                sendpacket = new DatagramPacket(sendData, sendData.length);\r\n                serverSocket.send(sendpacket);\r\n                System.out.println(\"Reply :\" + new String(sendData));\r\n            } else {\r\n                String reply = \"n\";\r\n//                ouStream.write(reply);\r\n                sendData = reply.getBytes();\r\n                System.out.println(\"Reply :\" + new String(sendData));\r\n                sendpacket = new DatagramPacket(sendData, sendData.length);\r\n                serverSocket.send(sendpacket);\r\n                System.out.println(\"The file updated\");\r\n                fileTransfer(path);\r\n            }\r\n        } catch (Exception ex) {\r\n            System.out.println(\"Error msg: \" + ex.getMessage());\r\n        }\r\n\r\n    }\r\n\r\n    public String doMD5(String path) {\r\n        try {\r\n            MessageDigest md = MessageDigest.getInstance(\"MD5\");\r\n            FileInputStream fis = new FileInputStream(path);\r\n            byte[] dataBytes = new byte[1024];\r\n            int nread = 0;\r\n            while ((nread = fis.read(dataBytes)) != -1) {\r\n                md.update(dataBytes, 0, nread);\r\n            };\r\n            byte[] mdbytes = md.digest();\r\n            StringBuffer sb = new StringBuffer();\r\n            for (int i = 0; i < mdbytes.length; i++) {\r\n                sb.append(Integer.toString((mdbytes[i] & 0xff) + 0x100, 16).substring(1));\r\n            }\r\n            checkSumValue = sb.toString();\r\n            System.out.println(\"Digest(in hex format):: \" + checkSumValue);\r\n        } catch (Exception ex) {\r\n            System.out.println(\"Error msg: \" + ex);\r\n        }\r\n        return checkSumValue;\r\n    }\r\n\r\n    public void fileTransfer(String path) {\r\n        try {\r\n            FileWriter fw = new FileWriter(new File(\r\n                    \"text1.txt\"));\r\n//            fw.write(\"hi\");\r\n//            DatagramSocket Socket = new DatagramSocket(port);\r\n            byte[] receiveData = new byte[1000000];\r\n            while (receiveData != null) {\r\n                DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);\r\n                serverSocket.receive(receivePacket);\r\n                String sentence = new String(receivePacket.getData());\r\n                fw.write(sentence.trim());\r\n                fw.flush();\r\n                System.out.printf(\"RECEIVED: %s \", new String(receivePacket.getData()));\r\n            }\r\n\r\n            fw.flush();\r\n            fw.close();\r\n            serverSocket.close();\r\n\r\n        } catch (Exception e) {\r\n            System.err.println(e);\r\n        }\r\n        }",
+        "in_page_order": 2,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": true,
+        "APIs": {
+          "FileReader.__init__": true,
+          "Properties.__init__": true,
+          "Properties.load": true,
+          "Properties.getProperty": true,
+          "DatagramSocket.__init__": true,
+          "DatagramPacket.__init__": true,
+          "DatagramSocket.receive": true,
+          "DatagramPacket.getAddress": true,
+          "String.__init__": true,
+          "DatagramPacket.getData": true,
+          "DatagramSocket.send": true,
+          "FileInputStream.__init__": true,
+          "FileInputStream.read": true,
+          "MessageDigest.digest": true,
+          "StringBuffer.__init__": true,
+          "StringBuffer.toString": true,
+          "File.__init__": true,
+          "FileWriter.__init__": true,
+          "FileWriter.flush": true,
+          "FileWriter.close": true,
+          "DatagramSocket.close": true
+        },
+        "APIsProjects": {
+          "FileReader.__init__": 232,
+          "Properties.__init__": 302,
+          "Properties.load": 230,
+          "Properties.getProperty": 247,
+          "DatagramSocket.__init__": 50,
+          "DatagramPacket.__init__": 51,
+          "DatagramSocket.receive": 27,
+          "DatagramPacket.getAddress": 21,
+          "String.__init__": 525,
+          "DatagramPacket.getData": 35,
+          "DatagramSocket.send": 31,
+          "FileInputStream.__init__": 443,
+          "FileInputStream.read": 123,
+          "MessageDigest.digest": 206,
+          "StringBuffer.__init__": 364,
+          "StringBuffer.toString": 359,
+          "File.__init__": 591,
+          "FileWriter.__init__": 230,
+          "FileWriter.flush": 45,
+          "FileWriter.close": 130,
+          "DatagramSocket.close": 41
+        },
+        "APIsFiles": {
+          "FileReader.__init__": 957,
+          "Properties.__init__": 2658,
+          "Properties.load": 853,
+          "Properties.getProperty": 1506,
+          "DatagramSocket.__init__": 125,
+          "DatagramPacket.__init__": 146,
+          "DatagramSocket.receive": 58,
+          "DatagramPacket.getAddress": 43,
+          "String.__init__": 5322,
+          "DatagramPacket.getData": 66,
+          "DatagramSocket.send": 65,
+          "FileInputStream.__init__": 2808,
+          "FileInputStream.read": 263,
+          "MessageDigest.digest": 574,
+          "StringBuffer.__init__": 5424,
+          "StringBuffer.toString": 5055,
+          "File.__init__": 13065,
+          "FileWriter.__init__": 885,
+          "FileWriter.flush": 98,
+          "FileWriter.close": 375,
+          "DatagramSocket.close": 102
+        },
+        "APIsSnippets": {
+          "FileReader.__init__": 1316,
+          "Properties.__init__": 4618,
+          "Properties.load": 1058,
+          "Properties.getProperty": 5289,
+          "DatagramSocket.__init__": 293,
+          "DatagramPacket.__init__": 320,
+          "DatagramSocket.receive": 96,
+          "DatagramPacket.getAddress": 82,
+          "String.__init__": 10364,
+          "DatagramPacket.getData": 117,
+          "DatagramSocket.send": 122,
+          "FileInputStream.__init__": 4023,
+          "FileInputStream.read": 358,
+          "MessageDigest.digest": 813,
+          "StringBuffer.__init__": 8242,
+          "StringBuffer.toString": 9905,
+          "File.__init__": 40468,
+          "FileWriter.__init__": 1463,
+          "FileWriter.flush": 129,
+          "FileWriter.close": 552,
+          "DatagramSocket.close": 221
+        },
+        "APIsQualifiedNames": {
+          "FileReader.__init__": "java.io.FileReader.__init__",
+          "Properties.__init__": "java.util.Properties.__init__",
+          "Properties.load": "java.util.Properties.load",
+          "Properties.getProperty": "java.util.Properties.getProperty",
+          "DatagramSocket.__init__": "java.net.DatagramSocket.__init__",
+          "DatagramPacket.__init__": "java.net.DatagramPacket.__init__",
+          "DatagramSocket.receive": "java.net.DatagramSocket.receive",
+          "DatagramPacket.getAddress": "java.net.DatagramPacket.getAddress",
+          "String.__init__": "java.lang.String.__init__",
+          "DatagramPacket.getData": "java.net.DatagramPacket.getData",
+          "DatagramSocket.send": "java.net.DatagramSocket.send",
+          "FileInputStream.__init__": "java.io.FileInputStream.__init__",
+          "FileInputStream.read": "java.io.FileInputStream.read",
+          "MessageDigest.digest": "java.security.MessageDigest.digest",
+          "StringBuffer.__init__": "java.lang.StringBuffer.__init__",
+          "StringBuffer.toString": "java.lang.StringBuffer.toString",
+          "File.__init__": "java.io.File.__init__",
+          "FileWriter.__init__": "java.io.FileWriter.__init__",
+          "FileWriter.flush": "java.io.FileWriter.flush",
+          "FileWriter.close": "java.io.FileWriter.close",
+          "DatagramSocket.close": "java.net.DatagramSocket.close"
+        },
+        "API_Ratio": 1.0,
+        "readability": false
+      }
+    ]
+  }
+]

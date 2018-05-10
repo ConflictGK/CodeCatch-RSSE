@@ -1,0 +1,4 @@
+    String content;
+    try (Scanner scanner = new Scanner(textFile).useDelimiter("\\Z")) {
+        content = scanner.next();
+    }

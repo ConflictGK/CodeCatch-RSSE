@@ -1,0 +1,2292 @@
+{
+   "num_snippets_per_cluster": [
+      16,
+      15,
+      14,
+      13,
+      12,
+      12
+   ],
+   "num_clusters": 6,
+   "clusters": [
+      {
+         "cluster_snippets": [
+            {
+               "Cluster": 0,
+               "Code": "package com.thecoderscorner.example.compression;\n\nimport java.io.FileInputStream;\nimport java.io.FileOutputStream;\nimport java.nio.file.Path;\nimport java.nio.file.Paths;\nimport java.util.Date;\nimport java.util.logging.Logger;\nimport java.util.zip.ZipEntry;\nimport java.util.zip.ZipInputStream;\n\n/**\n * ZipReader reads the zip file specified using ZipInputStream,\n * it then outputs the raw files into the output directory\n * specified as a parameter.\n */\npublic class ZipReader\n{\n    private static final Logger LOGGER = Logger.getLogger(\"ZipReader\");\n    // Expands the zip file passed as argument 1, into the\n    // directory provided in argument 2\n    public static void main(String args[]) throws Exception\n    {\n        if(args.length != 2)\n        {\n            LOGGER.severe(\"zipreader zipfile outputdir\");\n            return;\n        }\n\n        // create a buffer to improve copy performance later.\n        byte[] buffer = new byte[2048];\n\n        Path outDir = Paths.get(args[1]);\n\n        try(\n                // we open the zip file using a java 7 try with resources block so\n                // that we don't need a finally.\n                ZipInputStream stream = new ZipInputStream(new FileInputStream(args[0]))\n        )\n        {\n            LOGGER.info(\"Zip file: \" + args[0] + \" has been opened\");\n\n            // now iterate through each file in the zip archive. The get\n            // next entry call will return a ZipEntry for each file in\n            // the stream\n            ZipEntry entry;\n            while((entry = stream.getNextEntry())!=null)\n            {\n                // We can read the file information from the ZipEntry.\n                String fileInfo = String.format(\"Entry: [%s] len %d added %TD\",\n                                entry.getName(), entry.getSize(),\n                                new Date(entry.getTime()));\n                LOGGER.info(fileInfo);\n\n                Path filePath = outDir.resolve(entry.getName());\n\n                // Now we can read the file data from the stream. We now\n                // treat the stream like a usual input stream reading from\n                // it until it returns 0 or less.\n                try (\n                        FileOutputStream  output = new FileOutputStream(filePath.toFile())\n                )\n                {\n                    LOGGER.info(\"Writing file: \" + filePath);\n                    int len;\n                    while ((len = stream.read(buffer)) > 0)\n                    {\n                        output.write(buffer, 0, len);\n                    }\n                }\n            }\n        }\n    }\n}\n\n",
+               "LOC": 76,
+               "Url": "http://www.thecoderscorner.com/team-blog/java-and-jvm/12-reading-a-zip-file-from-java-using-zipinputstream/",
+               "Score": 1.0,
+               "API_Weights": 1.716003039,
+               "API_Qualified_Names": {
+                  "Logger.severe": "java.util.logging.Logger.severe",
+                  "Logger.info": "org.slf4j.Logger.info"
+               },
+               "Url_Position": 7,
+               "In_Page_Order": 1,
+               "Num_API_Calls": 3,
+               "Dist_Center": 0.1223243382,
+               "MethodInvocations": [
+                  "Logger.info",
+                  "Logger.severe",
+                  "AM.__init__"
+               ]
+            },
+            {
+               "Cluster": 0,
+               "Code": "I will attach a sample zip file which contains an empty file slight under 50MB.\n\nSample code:\n\nimport java.io.File;\nimport java.util.zip.ZipEntry;\nimport java.util.zip.ZipFile;\n\nimport junit.framework.TestCase;\nimport org.apache.commons.io.IOUtils;\n\npublic class TestZipBug extends TestCase {\n    public void testZipBug() throws Exception {\n        ZipFile zip = new ZipFile(new File(\"D:\\\\gnu-zip-large-file-bug.zip\"));\n        ZipEntry entry = (ZipEntry) zip.entries().nextElement();\n        IOUtils.toByteArray(zip.getInputStream(entry));\n        // Omitting code to verify contents.\n    }\n}\n\nResulting error:\nCaused by: gnu.java.util.zip.ZipException: Code lengths don't add up properly.\n                at gnu.java.util.zip.InflaterInputStream.read(Unknown Source)\n                at java.io.FilterInputStream.read(FilterInputStream.java:90)",
+               "LOC": 24,
+               "Url": "https://gcc.gnu.org/bugzilla/show_bug.cgi?id=36560",
+               "Score": 0.7968517258,
+               "API_Weights": 7.4825359302,
+               "API_Qualified_Names": {
+                  "File.__init__": "java.io.File.__init__",
+                  "ZipFile.__init__": "java.util.zip.ZipFile.__init__",
+                  "ZipFile.entries": "java.util.zip.ZipFile.entries",
+                  "ZipFile.getInputStream": "java.util.zip.ZipFile.getInputStream"
+               },
+               "Url_Position": 31,
+               "In_Page_Order": 1,
+               "Num_API_Calls": 4,
+               "Dist_Center": 0.1719279014,
+               "MethodInvocations": [
+                  "File.__init__",
+                  "ZipFile.__init__",
+                  "ZipFile.getInputStream",
+                  "ZipFile.entries"
+               ]
+            },
+            {
+               "Cluster": 0,
+               "Code": "\n// read from server\nSocket socket = new Socket(remoteServerIP, PORT);\nGZIPInputStream gzipin = new \n  GZIPInputStream(socket.getInputStream());\nObjectInputStream ois = new ObjectInputStream(gzipin);\nObject o = ois.readObject(); ",
+               "LOC": 7,
+               "Url": "http://www.oracle.com/technetwork/articles/java/compress-1565076.html",
+               "Score": 0.6776032104,
+               "API_Weights": 2.2338756262,
+               "API_Qualified_Names": {
+                  "Socket.__init__": "java.net.Socket.__init__",
+                  "Socket.getInputStream": "java.net.Socket.getInputStream",
+                  "GZIPInputStream.__init__": "java.util.zip.GZIPInputStream.__init__",
+                  "ObjectInputStream.__init__": "java.io.ObjectInputStream.__init__",
+                  "ObjectInputStream.readObject": "java.io.ObjectInputStream.readObject"
+               },
+               "Url_Position": 14,
+               "In_Page_Order": 24,
+               "Num_API_Calls": 5,
+               "Dist_Center": 0.2010453097,
+               "MethodInvocations": [
+                  "Socket.getInputStream",
+                  "GZIPInputStream.__init__",
+                  "Socket.__init__",
+                  "ObjectInputStream.__init__",
+                  "ObjectInputStream.readObject"
+               ]
+            },
+            {
+               "Cluster": 0,
+               "Code": "ZipFile zipFile = new ZipFile(zipFilePath);\nEnumeration<? extends ZipEntry> entries = zipFile.entries();",
+               "LOC": 2,
+               "Url": "http://www.codejava.net/java-se/file-io/how-to-read-contents-of-a-zip-file-in-java",
+               "Score": 0.5655369673,
+               "API_Weights": 4.176635316,
+               "API_Qualified_Names": {
+                  "ZipFile.__init__": "java.util.zip.ZipFile.__init__",
+                  "ZipFile.entries": "java.util.zip.ZipFile.entries"
+               },
+               "Url_Position": 10,
+               "In_Page_Order": 1,
+               "Num_API_Calls": 2,
+               "Dist_Center": 0.2284089926,
+               "MethodInvocations": [
+                  "ZipFile.__init__",
+                  "ZipFile.entries"
+               ]
+            },
+            {
+               "Cluster": 0,
+               "Code": "package com.memorynotfound.resource;\n\nimport java.io.File;\nimport java.io.IOException;\n\npublic class SevenZProgram {\n\n    private static final String OUTPUT_DIRECTORY = \"/tmp\";\n    private static final String TAR_GZIP_SUFFIX = \".7z\";\n\n    private static final String MULTIPLE_RESOURCES = \"/example-multiple-resources\";\n    private static final String RECURSIVE_DIRECTORY = \"/example-recursive-directory\";\n\n    private static final String MULTIPLE_RESOURCES_PATH = OUTPUT_DIRECTORY + MULTIPLE_RESOURCES + TAR_GZIP_SUFFIX;\n    private static final String RECURSIVE_DIRECTORY_PATH = OUTPUT_DIRECTORY + RECURSIVE_DIRECTORY + TAR_GZIP_SUFFIX;\n\n\n    public static void main(String... args) throws IOException {\n\n        // class for resource classloading\n        Class clazz = SevenZProgram.class;\n\n        // get multiple resources files to compress\n        File resource1 = new File(clazz.getResource(\"/in/resource1.txt\").getFile());\n        File resource2 = new File(clazz.getResource(\"/in/resource2.txt\").getFile());\n        File resource3 = new File(clazz.getResource(\"/in/resource3.txt\").getFile());\n\n        // compress multiple resources\n        SevenZ.compress(MULTIPLE_RESOURCES_PATH, resource1, resource2, resource3);\n\n        // decompress multiple resources\n        SevenZ.decompress(MULTIPLE_RESOURCES_PATH, new File(OUTPUT_DIRECTORY + MULTIPLE_RESOURCES));\n\n\n\n        // get directory file to compress\n        File directory = new File(clazz.getResource(\"/in/dir\").getFile());\n\n        // compress recursive directory\n        SevenZ.compress(RECURSIVE_DIRECTORY_PATH, directory);\n\n        // decompress recursive directory\n        SevenZ.decompress(RECURSIVE_DIRECTORY_PATH, new File(OUTPUT_DIRECTORY + RECURSIVE_DIRECTORY));\n    }\n}",
+               "LOC": 45,
+               "Url": "https://memorynotfound.com/java-7z-seven-zip-example-compress-decompress-file/",
+               "Score": 0.5564566171,
+               "API_Weights": 2.4731755617,
+               "API_Qualified_Names": {
+                  "File.__init__": "java.io.File.__init__"
+               },
+               "Url_Position": 32,
+               "In_Page_Order": 3,
+               "Num_API_Calls": 2,
+               "Dist_Center": 0.2306261797,
+               "MethodInvocations": [
+                  "File.__init__",
+                  "Class.getResource"
+               ]
+            },
+            {
+               "Cluster": 0,
+               "Code": "\n// write to client\nGZIPOutputStream gzipout = new \n  GZIPOutputStream(socket.getOutputStream());\nObjectOutputStream oos = new \n  ObjectOutputStream(gzipout);\noos.writeObject(obj);\ngzipos.finish(); ",
+               "LOC": 8,
+               "Url": "http://www.oracle.com/technetwork/articles/java/compress-1565076.html",
+               "Score": 0.5463784921,
+               "API_Weights": 1.7320508076,
+               "API_Qualified_Names": {
+                  "GZIPOutputStream.__init__": "java.util.zip.GZIPOutputStream.__init__",
+                  "ObjectOutputStream.__init__": "java.io.ObjectOutputStream.__init__",
+                  "ObjectOutputStream.writeObject": "java.io.ObjectOutputStream.writeObject"
+               },
+               "Url_Position": 14,
+               "In_Page_Order": 23,
+               "Num_API_Calls": 3,
+               "Dist_Center": 0.2330869976,
+               "MethodInvocations": [
+                  "ObjectOutputStream.writeObject",
+                  "GZIPOutputStream.__init__",
+                  "ObjectOutputStream.__init__"
+               ]
+            },
+            {
+               "Cluster": 0,
+               "Code": "\nTarArchiveEntry entry = new TarArchiveEntry(name);\nentry.setSize(size);\ntarOutput.putArchiveEntry(entry);\ntarOutput.write(contentOfEntry);\ntarOutput.closeArchiveEntry();\n",
+               "LOC": 7,
+               "Url": "https://commons.apache.org/proper/commons-compress/examples.html",
+               "Score": 0.4780299821,
+               "API_Weights": 1.4142135624,
+               "API_Qualified_Names": {
+                  "TarArchiveEntry.__init__": "org.apache.commons.compress.archivers.tar.TarArchiveEntry.__init__",
+                  "TarArchiveEntry.setSize": "org.apache.commons.compress.archivers.tar.TarArchiveEntry.setSize"
+               },
+               "Url_Position": 27,
+               "In_Page_Order": 9,
+               "Num_API_Calls": 2,
+               "Dist_Center": 0.2497759389,
+               "MethodInvocations": [
+                  "TarArchiveEntry.__init__",
+                  "TarArchiveEntry.setSize"
+               ]
+            },
+            {
+               "Cluster": 0,
+               "Code": "package com.boraji.tutorial.io;\n\nimport java.io.File;\nimport java.io.FileOutputStream;\nimport java.io.IOException;\nimport java.io.InputStream;\nimport java.util.Enumeration;\nimport java.util.zip.ZipEntry;\nimport java.util.zip.ZipFile;\n\n/**\n * @author imssbora\n */\npublic class UnzipFileExample2 {\n  public static void main(String[] args) {\n    File output = new File(\"Unzip2\");\n    ZipFile zipFile = null;\n    try {\n\n      zipFile = new ZipFile(new File(\"Test.zip\"));\n\n      Enumeration<? extends ZipEntry> entries = zipFile.entries();\n\n      while (entries.hasMoreElements()) {\n        ZipEntry entry = (ZipEntry) entries.nextElement();\n        if (entry.isDirectory()) {\n\n          // Create directory\n          File dir = new File(output, entry.getName());\n          if (!dir.exists()) {\n            dir.mkdirs();\n          }\n        } else {\n\n          // Get zipEntry name and create an output stream.\n          File file = new File(output, entry.getName());\n          FileOutputStream fileOutputStream = new FileOutputStream(file);\n          InputStream inputStream = zipFile.getInputStream(entry);\n\n          // Read Zip file entry\n          int i;\n          byte[] data = new byte[1024];\n          while ((i = inputStream.read(data)) != -1) {\n            fileOutputStream.write(data, 0, i);\n          }\n\n          fileOutputStream.close();\n          inputStream.close();\n        }\n      }\n    } catch (IOException e) {\n      e.printStackTrace();\n    } finally {\n      try {\n        if (zipFile != null) {\n          zipFile.close();\n        }\n      } catch (IOException e) {\n        e.printStackTrace();\n      }\n    }\n  }\n}\n",
+               "LOC": 64,
+               "Url": "https://www.boraji.com/java-how-to-decompress-files-from-a-zip-file",
+               "Score": 0.3634082022,
+               "API_Weights": 14.655521268,
+               "API_Qualified_Names": {
+                  "File.__init__": "java.io.File.__init__",
+                  "ZipFile.__init__": "java.util.zip.ZipFile.__init__",
+                  "ZipFile.entries": "java.util.zip.ZipFile.entries",
+                  "Enumeration.hasMoreElements": "java.util.Enumeration.hasMoreElements",
+                  "Enumeration.nextElement": "java.util.Enumeration.nextElement",
+                  "ZipEntry.isDirectory": "java.util.zip.ZipEntry.isDirectory",
+                  "ZipEntry.getName": "java.util.zip.ZipEntry.getName",
+                  "File.exists": "java.io.File.exists",
+                  "FileOutputStream.__init__": "java.io.FileOutputStream.__init__",
+                  "ZipFile.getInputStream": "java.util.zip.ZipFile.getInputStream",
+                  "InputStream.read": "java.io.InputStream.read",
+                  "FileOutputStream.close": "java.io.FileOutputStream.close",
+                  "InputStream.close": "java.io.InputStream.close",
+                  "File.mkdirs": "java.io.File.mkdirs",
+                  "ZipFile.close": "java.util.zip.ZipFile.close"
+               },
+               "Url_Position": 23,
+               "In_Page_Order": 2,
+               "Num_API_Calls": 15,
+               "Dist_Center": 0.277763618,
+               "MethodInvocations": [
+                  "Enumeration.nextElement",
+                  "ZipFile.close",
+                  "ZipFile.__init__",
+                  "ZipFile.entries",
+                  "ZipEntry.getName",
+                  "FileOutputStream.close",
+                  "File.mkdirs",
+                  "InputStream.close",
+                  "File.__init__",
+                  "File.exists",
+                  "FileOutputStream.__init__",
+                  "InputStream.read",
+                  "Enumeration.hasMoreElements",
+                  "ZipEntry.isDirectory",
+                  "ZipFile.getInputStream"
+               ]
+            },
+            {
+               "Cluster": 0,
+               "Code": "\nZipArchiveEntry entry = new ZipArchiveEntry(name);\nentry.setSize(size);\nzipOutput.putArchiveEntry(entry);\nzipOutput.write(contentOfEntry);\nzipOutput.closeArchiveEntry();\n",
+               "LOC": 7,
+               "Url": "https://commons.apache.org/proper/commons-compress/examples.html",
+               "Score": 0.3404175955,
+               "API_Weights": 1.4142135624,
+               "API_Qualified_Names": {
+                  "ZipArchiveEntry.__init__": "org.apache.commons.compress.archivers.zip.ZipArchiveEntry.__init__",
+                  "ZipArchiveEntry.setSize": "org.apache.commons.compress.archivers.zip.ZipArchiveEntry.setSize"
+               },
+               "Url_Position": 27,
+               "In_Page_Order": 11,
+               "Num_API_Calls": 2,
+               "Dist_Center": 0.2833773305,
+               "MethodInvocations": [
+                  "ZipArchiveEntry.__init__",
+                  "ZipArchiveEntry.setSize"
+               ]
+            },
+            {
+               "Cluster": 0,
+               "Code": "package com.speakingcs.zip;\n\nimport java.io.BufferedOutputStream;\nimport java.io.File;\nimport java.io.FileOutputStream;\nimport java.io.IOException;\nimport java.io.InputStream;\nimport java.util.Enumeration;\nimport java.util.zip.ZipEntry;\nimport java.util.zip.ZipException;\nimport java.util.zip.ZipFile;\n\npublic class UnZipFile {\n\n public static void main(String[] args) {\n  \n  UnZipFile uzf = new UnZipFile();\n  try {\n   uzf.unZipFile(new File(\"C:/Users/A8020/Desktop/xyz.zip\"));\n  } catch (ZipException e) {\n   e.printStackTrace();\n  } catch (IOException e) {\n   e.printStackTrace();\n  }\n }\n\n private void unZipFile(File src) throws ZipException, IOException {\n  String newPath = \"\";\n  String filePath = src.getAbsolutePath();\n  ZipFile zFile = new ZipFile(src);\n  new File(filePath.substring(0, filePath.lastIndexOf('.'))).mkdir();\n  newPath = filePath.substring(0,filePath.lastIndexOf('.'));\n  \n  Enumeration entries = zFile.entries();\n  \n  while(entries.hasMoreElements()) {\n   \n   ZipEntry anEntry = entries.nextElement();\n   if(!anEntry.isDirectory()) {    \n    saveEntry(zFile,anEntry,newPath);\n   } else { \n    newPath += File.separator+anEntry.getName();\n   }\n  }\n  \n }\n\n private void saveEntry(ZipFile zFile, ZipEntry anEntry, String newPath) throws IOException {\n  InputStream in = null;\n  BufferedOutputStream fos = null;\n   \n  File aFile = null;\n  try{\n   aFile = new File(newPath +\"/\" + anEntry.getName());\n   aFile.getParentFile().mkdirs();\n   in = zFile.getInputStream(anEntry);\n   fos = new BufferedOutputStream(new FileOutputStream(aFile));\n   byte[] buffer = new byte[1024];\n   int length;\n   while((length = in.read(buffer)) > 0) {\n    fos.write(buffer,0,length);\n   }\n   \n  } finally {\n   if(in != null) {\n    in.close();\n   }\n   if(fos != null) {\n    fos.close();\n   }\n  }  \n } \n}\n\n",
+               "LOC": 75,
+               "Url": "http://www.speakingcs.com/2015/07/how-to-unzipextract-files-from-zip.html",
+               "Score": 0.3341196933,
+               "API_Weights": 13.83720167,
+               "API_Qualified_Names": {
+                  "File.__init__": "java.io.File.__init__",
+                  "File.getAbsolutePath": "java.io.File.getAbsolutePath",
+                  "ZipFile.__init__": "java.util.zip.ZipFile.__init__",
+                  "ZipFile.entries": "java.util.zip.ZipFile.entries",
+                  "Enumeration.hasMoreElements": "java.util.Enumeration.hasMoreElements",
+                  "Enumeration.nextElement": "java.util.Enumeration.nextElement",
+                  "ZipEntry.isDirectory": "java.util.zip.ZipEntry.isDirectory",
+                  "ZipEntry.getName": "java.util.zip.ZipEntry.getName",
+                  "File.getParentFile": "java.io.File.getParentFile",
+                  "ZipFile.getInputStream": "java.util.zip.ZipFile.getInputStream",
+                  "FileOutputStream.__init__": "java.io.FileOutputStream.__init__",
+                  "BufferedOutputStream.__init__": "java.io.BufferedOutputStream.__init__",
+                  "InputStream.read": "java.io.InputStream.read",
+                  "InputStream.close": "java.io.InputStream.close",
+                  "BufferedOutputStream.close": "java.io.BufferedOutputStream.close"
+               },
+               "Url_Position": 29,
+               "In_Page_Order": 7,
+               "Num_API_Calls": 18,
+               "Dist_Center": 0.2849151156,
+               "MethodInvocations": [
+                  "Enumeration.nextElement",
+                  "BufferedOutputStream.__init__",
+                  "UnZipFile.__init__",
+                  "ZipFile.__init__",
+                  "ZipFile.entries",
+                  "ZipEntry.getName",
+                  "File.getParentFile",
+                  "InputStream.close",
+                  "UnZipFile.unZipFile",
+                  "ZipFile.getInputStream",
+                  "BufferedOutputStream.close",
+                  "File.__init__",
+                  "InputStream.read",
+                  "FileOutputStream.__init__",
+                  "IOException.zFile",
+                  "Enumeration.hasMoreElements",
+                  "ZipEntry.isDirectory",
+                  "File.getAbsolutePath"
+               ]
+            },
+            {
+               "Cluster": 0,
+               "Code": "package test;\r\n\r\nimport java.io.File;\r\nimport java.io.FileOutputStream;\r\nimport java.io.IOException;\r\nimport java.io.InputStream;\r\nimport java.util.Enumeration;\r\nimport java.util.zip.ZipEntry;\r\nimport java.util.zip.ZipFile;\r\n\r\npublic class ExtractZipContents {\r\n\r\n\tpublic static void main(String[] args) {\r\n\r\n\t\ttry {\r\n\t\t\tZipFile zipFile = new ZipFile(\"test.zip\");\r\n\t\t\tEnumeration<?> enu = zipFile.entries();\r\n\t\t\twhile (enu.hasMoreElements()) {\r\n\t\t\t\tZipEntry zipEntry = (ZipEntry) enu.nextElement();\r\n\r\n\t\t\t\tString name = zipEntry.getName();\r\n\t\t\t\tlong size = zipEntry.getSize();\r\n\t\t\t\tlong compressedSize = zipEntry.getCompressedSize();\r\n\t\t\t\tSystem.out.printf(\"name: %-20s | size: %6d | compressed size: %6d\\n\", \r\n\t\t\t\t\t\tname, size, compressedSize);\r\n\r\n\t\t\t\tFile file = new File(name);\r\n\t\t\t\tif (name.endsWith(\"/\")) {\r\n\t\t\t\t\tfile.mkdirs();\r\n\t\t\t\t\tcontinue;\r\n\t\t\t\t}\r\n\r\n\t\t\t\tFile parent = file.getParentFile();\r\n\t\t\t\tif (parent != null) {\r\n\t\t\t\t\tparent.mkdirs();\r\n\t\t\t\t}\r\n\r\n\t\t\t\tInputStream is = zipFile.getInputStream(zipEntry);\r\n\t\t\t\tFileOutputStream fos = new FileOutputStream(file);\r\n\t\t\t\tbyte[] bytes = new byte[1024];\r\n\t\t\t\tint length;\r\n\t\t\t\twhile ((length = is.read(bytes)) >= 0) {\r\n\t\t\t\t\tfos.write(bytes, 0, length);\r\n\t\t\t\t}\r\n\t\t\t\tis.close();\r\n\t\t\t\tfos.close();\r\n\r\n\t\t\t}\r\n\t\t\tzipFile.close();\r\n\t\t} catch (IOException e) {\r\n\t\t\te.printStackTrace();\r\n\t\t}\r\n\t}\r\n\r\n}\r\n",
+               "LOC": 56,
+               "Url": "http://www.avajava.com/tutorials/lessons/how-do-i-unzip-the-contents-of-a-zip-file.html",
+               "Score": 0.2691280165,
+               "API_Weights": 14.4190745026,
+               "API_Qualified_Names": {
+                  "ZipFile.__init__": "java.util.zip.ZipFile.__init__",
+                  "ZipFile.entries": "java.util.zip.ZipFile.entries",
+                  "Enumeration.hasMoreElements": "java.util.Enumeration.hasMoreElements",
+                  "Enumeration.nextElement": "java.util.Enumeration.nextElement",
+                  "ZipEntry.getName": "java.util.zip.ZipEntry.getName",
+                  "ZipEntry.getSize": "java.util.zip.ZipEntry.getSize",
+                  "ZipEntry.getCompressedSize": "java.util.zip.ZipEntry.getCompressedSize",
+                  "File.__init__": "java.io.File.__init__",
+                  "File.mkdirs": "java.io.File.mkdirs",
+                  "ZipFile.getInputStream": "java.util.zip.ZipFile.getInputStream",
+                  "FileOutputStream.__init__": "java.io.FileOutputStream.__init__",
+                  "InputStream.read": "java.io.InputStream.read",
+                  "InputStream.close": "java.io.InputStream.close",
+                  "FileOutputStream.close": "java.io.FileOutputStream.close",
+                  "ZipFile.close": "java.util.zip.ZipFile.close"
+               },
+               "Url_Position": 12,
+               "In_Page_Order": 2,
+               "Num_API_Calls": 15,
+               "Dist_Center": 0.3007844049,
+               "MethodInvocations": [
+                  "Enumeration.nextElement",
+                  "ZipFile.close",
+                  "ZipFile.__init__",
+                  "ZipEntry.getName",
+                  "ZipFile.entries",
+                  "FileOutputStream.close",
+                  "InputStream.close",
+                  "ZipEntry.getCompressedSize",
+                  "File.__init__",
+                  "FileOutputStream.__init__",
+                  "InputStream.read",
+                  "Enumeration.hasMoreElements",
+                  "File.mkdirs",
+                  "ZipEntry.getSize",
+                  "ZipFile.getInputStream"
+               ]
+            },
+            {
+               "Cluster": 0,
+               "Code": "\r\nZipFile zf = new ZipFile(file);\r\ntry {\r\n  InputStream in = zf.getInputStream(\"file.txt\");\r\n  // ... read from 'in' as normal\r\n} finally {\r\n  zf.close();\r\n}\r\n",
+               "LOC": 9,
+               "Url": "https://www.javamex.com/tutorials/compression/zip.shtml",
+               "Score": 0.2343237582,
+               "API_Weights": 5.2770993847,
+               "API_Qualified_Names": {
+                  "ZipFile.__init__": "java.util.zip.ZipFile.__init__",
+                  "ZipFile.getInputStream": "java.util.zip.ZipFile.getInputStream",
+                  "ZipFile.close": "java.util.zip.ZipFile.close"
+               },
+               "Url_Position": 19,
+               "In_Page_Order": 1,
+               "Num_API_Calls": 3,
+               "Dist_Center": 0.3092827061,
+               "MethodInvocations": [
+                  "ZipFile.close",
+                  "ZipFile.__init__",
+                  "ZipFile.getInputStream"
+               ]
+            },
+            {
+               "Cluster": 0,
+               "Code": "\npublic class ScatterSample {\n\n  ParallelScatterZipCreator scatterZipCreator = new ParallelScatterZipCreator();\n  ScatterZipOutputStream dirs = ScatterZipOutputStream.fileBased(File.createTempFile(\"scatter-dirs\", \"tmp\"));\n\n  public ScatterSample() throws IOException {\n  }\n\n  public void addEntry(ZipArchiveEntry zipArchiveEntry, InputStreamSupplier streamSupplier) throws IOException {\n     if (zipArchiveEntry.isDirectory() && !zipArchiveEntry.isUnixSymlink())\n        dirs.addArchiveEntry(ZipArchiveEntryRequest.createZipArchiveEntryRequest(zipArchiveEntry, streamSupplier));\n     else\n        scatterZipCreator.addArchiveEntry( zipArchiveEntry, streamSupplier);\n  }\n\n  public void writeTo(ZipArchiveOutputStream zipArchiveOutputStream)\n  throws IOException, ExecutionException, InterruptedException {\n     dirs.writeTo(zipArchiveOutputStream);\n     dirs.close();\n     scatterZipCreator.writeTo(zipArchiveOutputStream);\n  }\n}\n",
+               "LOC": 24,
+               "Url": "https://commons.apache.org/proper/commons-compress/examples.html",
+               "Score": 1.110223025e-16,
+               "API_Weights": 2.4494897428,
+               "API_Qualified_Names": {},
+               "Url_Position": 27,
+               "In_Page_Order": 15,
+               "Num_API_Calls": 6,
+               "Dist_Center": 0.3664985175,
+               "MethodInvocations": [
+                  "ParallelScatterZipCreator.writeTo",
+                  "ScatterZipOutputStream.addArchiveEntry",
+                  "ScatterZipOutputStream.close",
+                  "ZipArchiveEntry.isUnixSymlink",
+                  "ScatterZipOutputStream.writeTo",
+                  "ParallelScatterZipCreator.addArchiveEntry"
+               ]
+            }
+         ],
+         "avg_cluster_api_weights": 5.637006921039068,
+         "top_apis_by_cluster": [
+            "zipfile.__init__",
+            "zipfile.entries",
+            "zipfile.getinputstream",
+            "file.__init__",
+            "zipfile.close",
+            "class.getresource",
+            "file.mkdirs",
+            "tararchiveentry.__init__"
+         ]
+      },
+      {
+         "cluster_snippets": [
+            {
+               "Cluster": 1,
+               "Code": "import java.util.zip.ZipEntry ;\nimport java.util.zip.ZipInputStream ;\nimport java.util.zip.ZipOutputStream ;\nimport java.io.FileInputStream;\nimport java.io.FileOutputStream;\n\npublic class JavaZip {\n   public static void main(String[] args) throws Exception{\n       FileOutputStream fos = new FileOutputStream(\"my_archive.zip\");\n       FileInputStream fin = new FileInputStream(\"file1.txt\");\n       ZipOutputStream zos = new ZipOutputStream(fos);\n       byte[] byteBuffer = new byte[200];\n       ZipEntry zen = new ZipEntry(\"file1.txt\");\n       zos.putNextEntry(zen);\n\n       int size;\n       while( (size = fin.read(byteBuffer)) > 0){\n           zos.write(byteBuffer, 0, size);\n       }\n       zos.closeEntry();\n       zos.close();\n       fos.close();\n       fin.close();\n   }\n}",
+               "LOC": 25,
+               "Url": "http://www.discoversdk.com/blog/processing-zip-files-with-java",
+               "Score": 1.0,
+               "API_Weights": 15.6121287223,
+               "API_Qualified_Names": {
+                  "FileOutputStream.__init__": "java.io.FileOutputStream.__init__",
+                  "FileInputStream.__init__": "java.io.FileInputStream.__init__",
+                  "ZipOutputStream.__init__": "java.util.zip.ZipOutputStream.__init__",
+                  "ZipEntry.__init__": "java.util.zip.ZipEntry.__init__",
+                  "ZipOutputStream.putNextEntry": "java.util.zip.ZipOutputStream.putNextEntry",
+                  "FileInputStream.read": "java.io.FileInputStream.read",
+                  "ZipOutputStream.closeEntry": "java.util.zip.ZipOutputStream.closeEntry",
+                  "ZipOutputStream.close": "java.util.zip.ZipOutputStream.close",
+                  "FileOutputStream.close": "java.io.FileOutputStream.close",
+                  "FileInputStream.close": "java.io.FileInputStream.close"
+               },
+               "Url_Position": 37,
+               "In_Page_Order": 3,
+               "Num_API_Calls": 10,
+               "Dist_Center": 0.0207430468,
+               "MethodInvocations": [
+                  "FileInputStream.close",
+                  "FileOutputStream.close",
+                  "ZipOutputStream.closeEntry",
+                  "ZipOutputStream.putNextEntry",
+                  "FileInputStream.read",
+                  "ZipEntry.__init__",
+                  "ZipOutputStream.close",
+                  "FileOutputStream.__init__",
+                  "ZipOutputStream.__init__",
+                  "FileInputStream.__init__"
+               ]
+            },
+            {
+               "Cluster": 1,
+               "Code": "public class ZipDirectory {\r\n    public static void main(String[] args) throws IOException {\r\n        String sourceFile = \"zipTest\";\r\n        FileOutputStream fos = new FileOutputStream(\"dirCompressed.zip\");\r\n        ZipOutputStream zipOut = new ZipOutputStream(fos);\r\n        File fileToZip = new File(sourceFile);\r\n\r\n        zipFile(fileToZip, fileToZip.getName(), zipOut);\r\n        zipOut.close();\r\n        fos.close();\r\n    }\r\n\r\n    private static void zipFile(File fileToZip, String fileName, ZipOutputStream zipOut) throws IOException {\r\n        if (fileToZip.isHidden()) {\r\n            return;\r\n        }\r\n        if (fileToZip.isDirectory()) {\r\n            File[] children = fileToZip.listFiles();\r\n            for (File childFile : children) {\r\n                zipFile(childFile, fileName + \"/\" + childFile.getName(), zipOut);\r\n            }\r\n            return;\r\n        }\r\n        FileInputStream fis = new FileInputStream(fileToZip);\r\n        ZipEntry zipEntry = new ZipEntry(fileName);\r\n        zipOut.putNextEntry(zipEntry);\r\n        byte[] bytes = new byte[1024];\r\n        int length;\r\n        while ((length = fis.read(bytes)) >= 0) {\r\n            zipOut.write(bytes, 0, length);\r\n        }\r\n        fis.close();\r\n    }\r\n}",
+               "LOC": 34,
+               "Url": "http://www.baeldung.com/java-compress-and-uncompress",
+               "Score": 0.9603891288,
+               "API_Weights": 19.8306808057,
+               "API_Qualified_Names": {
+                  "FileOutputStream.__init__": "java.io.FileOutputStream.__init__",
+                  "ZipOutputStream.__init__": "java.util.zip.ZipOutputStream.__init__",
+                  "File.__init__": "java.io.File.__init__",
+                  "File.getName": "java.io.File.getName",
+                  "ZipOutputStream.close": "java.util.zip.ZipOutputStream.close",
+                  "FileOutputStream.close": "java.io.FileOutputStream.close",
+                  "File.isHidden": "java.io.File.isHidden",
+                  "File.isDirectory": "java.io.File.isDirectory",
+                  "FileInputStream.__init__": "java.io.FileInputStream.__init__",
+                  "ZipEntry.__init__": "java.util.zip.ZipEntry.__init__",
+                  "ZipOutputStream.putNextEntry": "java.util.zip.ZipOutputStream.putNextEntry",
+                  "FileInputStream.read": "java.io.FileInputStream.read",
+                  "FileInputStream.close": "java.io.FileInputStream.close"
+               },
+               "Url_Position": 15,
+               "In_Page_Order": 3,
+               "Num_API_Calls": 15,
+               "Dist_Center": 0.0359548072,
+               "MethodInvocations": [
+                  "IOException.fileToZip",
+                  "FileInputStream.close",
+                  "FileOutputStream.close",
+                  "File.getName",
+                  "ZipOutputStream.putNextEntry",
+                  "File.isHidden",
+                  "File.isDirectory",
+                  "ZipEntry.__init__",
+                  "File.__init__",
+                  "ZipOutputStream.close",
+                  "FileInputStream.read",
+                  "FileOutputStream.__init__",
+                  "ZipOutputStream.__init__",
+                  "IOException.childFile",
+                  "FileInputStream.__init__"
+               ]
+            },
+            {
+               "Cluster": 1,
+               "Code": "public class ZipFile {\r\n    public static void main(String[] args) throws IOException {\r\n        String sourceFile = \"test1.txt\";\r\n        FileOutputStream fos = new FileOutputStream(\"compressed.zip\");\r\n        ZipOutputStream zipOut = new ZipOutputStream(fos);\r\n        File fileToZip = new File(sourceFile);\r\n        FileInputStream fis = new FileInputStream(fileToZip);\r\n        ZipEntry zipEntry = new ZipEntry(fileToZip.getName());\r\n        zipOut.putNextEntry(zipEntry);\r\n        final byte[] bytes = new byte[1024];\r\n        int length;\r\n        while((length = fis.read(bytes)) >= 0) {\r\n            zipOut.write(bytes, 0, length);\r\n        }\r\n        zipOut.close();\r\n        fis.close();\r\n        fos.close();\r\n    }\r\n}",
+               "LOC": 19,
+               "Url": "http://www.baeldung.com/java-compress-and-uncompress",
+               "Score": 0.8965751445,
+               "API_Weights": 17.8721581083,
+               "API_Qualified_Names": {
+                  "FileOutputStream.__init__": "java.io.FileOutputStream.__init__",
+                  "ZipOutputStream.__init__": "java.util.zip.ZipOutputStream.__init__",
+                  "File.__init__": "java.io.File.__init__",
+                  "FileInputStream.__init__": "java.io.FileInputStream.__init__",
+                  "File.getName": "java.io.File.getName",
+                  "ZipEntry.__init__": "java.util.zip.ZipEntry.__init__",
+                  "ZipOutputStream.putNextEntry": "java.util.zip.ZipOutputStream.putNextEntry",
+                  "FileInputStream.read": "java.io.FileInputStream.read",
+                  "ZipOutputStream.close": "java.util.zip.ZipOutputStream.close",
+                  "FileInputStream.close": "java.io.FileInputStream.close",
+                  "FileOutputStream.close": "java.io.FileOutputStream.close"
+               },
+               "Url_Position": 15,
+               "In_Page_Order": 1,
+               "Num_API_Calls": 11,
+               "Dist_Center": 0.0604612875,
+               "MethodInvocations": [
+                  "FileInputStream.close",
+                  "FileOutputStream.close",
+                  "File.getName",
+                  "ZipOutputStream.putNextEntry",
+                  "FileInputStream.read",
+                  "ZipEntry.__init__",
+                  "File.__init__",
+                  "ZipOutputStream.close",
+                  "FileOutputStream.__init__",
+                  "ZipOutputStream.__init__",
+                  "FileInputStream.__init__"
+               ]
+            },
+            {
+               "Cluster": 1,
+               "Code": "public class ZipMultipleFiles {\r\n    public static void main(String[] args) throws IOException {\r\n        List<String> srcFiles = Arrays.asList(\"test1.txt\", \"test2.txt\");\r\n        FileOutputStream fos = new FileOutputStream(\"multiCompressed.zip\");\r\n        ZipOutputStream zipOut = new ZipOutputStream(fos);\r\n        for (String srcFile : srcFiles) {\r\n            File fileToZip = new File(srcFile);\r\n            FileInputStream fis = new FileInputStream(fileToZip);\r\n            ZipEntry zipEntry = new ZipEntry(fileToZip.getName());\r\n            zipOut.putNextEntry(zipEntry);\r\n\r\n            byte[] bytes = new byte[1024];\r\n            int length;\r\n            while((length = fis.read(bytes)) >= 0) {\r\n                zipOut.write(bytes, 0, length);\r\n            }\r\n            fis.close();\r\n        }\r\n        zipOut.close();\r\n        fos.close();\r\n    }\r\n}",
+               "LOC": 22,
+               "Url": "http://www.baeldung.com/java-compress-and-uncompress",
+               "Score": 0.8965751445,
+               "API_Weights": 17.8721581083,
+               "API_Qualified_Names": {
+                  "FileOutputStream.__init__": "java.io.FileOutputStream.__init__",
+                  "ZipOutputStream.__init__": "java.util.zip.ZipOutputStream.__init__",
+                  "File.__init__": "java.io.File.__init__",
+                  "FileInputStream.__init__": "java.io.FileInputStream.__init__",
+                  "File.getName": "java.io.File.getName",
+                  "ZipEntry.__init__": "java.util.zip.ZipEntry.__init__",
+                  "ZipOutputStream.putNextEntry": "java.util.zip.ZipOutputStream.putNextEntry",
+                  "FileInputStream.read": "java.io.FileInputStream.read",
+                  "FileInputStream.close": "java.io.FileInputStream.close",
+                  "ZipOutputStream.close": "java.util.zip.ZipOutputStream.close",
+                  "FileOutputStream.close": "java.io.FileOutputStream.close"
+               },
+               "Url_Position": 15,
+               "In_Page_Order": 2,
+               "Num_API_Calls": 11,
+               "Dist_Center": 0.0604612875,
+               "MethodInvocations": [
+                  "FileInputStream.close",
+                  "FileOutputStream.close",
+                  "File.getName",
+                  "ZipOutputStream.putNextEntry",
+                  "FileInputStream.read",
+                  "ZipEntry.__init__",
+                  "File.__init__",
+                  "ZipOutputStream.close",
+                  "FileOutputStream.__init__",
+                  "ZipOutputStream.__init__",
+                  "FileInputStream.__init__"
+               ]
+            },
+            {
+               "Cluster": 1,
+               "Code": "import java.io.*;\nimport java.util.zip.*;\n/*\n * Creates a ZIP file to be read by Winzip or Winrar\n */\npublic class WriteZip {\n\n\tpublic static void main(String[] args) {\n\t\t\n\t\t// lets put 2 files\n\t\tString[] filename = {\"file1.dat\", \"file2.dat\"};\n\t\t// create a line of text for the files\n        byte[] buffer = new byte[27];        // the alphabet + <line feed?\n        byte letter = 'a';\n        for(int i = 0; i < 26; ++i)\n        \tbuffer[i] = letter++;\n        buffer[26] = '\\n';   // and an end of line\n        \n        try {\n\t\t    // Create the ZIP file\n\t\t    String outFilename = \"myzip.zip\";\n\t\t    ZipOutputStream out = new ZipOutputStream(new FileOutputStream(outFilename));\n\n\t\t    // Compress two files\n\t\t    for (int i=0; i<filename.length; i++) {\n\t\t        // Add ZIP entry to output stream.\n\t\t        out.putNextEntry(new ZipEntry(filename[i]));\n\n\t\t        // Transfer 10 lines into the file\n\t\t        for(int j = 0; j < 10; ++j)\n\t\t            out.write(buffer);\n\n\t\t        // Close the file\n\t\t        out.closeEntry();\n\t\t    }\n\n\t\t    // Close the ZIP file\n\t\t    out.close();\n\t\t} catch (IOException e) {\n\t\t\tSystem.out.println(\"Problem writing ZIP file: \" + e);\n\t\t}\n\n\t}\n}\n\r",
+               "LOC": 45,
+               "Url": "http://www.dreamincode.net/forums/topic/244086-write-and-read-zip-file-from-java/",
+               "Score": 0.569780957,
+               "API_Weights": 7.3031469597,
+               "API_Qualified_Names": {
+                  "FileOutputStream.__init__": "java.io.FileOutputStream.__init__",
+                  "ZipOutputStream.__init__": "java.util.zip.ZipOutputStream.__init__",
+                  "ZipOutputStream.close": "java.util.zip.ZipOutputStream.close"
+               },
+               "Url_Position": 25,
+               "In_Page_Order": 1,
+               "Num_API_Calls": 3,
+               "Dist_Center": 0.1859600384,
+               "MethodInvocations": [
+                  "ZipOutputStream.close",
+                  "ZipOutputStream.__init__",
+                  "FileOutputStream.__init__"
+               ]
+            },
+            {
+               "Cluster": 1,
+               "Code": "package com.memorynotfound.resource;\n\nimport org.apache.commons.compress.archivers.sevenz.SevenZArchiveEntry;\nimport org.apache.commons.compress.archivers.sevenz.SevenZFile;\nimport org.apache.commons.compress.archivers.sevenz.SevenZOutputFile;\n\nimport java.io.File;\nimport java.io.FileInputStream;\nimport java.io.FileOutputStream;\nimport java.io.IOException;\n\npublic class SevenZ {\n\n    private SevenZ() {\n\n    }\n\n    public static void compress(String name, File... files) throws IOException {\n        try (SevenZOutputFile out = new SevenZOutputFile(new File(name))){\n            for (File file : files){\n                addToArchiveCompression(out, file, \".\");\n            }\n        }\n    }\n\n    public static void decompress(String in, File destination) throws IOException {\n        SevenZFile sevenZFile = new SevenZFile(new File(in));\n        SevenZArchiveEntry entry;\n        while ((entry = sevenZFile.getNextEntry()) != null){\n            if (entry.isDirectory()){\n                continue;\n            }\n            File curfile = new File(destination, entry.getName());\n            File parent = curfile.getParentFile();\n            if (!parent.exists()) {\n                parent.mkdirs();\n            }\n            FileOutputStream out = new FileOutputStream(curfile);\n            byte[] content = new byte[(int) entry.getSize()];\n            sevenZFile.read(content, 0, content.length);\n            out.write(content);\n            out.close();\n        }\n    }\n\n    private static void addToArchiveCompression(SevenZOutputFile out, File file, String dir) throws IOException {\n        String name = dir + File.separator + file.getName();\n        if (file.isFile()){\n            SevenZArchiveEntry entry = out.createArchiveEntry(file, name);\n            out.putArchiveEntry(entry);\n\n            FileInputStream in = new FileInputStream(file);\n            byte[] b = new byte[1024];\n            int count = 0;\n            while ((count = in.read(b)) > 0) {\n                out.write(b, 0, count);\n            }\n            out.closeArchiveEntry();\n\n        } else if (file.isDirectory()) {\n            File[] children = file.listFiles();\n            if (children != null){\n                for (File child : children){\n                    addToArchiveCompression(out, child, name);\n                }\n            }\n        } else {\n            System.out.println(file.getName() + \" is not supported\");\n        }\n    }\n}",
+               "LOC": 71,
+               "Url": "https://memorynotfound.com/java-7z-seven-zip-example-compress-decompress-file/",
+               "Score": 0.5044313645,
+               "API_Weights": 9.2026977448,
+               "API_Qualified_Names": {
+                  "IOException.out": "java.io.IOException.out",
+                  "File.__init__": "java.io.File.__init__",
+                  "File.getName": "java.io.File.getName",
+                  "File.isFile": "java.io.File.isFile",
+                  "FileInputStream.__init__": "java.io.FileInputStream.__init__",
+                  "FileInputStream.read": "java.io.FileInputStream.read",
+                  "File.isDirectory": "java.io.File.isDirectory"
+               },
+               "Url_Position": 32,
+               "In_Page_Order": 2,
+               "Num_API_Calls": 13,
+               "Dist_Center": 0.2110562383,
+               "MethodInvocations": [
+                  "SevenZOutputFile.createArchiveEntry",
+                  "IOException.out",
+                  "File.getName",
+                  "SevenZFile.__init__",
+                  "FileInputStream.read",
+                  "SevenZFile.getNextEntry",
+                  "SevenZOutputFile.putArchiveEntry",
+                  "File.isDirectory",
+                  "File.__init__",
+                  "SevenZOutputFile.closeArchiveEntry",
+                  "AM.__init__",
+                  "File.isFile",
+                  "FileInputStream.__init__"
+               ]
+            },
+            {
+               "Cluster": 1,
+               "Code": "public class ZippedFileInputStream extends InputStream {\n\n    private ZipInputStream is;\n\n    public ZippedFileInputStream(ZipInputStream is){\n        this.is = is;\n    }\n\n    @Override\n    public int read() throws IOException {\n        return is.read();\n    }\n\n    @Override\n    public void close() throws IOException {\n        is.closeEntry();\n    }\n",
+               "LOC": 18,
+               "Url": "https://stackoverflow.com/questions/15667125/read-content-from-files-which-are-inside-zip-file",
+               "Score": 0.4937095619,
+               "API_Weights": 1.4114299742,
+               "API_Qualified_Names": {
+                  "ZipInputStream.read": "java.util.zip.ZipInputStream.read",
+                  "ZipInputStream.closeEntry": "java.util.zip.ZipInputStream.closeEntry"
+               },
+               "Url_Position": 1,
+               "In_Page_Order": 5,
+               "Num_API_Calls": 2,
+               "Dist_Center": 0.2151737314,
+               "MethodInvocations": [
+                  "ZipInputStream.closeEntry",
+                  "ZipInputStream.read"
+               ]
+            },
+            {
+               "Cluster": 1,
+               "Code": "\nimport java.io.*;\nimport java.util.zip.*;\n\npublic class Zip {\n   static final int BUFFER = 2048;\n   public static void main (String argv[]) {\n      try {\n         BufferedInputStream origin = null;\n         FileOutputStream dest = new \n           FileOutputStream(\"c:\\\\zip\\\\myfigs.zip\");\n         ZipOutputStream out = new ZipOutputStream(new \n           BufferedOutputStream(dest));\n         //out.setMethod(ZipOutputStream.DEFLATED);\n         byte data[] = new byte[BUFFER];\n         // get a list of files from current directory\n         File f = new File(\".\");\n         String files[] = f.list();\n\n         for (int i=0; i<files.length; i++) {\n            System.out.println(\"Adding: \"+files[i]);\n            FileInputStream fi = new \n              FileInputStream(files[i]);\n            origin = new \n              BufferedInputStream(fi, BUFFER);\n            ZipEntry entry = new ZipEntry(files[i]);\n            out.putNextEntry(entry);\n            int count;\n            while((count = origin.read(data, 0, \n              BUFFER)) != -1) {\n               out.write(data, 0, count);\n            }\n            origin.close();\n         }\n         out.close();\n      } catch(Exception e) {\n         e.printStackTrace();\n      }\n   }\n} ",
+               "LOC": 40,
+               "Url": "http://www.oracle.com/technetwork/articles/java/compress-1565076.html",
+               "Score": 0.441839125,
+               "API_Weights": 10.5481335437,
+               "API_Qualified_Names": {
+                  "FileOutputStream.__init__": "java.io.FileOutputStream.__init__",
+                  "BufferedOutputStream.__init__": "java.io.BufferedOutputStream.__init__",
+                  "ZipOutputStream.__init__": "java.util.zip.ZipOutputStream.__init__",
+                  "File.__init__": "java.io.File.__init__",
+                  "File.list": "java.io.File.list",
+                  "ZipOutputStream.close": "java.util.zip.ZipOutputStream.close"
+               },
+               "Url_Position": 14,
+               "In_Page_Order": 17,
+               "Num_API_Calls": 6,
+               "Dist_Center": 0.235093532,
+               "MethodInvocations": [
+                  "File.list",
+                  "File.__init__",
+                  "FileOutputStream.__init__",
+                  "ZipOutputStream.close",
+                  "BufferedOutputStream.__init__",
+                  "ZipOutputStream.__init__"
+               ]
+            },
+            {
+               "Cluster": 1,
+               "Code": "   public static void main(String[] args) throws IOException {\n       if (args.length!=2) {\n          System.err.println(\n             \"usage: java JarResources <jar file name> <resource name>\"\n             );\n          System.exit(1);\n       }\n       JarResources jr=new JarResources(args[0]);\n       byte[] buff=jr.getResource(args[1]);\n       if (buff==null) {\n          System.out.println(\"Could not find \"+args[1]+\".\");\n       } else {\n          System.out.println(\"Found \"+args[1]+ \" (length=\"+buff.length+\").\");\n       }\n   }\n}   // End of JarResources class.\n",
+               "LOC": 17,
+               "Url": "https://www.javaworld.com/article/2077548/learn-java/java-tip-49--how-to-extract-java-resources-from-jar-and-zip-archives.html",
+               "Score": 0.3558402865,
+               "API_Weights": 1.4142135624,
+               "API_Qualified_Names": {},
+               "Url_Position": 35,
+               "In_Page_Order": 6,
+               "Num_API_Calls": 2,
+               "Dist_Center": 0.2681196604,
+               "MethodInvocations": [
+                  "JarResources.getResource",
+                  "JarResources.__init__"
+               ]
+            },
+            {
+               "Cluster": 1,
+               "Code": "\nFileOutputStream dest = new \n  FileOutputStream(\"myfigs.zip\");\nZipOutputStream out = new \n  ZipOutputStream(new BufferedOutputStream(dest)); ",
+               "LOC": 5,
+               "Url": "http://www.oracle.com/technetwork/articles/java/compress-1565076.html",
+               "Score": 0.3278990533,
+               "API_Weights": 5.8802270023,
+               "API_Qualified_Names": {
+                  "FileOutputStream.__init__": "java.io.FileOutputStream.__init__",
+                  "BufferedOutputStream.__init__": "java.io.BufferedOutputStream.__init__",
+                  "ZipOutputStream.__init__": "java.util.zip.ZipOutputStream.__init__"
+               },
+               "Url_Position": 14,
+               "In_Page_Order": 13,
+               "Num_API_Calls": 3,
+               "Dist_Center": 0.2788499304,
+               "MethodInvocations": [
+                  "BufferedOutputStream.__init__",
+                  "ZipOutputStream.__init__",
+                  "FileOutputStream.__init__"
+               ]
+            },
+            {
+               "Cluster": 1,
+               "Code": "\nimport java.io.*;\nimport java.util.zip.*;\n\npublic class ReadEmployee {\n   public static void main(String argv[]) throws \n     Exception{\n      //deserialize objects sarah and sam\n      FileInputStream fis = new FileInputStream(\"db\");\n      GZIPInputStream gs = new GZIPInputStream(fis);\n      ObjectInputStream ois = new ObjectInputStream(gs);\n      Employee sarah = (Employee) ois.readObject();\n      Employee sam = (Employee) ois.readObject();\n      //print the records after reconstruction of state\n      sarah.print();\n      sam.print();\n      ois.close();\n      fis.close();\n   }\n}\n ",
+               "LOC": 21,
+               "Url": "http://www.oracle.com/technetwork/articles/java/compress-1565076.html",
+               "Score": 0.2400979969,
+               "API_Weights": 4.749521279,
+               "API_Qualified_Names": {
+                  "FileInputStream.__init__": "java.io.FileInputStream.__init__",
+                  "GZIPInputStream.__init__": "java.util.zip.GZIPInputStream.__init__",
+                  "ObjectInputStream.__init__": "java.io.ObjectInputStream.__init__",
+                  "ObjectInputStream.readObject": "java.io.ObjectInputStream.readObject",
+                  "ObjectInputStream.close": "java.io.ObjectInputStream.close",
+                  "FileInputStream.close": "java.io.FileInputStream.close"
+               },
+               "Url_Position": 14,
+               "In_Page_Order": 22,
+               "Num_API_Calls": 7,
+               "Dist_Center": 0.3125681645,
+               "MethodInvocations": [
+                  "FileInputStream.__init__",
+                  "FileInputStream.close",
+                  "GZIPInputStream.__init__",
+                  "ObjectInputStream.__init__",
+                  "ObjectInputStream.readObject",
+                  "ObjectInputStream.close",
+                  "Employee.print"
+               ]
+            },
+            {
+               "Cluster": 1,
+               "Code": "private List<File> getFileList(String sourceDir, String extensions) {\tList<File> fileList = new ArrayList<File>();\tFile dir = new File(sourceDir);\tif (dir.isDirectory()) {\t\tString[] fList = dir.list();\t\tfor (String filename : fList) {\t\t\tFile iFile = new File(getAbsolutePath(dir, filename));\t\t\tif (iFile.isFile()) {\t\t\t\tif (null != extensions) {\t\t\t\t\tif (extensions.toLowerCase().contains(getFileExtension(filename))) {\t\t\t\t\t\tfileList.add(iFile);\t\t\t\t\t}\t\t\t\t} else {\t\t\t\t\tfileList.add(iFile);\t\t\t\t}\t\t\t}\t\t}\t} else if (dir.isFile()) {\t\tfileList.add(dir);\t}\treturn fileList;}",
+               "LOC": 1,
+               "Url": "http://www.opencodez.com/java/zip-file-using-java.htm",
+               "Score": 0.0,
+               "API_Weights": 5.0054846309,
+               "API_Qualified_Names": {
+                  "List.__init__": "java.util.List.__init__",
+                  "File.__init__": "java.io.File.__init__",
+                  "File.isDirectory": "java.io.File.isDirectory",
+                  "File.list": "java.io.File.list",
+                  "File.isFile": "java.io.File.isFile",
+                  "List.add": "java.util.List.add"
+               },
+               "Url_Position": 24,
+               "In_Page_Order": 2,
+               "Num_API_Calls": 6,
+               "Dist_Center": 0.4047729829,
+               "MethodInvocations": [
+                  "List.add",
+                  "List.__init__",
+                  "File.isDirectory",
+                  "File.__init__",
+                  "File.list",
+                  "File.isFile"
+               ]
+            }
+         ],
+         "avg_cluster_api_weights": 9.725165036789138,
+         "top_apis_by_cluster": [
+            "zipoutputstream.__init__",
+            "zipoutputstream.close",
+            "fileoutputstream.__init__",
+            "fileinputstream.read",
+            "file.__init__",
+            "fileinputstream.close",
+            "zipoutputstream.putnextentry",
+            "zipentry.__init__"
+         ]
+      },
+      {
+         "cluster_snippets": [
+            {
+               "Cluster": 2,
+               "Code": "\nInputStream fin = Files.newInputStream(Paths.get(\"archive.tar.bz2\"));\nBufferedInputStream in = new BufferedInputStream(fin);\nOutputStream out = Files.newOutputStream(Paths.get(\"archive.tar\"));\nBZip2CompressorInputStream bzIn = new BZip2CompressorInputStream(in);\nfinal byte[] buffer = new byte[buffersize];\nint n = 0;\nwhile (-1 != (n = bzIn.read(buffer))) {\n    out.write(buffer, 0, n);\n}\nout.close();\nbzIn.close();\n",
+               "LOC": 13,
+               "Url": "https://commons.apache.org/proper/commons-compress/examples.html",
+               "Score": 1.0,
+               "API_Weights": 7.8239153681,
+               "API_Qualified_Names": {
+                  "BufferedInputStream.__init__": "java.io.BufferedInputStream.__init__",
+                  "BZip2CompressorInputStream.__init__": "org.apache.commons.compress.compressors.bzip2.BZip2CompressorInputStream.__init__",
+                  "BZip2CompressorInputStream.read": "org.apache.commons.compress.compressors.bzip2.BZip2CompressorInputStream.read",
+                  "OutputStream.close": "java.io.OutputStream.close",
+                  "BZip2CompressorInputStream.close": "org.apache.commons.compress.compressors.bzip2.BZip2CompressorInputStream.close"
+               },
+               "Url_Position": 27,
+               "In_Page_Order": 23,
+               "Num_API_Calls": 5,
+               "Dist_Center": 0.0417964144,
+               "MethodInvocations": [
+                  "BufferedInputStream.__init__",
+                  "BZip2CompressorInputStream.read",
+                  "BZip2CompressorInputStream.__init__",
+                  "BZip2CompressorInputStream.close",
+                  "OutputStream.close"
+               ]
+            },
+            {
+               "Cluster": 2,
+               "Code": "\nInputStream fin = Files.newInputStream(Paths.get(\"archive.tar.lz4\"));\nBufferedInputStream in = new BufferedInputStream(fin);\nOutputStream out = Files.newOutputStream(Paths.get(\"archive.tar\"));\nFramedLZ4CompressorInputStream zIn = new FramedLZ4CompressorInputStream(in);\nfinal byte[] buffer = new byte[buffersize];\nint n = 0;\nwhile (-1 != (n = zIn.read(buffer))) {\n    out.write(buffer, 0, n);\n}\nout.close();\nzIn.close();\n",
+               "LOC": 13,
+               "Url": "https://commons.apache.org/proper/commons-compress/examples.html",
+               "Score": 0.867489949,
+               "API_Weights": 7.8239153681,
+               "API_Qualified_Names": {
+                  "BufferedInputStream.__init__": "java.io.BufferedInputStream.__init__",
+                  "OutputStream.close": "java.io.OutputStream.close"
+               },
+               "Url_Position": 27,
+               "In_Page_Order": 38,
+               "Num_API_Calls": 5,
+               "Dist_Center": 0.0889158659,
+               "MethodInvocations": [
+                  "BufferedInputStream.__init__",
+                  "FramedLZ4CompressorInputStream.read",
+                  "FramedLZ4CompressorInputStream.close",
+                  "FramedLZ4CompressorInputStream.__init__",
+                  "OutputStream.close"
+               ]
+            },
+            {
+               "Cluster": 2,
+               "Code": "\nInputStream fin = Files.newInputStream(Paths.get(\"archive.tar.Z\"));\nBufferedInputStream in = new BufferedInputStream(fin);\nOutputStream out = Files.newOutputStream(Paths.get(\"archive.tar\"));\nZCompressorInputStream zIn = new ZCompressorInputStream(in);\nfinal byte[] buffer = new byte[buffersize];\nint n = 0;\nwhile (-1 != (n = zIn.read(buffer))) {\n    out.write(buffer, 0, n);\n}\nout.close();\nzIn.close();\n",
+               "LOC": 13,
+               "Url": "https://commons.apache.org/proper/commons-compress/examples.html",
+               "Score": 0.8546565145,
+               "API_Weights": 7.8239153681,
+               "API_Qualified_Names": {
+                  "BufferedInputStream.__init__": "java.io.BufferedInputStream.__init__",
+                  "OutputStream.close": "java.io.OutputStream.close"
+               },
+               "Url_Position": 27,
+               "In_Page_Order": 31,
+               "Num_API_Calls": 5,
+               "Dist_Center": 0.0934793265,
+               "MethodInvocations": [
+                  "BufferedInputStream.__init__",
+                  "ZCompressorInputStream.read",
+                  "ZCompressorInputStream.close",
+                  "ZCompressorInputStream.__init__",
+                  "OutputStream.close"
+               ]
+            },
+            {
+               "Cluster": 2,
+               "Code": "\nInputStream fin = Files.newInputStream(Paths.get(\"archive.tar.br\"));\nBufferedInputStream in = new BufferedInputStream(fin);\nOutputStream out = Files.newOutputStream(Paths.get(\"archive.tar\"));\nBrotliCompressorInputStream brIn = new BrotliCompressorInputStream(in);\nfinal byte[] buffer = new byte[buffersize];\nint n = 0;\nwhile (-1 != (n = brIn.read(buffer))) {\n    out.write(buffer, 0, n);\n}\nout.close();\nbrIn.close();\n",
+               "LOC": 13,
+               "Url": "https://commons.apache.org/proper/commons-compress/examples.html",
+               "Score": 0.7452818286,
+               "API_Weights": 7.8239153681,
+               "API_Qualified_Names": {
+                  "BufferedInputStream.__init__": "java.io.BufferedInputStream.__init__",
+                  "OutputStream.close": "java.io.OutputStream.close"
+               },
+               "Url_Position": 27,
+               "In_Page_Order": 22,
+               "Num_API_Calls": 5,
+               "Dist_Center": 0.1323720382,
+               "MethodInvocations": [
+                  "BufferedInputStream.__init__",
+                  "BrotliCompressorInputStream.__init__",
+                  "BrotliCompressorInputStream.read",
+                  "BrotliCompressorInputStream.close",
+                  "OutputStream.close"
+               ]
+            },
+            {
+               "Cluster": 2,
+               "Code": "\nInputStream fin = Files.newInputStream(Paths.get(\"archive.tar.sz\"));\nBufferedInputStream in = new BufferedInputStream(fin);\nOutputStream out = Files.newOutputStream(Paths.get(\"archive.tar\"));\nFramedSnappyCompressorInputStream zIn = new FramedSnappyCompressorInputStream(in);\nfinal byte[] buffer = new byte[buffersize];\nint n = 0;\nwhile (-1 != (n = zIn.read(buffer))) {\n    out.write(buffer, 0, n);\n}\nout.close();\nzIn.close();\n",
+               "LOC": 13,
+               "Url": "https://commons.apache.org/proper/commons-compress/examples.html",
+               "Score": 0.7275948259,
+               "API_Weights": 7.8239153681,
+               "API_Qualified_Names": {
+                  "BufferedInputStream.__init__": "java.io.BufferedInputStream.__init__",
+                  "OutputStream.close": "java.io.OutputStream.close"
+               },
+               "Url_Position": 27,
+               "In_Page_Order": 36,
+               "Num_API_Calls": 5,
+               "Dist_Center": 0.1386613865,
+               "MethodInvocations": [
+                  "BufferedInputStream.__init__",
+                  "FramedSnappyCompressorInputStream.__init__",
+                  "OutputStream.close",
+                  "FramedSnappyCompressorInputStream.read",
+                  "FramedSnappyCompressorInputStream.close"
+               ]
+            },
+            {
+               "Cluster": 2,
+               "Code": "\nInputStream fin = Files.newInputStream(Paths.get(\"archive.tar.lzma\"));\nBufferedInputStream in = new BufferedInputStream(fin);\nOutputStream out = Files.newOutputStream(Paths.get(\"archive.tar\"));\nLZMACompressorInputStream lzmaIn = new LZMACompressorInputStream(in);\nfinal byte[] buffer = new byte[buffersize];\nint n = 0;\nwhile (-1 != (n = xzIn.read(buffer))) {\n    out.write(buffer, 0, n);\n}\nout.close();\nlzmaIn.close();\n",
+               "LOC": 13,
+               "Url": "https://commons.apache.org/proper/commons-compress/examples.html",
+               "Score": 0.683914335,
+               "API_Weights": 7.4813347658,
+               "API_Qualified_Names": {
+                  "BufferedInputStream.__init__": "java.io.BufferedInputStream.__init__",
+                  "OutputStream.close": "java.io.OutputStream.close"
+               },
+               "Url_Position": 27,
+               "In_Page_Order": 32,
+               "Num_API_Calls": 4,
+               "Dist_Center": 0.154193799,
+               "MethodInvocations": [
+                  "BufferedInputStream.__init__",
+                  "LZMACompressorInputStream.__init__",
+                  "LZMACompressorInputStream.close",
+                  "OutputStream.close"
+               ]
+            },
+            {
+               "Cluster": 2,
+               "Code": "\nInputStream fin = Files.newInputStream(Paths.get(\"archive.pack\"));\nBufferedInputStream in = new BufferedInputStream(fin);\nOutputStream out = Files.newOutputStream(Paths.get(\"archive.jar\"));\nPack200CompressorInputStream pIn = new Pack200CompressorInputStream(in);\nfinal byte[] buffer = new byte[buffersize];\nint n = 0;\nwhile (-1 != (n = pIn.read(buffer))) {\n    out.write(buffer, 0, n);\n}\nout.close();\npIn.close();\n",
+               "LOC": 13,
+               "Url": "https://commons.apache.org/proper/commons-compress/examples.html",
+               "Score": 0.6775721897,
+               "API_Weights": 7.8239153681,
+               "API_Qualified_Names": {
+                  "BufferedInputStream.__init__": "java.io.BufferedInputStream.__init__",
+                  "OutputStream.close": "java.io.OutputStream.close"
+               },
+               "Url_Position": 27,
+               "In_Page_Order": 27,
+               "Num_API_Calls": 5,
+               "Dist_Center": 0.1564490122,
+               "MethodInvocations": [
+                  "BufferedInputStream.__init__",
+                  "Pack200CompressorInputStream.close",
+                  "Pack200CompressorInputStream.__init__",
+                  "Pack200CompressorInputStream.read",
+                  "OutputStream.close"
+               ]
+            },
+            {
+               "Cluster": 2,
+               "Code": "\nInputStream fin = Files.newInputStream(Paths.get(\"archive.tar.gz\"));\nBufferedInputStream in = new BufferedInputStream(fin);\nOutputStream out = Files.newOutputStream(Paths.get(\"archive.tar\"));\nGZipCompressorInputStream gzIn = new GZipCompressorInputStream(in);\nfinal byte[] buffer = new byte[buffersize];\nint n = 0;\nwhile (-1 != (n = gzIn.read(buffer))) {\n    out.write(buffer, 0, n);\n}\nout.close();\ngzIn.close();\n",
+               "LOC": 13,
+               "Url": "https://commons.apache.org/proper/commons-compress/examples.html",
+               "Score": 0.6301014201,
+               "API_Weights": 7.8239153681,
+               "API_Qualified_Names": {
+                  "BufferedInputStream.__init__": "java.io.BufferedInputStream.__init__",
+                  "OutputStream.close": "java.io.OutputStream.close"
+               },
+               "Url_Position": 27,
+               "In_Page_Order": 25,
+               "Num_API_Calls": 5,
+               "Dist_Center": 0.1733292157,
+               "MethodInvocations": [
+                  "BufferedInputStream.__init__",
+                  "GZipCompressorInputStream.__init__",
+                  "GZipCompressorInputStream.read",
+                  "GZipCompressorInputStream.close",
+                  "OutputStream.close"
+               ]
+            },
+            {
+               "Cluster": 2,
+               "Code": "\nInputStream fin = Files.newInputStream(Paths.get(\"archive.tar.xz\"));\nBufferedInputStream in = new BufferedInputStream(fin);\nOutputStream out = Files.newOutputStream(Paths.get(\"archive.tar\"));\nXZCompressorInputStream xzIn = new XZCompressorInputStream(in);\nfinal byte[] buffer = new byte[buffersize];\nint n = 0;\nwhile (-1 != (n = xzIn.read(buffer))) {\n    out.write(buffer, 0, n);\n}\nout.close();\nxzIn.close();\n",
+               "LOC": 13,
+               "Url": "https://commons.apache.org/proper/commons-compress/examples.html",
+               "Score": 0.5924691047,
+               "API_Weights": 7.8239153681,
+               "API_Qualified_Names": {
+                  "BufferedInputStream.__init__": "java.io.BufferedInputStream.__init__",
+                  "OutputStream.close": "java.io.OutputStream.close"
+               },
+               "Url_Position": 27,
+               "In_Page_Order": 29,
+               "Num_API_Calls": 5,
+               "Dist_Center": 0.1867109482,
+               "MethodInvocations": [
+                  "BufferedInputStream.__init__",
+                  "XZCompressorInputStream.__init__",
+                  "XZCompressorInputStream.read",
+                  "XZCompressorInputStream.close",
+                  "OutputStream.close"
+               ]
+            },
+            {
+               "Cluster": 2,
+               "Code": "\nInputStream fin = Files.newInputStream(Paths.get(\"some-file\"));\nBufferedInputStream in = new BufferedInputStream(fin);\nOutputStream out = Files.newOutputStream(Paths.get(\"archive.tar\"));\nDeflateCompressorInputStream defIn = new DeflateCompressorInputStream(in);\nfinal byte[] buffer = new byte[buffersize];\nint n = 0;\nwhile (-1 != (n = defIn.read(buffer))) {\n    out.write(buffer, 0, n);\n}\nout.close();\ndefIn.close();\n",
+               "LOC": 13,
+               "Url": "https://commons.apache.org/proper/commons-compress/examples.html",
+               "Score": 0.5710169312,
+               "API_Weights": 7.8239153681,
+               "API_Qualified_Names": {
+                  "BufferedInputStream.__init__": "java.io.BufferedInputStream.__init__",
+                  "OutputStream.close": "java.io.OutputStream.close"
+               },
+               "Url_Position": 27,
+               "In_Page_Order": 34,
+               "Num_API_Calls": 5,
+               "Dist_Center": 0.1943391594,
+               "MethodInvocations": [
+                  "BufferedInputStream.__init__",
+                  "DeflateCompressorInputStream.read",
+                  "DeflateCompressorInputStream.__init__",
+                  "DeflateCompressorInputStream.close",
+                  "OutputStream.close"
+               ]
+            },
+            {
+               "Cluster": 2,
+               "Code": "\nbyte[] inputData; // 7z archive contents\nSeekableInMemoryByteChannel inMemoryByteChannel = new SeekableInMemoryByteChannel(inputData);\nSevenZFile sevenZFile = new SevenZFile(inMemoryByteChannel);\nSevenZArchiveEntry entry = sevenZFile.getNextEntry();\nsevenZFile.read();  // read current entry's data\n",
+               "LOC": 7,
+               "Url": "https://commons.apache.org/proper/commons-compress/examples.html",
+               "Score": 0.145641594,
+               "API_Weights": 1.9979939234,
+               "API_Qualified_Names": {},
+               "Url_Position": 27,
+               "In_Page_Order": 20,
+               "Num_API_Calls": 4,
+               "Dist_Center": 0.3455990255,
+               "MethodInvocations": [
+                  "SeekableInMemoryByteChannel.__init__",
+                  "SevenZFile.read",
+                  "SevenZFile.__init__",
+                  "SevenZFile.getNextEntry"
+               ]
+            },
+            {
+               "Cluster": 2,
+               "Code": "\nJarArchiveEntry entry = new JarArchiveEntry(name, size);\nentry.setSize(size);\njarOutput.putArchiveEntry(entry);\njarOutput.write(contentOfEntry);\njarOutput.closeArchiveEntry();\n",
+               "LOC": 7,
+               "Url": "https://commons.apache.org/proper/commons-compress/examples.html",
+               "Score": 0.0,
+               "API_Weights": 1.4142135624,
+               "API_Qualified_Names": {},
+               "Url_Position": 27,
+               "In_Page_Order": 16,
+               "Num_API_Calls": 2,
+               "Dist_Center": 0.3973879424,
+               "MethodInvocations": [
+                  "JarArchiveEntry.__init__",
+                  "JarArchiveEntry.setSize"
+               ]
+            }
+         ],
+         "avg_cluster_api_weights": 6.77573171371266,
+         "top_apis_by_cluster": [
+            "outputstream.close",
+            "bufferedinputstream.__init__",
+            "jararchiveentry.setsize",
+            "jararchiveentry.__init__",
+            "lzmacompressorinputstream.close",
+            "lzmacompressorinputstream.__init__",
+            "seekableinmemorybytechannel.__init__",
+            "sevenzfile.read"
+         ]
+      },
+      {
+         "cluster_snippets": [
+            {
+               "Cluster": 3,
+               "Code": "\nInputStream in = Files.newInputStream(Paths.get(\"archive.tar\"));\nOutputStream fout = Files.newOutputStream(Paths.get(\"some-file\"));\nBufferedOutputStream out = new BufferedInputStream(fout);\nDeflateCompressorOutputStream defOut = new DeflateCompressorOutputStream(out);\nfinal byte[] buffer = new byte[buffersize];\nint n = 0;\nwhile (-1 != (n = in.read(buffer))) {\n    defOut.write(buffer, 0, n);\n}\ndefOut.close();\nin.close();\n",
+               "LOC": 13,
+               "Url": "https://commons.apache.org/proper/commons-compress/examples.html",
+               "Score": 1.0,
+               "API_Weights": 13.1187659713,
+               "API_Qualified_Names": {
+                  "BufferedOutputStream.__init__": "java.io.BufferedOutputStream.__init__",
+                  "InputStream.read": "java.io.InputStream.read",
+                  "InputStream.close": "java.io.InputStream.close"
+               },
+               "Url_Position": 27,
+               "In_Page_Order": 35,
+               "Num_API_Calls": 5,
+               "Dist_Center": 0.0539282784,
+               "MethodInvocations": [
+                  "DeflateCompressorOutputStream.__init__",
+                  "DeflateCompressorOutputStream.close",
+                  "InputStream.close",
+                  "BufferedOutputStream.__init__",
+                  "InputStream.read"
+               ]
+            },
+            {
+               "Cluster": 3,
+               "Code": "\nInputStream in = Files.newInputStream(Paths.get(\"archive.tar\"));\nOutputStream fout = Files.newOutputStream(Paths.get(\"archive.tar.sz\"));\nBufferedOutputStream out = new BufferedInputStream(fout);\nFramedSnappyCompressorOutputStream snOut = new FramedSnappyCompressorOutputStream(out);\nfinal byte[] buffer = new byte[buffersize];\nint n = 0;\nwhile (-1 != (n = in.read(buffer))) {\n    snOut.write(buffer, 0, n);\n}\nsnOut.close();\nin.close();\n",
+               "LOC": 13,
+               "Url": "https://commons.apache.org/proper/commons-compress/examples.html",
+               "Score": 0.9927364796,
+               "API_Weights": 13.1187659713,
+               "API_Qualified_Names": {
+                  "BufferedOutputStream.__init__": "java.io.BufferedOutputStream.__init__",
+                  "InputStream.read": "java.io.InputStream.read",
+                  "InputStream.close": "java.io.InputStream.close"
+               },
+               "Url_Position": 27,
+               "In_Page_Order": 37,
+               "Num_API_Calls": 5,
+               "Dist_Center": 0.0558892523,
+               "MethodInvocations": [
+                  "FramedSnappyCompressorOutputStream.__init__",
+                  "FramedSnappyCompressorOutputStream.close",
+                  "InputStream.close",
+                  "BufferedOutputStream.__init__",
+                  "InputStream.read"
+               ]
+            },
+            {
+               "Cluster": 3,
+               "Code": "\nInputStream in = Files.newInputStream(Paths.get(\"archive.tar\"));\nOutputStream fout = Files.newOutputStream(Paths.get(\"archive.tar.gz\"));\nBufferedOutputStream out = new BufferedInputStream(fout);\nGZipCompressorOutputStream gzOut = new GZipCompressorOutputStream(out);\nfinal byte[] buffer = new byte[buffersize];\nint n = 0;\nwhile (-1 != (n = in.read(buffer))) {\n    gzOut.write(buffer, 0, n);\n}\ngzOut.close();\nin.close();\n",
+               "LOC": 13,
+               "Url": "https://commons.apache.org/proper/commons-compress/examples.html",
+               "Score": 0.7415483598,
+               "API_Weights": 13.1187659713,
+               "API_Qualified_Names": {
+                  "BufferedOutputStream.__init__": "java.io.BufferedOutputStream.__init__",
+                  "InputStream.read": "java.io.InputStream.read",
+                  "InputStream.close": "java.io.InputStream.close"
+               },
+               "Url_Position": 27,
+               "In_Page_Order": 26,
+               "Num_API_Calls": 5,
+               "Dist_Center": 0.1237039386,
+               "MethodInvocations": [
+                  "InputStream.close",
+                  "GZipCompressorOutputStream.__init__",
+                  "GZipCompressorOutputStream.close",
+                  "BufferedOutputStream.__init__",
+                  "InputStream.read"
+               ]
+            },
+            {
+               "Cluster": 3,
+               "Code": "\nInputStream in = Files.newInputStream(Paths.get(\"archive.jar\"));\nOutputStream fout = Files.newOutputStream(Paths.get(\"archive.pack\"));\nBufferedOutputStream out = new BufferedInputStream(fout);\nPack200CompressorOutputStream pOut = new Pack200CompressorOutputStream(out);\nfinal byte[] buffer = new byte[buffersize];\nint n = 0;\nwhile (-1 != (n = in.read(buffer))) {\n    pOut.write(buffer, 0, n);\n}\npOut.close();\nin.close();\n",
+               "LOC": 13,
+               "Url": "https://commons.apache.org/proper/commons-compress/examples.html",
+               "Score": 0.7072627271,
+               "API_Weights": 13.1187659713,
+               "API_Qualified_Names": {
+                  "BufferedOutputStream.__init__": "java.io.BufferedOutputStream.__init__",
+                  "InputStream.read": "java.io.InputStream.read",
+                  "InputStream.close": "java.io.InputStream.close"
+               },
+               "Url_Position": 27,
+               "In_Page_Order": 28,
+               "Num_API_Calls": 5,
+               "Dist_Center": 0.132960226,
+               "MethodInvocations": [
+                  "InputStream.close",
+                  "Pack200CompressorOutputStream.close",
+                  "BufferedOutputStream.__init__",
+                  "InputStream.read",
+                  "Pack200CompressorOutputStream.__init__"
+               ]
+            },
+            {
+               "Cluster": 3,
+               "Code": "\nInputStream in = Files.newInputStream(Paths.get(\"archive.tar\"));\nOutputStream fout = Files.newOutputStream(Paths.get(\"archive.tar.gz\"));\nBufferedOutputStream out = new BufferedInputStream(fout);\nBZip2CompressorOutputStream bzOut = new BZip2CompressorOutputStream(out);\nfinal byte[] buffer = new byte[buffersize];\nint n = 0;\nwhile (-1 != (n = in.read(buffer))) {\n    bzOut.write(buffer, 0, n);\n}\nbzOut.close();\nin.close();\n",
+               "LOC": 13,
+               "Url": "https://commons.apache.org/proper/commons-compress/examples.html",
+               "Score": 0.6473575327,
+               "API_Weights": 13.1187659713,
+               "API_Qualified_Names": {
+                  "BufferedOutputStream.__init__": "java.io.BufferedOutputStream.__init__",
+                  "BZip2CompressorOutputStream.__init__": "org.apache.commons.compress.compressors.bzip2.BZip2CompressorOutputStream.__init__",
+                  "InputStream.read": "java.io.InputStream.read",
+                  "InputStream.close": "java.io.InputStream.close"
+               },
+               "Url_Position": 27,
+               "In_Page_Order": 24,
+               "Num_API_Calls": 5,
+               "Dist_Center": 0.1491331723,
+               "MethodInvocations": [
+                  "BZip2CompressorOutputStream.close",
+                  "InputStream.close",
+                  "BZip2CompressorOutputStream.__init__",
+                  "BufferedOutputStream.__init__",
+                  "InputStream.read"
+               ]
+            },
+            {
+               "Cluster": 3,
+               "Code": "     InputStream in = null;\n     BufferedOutputStream fos = null;\n   \n     File aFile = null;\n try{\n  aFile = new File(newPath +\"/\" + anEntry.getName());\n  aFile.getParentFile().mkdirs();\n  in = zFile.getInputStream(anEntry);\n  fos = new BufferedOutputStream(new FileOutputStream(aFile));\n  byte[] buffer = new byte[1024];\n  int length;\n  while((length = in.read(buffer)) > 0) {\n   fos.write(buffer,0,length);\n  }\n  \n } finally {\n  if(in != null) {\n   in.close();\n  }\n  if(fos != null) {\n   fos.close();\n }\n}\n",
+               "LOC": 24,
+               "Url": "http://www.speakingcs.com/2015/07/how-to-unzipextract-files-from-zip.html",
+               "Score": 0.6341488958,
+               "API_Weights": 16.1944907141,
+               "API_Qualified_Names": {
+                  "File.__init__": "java.io.File.__init__",
+                  "File.getParentFile": "java.io.File.getParentFile",
+                  "FileOutputStream.__init__": "java.io.FileOutputStream.__init__",
+                  "BufferedOutputStream.__init__": "java.io.BufferedOutputStream.__init__",
+                  "InputStream.read": "java.io.InputStream.read",
+                  "InputStream.close": "java.io.InputStream.close",
+                  "BufferedOutputStream.close": "java.io.BufferedOutputStream.close"
+               },
+               "Url_Position": 29,
+               "In_Page_Order": 6,
+               "Num_API_Calls": 7,
+               "Dist_Center": 0.1526991832,
+               "MethodInvocations": [
+                  "File.getParentFile",
+                  "InputStream.close",
+                  "BufferedOutputStream.close",
+                  "File.__init__",
+                  "FileOutputStream.__init__",
+                  "BufferedOutputStream.__init__",
+                  "InputStream.read"
+               ]
+            },
+            {
+               "Cluster": 3,
+               "Code": "\nInputStream in = Files.newInputStream(Paths.get(\"archive.tar\"));\nOutputStream fout = Files.newOutputStream(Paths.get(\"archive.tar.lz4\"));\nBufferedOutputStream out = new BufferedInputStream(fout);\nFramedLZ4CompressorOutputStream lzOut = new FramedLZ4CompressorOutputStream(out);\nfinal byte[] buffer = new byte[buffersize];\nint n = 0;\nwhile (-1 != (n = in.read(buffer))) {\n    lzOut.write(buffer, 0, n);\n}\nlzOut.close();\nin.close();\n",
+               "LOC": 13,
+               "Url": "https://commons.apache.org/proper/commons-compress/examples.html",
+               "Score": 0.6165323256,
+               "API_Weights": 13.1187659713,
+               "API_Qualified_Names": {
+                  "BufferedOutputStream.__init__": "java.io.BufferedOutputStream.__init__",
+                  "InputStream.read": "java.io.InputStream.read",
+                  "InputStream.close": "java.io.InputStream.close"
+               },
+               "Url_Position": 27,
+               "In_Page_Order": 39,
+               "Num_API_Calls": 5,
+               "Dist_Center": 0.1574552289,
+               "MethodInvocations": [
+                  "FramedLZ4CompressorOutputStream.__init__",
+                  "FramedLZ4CompressorOutputStream.close",
+                  "InputStream.close",
+                  "BufferedOutputStream.__init__",
+                  "InputStream.read"
+               ]
+            },
+            {
+               "Cluster": 3,
+               "Code": "\nInputStream in = Files.newInputStream(Paths.get(\"archive.tar\"));\nOutputStream fout = Files.newOutputStream(Paths.get(\"archive.tar.lzma\"));\nBufferedOutputStream out = new BufferedInputStream(fout);\nLZMACompressorOutputStream lzOut = new LZMACompressorOutputStream(out);\nfinal byte[] buffer = new byte[buffersize];\nint n = 0;\nwhile (-1 != (n = in.read(buffer))) {\n    lzOut.write(buffer, 0, n);\n}\nlzOut.close();\nin.close();\n",
+               "LOC": 13,
+               "Url": "https://commons.apache.org/proper/commons-compress/examples.html",
+               "Score": 0.5963347035,
+               "API_Weights": 13.1187659713,
+               "API_Qualified_Names": {
+                  "BufferedOutputStream.__init__": "java.io.BufferedOutputStream.__init__",
+                  "InputStream.read": "java.io.InputStream.read",
+                  "InputStream.close": "java.io.InputStream.close"
+               },
+               "Url_Position": 27,
+               "In_Page_Order": 33,
+               "Num_API_Calls": 5,
+               "Dist_Center": 0.1629080959,
+               "MethodInvocations": [
+                  "LZMACompressorOutputStream.close",
+                  "InputStream.close",
+                  "LZMACompressorOutputStream.__init__",
+                  "BufferedOutputStream.__init__",
+                  "InputStream.read"
+               ]
+            },
+            {
+               "Cluster": 3,
+               "Code": "\nInputStream in = Files.newInputStream(Paths.get(\"archive.tar\"));\nOutputStream fout = Files.newOutputStream(Paths.get(\"archive.tar.xz\"));\nBufferedOutputStream out = new BufferedInputStream(fout);\nXZCompressorOutputStream xzOut = new XZCompressorOutputStream(out);\nfinal byte[] buffer = new byte[buffersize];\nint n = 0;\nwhile (-1 != (n = in.read(buffer))) {\n    xzOut.write(buffer, 0, n);\n}\nxzOut.close();\nin.close();\n",
+               "LOC": 13,
+               "Url": "https://commons.apache.org/proper/commons-compress/examples.html",
+               "Score": 0.4396912648,
+               "API_Weights": 13.1187659713,
+               "API_Qualified_Names": {
+                  "BufferedOutputStream.__init__": "java.io.BufferedOutputStream.__init__",
+                  "InputStream.read": "java.io.InputStream.read",
+                  "InputStream.close": "java.io.InputStream.close"
+               },
+               "Url_Position": 27,
+               "In_Page_Order": 30,
+               "Num_API_Calls": 5,
+               "Dist_Center": 0.2051980166,
+               "MethodInvocations": [
+                  "XZCompressorOutputStream.close",
+                  "InputStream.close",
+                  "XZCompressorOutputStream.__init__",
+                  "BufferedOutputStream.__init__",
+                  "InputStream.read"
+               ]
+            },
+            {
+               "Cluster": 3,
+               "Code": "BufferedOutputStream fos = new BufferedOutputStream(new FileOutputStream(newPath + \"/\" + anEntry.getName()));\n\n",
+               "LOC": 3,
+               "Url": "http://www.speakingcs.com/2015/07/how-to-unzipextract-files-from-zip.html",
+               "Score": 0.2755281862,
+               "API_Weights": 7.3852018379,
+               "API_Qualified_Names": {
+                  "FileOutputStream.__init__": "java.io.FileOutputStream.__init__",
+                  "BufferedOutputStream.__init__": "java.io.BufferedOutputStream.__init__"
+               },
+               "Url_Position": 29,
+               "In_Page_Order": 5,
+               "Num_API_Calls": 2,
+               "Dist_Center": 0.2495180573,
+               "MethodInvocations": [
+                  "BufferedOutputStream.__init__",
+                  "FileOutputStream.__init__"
+               ]
+            },
+            {
+               "Cluster": 3,
+               "Code": "\nint BUFFER = 2048;\nFileOutputStream fos = new \n  FileOutputStream(entry.getName());\nBufferedOutputStream dest = new \n  BufferedOutputStream(fos, BUFFER);\n ",
+               "LOC": 7,
+               "Url": "http://www.oracle.com/technetwork/articles/java/compress-1565076.html",
+               "Score": 0.2755281862,
+               "API_Weights": 7.3852018379,
+               "API_Qualified_Names": {
+                  "FileOutputStream.__init__": "java.io.FileOutputStream.__init__",
+                  "BufferedOutputStream.__init__": "java.io.BufferedOutputStream.__init__"
+               },
+               "Url_Position": 14,
+               "In_Page_Order": 4,
+               "Num_API_Calls": 2,
+               "Dist_Center": 0.2495180573,
+               "MethodInvocations": [
+                  "BufferedOutputStream.__init__",
+                  "FileOutputStream.__init__"
+               ]
+            },
+            {
+               "Cluster": 3,
+               "Code": "\nbyte data[] = new byte[BUFFER];\nFileOutputStream fos = new \n  FileOutputStream(entry.getName());\ndest = new BufferedOutputStream(fos, BUFFER);\nwhile ((count = is.read(data, 0, BUFFER)) != -1) {\n   dest.write(data, 0, count);\n} ",
+               "LOC": 8,
+               "Url": "http://www.oracle.com/technetwork/articles/java/compress-1565076.html",
+               "Score": 0.2755281862,
+               "API_Weights": 7.3852018379,
+               "API_Qualified_Names": {
+                  "FileOutputStream.__init__": "java.io.FileOutputStream.__init__",
+                  "BufferedOutputStream.__init__": "java.io.BufferedOutputStream.__init__"
+               },
+               "Url_Position": 14,
+               "In_Page_Order": 10,
+               "Num_API_Calls": 2,
+               "Dist_Center": 0.2495180573,
+               "MethodInvocations": [
+                  "BufferedOutputStream.__init__",
+                  "FileOutputStream.__init__"
+               ]
+            },
+            {
+               "Cluster": 3,
+               "Code": "import java.io.IOException;\r\nimport java.io.InputStream;\r\n\r\npublic class ZipDecryptInputStream extends InputStream {\r\n    private static final int[] CRC_TABLE = new int[256];\r\n    // compute the table\r\n    // (could also have it pre-computed - see http://snippets.dzone.com/tag/crc32)\r\n    static {\r\n        for (int i = 0; i < 256; i++) {\r\n            int r = i;\r\n            for (int j = 0; j < 8; j++) {\r\n                if ((r & 1) == 1) {\r\n                    r = (r >>> 1) ^ 0xedb88320;\r\n                } else {\r\n                    r >>>= 1;\r\n                }\r\n            }\r\n            CRC_TABLE[i] = r;\r\n        }\r\n    }\r\n\r\n    private static final int DECRYPT_HEADER_SIZE = 12;\r\n    private static final int[] LFH_SIGNATURE = {0x50, 0x4b, 0x03, 0x04};\r\n\r\n    private final InputStream delegate;\r\n    private final String password;\r\n    private final int keys[] = new int[3];\r\n\r\n    private State state = State.SIGNATURE;\r\n    private int skipBytes;\r\n    private int compressedSize;\r\n    private int value;\r\n    private int valuePos;\r\n    private int valueInc;\r\n\r\n    public ZipDecryptInputStream(InputStream stream, String password) {\r\n        this.delegate = stream;\r\n        this.password = password;\r\n    }\r\n\r\n    @Override\r\n    public int read() throws IOException {\r\n        int result = delegate.read();\r\n        if (skipBytes == 0) {\r\n            switch (state) {\r\n                case SIGNATURE:\r\n                    if (result != LFH_SIGNATURE[valuePos]) {\r\n                        state = State.TAIL;\r\n                    } else {\r\n                        valuePos++;\r\n                        if (valuePos >= LFH_SIGNATURE.length) {\r\n                            skipBytes = 2;\r\n                            state = State.FLAGS;\r\n                        }\r\n                    }\r\n                    break;\r\n                case FLAGS:\r\n                    if ((result & 1) == 0) {\r\n                        throw new IllegalStateException(\"ZIP not password protected.\");\r\n                    }\r\n                    if ((result & 64) == 64) {\r\n                        throw new IllegalStateException(\"Strong encryption used.\");\r\n                    }\r\n                    if ((result & 8) == 8) {\r\n                        throw new IllegalStateException(\"Unsupported ZIP format.\");\r\n                    }\r\n                    result -= 1;\r\n                    compressedSize = 0;\r\n                    valuePos = 0;\r\n                    valueInc = DECRYPT_HEADER_SIZE;\r\n                    state = State.COMPRESSED_SIZE;\r\n                    skipBytes = 11;\r\n                    break;\r\n                case COMPRESSED_SIZE:\r\n                    compressedSize += result << (8 * valuePos);\r\n                    result -= valueInc;\r\n                    if (result < 0) {\r\n                        valueInc = 1;\r\n                        result += 256;\r\n                    } else {\r\n                        valueInc = 0;\r\n                    }\r\n                    valuePos++;\r\n                    if (valuePos > 3) {\r\n                        valuePos = 0;\r\n                        value = 0;\r\n                        state = State.FN_LENGTH;\r\n                        skipBytes = 4;\r\n                    }\r\n                    break;\r\n                case FN_LENGTH:\r\n                case EF_LENGTH:\r\n                    value += result << 8 * valuePos;\r\n                    if (valuePos == 1) {\r\n                        valuePos = 0;\r\n                        if (state == State.FN_LENGTH) {\r\n                            state = State.EF_LENGTH;\r\n                        } else {\r\n                            state = State.HEADER;\r\n                            skipBytes = value;\r\n                        }\r\n                    } else {\r\n                        valuePos = 1;\r\n                    }\r\n                    break;\r\n                case HEADER:\r\n                    initKeys(password);\r\n                    for (int i = 0; i < DECRYPT_HEADER_SIZE; i++) {\r\n                        updateKeys((byte) (result ^ decryptByte()));\r\n                        result = delegate.read();\r\n                    }\r\n                    compressedSize -= DECRYPT_HEADER_SIZE;\r\n                    state = State.DATA;\r\n                    // intentionally no break\r\n                case DATA:\r\n                    result = (result ^ decryptByte()) & 0xff;\r\n                    updateKeys((byte) result);\r\n                    compressedSize--;\r\n                    if (compressedSize == 0) {\r\n                        valuePos = 0;\r\n                        state = State.SIGNATURE;\r\n                    }\r\n                    break;\r\n                case TAIL:\r\n                    // do nothing\r\n            }\r\n        } else {\r\n            skipBytes--;\r\n        }\r\n        return result;\r\n    }\r\n\r\n    @Override\r\n    public void close() throws IOException {\r\n        delegate.close();\r\n        super.close();\r\n    }\r\n\r\n    private void initKeys(String password) {\r\n        keys[0] = 305419896;\r\n        keys[1] = 591751049;\r\n        keys[2] = 878082192;\r\n        for (int i = 0; i < password.length(); i++) {\r\n            updateKeys((byte) (password.charAt(i) & 0xff));\r\n        }\r\n    }\r\n\r\n    private void updateKeys(byte charAt) {\r\n        keys[0] = crc32(keys[0], charAt);\r\n        keys[1] += keys[0] & 0xff;\r\n        keys[1] = keys[1] * 134775813 + 1;\r\n        keys[2] = crc32(keys[2], (byte) (keys[1] >> 24));\r\n    }\r\n\r\n    private byte decryptByte() {\r\n        int temp = keys[2] | 2;\r\n        return (byte) ((temp * (temp ^ 1)) >>> 8);\r\n    }\r\n\r\n    private int crc32(int oldCrc, byte charAt) {\r\n        return ((oldCrc >>> 8) ^ CRC_TABLE[(oldCrc ^ charAt) & 0xff]);\r\n    }\r\n\r\n    private static enum State {\r\n        SIGNATURE, FLAGS, COMPRESSED_SIZE, FN_LENGTH, EF_LENGTH, HEADER, DATA, TAIL\r\n    }\r\n}",
+               "LOC": 167,
+               "Url": "http://blog.alutam.com/2009/10/31/reading-password-protected-zip-files-in-java/",
+               "Score": 0.1218266026,
+               "API_Weights": 7.7168987439,
+               "API_Qualified_Names": {
+                  "InputStream.read": "java.io.InputStream.read",
+                  "IllegalStateException.__init__": "org.jboss.weld.exceptions.IllegalStateException.__init__",
+                  "InputStream.close": "java.io.InputStream.close"
+               },
+               "Url_Position": 22,
+               "In_Page_Order": 1,
+               "Num_API_Calls": 3,
+               "Dist_Center": 0.2910137486,
+               "MethodInvocations": [
+                  "InputStream.read",
+                  "IllegalStateException.__init__",
+                  "InputStream.close"
+               ]
+            },
+            {
+               "Cluster": 3,
+               "Code": "\nFile f = new File(\".\");\nString files[] = f.list();\nfor (int i=0; i<files.length; i++) {\n   System.out.println(\"Adding: \"+files[i]);\n   FileInputStream fi = new FileInputStream(files[i]);\n   // create zip entry\n   // add entries to ZIP file\n}",
+               "LOC": 9,
+               "Url": "http://www.oracle.com/technetwork/articles/java/compress-1565076.html",
+               "Score": 0.0,
+               "API_Weights": 1.7014118564,
+               "API_Qualified_Names": {
+                  "File.__init__": "java.io.File.__init__",
+                  "File.list": "java.io.File.list"
+               },
+               "Url_Position": 14,
+               "In_Page_Order": 14,
+               "Num_API_Calls": 2,
+               "Dist_Center": 0.3239039699,
+               "MethodInvocations": [
+                  "File.list",
+                  "File.__init__"
+               ]
+            }
+         ],
+         "avg_cluster_api_weights": 10.908466757026341,
+         "top_apis_by_cluster": [
+            "bufferedoutputstream.__init__",
+            "inputstream.close",
+            "inputstream.read",
+            "fileoutputstream.__init__",
+            "file.__init__",
+            "file.list",
+            "illegalstateexception.__init__",
+            "pack200compressoroutputstream.close"
+         ]
+      },
+      {
+         "cluster_snippets": [
+            {
+               "Cluster": 4,
+               "Code": "\nEnumeration<? extends ZipEntry> entries = zipFile.entries();\n\nwhile(entries.hasMoreElements()){\n    ZipEntry entry = entries.nextElement();\n    if(entry.isDirectory()){\n        System.out.println(\"dir  : \" + entry.getName());\n    } else {\n        System.out.println(\"file : \" + entry.getName());\n    }\n}\n",
+               "LOC": 12,
+               "Url": "http://tutorials.jenkov.com/java-zip/zipfile.html",
+               "Score": 1.0,
+               "API_Weights": 12.5864769998,
+               "API_Qualified_Names": {
+                  "Enumeration.hasMoreElements": "java.util.Enumeration.hasMoreElements",
+                  "Enumeration.nextElement": "java.util.Enumeration.nextElement",
+                  "ZipEntry.isDirectory": "java.util.zip.ZipEntry.isDirectory",
+                  "ZipEntry.getName": "java.util.zip.ZipEntry.getName"
+               },
+               "Url_Position": 16,
+               "In_Page_Order": 6,
+               "Num_API_Calls": 4,
+               "Dist_Center": 0.0369885221,
+               "MethodInvocations": [
+                  "Enumeration.nextElement",
+                  "Enumeration.hasMoreElements",
+                  "ZipEntry.isDirectory",
+                  "ZipEntry.getName"
+               ]
+            },
+            {
+               "Cluster": 4,
+               "Code": "import java.io.*;\nimport java.util.*;\nimport java.util.zip.*;\n\n/**\n * This program reads contents of a ZIP file.\n *\n * @author www.codejava.net\n */\npublic class ReadZipFile {\n\n\tprivate static void read(String zipFilePath) {\n\t\ttry {\n\t\t\tZipFile zipFile = new ZipFile(zipFilePath);\n\n\t\t\tEnumeration<? extends ZipEntry> entries = zipFile.entries();\n\n\t\t\twhile (entries.hasMoreElements()) {\n\t\t\t\tZipEntry entry = entries.nextElement();\n\t\t\t\tString name = entry.getName();\n\t\t\t\tlong compressedSize = entry.getCompressedSize();\n\t\t\t\tlong normalSize = entry.getSize();\n\t\t\t\tString type = entry.isDirectory() ? \"DIR\" : \"FILE\";\n\n\t\t\t\tSystem.out.println(name);\n\t\t\t\tSystem.out.format(\"\\t %s - %d - %d\\n\", type, compressedSize, normalSize);\n\t\t\t}\n\n\t\t\tzipFile.close();\n\t\t} catch (IOException ex) {\n\t\t\tSystem.err.println(ex);\n\t\t}\n\t}\n\n\n\tpublic static void main(String[] args) {\n\t\tString zipFilePath = args[0];\n\t\tread(zipFilePath);\n\t}\n}",
+               "LOC": 40,
+               "Url": "http://www.codejava.net/java-se/file-io/how-to-read-contents-of-a-zip-file-in-java",
+               "Score": 0.9116609462,
+               "API_Weights": 20.8386429293,
+               "API_Qualified_Names": {
+                  "ZipFile.__init__": "java.util.zip.ZipFile.__init__",
+                  "ZipFile.entries": "java.util.zip.ZipFile.entries",
+                  "Enumeration.hasMoreElements": "java.util.Enumeration.hasMoreElements",
+                  "Enumeration.nextElement": "java.util.Enumeration.nextElement",
+                  "ZipEntry.getName": "java.util.zip.ZipEntry.getName",
+                  "ZipEntry.getCompressedSize": "java.util.zip.ZipEntry.getCompressedSize",
+                  "ZipEntry.getSize": "java.util.zip.ZipEntry.getSize",
+                  "ZipEntry.isDirectory": "java.util.zip.ZipEntry.isDirectory",
+                  "ZipFile.close": "java.util.zip.ZipFile.close"
+               },
+               "Url_Position": 10,
+               "In_Page_Order": 2,
+               "Num_API_Calls": 9,
+               "Dist_Center": 0.0746759864,
+               "MethodInvocations": [
+                  "Enumeration.nextElement",
+                  "ZipFile.close",
+                  "ZipFile.__init__",
+                  "ZipEntry.getName",
+                  "ZipFile.entries",
+                  "ZipEntry.getCompressedSize",
+                  "Enumeration.hasMoreElements",
+                  "ZipEntry.isDirectory",
+                  "ZipEntry.getSize"
+               ]
+            },
+            {
+               "Cluster": 4,
+               "Code": "public class Zipper {\n    public void printEntries(PrintStream stream, String zip)  {\n        ZipFile zipFile = null;\n        try {\n            zipFile = new ZipFile(zip);\n            Enumeration<? extends ZipEntry> entries = zipFile.entries();\n            while (entries.hasMoreElements()) {\n                ZipEntry zipEntry = entries.nextElement();\n                stream.println(zipEntry.getName());\n            }\n        } catch (IOException e) {\n            // error while opening a ZIP file\n        } finally {\n            if (zipFile != null) {\n                try {\n                    zipFile.close();\n                } catch (IOException e) {\n                    // do something\n                }\n            }\n        }\n    }\n}",
+               "LOC": 23,
+               "Url": "http://blog.codeleak.pl/2014/06/listing-zip-file-content-java-8.html",
+               "Score": 0.8397704964,
+               "API_Weights": 18.5990391992,
+               "API_Qualified_Names": {
+                  "ZipFile.__init__": "java.util.zip.ZipFile.__init__",
+                  "ZipFile.entries": "java.util.zip.ZipFile.entries",
+                  "Enumeration.hasMoreElements": "java.util.Enumeration.hasMoreElements",
+                  "Enumeration.nextElement": "java.util.Enumeration.nextElement",
+                  "ZipEntry.getName": "java.util.zip.ZipEntry.getName",
+                  "PrintStream.println": "java.io.PrintStream.println",
+                  "ZipFile.close": "java.util.zip.ZipFile.close"
+               },
+               "Url_Position": 21,
+               "In_Page_Order": 1,
+               "Num_API_Calls": 7,
+               "Dist_Center": 0.1053460995,
+               "MethodInvocations": [
+                  "Enumeration.nextElement",
+                  "ZipFile.close",
+                  "ZipFile.__init__",
+                  "ZipEntry.getName",
+                  "ZipFile.entries",
+                  "Enumeration.hasMoreElements",
+                  "PrintStream.println"
+               ]
+            },
+            {
+               "Cluster": 4,
+               "Code": "public class Zipper {\n    public void printEntries(PrintStream stream, String zip) {\n        try (ZipFile zipFile = new ZipFile(zip)) {\n            Enumeration<? extends ZipEntry> entries = zipFile.entries();\n            while (entries.hasMoreElements()) {\n                ZipEntry zipEntry = entries.nextElement();\n                stream.println(zipEntry.getName());\n            }\n        } catch (IOException e) {\n            // error while opening a ZIP file\n        }\n    }\n}",
+               "LOC": 13,
+               "Url": "http://blog.codeleak.pl/2014/06/listing-zip-file-content-java-8.html",
+               "Score": 0.8084087487,
+               "API_Weights": 13.7837381522,
+               "API_Qualified_Names": {
+                  "Enumeration.hasMoreElements": "java.util.Enumeration.hasMoreElements",
+                  "Enumeration.nextElement": "java.util.Enumeration.nextElement",
+                  "ZipEntry.getName": "java.util.zip.ZipEntry.getName",
+                  "PrintStream.println": "java.io.PrintStream.println"
+               },
+               "Url_Position": 21,
+               "In_Page_Order": 2,
+               "Num_API_Calls": 5,
+               "Dist_Center": 0.1187257396,
+               "MethodInvocations": [
+                  "Enumeration.nextElement",
+                  "ZipEntry.getName",
+                  "AM.__init__",
+                  "Enumeration.hasMoreElements",
+                  "PrintStream.println"
+               ]
+            },
+            {
+               "Cluster": 4,
+               "Code": "ZipEntry anEntry = null;\n\nwhile(entries.hasMoreElements()) {\n\n anEntry = entries.nextElement(); \n\n if(!anEntry.isDirectory() ) {\n\n  saveEntry(zFile,anEntry,newPath); // saves files which are not directories\n\n } else {  \n\n  newPath += File.seperator+anEntry.getName();\n\n }\n\n}\n\n",
+               "LOC": 19,
+               "Url": "http://www.speakingcs.com/2015/07/how-to-unzipextract-files-from-zip.html",
+               "Score": 0.7097546172,
+               "API_Weights": 5.6591186788,
+               "API_Qualified_Names": {
+                  "ZipEntry.isDirectory": "java.util.zip.ZipEntry.isDirectory",
+                  "ZipEntry.getName": "java.util.zip.ZipEntry.getName"
+               },
+               "Url_Position": 29,
+               "In_Page_Order": 3,
+               "Num_API_Calls": 2,
+               "Dist_Center": 0.1608138525,
+               "MethodInvocations": [
+                  "ZipEntry.isDirectory",
+                  "ZipEntry.getName"
+               ]
+            },
+            {
+               "Cluster": 4,
+               "Code": "import java.io.IOException;\nimport java.io.InputStream;\nimport java.nio.charset.StandardCharsets;\nimport java.util.Enumeration;\nimport java.util.zip.ZipEntry;\nimport java.util.zip.ZipFile;\n\nimport org.apache.commons.io.IOUtils;\n\npublic class test {\n    public static void main(String[] args) throws IOException {\n        ZipFile zipFile = new ZipFile(\"test.zip\");\n        Enumeration<? extends ZipEntry> entries = zipFile.entries();\n        System.out.println(entries);\n\n        while(entries.hasMoreElements()){\n            ZipEntry entry = entries.nextElement();\n            System.out.println(entry.getName());\n            if(entry.getName().contains(\"java\")){\n                InputStream stream = zipFile.getInputStream(entry);\n                System.out.println(IOUtils.toString(stream, StandardCharsets.UTF_8));\n            }\n        }\n    }\n}\n",
+               "LOC": 26,
+               "Url": "https://stackoverflow.com/questions/46217926/how-to-read-all-java-files-from-a-zip-file",
+               "Score": 0.6887318847,
+               "API_Weights": 18.4957729812,
+               "API_Qualified_Names": {
+                  "ZipFile.__init__": "java.util.zip.ZipFile.__init__",
+                  "ZipFile.entries": "java.util.zip.ZipFile.entries",
+                  "Enumeration.hasMoreElements": "java.util.Enumeration.hasMoreElements",
+                  "Enumeration.nextElement": "java.util.Enumeration.nextElement",
+                  "ZipEntry.getName": "java.util.zip.ZipEntry.getName",
+                  "ZipFile.getInputStream": "java.util.zip.ZipFile.getInputStream"
+               },
+               "Url_Position": 2,
+               "In_Page_Order": 1,
+               "Num_API_Calls": 6,
+               "Dist_Center": 0.1697826318,
+               "MethodInvocations": [
+                  "Enumeration.nextElement",
+                  "ZipFile.__init__",
+                  "ZipEntry.getName",
+                  "ZipFile.entries",
+                  "Enumeration.hasMoreElements",
+                  "ZipFile.getInputStream"
+               ]
+            },
+            {
+               "Cluster": 4,
+               "Code": "         \nimport java.io.BufferedReader;\nimport java.io.IOException;\nimport java.io.InputStreamReader;\nimport java.util.Enumeration;\nimport java.util.zip.ZipEntry;\nimport java.util.zip.ZipFile;\n\npublic class ReadZip {\n  public static void main(String args[]) {\n    try {\n      ZipFile zf = new ZipFile(\"ReadZip.zip\");\n      Enumeration entries = zf.entries();\n\n      BufferedReader input = new BufferedReader(new InputStreamReader(\n          System.in));\n      while (entries.hasMoreElements()) {\n        ZipEntry ze = (ZipEntry) entries.nextElement();\n        System.out.println(\"Read \" + ze.getName() + \"?\");\n        String inputLine = input.readLine();\n        if (inputLine.equalsIgnoreCase(\"yes\")) {\n          long size = ze.getSize();\n          if (size > 0) {\n            System.out.println(\"Length is \" + size);\n            BufferedReader br = new BufferedReader(\n                new InputStreamReader(zf.getInputStream(ze)));\n            String line;\n            while ((line = br.readLine()) != null) {\n              System.out.println(line);\n            }\n            br.close();\n          }\n        }\n      }\n    } catch (IOException e) {\n      e.printStackTrace();\n    }\n  }\n}\n\n\n           \n         \n    \n    \n    \n    \n    \n    \n    \n    \n  \n",
+               "LOC": 53,
+               "Url": "http://www.java2s.com/Code/Java/File-Input-Output/ReadingtheContentsofaZIPFile.htm",
+               "Score": 0.6543746851,
+               "API_Weights": 22.385401123,
+               "API_Qualified_Names": {
+                  "ZipFile.__init__": "java.util.zip.ZipFile.__init__",
+                  "ZipFile.entries": "java.util.zip.ZipFile.entries",
+                  "InputStreamReader.__init__": "java.io.InputStreamReader.__init__",
+                  "BufferedReader.__init__": "java.io.BufferedReader.__init__",
+                  "Enumeration.hasMoreElements": "java.util.Enumeration.hasMoreElements",
+                  "Enumeration.nextElement": "java.util.Enumeration.nextElement",
+                  "ZipEntry.getName": "java.util.zip.ZipEntry.getName",
+                  "BufferedReader.readLine": "java.io.BufferedReader.readLine",
+                  "ZipEntry.getSize": "java.util.zip.ZipEntry.getSize",
+                  "ZipFile.getInputStream": "java.util.zip.ZipFile.getInputStream",
+                  "BufferedReader.close": "java.io.BufferedReader.close"
+               },
+               "Url_Position": 6,
+               "In_Page_Order": 1,
+               "Num_API_Calls": 11,
+               "Dist_Center": 0.1844402004,
+               "MethodInvocations": [
+                  "Enumeration.nextElement",
+                  "ZipFile.__init__",
+                  "ZipFile.entries",
+                  "ZipEntry.getName",
+                  "ZipFile.getInputStream",
+                  "BufferedReader.close",
+                  "BufferedReader.readLine",
+                  "Enumeration.hasMoreElements",
+                  "InputStreamReader.__init__",
+                  "ZipEntry.getSize",
+                  "BufferedReader.__init__"
+               ]
+            },
+            {
+               "Cluster": 4,
+               "Code": "public static void main(String[] args) throws IOException {\n    ZipFile zipFile = new ZipFile(\"C:/test.zip\");\n\n    Enumeration<? extends ZipEntry> entries = zipFile.entries();\n\n    while(entries.hasMoreElements()){\n        ZipEntry entry = entries.nextElement();\n        InputStream stream = zipFile.getInputStream(entry);\n    }\n}\n",
+               "LOC": 11,
+               "Url": "https://stackoverflow.com/questions/15667125/read-content-from-files-which-are-inside-zip-file",
+               "Score": 0.5827837137,
+               "API_Weights": 14.8629898103,
+               "API_Qualified_Names": {
+                  "ZipFile.__init__": "java.util.zip.ZipFile.__init__",
+                  "ZipFile.entries": "java.util.zip.ZipFile.entries",
+                  "Enumeration.hasMoreElements": "java.util.Enumeration.hasMoreElements",
+                  "Enumeration.nextElement": "java.util.Enumeration.nextElement",
+                  "ZipFile.getInputStream": "java.util.zip.ZipFile.getInputStream"
+               },
+               "Url_Position": 1,
+               "In_Page_Order": 1,
+               "Num_API_Calls": 5,
+               "Dist_Center": 0.2149825491,
+               "MethodInvocations": [
+                  "Enumeration.nextElement",
+                  "ZipFile.__init__",
+                  "ZipFile.entries",
+                  "Enumeration.hasMoreElements",
+                  "ZipFile.getInputStream"
+               ]
+            },
+            {
+               "Cluster": 4,
+               "Code": " ZipFile zipFile = new ZipFile(\"C:/test.zip\");\n\nEnumeration<? extends ZipEntry> entries = zipFile.entries();\n\nwhile(entries.hasMoreElements()){\n    ZipEntry entry = entries.nextElement();\n    InputStream stream = zipFile.getInputStream(entry);\n}\n",
+               "LOC": 9,
+               "Url": "https://stackoverflow.com/questions/46217926/how-to-read-all-java-files-from-a-zip-file",
+               "Score": 0.5827837137,
+               "API_Weights": 14.8629898103,
+               "API_Qualified_Names": {
+                  "ZipFile.__init__": "java.util.zip.ZipFile.__init__",
+                  "ZipFile.entries": "java.util.zip.ZipFile.entries",
+                  "Enumeration.hasMoreElements": "java.util.Enumeration.hasMoreElements",
+                  "Enumeration.nextElement": "java.util.Enumeration.nextElement",
+                  "ZipFile.getInputStream": "java.util.zip.ZipFile.getInputStream"
+               },
+               "Url_Position": 2,
+               "In_Page_Order": 3,
+               "Num_API_Calls": 5,
+               "Dist_Center": 0.2149825491,
+               "MethodInvocations": [
+                  "Enumeration.nextElement",
+                  "ZipFile.__init__",
+                  "ZipFile.entries",
+                  "Enumeration.hasMoreElements",
+                  "ZipFile.getInputStream"
+               ]
+            },
+            {
+               "Cluster": 4,
+               "Code": "public void printEntries(PrintStream stream, String zip) {\n    try (ZipFile zipFile = new ZipFile(zip)) {\n        Predicate<ZipEntry> isFile = ze -> !ze.isDirectory();\n        Predicate<ZipEntry> isJava = ze -> ze.getName().matches(\".*java\");\n        Comparator<ZipEntry> bySize = \n                (ze1, ze2) -> Long.valueOf(ze2.getSize() - ze1.getSize()).intValue();\n        zipFile.stream()\n                .filter(isFile.and(isJava))\n                .sorted(bySize)\n                .forEach(ze -> print(stream, ze));\n    } catch (IOException e) {\n        // error while opening a ZIP file\n    }\n}\n\nprivate void print(PrintStream stream, ZipEntry zipEntry) {\n    stream.println(zipEntry.getName() + \", size = \" + zipEntry.getSize());\n}",
+               "LOC": 18,
+               "Url": "http://blog.codeleak.pl/2014/06/listing-zip-file-content-java-8.html",
+               "Score": 0.5423714644,
+               "API_Weights": 9.5423822195,
+               "API_Qualified_Names": {
+                  "ZipEntry.getSize": "java.util.zip.ZipEntry.getSize",
+                  "ZipEntry.getName": "java.util.zip.ZipEntry.getName",
+                  "PrintStream.println": "java.io.PrintStream.println"
+               },
+               "Url_Position": 21,
+               "In_Page_Order": 4,
+               "Num_API_Calls": 5,
+               "Dist_Center": 0.2322233405,
+               "MethodInvocations": [
+                  "ZipEntry.getName",
+                  "Predicate.and",
+                  "AM.__init__",
+                  "PrintStream.println",
+                  "ZipEntry.getSize"
+               ]
+            },
+            {
+               "Cluster": 4,
+               "Code": "public void printEntries(PrintStream stream, String zip) {\n\n    try (ZipFile zipFile = new ZipFile(zip)) {\n        Predicate<ZipEntry> isFile = ze -> !ze.isDirectory();\n        Predicate<ZipEntry> isJava = ze -> ze.getName().matches(\".*java\");\n\n        List<ZipEntry> result = zipFile.stream()\n                .filter(isFile.and(isJava))\n                .filter(ze -> containsText(zipFile, ze, \"@Test\"))\n                .collect(Collectors.toList());\n\n        result.forEach(stream::println);\n\n\n    } catch (IOException e) {\n        // error while opening a ZIP file\n    }\n}\n\nprivate boolean containsText(ZipFile zipFile, ZipEntry zipEntry, String needle) {\n    try (InputStream inputStream = zipFile.getInputStream(zipEntry);\n         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {\n\n        Optional<String> found = reader.lines()\n                .filter(l -> l.contains(needle))\n                .findFirst();\n\n        return found.isPresent();\n\n    } catch (IOException e) {\n        return false;\n    }\n}",
+               "LOC": 33,
+               "Url": "http://blog.codeleak.pl/2014/06/listing-zip-file-content-java-8.html",
+               "Score": 0.4635559145,
+               "API_Weights": 6.5543718272,
+               "API_Qualified_Names": {
+                  "ZipFile.getInputStream": "java.util.zip.ZipFile.getInputStream",
+                  "Optional.isPresent": "com.google.common.base.Optional.isPresent"
+               },
+               "Url_Position": 21,
+               "In_Page_Order": 7,
+               "Num_API_Calls": 5,
+               "Dist_Center": 0.2658478599,
+               "MethodInvocations": [
+                  "List.forEach",
+                  "Optional.isPresent",
+                  "Predicate.and",
+                  "AM.__init__",
+                  "ZipFile.getInputStream"
+               ]
+            },
+            {
+               "Cluster": 4,
+               "Code": "\nimport java.io.*;\nimport java.util.zip.*;\n\npublic class SaveEmployee {\n   public static void main(String argv[]) throws \n     Exception {\n      // create some objects\n      Employee sarah = new Employee(\"S. Jordan\", 28, \n        56000);\n      Employee sam = new Employee(\"S. McDonald\", 29, \n        58000);\n      // serialize the objects sarah and sam\n      FileOutputStream fos = new \n        FileOutputStream(\"db\");\n      GZIPOutputStream gz = new GZIPOutputStream(fos);\n      ObjectOutputStream oos = new \n        ObjectOutputStream(gz);\n      oos.writeObject(sarah);\n      oos.writeObject(sam);\n      oos.flush();\n      oos.close();\n      fos.close();\n   }\n} ",
+               "LOC": 25,
+               "Url": "http://www.oracle.com/technetwork/articles/java/compress-1565076.html",
+               "Score": 0.419547224,
+               "API_Weights": 3.347613774,
+               "API_Qualified_Names": {
+                  "Employee.__init__": "com.demo.form.Employee.__init__",
+                  "FileOutputStream.__init__": "java.io.FileOutputStream.__init__",
+                  "GZIPOutputStream.__init__": "java.util.zip.GZIPOutputStream.__init__",
+                  "ObjectOutputStream.__init__": "java.io.ObjectOutputStream.__init__",
+                  "ObjectOutputStream.writeObject": "java.io.ObjectOutputStream.writeObject",
+                  "ObjectOutputStream.flush": "java.io.ObjectOutputStream.flush",
+                  "ObjectOutputStream.close": "java.io.ObjectOutputStream.close",
+                  "FileOutputStream.close": "java.io.FileOutputStream.close"
+               },
+               "Url_Position": 14,
+               "In_Page_Order": 21,
+               "Num_API_Calls": 8,
+               "Dist_Center": 0.2846229756,
+               "MethodInvocations": [
+                  "GZIPOutputStream.__init__",
+                  "ObjectOutputStream.__init__",
+                  "FileOutputStream.close",
+                  "ObjectOutputStream.close",
+                  "Employee.__init__",
+                  "ObjectOutputStream.flush",
+                  "FileOutputStream.__init__",
+                  "ObjectOutputStream.writeObject"
+               ]
+            },
+            {
+               "Cluster": 4,
+               "Code": "public static void main(String[] args) throws IOException {\n    ZipFile zip = new ZipFile(\"C:\\\\Users\\\\mofh\\\\Desktop\\\\test.zip\");\n\n\n    for (Enumeration e = zip.entries(); e.hasMoreElements(); ) {\n        ZipEntry entry = (ZipEntry) e.nextElement();\n        if (!entry.isDirectory()) {\n            if (FilenameUtils.getExtension(entry.getName()).equals(\"png\")) {\n                byte[] image = getImage(zip.getInputStream(entry));\n                //do your thing\n            } else if (FilenameUtils.getExtension(entry.getName()).equals(\"txt\")) {\n                StringBuilder out = getTxtFiles(zip.getInputStream(entry));\n                //do your thing\n            }\n        }\n    }\n\n\n}\n\nprivate  static StringBuilder getTxtFiles(InputStream in)  {\n    StringBuilder out = new StringBuilder();\n    BufferedReader reader = new BufferedReader(new InputStreamReader(in));\n    String line;\n    try {\n        while ((line = reader.readLine()) != null) {\n            out.append(line);\n        }\n    } catch (IOException e) {\n        // do something, probably not a text file\n        e.printStackTrace();\n    }\n    return out;\n}\n\nprivate static byte[] getImage(InputStream in)  {\n    try {\n        BufferedImage image = ImageIO.read(in); //just checking if the InputStream belongs in fact to an image\n        ByteArrayOutputStream baos = new ByteArrayOutputStream();\n        ImageIO.write(image, \"png\", baos);\n        return baos.toByteArray();\n    } catch (IOException e) {\n        // do something, it is not a image\n        e.printStackTrace();\n    }\n    return null;\n}\n",
+               "LOC": 48,
+               "Url": "https://stackoverflow.com/questions/36548755/read-zip-file-content-without-extracting-in-java",
+               "Score": 0.4035046775,
+               "API_Weights": 13.242707659,
+               "API_Qualified_Names": {
+                  "ZipFile.__init__": "java.util.zip.ZipFile.__init__",
+                  "ZipFile.entries": "java.util.zip.ZipFile.entries",
+                  "ZipEntry.isDirectory": "java.util.zip.ZipEntry.isDirectory",
+                  "ZipFile.getInputStream": "java.util.zip.ZipFile.getInputStream",
+                  "StringBuilder.__init__": "java.lang.StringBuilder.__init__",
+                  "InputStreamReader.__init__": "java.io.InputStreamReader.__init__",
+                  "BufferedReader.__init__": "java.io.BufferedReader.__init__",
+                  "BufferedReader.readLine": "java.io.BufferedReader.readLine",
+                  "ByteArrayOutputStream.__init__": "java.io.ByteArrayOutputStream.__init__",
+                  "ByteArrayOutputStream.toByteArray": "java.io.ByteArrayOutputStream.toByteArray"
+               },
+               "Url_Position": 3,
+               "In_Page_Order": 1,
+               "Num_API_Calls": 10,
+               "Dist_Center": 0.2914670936,
+               "MethodInvocations": [
+                  "StringBuilder.__init__",
+                  "ZipFile.__init__",
+                  "InputStreamReader.__init__",
+                  "ZipFile.entries",
+                  "ByteArrayOutputStream.toByteArray",
+                  "BufferedReader.readLine",
+                  "ByteArrayOutputStream.__init__",
+                  "BufferedReader.__init__",
+                  "ZipEntry.isDirectory",
+                  "ZipFile.getInputStream"
+               ]
+            },
+            {
+               "Cluster": 4,
+               "Code": "\nimport java.io.*;\nimport java.util.*;\nimport java.util.zip.*;\n\npublic class UnZip2 {\n   static final int BUFFER = 2048;\n   public static void main (String argv[]) {\n      try {\n         BufferedOutputStream dest = null;\n         BufferedInputStream is = null;\n         ZipEntry entry;\n         ZipFile zipfile = new ZipFile(argv[0]);\n         Enumeration e = zipfile.entries();\n         while(e.hasMoreElements()) {\n            entry = (ZipEntry) e.nextElement();\n            System.out.println(\"Extracting: \" +entry);\n            is = new BufferedInputStream\n              (zipfile.getInputStream(entry));\n            int count;\n            byte data[] = new byte[BUFFER];\n            FileOutputStream fos = new \n              FileOutputStream(entry.getName());\n            dest = new \n              BufferedOutputStream(fos, BUFFER);\n            while ((count = is.read(data, 0, BUFFER)) \n              != -1) {\n               dest.write(data, 0, count);\n            }\n            dest.flush();\n            dest.close();\n            is.close();\n         }\n      } catch(Exception e) {\n         e.printStackTrace();\n      }\n   }\n}",
+               "LOC": 38,
+               "Url": "http://www.oracle.com/technetwork/articles/java/compress-1565076.html",
+               "Score": 0.3198257958,
+               "API_Weights": 21.3976830496,
+               "API_Qualified_Names": {
+                  "ZipFile.__init__": "java.util.zip.ZipFile.__init__",
+                  "ZipFile.entries": "java.util.zip.ZipFile.entries",
+                  "Enumeration.hasMoreElements": "java.util.Enumeration.hasMoreElements",
+                  "Enumeration.nextElement": "java.util.Enumeration.nextElement",
+                  "ZipFile.getInputStream": "java.util.zip.ZipFile.getInputStream",
+                  "BufferedInputStream.__init__": "java.io.BufferedInputStream.__init__",
+                  "ZipEntry.getName": "java.util.zip.ZipEntry.getName",
+                  "FileOutputStream.__init__": "java.io.FileOutputStream.__init__",
+                  "BufferedOutputStream.__init__": "java.io.BufferedOutputStream.__init__",
+                  "BufferedInputStream.read": "java.io.BufferedInputStream.read",
+                  "BufferedOutputStream.flush": "java.io.BufferedOutputStream.flush",
+                  "BufferedOutputStream.close": "java.io.BufferedOutputStream.close",
+                  "BufferedInputStream.close": "java.io.BufferedInputStream.close",
+                  "Enumeration.printStackTrace": "java.util.Enumeration.printStackTrace"
+               },
+               "Url_Position": 14,
+               "In_Page_Order": 12,
+               "Num_API_Calls": 14,
+               "Dist_Center": 0.3271664218,
+               "MethodInvocations": [
+                  "Enumeration.nextElement",
+                  "BufferedInputStream.__init__",
+                  "BufferedOutputStream.__init__",
+                  "BufferedOutputStream.flush",
+                  "ZipFile.__init__",
+                  "ZipFile.entries",
+                  "ZipEntry.getName",
+                  "BufferedInputStream.close",
+                  "BufferedOutputStream.close",
+                  "BufferedInputStream.read",
+                  "Enumeration.printStackTrace",
+                  "FileOutputStream.__init__",
+                  "Enumeration.hasMoreElements",
+                  "ZipFile.getInputStream"
+               ]
+            },
+            {
+               "Cluster": 4,
+               "Code": "public void printEntries(PrintStream stream, String zip) {\n    try (ZipFile zipFile = new ZipFile(zip)) {\n        Predicate<ZipEntry> isFile = ze -> !ze.isDirectory();\n        Predicate<ZipEntry> isJava = ze -> ze.getName().matches(\".*java\");\n        Comparator<ZipEntry> bySize =\n            (ze1, ze2) -> Long.valueOf(ze2.getSize()).compareTo(Long.valueOf(ze1.getSize()));\n\n        Map<String, List<ZipEntry>> result = zipFile.stream()\n                .filter(isFile.and(isJava))\n                .sorted(bySize)\n                .collect(groupingBy(this::fileIndex));\n\n        result.entrySet().stream().forEach(stream::println);\n\n    } catch (IOException e) {\n        // error while opening a ZIP file\n    }\n}\n\nprivate String fileIndex(ZipEntry zipEntry) {\n    Path path = Paths.get(zipEntry.getName());\n    Path fileName = path.getFileName();\n    return fileName.toString().substring(0, 1).toLowerCase();\n}",
+               "LOC": 24,
+               "Url": "http://blog.codeleak.pl/2014/06/listing-zip-file-content-java-8.html",
+               "Score": 0.3166608739,
+               "API_Weights": 8.0398503369,
+               "API_Qualified_Names": {
+                  "Map.entrySet": "java.util.Map.entrySet",
+                  "PrintStream": "java.io.PrintStream.PrintStream",
+                  "ZipEntry.getName": "java.util.zip.ZipEntry.getName",
+                  "Path.toString": "java.nio.file.Path.toString"
+               },
+               "Url_Position": 21,
+               "In_Page_Order": 6,
+               "Num_API_Calls": 6,
+               "Dist_Center": 0.3285166499,
+               "MethodInvocations": [
+                  "Map.entrySet",
+                  "ZipEntry.getName",
+                  "Path.toString",
+                  "Predicate.and",
+                  "AM.__init__",
+                  "PrintStream"
+               ]
+            },
+            {
+               "Cluster": 4,
+               "Code": "import java.io.BufferedInputStream;\nimport java.io.FileInputStream;\nimport java.io.FileOutputStream;\nimport java.io.IOException;\nimport java.io.InputStream;\nimport java.util.Date;\nimport java.util.Enumeration;\nimport java.util.zip.ZipEntry;\nimport java.util.zip.ZipFile;\nimport java.util.zip.ZipInputStream;\n\n/**\n * Java program to iterate and read file entries from Zip archive.\n * This program demonstrate two ways to retrieve files from Zip using ZipFile and by using ZipInputStream class.\n * @author Javin\n */\n\npublic class ZipFileReader {\n\n    // This Zip file contains 11 PNG images\n    private static final String FILE_NAME = \"C:\\\\temp\\\\pics.zip\";\n    private static final String OUTPUT_DIR = \"C:\\\\temp\\\\Images\\\\\";\n    private static final int BUFFER_SIZE = 8192;\n\n    public static void main(String args[]) throws IOException {\n\n        // Prefer ZipFile over ZipInputStream\n        readUsingZipFile();\n    //  readUsingZipInputStream();\n\n    }\n\n    /*\n     * Example of reading Zip archive using ZipFile class\n     */\n\n    private static void readUsingZipFile() throws IOException {\n        final ZipFile file = new ZipFile(FILE_NAME);\n        System.out.println(\"Iterating over zip file : \" + FILE_NAME);\n\n        try {\n            final Enumeration<? extends ZipEntry> entries = file.entries();\n            while (entries.hasMoreElements()) {\n                final ZipEntry entry = entries.nextElement();\n                System.out.printf(\"File: %s Size %d  Modified on %TD %n\", entry.getName(), entry.getSize(), new Date(entry.getTime()));\n                extractEntry(entry, file.getInputStream(entry));\n            }\n            System.out.printf(\"Zip file %s extracted successfully in %s\", FILE_NAME, OUTPUT_DIR);\n        } finally {\n            file.close();\n        }\n\n    }\n\n    /*\n     * Example of reading Zip file using ZipInputStream in Java.\n     */\n\n    private static void readUsingZipInputStream() throws IOException {\n        BufferedInputStream bis = new BufferedInputStream(new FileInputStream(FILE_NAME));\n        final ZipInputStream is = new ZipInputStream(bis);\n\n        try {\n            ZipEntry entry;\n            while ((entry = is.getNextEntry()) != null) {\n                System.out.printf(\"File: %s Size %d  Modified on %TD %n\", entry.getName(), entry.getSize(), new Date(entry.getTime()));\n                extractEntry(entry, is);\n            }\n        } finally {\n            is.close();\n        }\n\n    }\n\n    /*\n     * Utility method to read  data from InputStream\n     */\n\n    private static void extractEntry(final ZipEntry entry, InputStream is) throws IOException {\n        String exractedFile = OUTPUT_DIR + entry.getName();\n        FileOutputStream fos = null;\n\n        try {\n            fos = new FileOutputStream(exractedFile);\n            final byte[] buf = new byte[BUFFER_SIZE];\n            int read = 0;\n            int length;\n\n            while ((length = is.read(buf, 0, buf.length)) >= 0) {\n                fos.write(buf, 0, length);\n            }\n\n        } catch (IOException ioex) {\n            fos.close();\n        }\n\n    }\n\n}\n\nOutput:\nIterating over zip file : C:\\temp\\pics.zip\nFile: Image  (11).png Size 21294  Modified on 10/24/13\nFile: Image  (1).png Size 22296  Modified on 11/19/13\nFile: Image  (2).png Size 10458  Modified on 10/24/13\nFile: Image  (3).png Size 18425  Modified on 11/19/13\nFile: Image  (4).png Size 31888  Modified on 11/19/13\nFile: Image  (5).png Size 27454  Modified on 11/19/13\nFile: Image  (6).png Size 67608  Modified on 11/19/13\nFile: Image  (7).png Size 8659  Modified on 11/19/13\nFile: Image  (8).png Size 40015  Modified on 11/19/13\nFile: Image  (9).png Size 17062  Modified on 10/24/13\nFile: Image  (10).png Size 42467  Modified on 10/24/13\nZip file C:\\temp\\pics.zip extracted successfully in C:\\temp\\Images\\",
+               "LOC": 114,
+               "Url": "http://javarevisited.blogspot.gr/2014/06/2-examples-to-read-zip-files-in-java-zipFile-vs-zipInputStream.html",
+               "Score": 1.110223025e-16,
+               "API_Weights": 24.4722621019,
+               "API_Qualified_Names": {
+                  "IOException": "java.io.IOException.IOException",
+                  "ZipFile.__init__": "java.util.zip.ZipFile.__init__",
+                  "ZipFile.entries": "java.util.zip.ZipFile.entries",
+                  "Enumeration.hasMoreElements": "java.util.Enumeration.hasMoreElements",
+                  "Enumeration.nextElement": "java.util.Enumeration.nextElement",
+                  "ZipEntry.getTime": "java.util.zip.ZipEntry.getTime",
+                  "Date.__init__": "java.util.Date.__init__",
+                  "ZipEntry.getSize": "java.util.zip.ZipEntry.getSize",
+                  "ZipEntry.getName": "java.util.zip.ZipEntry.getName",
+                  "ZipFile.getInputStream": "java.util.zip.ZipFile.getInputStream",
+                  "IOException.entry": "java.io.IOException.entry",
+                  "ZipFile.close": "java.util.zip.ZipFile.close",
+                  "FileInputStream.__init__": "java.io.FileInputStream.__init__",
+                  "BufferedInputStream.__init__": "java.io.BufferedInputStream.__init__",
+                  "ZipInputStream.__init__": "java.util.zip.ZipInputStream.__init__",
+                  "ZipInputStream.getNextEntry": "java.util.zip.ZipInputStream.getNextEntry",
+                  "ZipInputStream.close": "java.util.zip.ZipInputStream.close",
+                  "FileOutputStream.__init__": "java.io.FileOutputStream.__init__",
+                  "InputStream.read": "java.io.InputStream.read",
+                  "FileOutputStream.close": "java.io.FileOutputStream.close"
+               },
+               "Url_Position": 11,
+               "In_Page_Order": 1,
+               "Num_API_Calls": 20,
+               "Dist_Center": 0.4636114341,
+               "MethodInvocations": [
+                  "Enumeration.nextElement",
+                  "BufferedInputStream.__init__",
+                  "ZipFile.close",
+                  "ZipFile.__init__",
+                  "ZipFile.entries",
+                  "ZipEntry.getName",
+                  "FileOutputStream.close",
+                  "Date.__init__",
+                  "IOException",
+                  "ZipFile.getInputStream",
+                  "FileOutputStream.__init__",
+                  "ZipInputStream.close",
+                  "IOException.entry",
+                  "ZipInputStream.__init__",
+                  "InputStream.read",
+                  "Enumeration.hasMoreElements",
+                  "ZipInputStream.getNextEntry",
+                  "ZipEntry.getSize",
+                  "ZipEntry.getTime",
+                  "FileInputStream.__init__"
+               ]
+            }
+         ],
+         "avg_cluster_api_weights": 14.291940040757279,
+         "top_apis_by_cluster": [
+            "zipentry.getname",
+            "enumeration.hasmoreelements",
+            "enumeration.nextelement",
+            "zipfile.entries",
+            "zipfile.__init__",
+            "zipfile.getinputstream",
+            "zipentry.isdirectory",
+            "am.__init__"
+         ]
+      },
+      {
+         "cluster_snippets": [
+            {
+               "Cluster": 5,
+               "Code": "\nimport java.io.*;\nimport java.util.zip.*;\n\npublic class UnZip {\n   final int BUFFER = 2048;\n   public static void main (String argv[]) {\n      try {\n         BufferedOutputStream dest = null;\n         FileInputStream fis = new \n\t   FileInputStream(argv[0]);\n         ZipInputStream zis = new \n\t   ZipInputStream(new BufferedInputStream(fis));\n         ZipEntry entry;\n         while((entry = zis.getNextEntry()) != null) {\n            System.out.println(\"Extracting: \" +entry);\n            int count;\n            byte data[] = new byte[BUFFER];\n            // write the files to the disk\n            FileOutputStream fos = new \n\t      FileOutputStream(entry.getName());\n            dest = new \n              BufferedOutputStream(fos, BUFFER);\n            while ((count = zis.read(data, 0, BUFFER)) \n              != -1) {\n               dest.write(data, 0, count);\n            }\n            dest.flush();\n            dest.close();\n         }\n         zis.close();\n      } catch(Exception e) {\n         e.printStackTrace();\n      }\n   }\n}",
+               "LOC": 36,
+               "Url": "http://www.oracle.com/technetwork/articles/java/compress-1565076.html",
+               "Score": 1.0,
+               "API_Weights": 20.9509814153,
+               "API_Qualified_Names": {
+                  "FileInputStream.__init__": "java.io.FileInputStream.__init__",
+                  "BufferedInputStream.__init__": "java.io.BufferedInputStream.__init__",
+                  "ZipInputStream.__init__": "java.util.zip.ZipInputStream.__init__",
+                  "ZipInputStream.getNextEntry": "java.util.zip.ZipInputStream.getNextEntry",
+                  "ZipInputStream.close": "java.util.zip.ZipInputStream.close"
+               },
+               "Url_Position": 14,
+               "In_Page_Order": 7,
+               "Num_API_Calls": 5,
+               "Dist_Center": 0.0459435482,
+               "MethodInvocations": [
+                  "BufferedInputStream.__init__",
+                  "ZipInputStream.close",
+                  "ZipInputStream.getNextEntry",
+                  "ZipInputStream.__init__",
+                  "FileInputStream.__init__"
+               ]
+            },
+            {
+               "Cluster": 5,
+               "Code": "import java.io.*;\nimport java.util.zip.*;\n\npublic class ReadZip {\n\n\tpublic static void main(String[] args) {\n\t\ttry {\n\t\t\t// Open the ZIP file\n\t\t\tString inFilename = \"myzip.zip\";\n\t\t\tZipInputStream in = new ZipInputStream(new FileInputStream(inFilename));\n\n\t\t\t// While we have other entry\n\t\t\tZipEntry entry = in.getNextEntry();\n\t\t\twhile(entry != null){\n\t\t\t\tSystem.out.println(\"Reading: \" + entry.getName());\n\t\t\t\t// Transfer bytes from the ZIP file to the output file\n\t\t\t\t// OK I know that my file contains 10 * 27 bytes the reading might\n\t\t\t\t// be more versatile and test if there is more bytes in the file\n\t\t\t\tbyte[] buf = new byte[1024];\n\t\t\t\t\n\t\t\t\tint len = in.read(buf);\n\t            String theFile = new String(buf, 0, len);\n\t\t\t\tSystem.out.println(theFile);\n\n\t\t\t\tentry = in.getNextEntry();\n\t\t\t} // end while\n\t\t\t// Close the ZIP file\n\t\t\tin.close();\n\t\t} catch (IOException e) {\n\t\t\tSystem.out.println(\"Probel reading back the ZIP file: \" + e);\n\t\t}\n\n\t}\n}\n\r",
+               "LOC": 35,
+               "Url": "http://www.dreamincode.net/forums/topic/244086-write-and-read-zip-file-from-java/",
+               "Score": 0.9957466979,
+               "API_Weights": 19.1480714213,
+               "API_Qualified_Names": {
+                  "FileInputStream.__init__": "java.io.FileInputStream.__init__",
+                  "ZipInputStream.__init__": "java.util.zip.ZipInputStream.__init__",
+                  "ZipInputStream.getNextEntry": "java.util.zip.ZipInputStream.getNextEntry",
+                  "ZipInputStream.close": "java.util.zip.ZipInputStream.close"
+               },
+               "Url_Position": 25,
+               "In_Page_Order": 2,
+               "Num_API_Calls": 4,
+               "Dist_Center": 0.0473433423,
+               "MethodInvocations": [
+                  "ZipInputStream.getNextEntry",
+                  "ZipInputStream.close",
+                  "ZipInputStream.__init__",
+                  "FileInputStream.__init__"
+               ]
+            },
+            {
+               "Cluster": 5,
+               "Code": "    ZipInputStream zipInputStream = new ZipInputStream(new FileInputStream(\"SomeFile.zip\"));\n\n    while((entry = zipInputStream.getNextEntry())!= null) {\n\n     ZippedFileInputStream archivedFileInputStream = new ZippedFileInputStream(zipInputStream);\n\n     //... perform whatever logic you want here with ZippedFileInputStream \n\n     // note that this will only close the current entry stream and not the ZipInputStream\n     archivedFileInputStream.close();\n\n    }\n    zipInputStream.close();\n",
+               "LOC": 14,
+               "Url": "https://stackoverflow.com/questions/15667125/read-content-from-files-which-are-inside-zip-file",
+               "Score": 0.9957466979,
+               "API_Weights": 19.1480714213,
+               "API_Qualified_Names": {
+                  "FileInputStream.__init__": "java.io.FileInputStream.__init__",
+                  "ZipInputStream.__init__": "java.util.zip.ZipInputStream.__init__",
+                  "ZipInputStream.getNextEntry": "java.util.zip.ZipInputStream.getNextEntry",
+                  "ZipInputStream.close": "java.util.zip.ZipInputStream.close"
+               },
+               "Url_Position": 1,
+               "In_Page_Order": 5,
+               "Num_API_Calls": 4,
+               "Dist_Center": 0.0473433423,
+               "MethodInvocations": [
+                  "ZipInputStream.getNextEntry",
+                  "ZipInputStream.close",
+                  "ZipInputStream.__init__",
+                  "FileInputStream.__init__"
+               ]
+            },
+            {
+               "Cluster": 5,
+               "Code": "import java.io.FileInputStream;\r\nimport java.io.FileOutputStream;\r\nimport java.io.IOException;\r\nimport java.util.zip.ZipEntry;\r\nimport java.util.zip.ZipInputStream;\r\n\r\n// usage: java Main [filename] [password]\r\npublic class Main {\r\n    public static void main(String[] args) throws IOException {\r\n        // password-protected zip file I need to read\r\n        FileInputStream fis = new FileInputStream(args[0]);\r\n        // wrap it in the decrypt stream\r\n        ZipDecryptInputStream zdis = new ZipDecryptInputStream(fis, args[1]);\r\n        // wrap the decrypt stream by the ZIP input stream\r\n        ZipInputStream zis = new ZipInputStream(zdis);\r\n\r\n        // read all the zip entries and save them as files\r\n        ZipEntry ze;\r\n        while ((ze = zis.getNextEntry()) != null) {\r\n            FileOutputStream fos = new FileOutputStream(ze.getName());\r\n            int b;\r\n            while ((b = zis.read()) != -1) {\r\n                fos.write(b);\r\n            }\r\n            fos.close();\r\n            zis.closeEntry();\r\n        }\r\n        zis.close();\r\n    }\r\n}",
+               "LOC": 30,
+               "Url": "http://blog.alutam.com/2009/10/31/reading-password-protected-zip-files-in-java/",
+               "Score": 0.8676752368,
+               "API_Weights": 19.8092942999,
+               "API_Qualified_Names": {
+                  "FileInputStream.__init__": "java.io.FileInputStream.__init__",
+                  "ZipInputStream.__init__": "java.util.zip.ZipInputStream.__init__",
+                  "ZipInputStream.getNextEntry": "java.util.zip.ZipInputStream.getNextEntry",
+                  "ZipInputStream.close": "java.util.zip.ZipInputStream.close"
+               },
+               "Url_Position": 22,
+               "In_Page_Order": 2,
+               "Num_API_Calls": 5,
+               "Dist_Center": 0.0894926344,
+               "MethodInvocations": [
+                  "ZipInputStream.close",
+                  "ZipInputStream.getNextEntry",
+                  "ZipDecryptInputStream.__init__",
+                  "ZipInputStream.__init__",
+                  "FileInputStream.__init__"
+               ]
+            },
+            {
+               "Cluster": 5,
+               "Code": "package com.java2novice.zip;\n\nimport java.io.BufferedInputStream;\nimport java.io.FileInputStream;\nimport java.io.FileNotFoundException;\nimport java.io.IOException;\nimport java.util.zip.ZipEntry;\nimport java.util.zip.ZipInputStream;\n\npublic class MyZipFileList {\n\npublic void printFileList(String filePath){\n\t\t\n\t\tFileInputStream fis = null;\n\t\tZipInputStream zipIs = null;\n\t\tZipEntry zEntry = null;\n\t\ttry {\n\t\t\tfis = new FileInputStream(filePath);\n\t\t\tzipIs = new ZipInputStream(new BufferedInputStream(fis));\n\t\t\twhile((zEntry = zipIs.getNextEntry()) != null){\n\t\t\t\tSystem.out.println(zEntry.getName());\n\t\t\t}\n\t\t\tzipIs.close();\n\t\t} catch (FileNotFoundException e) {\n\t\t\t// TODO Auto-generated catch block\n\t\t\te.printStackTrace();\n\t\t} catch (IOException e) {\n\t\t\t// TODO Auto-generated catch block\n\t\t\te.printStackTrace();\n\t\t}\n\t}\n\n\tpublic static void main(String a[]){\n\t\t\n\t\tMyZipFileList mfe = new MyZipFileList();\n\t\tmfe.printFileList(\"C:/Archive.zip\");\n\t}\n}\n",
+               "LOC": 39,
+               "Url": "http://www.java2novice.com/java-collections-and-util/zip/file-list/",
+               "Score": 0.8288872767,
+               "API_Weights": 22.0070463382,
+               "API_Qualified_Names": {
+                  "FileInputStream.__init__": "java.io.FileInputStream.__init__",
+                  "BufferedInputStream.__init__": "java.io.BufferedInputStream.__init__",
+                  "ZipInputStream.__init__": "java.util.zip.ZipInputStream.__init__",
+                  "ZipInputStream.getNextEntry": "java.util.zip.ZipInputStream.getNextEntry",
+                  "ZipInputStream.close": "java.util.zip.ZipInputStream.close"
+               },
+               "Url_Position": 20,
+               "In_Page_Order": 1,
+               "Num_API_Calls": 7,
+               "Dist_Center": 0.1022580471,
+               "MethodInvocations": [
+                  "BufferedInputStream.__init__",
+                  "MyZipFileList.__init__",
+                  "MyZipFileList.printFileList",
+                  "ZipInputStream.close",
+                  "ZipInputStream.getNextEntry",
+                  "ZipInputStream.__init__",
+                  "FileInputStream.__init__"
+               ]
+            },
+            {
+               "Cluster": 5,
+               "Code": "          FileInputStream fis=new FileInputStream(jarFileName);\n          BufferedInputStream bis=new BufferedInputStream(fis);\n          ZipInputStream zis=new ZipInputStream(bis);\n          ZipEntry ze=null;\n          while ((ze=zis.getNextEntry())!=null) {\n             if (ze.isDirectory()) {\n                continue;\n             }\n             if (debugOn) {\n                System.out.println(\n                   \"ze.getName()=\"+ze.getName()+\",\"+\"getSize()=\"+ze.getSize()\n                   );\n             }\n             int size=(int)ze.getSize();\n             // -1 means unknown size. \n             if (size==-1) {\n                size=((Integer)htSizes.get(ze.getName())).intValue();\n             }\n             byte[] b=new byte[(int)size];\n             int rb=0;\n             int chunk=0;\n             while (((int)size - rb) > 0) {\n                 chunk=zis.read(b,rb,(int)size - rb);\n                 if (chunk==-1) {\n                    break;\n                 }\n                 rb+=chunk;\n             }\n             // add to internal resource hashtable\n             htJarContents.put(ze.getName(),b);\n             if (debugOn) {\n                System.out.println(\n                   ze.getName()+\"  rb=\"+rb+\n                   \",size=\"+size+\n                   \",csize=\"+ze.getCompressedSize()\n                   );\n             }\n          }\n       } catch (NullPointerException e) {\n          System.out.println(\"done.\");\n       } catch (FileNotFoundException e) {\n          e.printStackTrace();\n       } catch (IOException e) {\n          e.printStackTrace();\n       }\n   }\n",
+               "LOC": 47,
+               "Url": "https://www.javaworld.com/article/2077548/learn-java/java-tip-49--how-to-extract-java-resources-from-jar-and-zip-archives.html",
+               "Score": 0.8272947866,
+               "API_Weights": 16.5857574181,
+               "API_Qualified_Names": {
+                  "FileInputStream.__init__": "java.io.FileInputStream.__init__",
+                  "BufferedInputStream.__init__": "java.io.BufferedInputStream.__init__",
+                  "ZipInputStream.__init__": "java.util.zip.ZipInputStream.__init__",
+                  "ZipInputStream.getNextEntry": "java.util.zip.ZipInputStream.getNextEntry"
+               },
+               "Url_Position": 35,
+               "In_Page_Order": 5,
+               "Num_API_Calls": 4,
+               "Dist_Center": 0.1027821477,
+               "MethodInvocations": [
+                  "BufferedInputStream.__init__",
+                  "ZipInputStream.getNextEntry",
+                  "ZipInputStream.__init__",
+                  "FileInputStream.__init__"
+               ]
+            },
+            {
+               "Cluster": 5,
+               "Code": "public class UnzipFile {\r\n    public static void main(String[] args) throws IOException {\r\n        String fileZip = \"compressed.zip\";\r\n        byte[] buffer = new byte[1024];\r\n        ZipInputStream zis = new ZipInputStream(new FileInputStream(fileZip));\r\n        ZipEntry zipEntry = zis.getNextEntry();\r\n        while(zipEntry != null){\r\n            String fileName = zipEntry.getName();\r\n            File newFile = new File(\"unzipTest/\" + fileName);\r\n            FileOutputStream fos = new FileOutputStream(newFile);\r\n            int len;\r\n            while ((len = zis.read(buffer)) > 0) {\r\n                fos.write(buffer, 0, len);\r\n            }\r\n            fos.close();\r\n            zipEntry = zis.getNextEntry();\r\n        }\r\n        zis.closeEntry();\r\n        zis.close();\r\n    }\r\n}",
+               "LOC": 21,
+               "Url": "http://www.baeldung.com/java-compress-and-uncompress",
+               "Score": 0.8043328198,
+               "API_Weights": 20.3877340187,
+               "API_Qualified_Names": {
+                  "FileInputStream.__init__": "java.io.FileInputStream.__init__",
+                  "ZipInputStream.__init__": "java.util.zip.ZipInputStream.__init__",
+                  "ZipInputStream.getNextEntry": "java.util.zip.ZipInputStream.getNextEntry",
+                  "ZipInputStream.closeEntry": "java.util.zip.ZipInputStream.closeEntry",
+                  "ZipInputStream.close": "java.util.zip.ZipInputStream.close"
+               },
+               "Url_Position": 15,
+               "In_Page_Order": 4,
+               "Num_API_Calls": 5,
+               "Dist_Center": 0.1103391056,
+               "MethodInvocations": [
+                  "ZipInputStream.close",
+                  "ZipInputStream.getNextEntry",
+                  "ZipInputStream.closeEntry",
+                  "ZipInputStream.__init__",
+                  "FileInputStream.__init__"
+               ]
+            },
+            {
+               "Cluster": 5,
+               "Code": "// Expands the zip file passed as argument 1, into the\n// directory provided in argument 2\npublic static void main(String args[]) throws Exception\n{\n    if(args.length != 2)\n    {\n        System.err.println(\"zipreader zipfile outputdir\");\n        return;\n    }\n\n    // create a buffer to improve copy performance later.\n    byte[] buffer = new byte[2048];\n\n    // open the zip file stream\n    InputStream theFile = new FileInputStream(args[0]);\n    ZipInputStream stream = new ZipInputStream(theFile);\n    String outdir = args[1];\n\n    try\n    {\n\n        // now iterate through each item in the stream. The get next\n        // entry call will return a ZipEntry for each file in the\n        // stream\n        ZipEntry entry;\n        while((entry = stream.getNextEntry())!=null)\n        {\n            String s = String.format(\"Entry: %s len %d added %TD\",\n                            entry.getName(), entry.getSize(),\n                            new Date(entry.getTime()));\n            System.out.println(s);\n\n            // Once we get the entry from the stream, the stream is\n            // positioned read to read the raw data, and we keep\n            // reading until read returns 0 or less.\n            String outpath = outdir + \"/\" + entry.getName();\n            FileOutputStream output = null;\n            try\n            {\n                output = new FileOutputStream(outpath);\n                int len = 0;\n                while ((len = stream.read(buffer)) > 0)\n                {\n                    output.write(buffer, 0, len);\n                }\n            }\n            finally\n            {\n                // we must always close the output file\n                if(output!=null) output.close();\n            }\n        }\n    }\n    finally\n    {\n        // we must always close the zip file.\n        stream.close();\n    }\n}\n",
+               "LOC": 60,
+               "Url": "https://stackoverflow.com/questions/23869228/how-to-read-file-from-zip-using-inputstream",
+               "Score": 0.7567807097,
+               "API_Weights": 15.4932405262,
+               "API_Qualified_Names": {
+                  "InputStream.__init__": "java.io.InputStream.__init__",
+                  "ZipInputStream.__init__": "java.util.zip.ZipInputStream.__init__",
+                  "ZipInputStream.getNextEntry": "java.util.zip.ZipInputStream.getNextEntry",
+                  "ZipInputStream.close": "java.util.zip.ZipInputStream.close"
+               },
+               "Url_Position": 5,
+               "In_Page_Order": 2,
+               "Num_API_Calls": 4,
+               "Dist_Center": 0.1259888668,
+               "MethodInvocations": [
+                  "InputStream.__init__",
+                  "ZipInputStream.close",
+                  "ZipInputStream.__init__",
+                  "ZipInputStream.getNextEntry"
+               ]
+            },
+            {
+               "Cluster": 5,
+               "Code": "package com.boraji.tutorial.io;\n\nimport java.io.File;\nimport java.io.FileInputStream;\nimport java.io.FileOutputStream;\nimport java.io.IOException;\nimport java.util.zip.ZipEntry;\nimport java.util.zip.ZipInputStream;\n\n/**\n * @author imssbora\n */\npublic class UnzipFileExample1 {\n  public static void main(String[] args) {\n    File zipFile = new File(\"Test.zip\");\n    File output = new File(\"Unzip\");\n    FileInputStream fileInputStream = null;\n    ZipInputStream zipInputStream = null;\n    try {\n      fileInputStream = new FileInputStream(zipFile);\n      zipInputStream = new ZipInputStream(fileInputStream);\n\n      // Get ZipEntry\n      ZipEntry entry = zipInputStream.getNextEntry();\n      while (entry != null) {\n        if (entry.isDirectory()) {\n\n          // Create directory\n          File dir = new File(output, entry.getName());\n          if (!dir.exists()) {\n            dir.mkdirs();\n          }\n        } else {\n\n          // Read zipEntry and write to a file.\n          File file = new File(output, entry.getName());\n          FileOutputStream fileOutputStream = new FileOutputStream(file);\n          int i;\n          byte[] data = new byte[1024];\n          while ((i = zipInputStream.read(data)) != -1) {\n            fileOutputStream.write(data, 0, i);\n          }\n\n          fileOutputStream.close();\n\n        }\n        // Get next entry\n        entry = zipInputStream.getNextEntry();\n      }\n\n    } catch (IOException e) {\n      e.printStackTrace();\n    } finally {\n      try {\n        if (fileInputStream != null) {\n          fileInputStream.close();\n        }\n        if (zipInputStream != null) {\n          zipInputStream.close();\n        }\n      } catch (IOException e) {\n        e.printStackTrace();\n      }\n    }\n  }\n}\n",
+               "LOC": 67,
+               "Url": "https://www.boraji.com/java-how-to-decompress-files-from-a-zip-file",
+               "Score": 0.6756472065,
+               "API_Weights": 20.5416202303,
+               "API_Qualified_Names": {
+                  "File.__init__": "java.io.File.__init__",
+                  "FileInputStream.__init__": "java.io.FileInputStream.__init__",
+                  "ZipInputStream.__init__": "java.util.zip.ZipInputStream.__init__",
+                  "ZipInputStream.getNextEntry": "java.util.zip.ZipInputStream.getNextEntry",
+                  "FileInputStream.close": "java.io.FileInputStream.close",
+                  "ZipInputStream.close": "java.util.zip.ZipInputStream.close"
+               },
+               "Url_Position": 23,
+               "In_Page_Order": 1,
+               "Num_API_Calls": 6,
+               "Dist_Center": 0.1526905198,
+               "MethodInvocations": [
+                  "FileInputStream.close",
+                  "File.__init__",
+                  "ZipInputStream.close",
+                  "ZipInputStream.getNextEntry",
+                  "ZipInputStream.__init__",
+                  "FileInputStream.__init__"
+               ]
+            },
+            {
+               "Cluster": 5,
+               "Code": "\nFileInputStream fis = new FileInputStream(\"figs.zip\"); ZipInputStream zin = new    ZipInputStream(new BufferedInputStream(fis)); ",
+               "LOC": 2,
+               "Url": "http://www.oracle.com/technetwork/articles/java/compress-1565076.html",
+               "Score": 0.6120546908,
+               "API_Weights": 11.8017356658,
+               "API_Qualified_Names": {
+                  "FileInputStream.__init__": "java.io.FileInputStream.__init__",
+                  "BufferedInputStream.__init__": "java.io.BufferedInputStream.__init__",
+                  "ZipInputStream.__init__": "java.util.zip.ZipInputStream.__init__"
+               },
+               "Url_Position": 14,
+               "In_Page_Order": 2,
+               "Num_API_Calls": 3,
+               "Dist_Center": 0.1736193005,
+               "MethodInvocations": [
+                  "BufferedInputStream.__init__",
+                  "ZipInputStream.__init__",
+                  "FileInputStream.__init__"
+               ]
+            },
+            {
+               "Cluster": 5,
+               "Code": " import java.io.*;\r\nimport java.util.zip.*;\r\n\r\nclass  readZipFiles \r\n{\r\n    public static void main(String[] args) \r\n    {\r\n         if (args.length != 1) \r\n        {\r\n            System.out.println(\"Usage: java testFiles [zipfile path] \");\r\n            return;\r\n        }\r\n        try\r\n        {\r\n            String filename = args[0];\r\n            readZipFiles list = new readZipFiles( );\r\n            list.readZipFiles(filename);\r\n        }\r\n        catch (Exception e)\r\n        {\r\n            e.printStackTrace();\r\n        }\r\n    }\r\n\r\n    public void readZipFiles(String filename)\r\n    {\r\n        try\r\n        {\r\n            byte[] buf = new byte[1024];\r\n            ZipInputStream zipinputstream = null;\r\n            ZipEntry zipentry;\r\n            zipinputstream = new ZipInputStream(\r\n                 new FileInputStream(filename));\r\n\r\n            zipentry = zipinputstream.getNextEntry();\r\n            while (zipentry != null) \r\n            { \r\n                //for each entry to be extracted\r\n                String entryName = zipentry.getName();\r\n                System.out.println(\"File ::\"+entryName);\r\n                RandomAccessFile  rf;\r\n                File newFile = new File(entryName);\r\n                String directory = newFile.getParent();\r\n\r\n                if(directory == null)\r\n                {\r\n                    if(newFile.isDirectory())\r\n                        break;\r\n                }\r\n\r\n                rf = new RandomAccessFile(entryName,\"r\");               \r\n                String line;\r\n\r\n                if ((line =rf.readLine()) !=null)\r\n                {\r\n                    System.out.println(line);\r\n                }\r\n\r\n                rf.close(); \r\n                zipinputstream.closeEntry();\r\n                zipentry = zipinputstream.getNextEntry();\r\n\r\n            }//while\r\n\r\n            zipinputstream.close();\r\n        }\r\n        catch (Exception e)\r\n        {\r\n            e.printStackTrace();\r\n        }\r\n    }\r\n}\r\n\r\n",
+               "LOC": 74,
+               "Url": "https://www.java-tips.org/java-se-tips-100019/38-java-util-zip/601-how-to-read-files-within-a-zip-file.html",
+               "Score": 0.6091633522,
+               "API_Weights": 20.2511765199,
+               "API_Qualified_Names": {
+                  "FileInputStream.__init__": "java.io.FileInputStream.__init__",
+                  "ZipInputStream.__init__": "java.util.zip.ZipInputStream.__init__",
+                  "ZipInputStream.getNextEntry": "java.util.zip.ZipInputStream.getNextEntry",
+                  "ZipInputStream.close": "java.util.zip.ZipInputStream.close"
+               },
+               "Url_Position": 8,
+               "In_Page_Order": 1,
+               "Num_API_Calls": 6,
+               "Dist_Center": 0.174570862,
+               "MethodInvocations": [
+                  "ZipInputStream.close",
+                  "ZipInputStream.getNextEntry",
+                  "readZipFiles.readZipFiles",
+                  "readZipFiles.__init__",
+                  "ZipInputStream.__init__",
+                  "FileInputStream.__init__"
+               ]
+            },
+            {
+               "Cluster": 5,
+               "Code": " zipStream = new ZipInputStream(channelSftp.get(\"Port_Increment_201405261400_2251.zip\"));\n zipStream.getNextEntry();\n\n sc = new Scanner(zipStream);\n while (sc.hasNextLine()) {\n     System.out.println(sc.nextLine());\n }\n",
+               "LOC": 8,
+               "Url": "https://stackoverflow.com/questions/23869228/how-to-read-file-from-zip-using-inputstream",
+               "Score": 0.422104806,
+               "API_Weights": 6.5136592546,
+               "API_Qualified_Names": {
+                  "ZipInputStream.__init__": "java.util.zip.ZipInputStream.__init__",
+                  "Scanner.__init__": "java.util.Scanner.__init__"
+               },
+               "Url_Position": 5,
+               "In_Page_Order": 1,
+               "Num_API_Calls": 2,
+               "Dist_Center": 0.2361332525,
+               "MethodInvocations": [
+                  "Scanner.__init__",
+                  "ZipInputStream.__init__"
+               ]
+            },
+            {
+               "Cluster": 5,
+               "Code": "\r\npackage com.mkyong.zip;\r\n\r\nimport java.io.File;\r\nimport java.io.FileInputStream;\r\nimport java.io.FileOutputStream;\r\nimport java.io.IOException;\r\nimport java.util.List;\r\nimport java.util.zip.ZipEntry;\r\nimport java.util.zip.ZipInputStream;\r\n\r\npublic class UnZip\r\n{\r\n    List<String> fileList;\r\n    private static final String INPUT_ZIP_FILE = \"C:\\\\MyFile.zip\";\r\n    private static final String OUTPUT_FOLDER = \"C:\\\\outputzip\";\r\n\t\t\r\n    public static void main( String[] args )\r\n    {\r\n    \tUnZip unZip = new UnZip();\r\n    \tunZip.unZipIt(INPUT_ZIP_FILE,OUTPUT_FOLDER);\r\n    }\r\n    \r\n    /**\r\n     * Unzip it\r\n     * @param zipFile input zip file\r\n     * @param output zip file output folder\r\n     */\r\n    public void unZipIt(String zipFile, String outputFolder){\r\n\r\n     byte[] buffer = new byte[1024];\r\n    \t\r\n     try{\r\n    \t\t\r\n    \t//create output directory is not exists\r\n    \tFile folder = new File(OUTPUT_FOLDER);\r\n    \tif(!folder.exists()){\r\n    \t\tfolder.mkdir();\r\n    \t}\r\n    \t\t\r\n    \t//get the zip file content\r\n    \tZipInputStream zis = \r\n    \t\tnew ZipInputStream(new FileInputStream(zipFile));\r\n    \t//get the zipped file list entry\r\n    \tZipEntry ze = zis.getNextEntry();\r\n    \t\t\r\n    \twhile(ze!=null){\r\n    \t\t\t\r\n    \t   String fileName = ze.getName();\r\n           File newFile = new File(outputFolder + File.separator + fileName);\r\n                \r\n           System.out.println(\"file unzip : \"+ newFile.getAbsoluteFile());\r\n                \r\n            //create all non exists folders\r\n            //else you will hit FileNotFoundException for compressed folder\r\n            new File(newFile.getParent()).mkdirs();\r\n              \r\n            FileOutputStream fos = new FileOutputStream(newFile);             \r\n\r\n            int len;\r\n            while ((len = zis.read(buffer)) > 0) {\r\n       \t\tfos.write(buffer, 0, len);\r\n            }\r\n        \t\t\r\n            fos.close();   \r\n            ze = zis.getNextEntry();\r\n    \t}\r\n    \t\r\n        zis.closeEntry();\r\n    \tzis.close();\r\n    \t\t\r\n    \tSystem.out.println(\"Done\");\r\n    \t\t\r\n    }catch(IOException ex){\r\n       ex.printStackTrace(); \r\n    }\r\n   }    \r\n}\r\n",
+               "LOC": 79,
+               "Url": "https://www.mkyong.com/java/how-to-decompress-files-from-a-zip-file/",
+               "Score": 0.4202595042,
+               "API_Weights": 22.5877113812,
+               "API_Qualified_Names": {
+                  "File.__init__": "java.io.File.__init__",
+                  "File.exists": "java.io.File.exists",
+                  "File.mkdir": "java.io.File.mkdir",
+                  "FileInputStream.__init__": "java.io.FileInputStream.__init__",
+                  "ZipInputStream.__init__": "java.util.zip.ZipInputStream.__init__",
+                  "ZipInputStream.getNextEntry": "java.util.zip.ZipInputStream.getNextEntry",
+                  "ZipInputStream.closeEntry": "java.util.zip.ZipInputStream.closeEntry",
+                  "ZipInputStream.close": "java.util.zip.ZipInputStream.close"
+               },
+               "Url_Position": 9,
+               "In_Page_Order": 1,
+               "Num_API_Calls": 10,
+               "Dist_Center": 0.2367405553,
+               "MethodInvocations": [
+                  "File.mkdir",
+                  "UnZip.unZipIt",
+                  "File.__init__",
+                  "UnZip.__init__",
+                  "File.exists",
+                  "ZipInputStream.close",
+                  "ZipInputStream.getNextEntry",
+                  "ZipInputStream.closeEntry",
+                  "ZipInputStream.__init__",
+                  "FileInputStream.__init__"
+               ]
+            },
+            {
+               "Cluster": 5,
+               "Code": "import java.util.zip.ZipEntry ;\nimport java.util.zip.ZipInputStream ;\nimport java.util.zip.ZipOutputStream ;\nimport java.io.FileInputStream;\nimport java.io.FileOutputStream;\n\npublic class JavaZip {\n   public static void main(String[] args) throws Exception{\n       FileInputStream fin = new FileInputStream(\"my_archive.zip\");\n       ZipInputStream zis = new ZipInputStream(fin);\n       ZipEntry zipEntry = zis.getNextEntry();\n\n       System.out.println(\"File Size: \" + zipEntry.getSize());\n       System.out.println(\"Last Modification Date: \" + zipEntry.getLastModifiedTime());\n\n       FileOutputStream fout = new FileOutputStream(\"Extracted - \" + zipEntry.getName());\n       for (int c = zis.read(); c != -1; c = zis.read()) {\n           fout.write(c);\n       }\n       zis.closeEntry();\n       fout.close();\n\n       zis.close();\n       fin.close();\n   }\n}",
+               "LOC": 26,
+               "Url": "http://www.discoversdk.com/blog/processing-zip-files-with-java",
+               "Score": 0.307773009,
+               "API_Weights": 22.9861778122,
+               "API_Qualified_Names": {
+                  "FileInputStream.__init__": "java.io.FileInputStream.__init__",
+                  "ZipInputStream.__init__": "java.util.zip.ZipInputStream.__init__",
+                  "ZipInputStream.getNextEntry": "java.util.zip.ZipInputStream.getNextEntry",
+                  "ZipEntry.getSize": "java.util.zip.ZipEntry.getSize",
+                  "ZipEntry.getName": "java.util.zip.ZipEntry.getName",
+                  "FileOutputStream.__init__": "java.io.FileOutputStream.__init__",
+                  "ZipInputStream.read": "java.util.zip.ZipInputStream.read",
+                  "ZipInputStream.closeEntry": "java.util.zip.ZipInputStream.closeEntry",
+                  "FileOutputStream.close": "java.io.FileOutputStream.close",
+                  "ZipInputStream.close": "java.util.zip.ZipInputStream.close",
+                  "FileInputStream.close": "java.io.FileInputStream.close"
+               },
+               "Url_Position": 37,
+               "In_Page_Order": 4,
+               "Num_API_Calls": 12,
+               "Dist_Center": 0.2737607166,
+               "MethodInvocations": [
+                  "ZipEntry.getName",
+                  "FileOutputStream.close",
+                  "FileInputStream.close",
+                  "ZipEntry.getLastModifiedTime",
+                  "ZipInputStream.read",
+                  "FileOutputStream.__init__",
+                  "ZipInputStream.close",
+                  "ZipInputStream.getNextEntry",
+                  "ZipInputStream.closeEntry",
+                  "ZipEntry.getSize",
+                  "ZipInputStream.__init__",
+                  "FileInputStream.__init__"
+               ]
+            },
+            {
+               "Cluster": 5,
+               "Code": "\nSevenZOutputFile sevenZOutput = new SevenZOutputFile(file);\nSevenZArchiveEntry entry = sevenZOutput.createArchiveEntry(fileToArchive, name);\nsevenZOutput.putArchiveEntry(entry);\nsevenZOutput.write(contentOfEntry);\nsevenZOutput.closeArchiveEntry();\n",
+               "LOC": 7,
+               "Url": "https://commons.apache.org/proper/commons-compress/examples.html",
+               "Score": -2.220446049e-16,
+               "API_Weights": 2.2338756262,
+               "API_Qualified_Names": {},
+               "Url_Position": 27,
+               "In_Page_Order": 18,
+               "Num_API_Calls": 5,
+               "Dist_Center": 0.375051155,
+               "MethodInvocations": [
+                  "SevenZOutputFile.write",
+                  "SevenZOutputFile.createArchiveEntry",
+                  "SevenZOutputFile.__init__",
+                  "SevenZOutputFile.putArchiveEntry",
+                  "SevenZOutputFile.closeArchiveEntry"
+               ]
+            }
+         ],
+         "avg_cluster_api_weights": 17.363076889944818,
+         "top_apis_by_cluster": [
+            "zipinputstream.__init__",
+            "zipinputstream.getnextentry",
+            "zipinputstream.close",
+            "fileinputstream.__init__",
+            "bufferedinputstream.__init__",
+            "zipinputstream.closeentry",
+            "scanner.__init__",
+            "fileinputstream.close"
+         ]
+      }
+   ]
+}

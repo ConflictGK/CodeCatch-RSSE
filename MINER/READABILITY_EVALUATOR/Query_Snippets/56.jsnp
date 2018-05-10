@@ -1,0 +1,24 @@
+dependency
+    groupIdorg.apache.commons/groupId
+    artifactIdcommons-io/artifactId
+    version1.3.2/version
+/dependency
+String metadata = null;
+FileInputStream inputStream;
+try {
+
+    ClassLoader loader = Thread.currentThread().getContextClassLoader();
+    inputStream = (FileInputStream) loader
+            .getResourceAsStream("/metadata.json");
+    metadata = IOUtils.toString(inputStream);
+    inputStream.close();
+}
+catch (FileNotFoundException e) {
+    // TODO Auto-generated catch block
+    e.printStackTrace();
+}
+catch (IOException e) {
+    // TODO Auto-generated catch block
+    e.printStackTrace();
+}
+return metadata;

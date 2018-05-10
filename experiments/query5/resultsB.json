@@ -1,0 +1,1807 @@
+[
+  {
+    "query": "How to upload file to FTP",
+    "url": "https://stackoverflow.com/questions/6527664/how-do-you-upload-a-file-to-an-ftp-server",
+    "url position": 1,
+    "segments": [
+      {
+        "code": "FTPClient client = new FTPClient();\nFileInputStream fis = null;\n\ntry {\n    client.connect(\"ftp.domain.com\");\n    client.login(\"admin\", \"secret\");\n\n    //\n    // Create an InputStream of the file to be uploaded\n    //\n    String filename = \"Touch.dat\";\n    fis = new FileInputStream(filename);\n\n    //\n    // Store file to server\n    //\n    client.storeFile(filename, fis);\n    client.logout();\n} catch (IOException e) {\n    e.printStackTrace();\n} finally {\n    try {\n        if (fis != null) {\n            fis.close();\n        }\n        client.disconnect();\n    } catch (IOException e) {\n        e.printStackTrace();\n    }\n}\n",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": true,
+        "answer_votes": "41",
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "FTPClient.__init__": true,
+          "FTPClient.connect": true,
+          "FTPClient.login": true,
+          "FileInputStream.__init__": true,
+          "FTPClient.storeFile": true,
+          "FTPClient.logout": true,
+          "FileInputStream.close": true,
+          "FTPClient.disconnect": true
+        },
+        "APIsProjects": {
+          "FTPClient.__init__": 8,
+          "FTPClient.connect": 7,
+          "FTPClient.login": 8,
+          "FileInputStream.__init__": 443,
+          "FTPClient.storeFile": 6,
+          "FTPClient.logout": 6,
+          "FileInputStream.close": 218,
+          "FTPClient.disconnect": 6
+        },
+        "APIsFiles": {
+          "FTPClient.__init__": 10,
+          "FTPClient.connect": 7,
+          "FTPClient.login": 9,
+          "FileInputStream.__init__": 2808,
+          "FTPClient.storeFile": 6,
+          "FTPClient.logout": 8,
+          "FileInputStream.close": 664,
+          "FTPClient.disconnect": 9
+        },
+        "APIsSnippets": {
+          "FTPClient.__init__": 11,
+          "FTPClient.connect": 7,
+          "FTPClient.login": 10,
+          "FileInputStream.__init__": 4023,
+          "FTPClient.storeFile": 6,
+          "FTPClient.logout": 8,
+          "FileInputStream.close": 861,
+          "FTPClient.disconnect": 10
+        },
+        "APIsQualifiedNames": {
+          "FTPClient.__init__": "org.apache.commons.net.ftp.FTPClient.__init__",
+          "FTPClient.connect": "org.apache.commons.net.ftp.FTPClient.connect",
+          "FTPClient.login": "org.apache.commons.net.ftp.FTPClient.login",
+          "FileInputStream.__init__": "java.io.FileInputStream.__init__",
+          "FTPClient.storeFile": "org.apache.commons.net.ftp.FTPClient.storeFile",
+          "FTPClient.logout": "org.apache.commons.net.ftp.FTPClient.logout",
+          "FileInputStream.close": "java.io.FileInputStream.close",
+          "FTPClient.disconnect": "org.apache.commons.net.ftp.FTPClient.disconnect"
+        },
+        "API_Ratio": 1.0
+      },
+      {
+        "code": "ftp = new FTPClient();\nftp.setRemoteHost(\"hostname\");\n\n// connect\nftp.connect();\n\n// login\nftp.login(\"user\", \"password\");\n\n// set up passive ASCII transfers\nftp.setConnectMode(FTPConnectMode.PASV);\nftp.setType(FTPTransferType.ASCII);\n\n// get directory and print it to console            \nString[] files = ftp.dir(\".\", true);\nfor (int i = 0; i < files.length; i++)\n    log.debug(files[i]);\n\n// copy file to server \nftp.put(\"test.txt\", \"test.txt\");\n\n// copy file from server\nftp.get(\"test.txt\" + \".copy\", \"test.txt\");\n\n// delete file from server\nftp.delete(\"test.txt\");\n\n// Shut down client                \nftp.quit();\n",
+        "in_page_order": 2,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": "3",
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "FTPClient.__init__": true
+        },
+        "APIsProjects": {
+          "FTPClient.__init__": 8
+        },
+        "APIsFiles": {
+          "FTPClient.__init__": 10
+        },
+        "APIsSnippets": {
+          "FTPClient.__init__": 11
+        },
+        "APIsQualifiedNames": {
+          "FTPClient.__init__": "org.apache.commons.net.ftp.FTPClient.__init__"
+        },
+        "API_Ratio": 1.0
+      }
+    ]
+  },
+  {
+    "query": "How to upload file to FTP",
+    "url": "https://stackoverflow.com/questions/17454529/uploading-to-ftp-using-java",
+    "url position": 3,
+    "segments": [
+      {
+        "code": "String ftpUrl = \"ftp://%s:%s@%s/%s;type=i\";\nString host = \"www.myserver.com\";\nString user = \"tom\";\nString pass = \"secret\";\nString filePath = \"E:/Work/Project.zip\";\nString uploadPath = \"/MyProjects/archive/Project.zip\";\n\nftpUrl = String.format(ftpUrl, user, pass, host, uploadPath);\nSystem.out.println(\"Upload URL: \" + ftpUrl);\n\ntry {\n    URL url = new URL(ftpUrl);\n    URLConnection conn = url.openConnection();\n    OutputStream outputStream = conn.getOutputStream();\n    FileInputStream inputStream = new FileInputStream(filePath);\n\n    byte[] buffer = new byte[BUFFER_SIZE];\n    int bytesRead = -1;\n    while ((bytesRead = inputStream.read(buffer)) != -1) {\n        outputStream.write(buffer, 0, bytesRead);\n    }\n\n    inputStream.close();\n    outputStream.close();\n\n    System.out.println(\"File uploaded\");\n} catch (IOException ex) {\n    ex.printStackTrace();\n}\n",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": false,
+        "answer_votes": "18",
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "URL.__init__": true,
+          "URL.openConnection": true,
+          "URLConnection.getOutputStream": true,
+          "FileInputStream.__init__": true,
+          "FileInputStream.read": true,
+          "FileInputStream.close": true,
+          "OutputStream.close": true
+        },
+        "APIsProjects": {
+          "URL.__init__": 380,
+          "URL.openConnection": 236,
+          "URLConnection.getOutputStream": 26,
+          "FileInputStream.__init__": 443,
+          "FileInputStream.read": 123,
+          "FileInputStream.close": 218,
+          "OutputStream.close": 308
+        },
+        "APIsFiles": {
+          "URL.__init__": 2050,
+          "URL.openConnection": 685,
+          "URLConnection.getOutputStream": 36,
+          "FileInputStream.__init__": 2808,
+          "FileInputStream.read": 263,
+          "FileInputStream.close": 664,
+          "OutputStream.close": 1330
+        },
+        "APIsSnippets": {
+          "URL.__init__": 4004,
+          "URL.openConnection": 1190,
+          "URLConnection.getOutputStream": 39,
+          "FileInputStream.__init__": 4023,
+          "FileInputStream.read": 358,
+          "FileInputStream.close": 861,
+          "OutputStream.close": 1855
+        },
+        "APIsQualifiedNames": {
+          "URL.__init__": "java.net.URL.__init__",
+          "URL.openConnection": "java.net.URL.openConnection",
+          "URLConnection.getOutputStream": "java.net.URLConnection.getOutputStream",
+          "FileInputStream.__init__": "java.io.FileInputStream.__init__",
+          "FileInputStream.read": "java.io.FileInputStream.read",
+          "FileInputStream.close": "java.io.FileInputStream.close",
+          "OutputStream.close": "java.io.OutputStream.close"
+        },
+        "API_Ratio": 1.0
+      },
+      {
+        "code": "import java.io.File;\nimport java.io.FileInputStream;\nimport java.io.IOException;\nimport java.io.InputStream;\nimport java.io.OutputStream;\n\nimport org.apache.commons.net.ftp.FTP;\nimport org.apache.commons.net.ftp.FTPClient;\n\n/**\n * A program that demonstrates how to upload files from local computer\n * to a remote FTP server using Apache Commons Net API.\n * @author www.codejava.net\n */\npublic class FTPUploadFileDemo {\n\n    public static void main(String[] args) {\n        String server = \"www.myserver.com\";\n        int port = 21;\n        String user = \"user\";\n        String pass = \"pass\";\n\n        FTPClient ftpClient = new FTPClient();\n        try {\n\n            ftpClient.connect(server, port);\n            ftpClient.login(user, pass);\n            ftpClient.enterLocalPassiveMode();\n\n            ftpClient.setFileType(FTP.BINARY_FILE_TYPE);\n\n            // APPROACH #1: uploads first file using an InputStream\n            File firstLocalFile = new File(\"D:/Test/Projects.zip\");\n\n            String firstRemoteFile = \"Projects.zip\";\n            InputStream inputStream = new FileInputStream(firstLocalFile);\n\n            System.out.println(\"Start uploading first file\");\n            boolean done = ftpClient.storeFile(firstRemoteFile, inputStream);\n            inputStream.close();\n            if (done) {\n                System.out.println(\"The first file is uploaded successfully.\");\n            }\n\n            // APPROACH #2: uploads second file using an OutputStream\n            File secondLocalFile = new File(\"E:/Test/Report.doc\");\n            String secondRemoteFile = \"test/Report.doc\";\n            inputStream = new FileInputStream(secondLocalFile);\n\n            System.out.println(\"Start uploading second file\");\n            OutputStream outputStream = ftpClient.storeFileStream(secondRemoteFile);\n            byte[] bytesIn = new byte[4096];\n            int read = 0;\n\n            while ((read = inputStream.read(bytesIn)) != -1) {\n                outputStream.write(bytesIn, 0, read);\n            }\n            inputStream.close();\n            outputStream.close();\n\n            boolean completed = ftpClient.completePendingCommand();\n            if (completed) {\n                System.out.println(\"The second file is uploaded successfully.\");\n            }\n\n        } catch (IOException ex) {\n            System.out.println(\"Error: \" + ex.getMessage());\n            ex.printStackTrace();\n        } finally {\n            try {\n                if (ftpClient.isConnected()) {\n                    ftpClient.logout();\n                    ftpClient.disconnect();\n                }\n            } catch (IOException ex) {\n                ex.printStackTrace();\n            }\n        }\n    }\n\n}\n",
+        "in_page_order": 3,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": "1",
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": true,
+        "APIs": {
+          "FTPClient.__init__": true,
+          "FTPClient.connect": true,
+          "FTPClient.login": true,
+          "FTPClient.enterLocalPassiveMode": true,
+          "FTPClient.setFileType": true,
+          "File.__init__": true,
+          "InputStream.__init__": true,
+          "FTPClient.storeFile": true,
+          "InputStream.close": true,
+          "FTPClient.storeFileStream": false,
+          "InputStream.read": true,
+          "OutputStream.close": true,
+          "FTPClient.completePendingCommand": true,
+          "FTPClient.isConnected": true,
+          "FTPClient.logout": true,
+          "FTPClient.disconnect": true
+        },
+        "APIsProjects": {
+          "FTPClient.__init__": 8,
+          "FTPClient.connect": 7,
+          "FTPClient.login": 8,
+          "FTPClient.enterLocalPassiveMode": 5,
+          "FTPClient.setFileType": 6,
+          "File.__init__": 591,
+          "InputStream.__init__": 350,
+          "FTPClient.storeFile": 6,
+          "InputStream.close": 441,
+          "InputStream.read": 397,
+          "OutputStream.close": 308,
+          "FTPClient.completePendingCommand": 3,
+          "FTPClient.isConnected": 5,
+          "FTPClient.logout": 6,
+          "FTPClient.disconnect": 6
+        },
+        "APIsFiles": {
+          "FTPClient.__init__": 10,
+          "FTPClient.connect": 7,
+          "FTPClient.login": 9,
+          "FTPClient.enterLocalPassiveMode": 5,
+          "FTPClient.setFileType": 6,
+          "File.__init__": 13065,
+          "InputStream.__init__": 1711,
+          "FTPClient.storeFile": 6,
+          "InputStream.close": 2481,
+          "InputStream.read": 1923,
+          "OutputStream.close": 1330,
+          "FTPClient.completePendingCommand": 5,
+          "FTPClient.isConnected": 8,
+          "FTPClient.logout": 8,
+          "FTPClient.disconnect": 9
+        },
+        "APIsSnippets": {
+          "FTPClient.__init__": 11,
+          "FTPClient.connect": 7,
+          "FTPClient.login": 10,
+          "FTPClient.enterLocalPassiveMode": 5,
+          "FTPClient.setFileType": 7,
+          "File.__init__": 40468,
+          "InputStream.__init__": 2609,
+          "FTPClient.storeFile": 6,
+          "InputStream.close": 3284,
+          "InputStream.read": 4134,
+          "OutputStream.close": 1855,
+          "FTPClient.completePendingCommand": 5,
+          "FTPClient.isConnected": 12,
+          "FTPClient.logout": 8,
+          "FTPClient.disconnect": 10
+        },
+        "APIsQualifiedNames": {
+          "FTPClient.__init__": "org.apache.commons.net.ftp.FTPClient.__init__",
+          "FTPClient.connect": "org.apache.commons.net.ftp.FTPClient.connect",
+          "FTPClient.login": "org.apache.commons.net.ftp.FTPClient.login",
+          "FTPClient.enterLocalPassiveMode": "org.apache.commons.net.ftp.FTPClient.enterLocalPassiveMode",
+          "FTPClient.setFileType": "org.apache.commons.net.ftp.FTPClient.setFileType",
+          "File.__init__": "java.io.File.__init__",
+          "InputStream.__init__": "java.io.InputStream.__init__",
+          "FTPClient.storeFile": "org.apache.commons.net.ftp.FTPClient.storeFile",
+          "InputStream.close": "java.io.InputStream.close",
+          "InputStream.read": "java.io.InputStream.read",
+          "OutputStream.close": "java.io.OutputStream.close",
+          "FTPClient.completePendingCommand": "org.apache.commons.net.ftp.FTPClient.completePendingCommand",
+          "FTPClient.isConnected": "org.apache.commons.net.ftp.FTPClient.isConnected",
+          "FTPClient.logout": "org.apache.commons.net.ftp.FTPClient.logout",
+          "FTPClient.disconnect": "org.apache.commons.net.ftp.FTPClient.disconnect"
+        },
+        "API_Ratio": 0.9375
+      }
+    ]
+  },
+  {
+    "query": "How to upload file to FTP",
+    "url": "https://stackoverflow.com/questions/11554939/upload-file-directory-with-ftp",
+    "url position": 4,
+    "segments": [
+      {
+        "code": "package com.ftpclient.test;\n\nimport java.io.File;\nimport java.io.FileOutputStream;\nimport java.io.IOException;\n\nimport org.apache.commons.net.ftp.FTP;\nimport org.apache.commons.net.ftp.FTPClient;\n\npublic class FTPUtils {\n    public static void ftpConnect(FTPClient ftpclient, String host, String username, String password) throws IOException {\n        System.out.println(\"FTPUtils :: Logging in FTP..\");\n        try{\n            ftpclient.connect(host);\n            if (!ftpclient.login(username, password)) {\n                throw new IOException(\"Supplied wrong credentials to FTP Server\");\n            }\n\n            if (ftpclient.getReplyCode() != 0) {\n                System.out.println(ftpclient.getReplyString());\n            }\n        }catch(IOException ioe){\n            ioe.printStackTrace();\n            System.out.println(\"FTP Client is not able to Connect to host\");\n            throw new IOException(\"FTP Client is not able to Connect to host\");\n        }\n        System.out.println(\"FTPUtils :: FTP Login Successful..\");\n    }\n\n    /**\n     * disconnect to FTP server\n     * \n     * @param ftpclient is Object which is having details of FTP server like IP, user name and password\n     * @throws IOException throws Exception\n     */\n    public static void ftpDisConnect(FTPClient ftpclient) throws IOException {\n        System.out.println(\"FTPUtils :: FTP Logging out..\");\n        ftpclient.logout();\n        ftpclient.disconnect();\n        System.out.println(\"FTPUtils :: FTP Disconnected Successfully..\");\n    }\n\n    /**\n     * download's file from source path to destination path by using FTP Client.\n     * \n     * @param ftpclient is Object which is having details of FTP server like IP, user name and password\n     * @param sourcePath is String from where to download's file\n     * @param destinationPath is String to where to download's file.\n     * @return boolean true if download's with out any fail else false\n     * @throws IOException will throw any problem with file system\n     */\n    public static boolean downloadFile(FTPClient ftpclient, String sourcePath, String destinationPath) throws IOException {\n        System.out.println(\"FTPUtils :: RemoteFile download starts ..FTP SOURCE \" + sourcePath + \" DESTINATION \" + destinationPath);\n        FileOutputStream fos = null;\n        boolean result = false;\n        try{            \n            ftpclient.setFileTransferMode(FTP.BINARY_FILE_TYPE);\n            ftpclient.setFileType(FTP.BINARY_FILE_TYPE);\n            File fDestination = new File(destinationPath);\n            fos = new FileOutputStream(fDestination);\n            result = ftpclient.retrieveFile(sourcePath, fos);\n            if (result) {\n                System.out.println(\"FTPUtils :: RemoteFile download Completed..FTP \" + sourcePath);\n            }\n        }catch(IOException ioe){\n            ioe.printStackTrace();\n            System.out.println(\"FTP is not able to Download the files from host\");\n            throw new IOException(\"FTP is not able to Download the files from host\");\n        }finally{\n            fos.close();\n        }\n        return result;\n    }\n\n    /**\n     * @param ftpclient\n     * @param sourcePath\n     * @param destinationPath\n     * @throws IOException\n     */\n    public static void uploadFile(FTPClient ftpclient, String sourcePath, String destinationPath) throws IOException {\n        FileInputStream fis = null;\n        try {\n            //\n            // Create an InputStream of the file to be uploaded\n            //\n            fis = new FileInputStream(sourcePath);\n\n            //\n            // Store file to server\n            //\n            ftpclient.storeFile(destinationPath, fis);\n        }catch(IOException ioe){\n            ioe.printStackTrace();\n            System.out.println(\"FTP is not able to upload the files from host\");\n            throw new IOException(\"FTP is not able to upload the files from host\");\n        }finally{\n            fis.close();\n        }\n    }\n}\n",
+        "in_page_order": 2,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": "1",
+        "answer_stars": 0,
+        "length": false,
+        "semicolon": true,
+        "APIs": {
+          "FTPClient.connect": true,
+          "FTPClient.login": true,
+          "IOException.__init__": true,
+          "FTPClient.getReplyCode": true,
+          "FTPClient.getReplyString": true,
+          "FTPClient.logout": true,
+          "FTPClient.disconnect": true,
+          "FTPClient.setFileTransferMode": false,
+          "FTPClient.setFileType": true,
+          "File.__init__": true,
+          "FileOutputStream.__init__": true,
+          "FTPClient.retrieveFile": true,
+          "FileOutputStream.close": true,
+          "FileInputStream.__init__": true,
+          "FTPClient.storeFile": true,
+          "FileInputStream.close": true
+        },
+        "APIsProjects": {
+          "FTPClient.connect": 7,
+          "FTPClient.login": 8,
+          "IOException.__init__": 441,
+          "FTPClient.getReplyCode": 7,
+          "FTPClient.getReplyString": 3,
+          "FTPClient.logout": 6,
+          "FTPClient.disconnect": 6,
+          "FTPClient.setFileType": 6,
+          "File.__init__": 591,
+          "FileOutputStream.__init__": 430,
+          "FTPClient.retrieveFile": 3,
+          "FileOutputStream.close": 267,
+          "FileInputStream.__init__": 443,
+          "FTPClient.storeFile": 6,
+          "FileInputStream.close": 218
+        },
+        "APIsFiles": {
+          "FTPClient.connect": 7,
+          "FTPClient.login": 9,
+          "IOException.__init__": 6496,
+          "FTPClient.getReplyCode": 11,
+          "FTPClient.getReplyString": 4,
+          "FTPClient.logout": 8,
+          "FTPClient.disconnect": 9,
+          "FTPClient.setFileType": 6,
+          "File.__init__": 13065,
+          "FileOutputStream.__init__": 2603,
+          "FTPClient.retrieveFile": 4,
+          "FileOutputStream.close": 1003,
+          "FileInputStream.__init__": 2808,
+          "FTPClient.storeFile": 6,
+          "FileInputStream.close": 664
+        },
+        "APIsSnippets": {
+          "FTPClient.connect": 7,
+          "FTPClient.login": 10,
+          "IOException.__init__": 18878,
+          "FTPClient.getReplyCode": 43,
+          "FTPClient.getReplyString": 30,
+          "FTPClient.logout": 8,
+          "FTPClient.disconnect": 10,
+          "FTPClient.setFileType": 7,
+          "File.__init__": 40468,
+          "FileOutputStream.__init__": 3767,
+          "FTPClient.retrieveFile": 5,
+          "FileOutputStream.close": 1322,
+          "FileInputStream.__init__": 4023,
+          "FTPClient.storeFile": 6,
+          "FileInputStream.close": 861
+        },
+        "APIsQualifiedNames": {
+          "FTPClient.connect": "org.apache.commons.net.ftp.FTPClient.connect",
+          "FTPClient.login": "org.apache.commons.net.ftp.FTPClient.login",
+          "IOException.__init__": "java.io.IOException.__init__",
+          "FTPClient.getReplyCode": "org.apache.commons.net.ftp.FTPClient.getReplyCode",
+          "FTPClient.getReplyString": "org.apache.commons.net.ftp.FTPClient.getReplyString",
+          "FTPClient.logout": "org.apache.commons.net.ftp.FTPClient.logout",
+          "FTPClient.disconnect": "org.apache.commons.net.ftp.FTPClient.disconnect",
+          "FTPClient.setFileType": "org.apache.commons.net.ftp.FTPClient.setFileType",
+          "File.__init__": "java.io.File.__init__",
+          "FileOutputStream.__init__": "java.io.FileOutputStream.__init__",
+          "FTPClient.retrieveFile": "org.apache.commons.net.ftp.FTPClient.retrieveFile",
+          "FileOutputStream.close": "java.io.FileOutputStream.close",
+          "FileInputStream.__init__": "java.io.FileInputStream.__init__",
+          "FTPClient.storeFile": "org.apache.commons.net.ftp.FTPClient.storeFile",
+          "FileInputStream.close": "java.io.FileInputStream.close"
+        },
+        "API_Ratio": 0.9375
+      },
+      {
+        "code": "import java.io.IOException;\nimport org.apache.commons.net.ftp.FTPClient;\n\npublic class FTPMain {\n    public static void main(String[] str){\n        FTPClient ftpclient = new FTPClient();\n        try {\n            FTPUtils.ftpConnect(ftpclient, \"ipaddress\", \"username\", \"password\");\n            FTPUtils.uploadFile(ftpclient, \"sourcePath\", \"destinationPath\");\n        } catch (IOException e) {\n            // TODO Auto-generated catch block\n            e.printStackTrace();\n        }\n    }\n}\n",
+        "in_page_order": 2,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": "1",
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "FTPClient.__init__": true
+        },
+        "APIsProjects": {
+          "FTPClient.__init__": 8
+        },
+        "APIsFiles": {
+          "FTPClient.__init__": 10
+        },
+        "APIsSnippets": {
+          "FTPClient.__init__": 11
+        },
+        "APIsQualifiedNames": {
+          "FTPClient.__init__": "org.apache.commons.net.ftp.FTPClient.__init__"
+        },
+        "API_Ratio": 1.0
+      }
+    ]
+  },
+  {
+    "query": "How to upload file to FTP",
+    "url": "http://www.beingjavaguys.com/2013/12/upload-files-to-ftp-server.html",
+    "url position": 11,
+    "segments": [
+      {
+        "code": "\npackage com.beingjavaguys.testftp;\n\nimport java.io.FileInputStream;\nimport java.io.IOException;\nimport java.net.SocketException;\nimport org.apache.commons.net.ftp.FTPClient;\n\npublic class UploadFile {\n public static void main(String args[]) {\n\n  // get an ftpClient object\n  FTPClient ftpClient = new FTPClient();\n  FileInputStream inputStream = null;\n\n  try {\n   // pass directory path on server to connect\n   ftpClient.connect(\"nagesh12.5gbfree.com\");\n\n   // pass username and password, returned true if authentication is\n   // successful\n   boolean login = ftpClient.login(\"username\", \"password\");\n\n   if (login) {\n    System.out.println(\"Connection established...\");\n    inputStream = new FileInputStream(\"files/fileToUpload.txt\");\n\n    boolean uploaded = ftpClient.storeFile(\"uploadedFile.txt\",\n      inputStream);\n    if (uploaded) {\n     System.out.println(\"File uploaded successfully !\");\n    } else {\n     System.out.println(\"Error in uploading file !\");\n    }\n\n    // logout the user, returned true if logout successfully\n    boolean logout = ftpClient.logout();\n    if (logout) {\n     System.out.println(\"Connection close...\");\n    }\n   } else {\n    System.out.println(\"Connection fail...\");\n   }\n\n  } catch (SocketException e) {\n   e.printStackTrace();\n  } catch (IOException e) {\n   e.printStackTrace();\n  } finally {\n   try {\n    ftpClient.disconnect();\n   } catch (IOException e) {\n    e.printStackTrace();\n   }\n  }\n }\n}\n\n\n",
+        "in_page_order": 2,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "FTPClient.__init__": true,
+          "FTPClient.connect": true,
+          "FTPClient.login": true,
+          "FileInputStream.__init__": true,
+          "FTPClient.storeFile": true,
+          "FTPClient.logout": true,
+          "FTPClient.disconnect": true
+        },
+        "APIsProjects": {
+          "FTPClient.__init__": 8,
+          "FTPClient.connect": 7,
+          "FTPClient.login": 8,
+          "FileInputStream.__init__": 443,
+          "FTPClient.storeFile": 6,
+          "FTPClient.logout": 6,
+          "FTPClient.disconnect": 6
+        },
+        "APIsFiles": {
+          "FTPClient.__init__": 10,
+          "FTPClient.connect": 7,
+          "FTPClient.login": 9,
+          "FileInputStream.__init__": 2808,
+          "FTPClient.storeFile": 6,
+          "FTPClient.logout": 8,
+          "FTPClient.disconnect": 9
+        },
+        "APIsSnippets": {
+          "FTPClient.__init__": 11,
+          "FTPClient.connect": 7,
+          "FTPClient.login": 10,
+          "FileInputStream.__init__": 4023,
+          "FTPClient.storeFile": 6,
+          "FTPClient.logout": 8,
+          "FTPClient.disconnect": 10
+        },
+        "APIsQualifiedNames": {
+          "FTPClient.__init__": "org.apache.commons.net.ftp.FTPClient.__init__",
+          "FTPClient.connect": "org.apache.commons.net.ftp.FTPClient.connect",
+          "FTPClient.login": "org.apache.commons.net.ftp.FTPClient.login",
+          "FileInputStream.__init__": "java.io.FileInputStream.__init__",
+          "FTPClient.storeFile": "org.apache.commons.net.ftp.FTPClient.storeFile",
+          "FTPClient.logout": "org.apache.commons.net.ftp.FTPClient.logout",
+          "FTPClient.disconnect": "org.apache.commons.net.ftp.FTPClient.disconnect"
+        },
+        "API_Ratio": 1.0
+      }
+    ]
+  },
+  {
+    "query": "How to upload file to FTP",
+    "url": "http://www.java2s.com/Code/Java/Network-Protocol/UploadfiletoFTPserver.htm",
+    "url position": 10,
+    "segments": [
+      {
+        "code": " \n\nimport org.apache.commons.net.ftp.FTPClient;\nimport java.io.FileInputStream;\nimport java.io.IOException;\n\npublic class Main {\n  public static void main(String[] args) {\n    FTPClient client = new FTPClient();\n    FileInputStream fis = null;\n\n    client.connect(\"ftp.domain.com\");\n    client.login(\"admin\", \"secret\");\n\n    String filename = \"Touch.dat\";\n    fis = new FileInputStream(filename);\n    client.storeFile(filename, fis);\n    client.logout();\n    fis.close();\n  }\n}\n\n   \n  \n",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "FTPClient.__init__": true,
+          "FTPClient.connect": true,
+          "FTPClient.login": true,
+          "FileInputStream.__init__": true,
+          "FTPClient.storeFile": true,
+          "FTPClient.logout": true,
+          "FileInputStream.close": true
+        },
+        "APIsProjects": {
+          "FTPClient.__init__": 8,
+          "FTPClient.connect": 7,
+          "FTPClient.login": 8,
+          "FileInputStream.__init__": 443,
+          "FTPClient.storeFile": 6,
+          "FTPClient.logout": 6,
+          "FileInputStream.close": 218
+        },
+        "APIsFiles": {
+          "FTPClient.__init__": 10,
+          "FTPClient.connect": 7,
+          "FTPClient.login": 9,
+          "FileInputStream.__init__": 2808,
+          "FTPClient.storeFile": 6,
+          "FTPClient.logout": 8,
+          "FileInputStream.close": 664
+        },
+        "APIsSnippets": {
+          "FTPClient.__init__": 11,
+          "FTPClient.connect": 7,
+          "FTPClient.login": 10,
+          "FileInputStream.__init__": 4023,
+          "FTPClient.storeFile": 6,
+          "FTPClient.logout": 8,
+          "FileInputStream.close": 861
+        },
+        "APIsQualifiedNames": {
+          "FTPClient.__init__": "org.apache.commons.net.ftp.FTPClient.__init__",
+          "FTPClient.connect": "org.apache.commons.net.ftp.FTPClient.connect",
+          "FTPClient.login": "org.apache.commons.net.ftp.FTPClient.login",
+          "FileInputStream.__init__": "java.io.FileInputStream.__init__",
+          "FTPClient.storeFile": "org.apache.commons.net.ftp.FTPClient.storeFile",
+          "FTPClient.logout": "org.apache.commons.net.ftp.FTPClient.logout",
+          "FileInputStream.close": "java.io.FileInputStream.close"
+        },
+        "API_Ratio": 1.0
+      }
+    ]
+  },
+  {
+    "query": "How to upload file to FTP",
+    "url": "https://stackoverflow.com/questions/5925572/ftpclient-java-upload-file",
+    "url position": 5,
+    "segments": [
+      {
+        "code": "BufferedInputStream bis = new BufferedInputStream(new FileInputStream(f));\nres = client.storeFile(\"File Name\", bis);\nbis.close();\nclient.logout();\n",
+        "in_page_order": 4,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": "3",
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "FileInputStream.__init__": true,
+          "BufferedInputStream.__init__": true,
+          "BufferedInputStream.close": true
+        },
+        "APIsProjects": {
+          "FileInputStream.__init__": 443,
+          "BufferedInputStream.__init__": 224,
+          "BufferedInputStream.close": 91
+        },
+        "APIsFiles": {
+          "FileInputStream.__init__": 2808,
+          "BufferedInputStream.__init__": 793,
+          "BufferedInputStream.close": 196
+        },
+        "APIsSnippets": {
+          "FileInputStream.__init__": 4023,
+          "BufferedInputStream.__init__": 1031,
+          "BufferedInputStream.close": 246
+        },
+        "APIsQualifiedNames": {
+          "FileInputStream.__init__": "java.io.FileInputStream.__init__",
+          "BufferedInputStream.__init__": "java.io.BufferedInputStream.__init__",
+          "BufferedInputStream.close": "java.io.BufferedInputStream.close"
+        },
+        "API_Ratio": 1.0
+      }
+    ]
+  },
+  {
+    "query": "How to upload file to FTP",
+    "url": "http://www.jscape.com/blog/bid/73826/Secure-File-Transfer-with-Java-FTP-Library",
+    "url position": 19,
+    "segments": [
+      {
+        "code": "import com.jscape.inet.ftp.*;\r\nimport com.jscape.inet.ftps.*;\r\nimport java.io.*;\r\nimport java.util.Enumeration;\r\n\r\npublic class SecureUpload extends FtpAdapter {\r\n    private String hostname;\r\n    private String username;\r\n    private String password;\r\n    \r\n    // perform multiple file upload\r\n    public void doUpload(String hostname, String username, String password) throws FtpException {\r\n        Ftps ftp = new Ftps(hostname,username,password);\r\n        \r\n        //capture Ftps related events\r\n        ftp.addFtpListener(this);\r\n\t\t\r\n\t\t// Set the connection type. Explicit is Ftps.AUTH_TLS. \r\n\t\t// Implicit (which is deprecated) is Ftps.IMPLICIT_SSL\r\n\t\tftp.setConnectionType(Ftps.AUTH_TLS);\r\n\t\t\r\n        ftp.connect();\r\n        ftp.setBinary();\r\n        ftp.mupload(\".*\\\\.gif\");\r\n        ftp.disconnect();\r\n    }\r\n    \r\n    public static void main(String[] args) {\r\n        String hostname = \"ftp.somewebsite.com\";\r\n        String username = \"IFeelSecure\";\r\n        String password = \"zip1a2dee3doo4dah\";\r\n        try {\r\n            SecureUpload theUploader = new SecureUpload();\r\n            theUploader.doUpload(hostname,username,password);\r\n        }\r\n        catch(Exception e) {\r\n            e.printStackTrace();\r\n        }\r\n    }\r\n}\r\n",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Ftps.__init__": false,
+          "Ftps.addFtpListener": false,
+          "Ftps.setConnectionType": false,
+          "Ftps.connect": false,
+          "Ftps.setBinary": false,
+          "Ftps.mupload": false,
+          "Ftps.disconnect": false,
+          "SecureUpload.__init__": false,
+          "SecureUpload.doUpload": false
+        },
+        "APIsProjects": {},
+        "APIsFiles": {},
+        "APIsSnippets": {},
+        "APIsQualifiedNames": {},
+        "API_Ratio": 0.0
+      },
+      {
+        "code": "/*\r\n * SecureDownload.java\r\n *\r\n * An example using FTPS.\r\n */\r\n\r\nimport com.jscape.inet.ftp.*;\r\nimport com.jscape.inet.ftps.*;\r\nimport java.io.*;\r\nimport java.util.Enumeration;\r\n\r\npublic class SecureDownload extends FtpAdapter {\r\n    private String hostname;\r\n    private String username;\r\n    private String password;\r\n    private String filter;\r\n    \r\n    // Multiple file downloader from one particular website.\r\n    public void doDownload(String filter) throws FtpException {\r\n        Ftps ftp = new Ftps();\r\n        \r\n        //capture Ftp related events\r\n        ftp.addFtpListener(this);\r\n        ftp.setHostname(\"ftp.somewebsite.com\");\r\n        ftp.setUsername(\"IFeelSecure\");\r\n        ftp.setPassword(\"zip1a2dee3doo4dah\");\r\n        ftp.connect();\r\n        ftp.setBinary();\r\n        ftp.mdownload(filter);\r\n        ftp.disconnect();\r\n    }\r\n    \r\n    public static void main(String[] args) {\r\n        String filter;\r\n        try {\r\n\t\t\tfilter = \".*\\\\.gif\";\r\n            SecureDownload theDownloader = new SecureDownload();\r\n            theDownloader.doDownload(filter);\r\n        }\r\n        catch(Exception e) {\r\n            e.printStackTrace();\r\n        }\r\n    }\r\n}\r\n",
+        "in_page_order": 2,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Ftps.__init__": false,
+          "Ftps.addFtpListener": false,
+          "Ftps.setHostname": false,
+          "Ftps.setUsername": false,
+          "Ftps.setPassword": false,
+          "Ftps.connect": false,
+          "Ftps.setBinary": false,
+          "Ftps.mdownload": false,
+          "Ftps.disconnect": false,
+          "SecureDownload.__init__": false,
+          "SecureDownload.doDownload": false
+        },
+        "APIsProjects": {},
+        "APIsFiles": {},
+        "APIsSnippets": {},
+        "APIsQualifiedNames": {},
+        "API_Ratio": 0.0
+      }
+    ]
+  },
+  {
+    "query": "How to upload file to FTP",
+    "url": "http://www.codejava.net/java-se/networking/ftp/java-ftp-file-upload-tutorial-and-example",
+    "url position": 6,
+    "segments": [
+      {
+        "code": "import java.io.File;\nimport java.io.FileInputStream;\nimport java.io.IOException;\nimport java.io.InputStream;\nimport java.io.OutputStream;\n\nimport org.apache.commons.net.ftp.FTP;\nimport org.apache.commons.net.ftp.FTPClient;\n\n/**\n * A program that demonstrates how to upload files from local computer\n * to a remote FTP server using Apache Commons Net API.\n * @author www.codejava.net\n */\npublic class FTPUploadFileDemo {\n\n\tpublic static void main(String[] args) {\n\t\tString server = \"www.myserver.com\";\n\t\tint port = 21;\n\t\tString user = \"user\";\n\t\tString pass = \"pass\";\n\n\t\tFTPClient ftpClient = new FTPClient();\n\t\ttry {\n\n\t\t\tftpClient.connect(server, port);\n\t\t\tftpClient.login(user, pass);\n\t\t\tftpClient.enterLocalPassiveMode();\n\n\t\t\tftpClient.setFileType(FTP.BINARY_FILE_TYPE);\n\n\t\t\t// APPROACH #1: uploads first file using an InputStream\n\t\t\tFile firstLocalFile = new File(\"D:/Test/Projects.zip\");\n\n\t\t\tString firstRemoteFile = \"Projects.zip\";\n\t\t\tInputStream inputStream = new FileInputStream(firstLocalFile);\n\n\t\t\tSystem.out.println(\"Start uploading first file\");\n\t\t\tboolean done = ftpClient.storeFile(firstRemoteFile, inputStream);\n\t\t\tinputStream.close();\n\t\t\tif (done) {\n\t\t\t\tSystem.out.println(\"The first file is uploaded successfully.\");\n\t\t\t}\n\n\t\t\t// APPROACH #2: uploads second file using an OutputStream\n\t\t\tFile secondLocalFile = new File(\"E:/Test/Report.doc\");\n\t\t\tString secondRemoteFile = \"test/Report.doc\";\n\t\t\tinputStream = new FileInputStream(secondLocalFile);\n\n\t\t\tSystem.out.println(\"Start uploading second file\");\n\t\t\tOutputStream outputStream = ftpClient.storeFileStream(secondRemoteFile);\n\t        byte[] bytesIn = new byte[4096];\n\t        int read = 0;\n\n\t        while ((read = inputStream.read(bytesIn)) != -1) {\n\t        \toutputStream.write(bytesIn, 0, read);\n\t        }\n\t        inputStream.close();\n\t        outputStream.close();\n\n\t        boolean completed = ftpClient.completePendingCommand();\n\t\t\tif (completed) {\n\t\t\t\tSystem.out.println(\"The second file is uploaded successfully.\");\n\t\t\t}\n\n\t\t} catch (IOException ex) {\n\t\t\tSystem.out.println(\"Error: \" + ex.getMessage());\n\t\t\tex.printStackTrace();\n\t\t} finally {\n\t\t\ttry {\n\t\t\t\tif (ftpClient.isConnected()) {\n\t\t\t\t\tftpClient.logout();\n\t\t\t\t\tftpClient.disconnect();\n\t\t\t\t}\n\t\t\t} catch (IOException ex) {\n\t\t\t\tex.printStackTrace();\n\t\t\t}\n\t\t}\n\t}\n\n}\n",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "FTPClient.__init__": true,
+          "FTPClient.connect": true,
+          "FTPClient.login": true,
+          "FTPClient.enterLocalPassiveMode": true,
+          "FTPClient.setFileType": true,
+          "File.__init__": true,
+          "InputStream.__init__": true,
+          "FTPClient.storeFile": true,
+          "InputStream.close": true,
+          "FTPClient.storeFileStream": false,
+          "InputStream.read": true,
+          "OutputStream.close": true,
+          "FTPClient.completePendingCommand": true,
+          "FTPClient.isConnected": true,
+          "FTPClient.logout": true,
+          "FTPClient.disconnect": true
+        },
+        "APIsProjects": {
+          "FTPClient.__init__": 8,
+          "FTPClient.connect": 7,
+          "FTPClient.login": 8,
+          "FTPClient.enterLocalPassiveMode": 5,
+          "FTPClient.setFileType": 6,
+          "File.__init__": 591,
+          "InputStream.__init__": 350,
+          "FTPClient.storeFile": 6,
+          "InputStream.close": 441,
+          "InputStream.read": 397,
+          "OutputStream.close": 308,
+          "FTPClient.completePendingCommand": 3,
+          "FTPClient.isConnected": 5,
+          "FTPClient.logout": 6,
+          "FTPClient.disconnect": 6
+        },
+        "APIsFiles": {
+          "FTPClient.__init__": 10,
+          "FTPClient.connect": 7,
+          "FTPClient.login": 9,
+          "FTPClient.enterLocalPassiveMode": 5,
+          "FTPClient.setFileType": 6,
+          "File.__init__": 13065,
+          "InputStream.__init__": 1711,
+          "FTPClient.storeFile": 6,
+          "InputStream.close": 2481,
+          "InputStream.read": 1923,
+          "OutputStream.close": 1330,
+          "FTPClient.completePendingCommand": 5,
+          "FTPClient.isConnected": 8,
+          "FTPClient.logout": 8,
+          "FTPClient.disconnect": 9
+        },
+        "APIsSnippets": {
+          "FTPClient.__init__": 11,
+          "FTPClient.connect": 7,
+          "FTPClient.login": 10,
+          "FTPClient.enterLocalPassiveMode": 5,
+          "FTPClient.setFileType": 7,
+          "File.__init__": 40468,
+          "InputStream.__init__": 2609,
+          "FTPClient.storeFile": 6,
+          "InputStream.close": 3284,
+          "InputStream.read": 4134,
+          "OutputStream.close": 1855,
+          "FTPClient.completePendingCommand": 5,
+          "FTPClient.isConnected": 12,
+          "FTPClient.logout": 8,
+          "FTPClient.disconnect": 10
+        },
+        "APIsQualifiedNames": {
+          "FTPClient.__init__": "org.apache.commons.net.ftp.FTPClient.__init__",
+          "FTPClient.connect": "org.apache.commons.net.ftp.FTPClient.connect",
+          "FTPClient.login": "org.apache.commons.net.ftp.FTPClient.login",
+          "FTPClient.enterLocalPassiveMode": "org.apache.commons.net.ftp.FTPClient.enterLocalPassiveMode",
+          "FTPClient.setFileType": "org.apache.commons.net.ftp.FTPClient.setFileType",
+          "File.__init__": "java.io.File.__init__",
+          "InputStream.__init__": "java.io.InputStream.__init__",
+          "FTPClient.storeFile": "org.apache.commons.net.ftp.FTPClient.storeFile",
+          "InputStream.close": "java.io.InputStream.close",
+          "InputStream.read": "java.io.InputStream.read",
+          "OutputStream.close": "java.io.OutputStream.close",
+          "FTPClient.completePendingCommand": "org.apache.commons.net.ftp.FTPClient.completePendingCommand",
+          "FTPClient.isConnected": "org.apache.commons.net.ftp.FTPClient.isConnected",
+          "FTPClient.logout": "org.apache.commons.net.ftp.FTPClient.logout",
+          "FTPClient.disconnect": "org.apache.commons.net.ftp.FTPClient.disconnect"
+        },
+        "API_Ratio": 0.9375
+      }
+    ]
+  },
+  {
+    "query": "How to upload file to FTP",
+    "url": "http://www.jscape.com/blog/bid/73656/Transferring-Files-with-Java-FTP-Library",
+    "url position": 14,
+    "segments": [
+      {
+        "code": "import com.jscape.inet.ftp.*;\nimport java.io.*;\nimport java.util.Enumeration;\n\npublic class FTPUpload extends FtpAdapter {\n    private String hostname;\n    private String username;\n    private String password;\n    \n    // perform single file upload\n    public void doUpload(String hostname, String username, String password, String filter) throws FtpException {\n        Ftp ftp = new Ftp(hostname,username,password);\n        \n        //capture Ftp related events\n        ftp.addFtpListener(this);\n        ftp.connect();\n        ftp.setBinary();\n        ftp.mupload(filter);\n        ftp.disconnect();\n    }\n    \n    public static void main(String[] args) {\n        String hostname = \"ftp.somewebsite.com\";\n        String username = \"trusting_puppy\";\n        String password = \"12345678\";\n        String filter = \".*\\\\.bat\";\n        try {\n            FTPUpload theUploader = new FTPUpload();\n            theUploader.doUpload(hostname,username,password,filter);\n        }\n        catch(Exception e) {\n            e.printStackTrace();\n        }\n    }\n}\n",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Ftp.__init__": false,
+          "Ftp.addFtpListener": false,
+          "Ftp.connect": false,
+          "Ftp.setBinary": false,
+          "Ftp.mupload": false,
+          "Ftp.disconnect": false,
+          "FTPUpload.__init__": false,
+          "FTPUpload.doUpload": false
+        },
+        "APIsProjects": {},
+        "APIsFiles": {},
+        "APIsSnippets": {},
+        "APIsQualifiedNames": {},
+        "API_Ratio": 0.0
+      },
+      {
+        "code": "import com.jscape.inet.ftp.*;\nimport java.io.*;\nimport java.util.Enumeration;\n\npublic class FTPDownload extends FtpAdapter {\n    private String hostname;\n    private String username;\n    private String password;\n    private String filter;\n    \n    // perform multiple file download\n    public void doDownload(String hostname, String username, String password, String filter) throws FtpException {\n        Ftp ftp = new Ftp();\n        \n        //capture Ftp related events\n        ftp.addFtpListener(this);\n        ftp.setHostname(hostname);\n        ftp.setUsername(username);\n        ftp.setPassword(password);\n        ftp.connect();\n        ftp.setBinary();\n        ftp.mdownload(filter);\n        ftp.disconnect();\n    }\n    \n    public static void main(String[] args) {\n\t\tString hostname = \"ftp.somewebsite.com\";\n\t\tString username = \"trusting_puppy\";\n\t\tString password = \"12345678\";\n\t\tString filter = \".*\\\\.gif\";\n        try {\n            FTPDownload theDownloader = new FTPDownload();\n            theDownloader.doDownload(hostname,username,password,filter);\n        }\n        catch(Exception e) {\n            e.printStackTrace();\n        }\n    }\n}",
+        "in_page_order": 2,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "Ftp.__init__": false,
+          "Ftp.addFtpListener": false,
+          "Ftp.setHostname": false,
+          "Ftp.setUsername": false,
+          "Ftp.setPassword": false,
+          "Ftp.connect": false,
+          "Ftp.setBinary": false,
+          "Ftp.mdownload": false,
+          "Ftp.disconnect": false,
+          "FTPDownload.__init__": false,
+          "FTPDownload.doDownload": false
+        },
+        "APIsProjects": {},
+        "APIsFiles": {},
+        "APIsSnippets": {},
+        "APIsQualifiedNames": {},
+        "API_Ratio": 0.0
+      }
+    ]
+  },
+  {
+    "query": "How to upload file to FTP",
+    "url": "https://examples.javacodegeeks.com/core-java/apache/commons/net-commons/file-upload-to-ftp-server/",
+    "url position": 12,
+    "segments": [
+      {
+        "code": "\npackage com.javacodegeeks.snippets.core;\n\nimport org.apache.commons.net.ftp.FTPClient;\nimport java.io.FileInputStream;\nimport java.io.IOException;\n \npublic class FtpFileUpload {\n\t\n    public static void main(String[] args) {\n\n  \n    \tFTPClient client = new FTPClient();\n\n  FileInputStream fis = null;\n \n\n  try {\n\n\nclient.connect(\"ftp.javacodegeeks.com\");\n\n\nclient.login(\"username\", \"password\");\n \n\n\n\n\n\n// Create an InputStream of the file to be uploaded\n\n\nString filename = \"test.txt\";\n\n\nfis = new FileInputStream(filename);\n \n\n\n// Store file on server and logout\n\n\nclient.storeFile(filename, fis);\n\n\nclient.logout();\n\n\n\n\n  } catch (IOException e) {\n\n\ne.printStackTrace();\n\n  } finally {\n\n\ntry {\n\n\n    if (fis != null) {\n\n\n\n  fis.close();\n\n\n    }\n\n\n    client.disconnect();\n\n\n} catch (IOException e) {\n\n\n    e.printStackTrace();\n\n\n}\n\n  }\n    }\n}\n",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "FTPClient.__init__": true,
+          "FTPClient.connect": true,
+          "FTPClient.login": true,
+          "FileInputStream.__init__": true,
+          "FTPClient.storeFile": true,
+          "FTPClient.logout": true,
+          "FileInputStream.close": true,
+          "FTPClient.disconnect": true
+        },
+        "APIsProjects": {
+          "FTPClient.__init__": 8,
+          "FTPClient.connect": 7,
+          "FTPClient.login": 8,
+          "FileInputStream.__init__": 443,
+          "FTPClient.storeFile": 6,
+          "FTPClient.logout": 6,
+          "FileInputStream.close": 218,
+          "FTPClient.disconnect": 6
+        },
+        "APIsFiles": {
+          "FTPClient.__init__": 10,
+          "FTPClient.connect": 7,
+          "FTPClient.login": 9,
+          "FileInputStream.__init__": 2808,
+          "FTPClient.storeFile": 6,
+          "FTPClient.logout": 8,
+          "FileInputStream.close": 664,
+          "FTPClient.disconnect": 9
+        },
+        "APIsSnippets": {
+          "FTPClient.__init__": 11,
+          "FTPClient.connect": 7,
+          "FTPClient.login": 10,
+          "FileInputStream.__init__": 4023,
+          "FTPClient.storeFile": 6,
+          "FTPClient.logout": 8,
+          "FileInputStream.close": 861,
+          "FTPClient.disconnect": 10
+        },
+        "APIsQualifiedNames": {
+          "FTPClient.__init__": "org.apache.commons.net.ftp.FTPClient.__init__",
+          "FTPClient.connect": "org.apache.commons.net.ftp.FTPClient.connect",
+          "FTPClient.login": "org.apache.commons.net.ftp.FTPClient.login",
+          "FileInputStream.__init__": "java.io.FileInputStream.__init__",
+          "FTPClient.storeFile": "org.apache.commons.net.ftp.FTPClient.storeFile",
+          "FTPClient.logout": "org.apache.commons.net.ftp.FTPClient.logout",
+          "FileInputStream.close": "java.io.FileInputStream.close",
+          "FTPClient.disconnect": "org.apache.commons.net.ftp.FTPClient.disconnect"
+        },
+        "API_Ratio": 1.0
+      }
+    ]
+  },
+  {
+    "query": "How to upload file to FTP",
+    "url": "https://www.example-code.com/java/ftp_large_file_upload.asp",
+    "url position": 15,
+    "segments": [
+      {
+        "code": "import com.chilkatsoft.*;\r\n\r\npublic class ChilkatExample {\r\n\r\n  static {\r\n    try {\r\n        System.loadLibrary(\"chilkat\");\r\n    } catch (UnsatisfiedLinkError e) {\r\n      System.err.println(\"Native code library failed to load.\\n\" + e);\r\n      System.exit(1);\r\n    }\r\n  }\r\n\r\n  public static void main(String argv[])\r\n  {\r\n    CkFtp2 ftp = new CkFtp2();\r\n\r\n    //  Any string unlocks the component for the 1st 30-days.\r\n    boolean success = ftp.UnlockComponent(\"Anything for 30-day trial\");\r\n    if (success != true) {\r\n        System.out.println(ftp.lastErrorText());\r\n        return;\r\n    }\r\n\r\n    ftp.put_Hostname(\"ftp.someFtpServer.com\");\r\n    ftp.put_Username(\"my-ftp-login\");\r\n    ftp.put_Password(\"my-ftp-password\");\r\n\r\n    //  Connect and login to the FTP server.\r\n    success = ftp.Connect();\r\n    if (success != true) {\r\n        System.out.println(ftp.lastErrorText());\r\n        return;\r\n    }\r\n\r\n    //  Change to the remote directory where the file will be uploaded.\r\n    success = ftp.ChangeRemoteDir(\"junk\");\r\n    if (success != true) {\r\n        System.out.println(ftp.lastErrorText());\r\n        return;\r\n    }\r\n\r\n    String localPath = \"c:/temp/veryLargeFile.dat\";\r\n    String remoteFilename = \"veryLargeFile.dat\";\r\n    //  Upload in chunks of 10 million bytes.\r\n    int chunkSize = 10000000;\r\n\r\n    success = ftp.LargeFileUpload(localPath,remoteFilename,chunkSize);\r\n    if (success != true) {\r\n        System.out.println(ftp.lastErrorText());\r\n        return;\r\n    }\r\n\r\n    success = ftp.Disconnect();\r\n\r\n    System.out.println(\"Large File Uploaded!\");\r\n\r\n  }\r\n}\r\n\r\n",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "CkFtp2.__init__": false,
+          "CkFtp2.UnlockComponent": false,
+          "CkFtp2.lastErrorText": false,
+          "CkFtp2.put_Hostname": false,
+          "CkFtp2.put_Username": false,
+          "CkFtp2.put_Password": false,
+          "CkFtp2.Connect": false,
+          "CkFtp2.ChangeRemoteDir": false,
+          "CkFtp2.LargeFileUpload": false,
+          "CkFtp2.Disconnect": false
+        },
+        "APIsProjects": {},
+        "APIsFiles": {},
+        "APIsSnippets": {},
+        "APIsQualifiedNames": {},
+        "API_Ratio": 0.0
+      }
+    ]
+  },
+  {
+    "query": "How to upload file to FTP",
+    "url": "http://www.simplecodestuffs.com/uploading-file-on-ftp-server/",
+    "url position": 16,
+    "segments": [
+      {
+        "code": "\r\n\r\nimport java.io.IOException;\r\nimport java.io.File;\r\nimport java.io.FileInputStream;\r\n\r\nimport org.apache.commons.net.ftp.FTP;\r\nimport org.apache.commons.net.ftp.FTPClient;\r\nimport org.apache.commons.net.ftp.FTPConnectionClosedException;\r\n\r\nclass FTPFileUpload {\r\n\tpublic static void main(String[] args) throws IOException {\r\n\t\tFTPClient ftpclient = new FTPClient();\r\n\t\tFileInputStream fis = null;\r\n\t\tboolean result;\r\n\t\tString ftpServerAddress = \"localhost\";\r\n\t\tString userName = \"admin\";\r\n\t\tString password = \"admin\";\r\n\r\n\t\ttry {\r\n\t\t\tftpclient.connect(ftpServerAddress);\r\n\t\t\tresult = ftpclient.login(userName, password);\r\n\r\n\t\t\tif (result == true) {\r\n\t\t\t\tSystem.out.println(\"Logged in Successfully !\");\r\n\t\t\t} else {\r\n\t\t\t\tSystem.out.println(\"Login Fail!\");\r\n\t\t\t\treturn;\r\n\t\t\t}\r\n\t\t\tftpclient.setFileType(FTP.BINARY_FILE_TYPE);\r\n\r\n\t\t\tftpclient.changeWorkingDirectory(\"/\");\r\n\r\n\t\t\tFile file = new File(\"D:/File.doc\");\r\n\t\t\tString testName = file.getName();\r\n\t\t\tfis = new FileInputStream(file);\r\n\r\n\t\t\t// Upload file to the ftp server\r\n\t\t\tresult = ftpclient.storeFile(testName, fis);\r\n\r\n\t\t\tif (result == true) {\r\n\t\t\t\tSystem.out.println(\"File is uploaded successfully\");\r\n\t\t\t} else {\r\n\t\t\t\tSystem.out.println(\"File uploading failed\");\r\n\t\t\t}\r\n\t\t\tftpclient.logout();\r\n\t\t} catch (FTPConnectionClosedException e) {\r\n\t\t\te.printStackTrace();\r\n\t\t} finally {\r\n\t\t\ttry {\r\n\t\t\t\tftpclient.disconnect();\r\n\t\t\t} catch (FTPConnectionClosedException e) {\r\n\t\t\t\tSystem.out.println(e);\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n}\r\n",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "FTPClient.__init__": true,
+          "FTPClient.connect": true,
+          "FTPClient.login": true,
+          "FTPClient.setFileType": true,
+          "FTPClient.changeWorkingDirectory": true,
+          "File.__init__": true,
+          "File.getName": true,
+          "FileInputStream.__init__": true,
+          "FTPClient.storeFile": true,
+          "FTPClient.logout": true,
+          "FTPClient.disconnect": true
+        },
+        "APIsProjects": {
+          "FTPClient.__init__": 8,
+          "FTPClient.connect": 7,
+          "FTPClient.login": 8,
+          "FTPClient.setFileType": 6,
+          "FTPClient.changeWorkingDirectory": 7,
+          "File.__init__": 591,
+          "File.getName": 300,
+          "FileInputStream.__init__": 443,
+          "FTPClient.storeFile": 6,
+          "FTPClient.logout": 6,
+          "FTPClient.disconnect": 6
+        },
+        "APIsFiles": {
+          "FTPClient.__init__": 10,
+          "FTPClient.connect": 7,
+          "FTPClient.login": 9,
+          "FTPClient.setFileType": 6,
+          "FTPClient.changeWorkingDirectory": 8,
+          "File.__init__": 13065,
+          "File.getName": 1846,
+          "FileInputStream.__init__": 2808,
+          "FTPClient.storeFile": 6,
+          "FTPClient.logout": 8,
+          "FTPClient.disconnect": 9
+        },
+        "APIsSnippets": {
+          "FTPClient.__init__": 11,
+          "FTPClient.connect": 7,
+          "FTPClient.login": 10,
+          "FTPClient.setFileType": 7,
+          "FTPClient.changeWorkingDirectory": 19,
+          "File.__init__": 40468,
+          "File.getName": 3551,
+          "FileInputStream.__init__": 4023,
+          "FTPClient.storeFile": 6,
+          "FTPClient.logout": 8,
+          "FTPClient.disconnect": 10
+        },
+        "APIsQualifiedNames": {
+          "FTPClient.__init__": "org.apache.commons.net.ftp.FTPClient.__init__",
+          "FTPClient.connect": "org.apache.commons.net.ftp.FTPClient.connect",
+          "FTPClient.login": "org.apache.commons.net.ftp.FTPClient.login",
+          "FTPClient.setFileType": "org.apache.commons.net.ftp.FTPClient.setFileType",
+          "FTPClient.changeWorkingDirectory": "org.apache.commons.net.ftp.FTPClient.changeWorkingDirectory",
+          "File.__init__": "java.io.File.__init__",
+          "File.getName": "java.io.File.getName",
+          "FileInputStream.__init__": "java.io.FileInputStream.__init__",
+          "FTPClient.storeFile": "org.apache.commons.net.ftp.FTPClient.storeFile",
+          "FTPClient.logout": "org.apache.commons.net.ftp.FTPClient.logout",
+          "FTPClient.disconnect": "org.apache.commons.net.ftp.FTPClient.disconnect"
+        },
+        "API_Ratio": 1.0
+      }
+    ]
+  },
+  {
+    "query": "How to upload file to FTP",
+    "url": "http://www.jibble.org/simpleftp/",
+    "url position": 21,
+    "segments": [
+      {
+        "code": "try {\n    SimpleFTP ftp = new SimpleFTP();\n    \n    // Connect to an FTP server on port 21.\n    ftp.connect(\"ftp.somewhere.net\", 21, \"username\", \"password\");\n    \n    // Set binary mode.\n    ftp.bin();\n    \n    // Change to a new working directory on the FTP server.\n    ftp.cwd(\"web\");\n    \n    // Upload some files.\n    ftp.stor(new File(\"webcam.jpg\"));\n    ftp.stor(new File(\"comicbot-latest.png\"));\n    \n    // You can also upload from an InputStream, e.g.\n    ftp.stor(new FileInputStream(new File(\"test.png\")), \"test.png\");\n    ftp.stor(someSocket.getInputStream(), \"blah.dat\");\n    \n    // Quit from the FTP server.\n    ftp.disconnect();\n}\ncatch (IOException e) {\n    // Jibble.\n}",
+        "in_page_order": 2,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "SimpleFTP.__init__": false,
+          "SimpleFTP.connect": false,
+          "SimpleFTP.bin": false,
+          "SimpleFTP.cwd": false,
+          "File.__init__": true,
+          "SimpleFTP.stor": false,
+          "FileInputStream.__init__": true,
+          "SimpleFTP.disconnect": false
+        },
+        "APIsProjects": {
+          "File.__init__": 591,
+          "FileInputStream.__init__": 443
+        },
+        "APIsFiles": {
+          "File.__init__": 13065,
+          "FileInputStream.__init__": 2808
+        },
+        "APIsSnippets": {
+          "File.__init__": 40468,
+          "FileInputStream.__init__": 4023
+        },
+        "APIsQualifiedNames": {
+          "File.__init__": "java.io.File.__init__",
+          "FileInputStream.__init__": "java.io.FileInputStream.__init__"
+        },
+        "API_Ratio": 0.25
+      }
+    ]
+  },
+  {
+    "query": "How to upload file to FTP",
+    "url": "https://kodejava.org/how-do-i-upload-file-to-ftp-server/",
+    "url position": 8,
+    "segments": [
+      {
+        "code": "package org.kodejava.example.commons.net;\n\nimport org.apache.commons.net.ftp.FTPClient;\n\nimport java.io.IOException;\nimport java.io.InputStream;\n\npublic class FTPUploadDemo {\n    public static void main(String[] args) {\n        FTPClient client = new FTPClient();\n        String filename = \"data.txt\";\n\n        // Read the file from resources folder.\n        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();\n        try (InputStream is = classLoader.getResourceAsStream(filename)) {\n            client.connect(\"ftp.example.org\");\n            client.login(\"admin\", \"admin123**\");\n\n            // Store file to server\n            client.storeFile(filename, is);\n            client.logout();\n        } catch (IOException e) {\n            e.printStackTrace();\n        } finally {\n            try {\n                client.disconnect();\n            } catch (IOException e) {\n                e.printStackTrace();\n            }\n        }\n    }\n}\n",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "FTPClient.__init__": true,
+          "ClassLoader.getResourceAsStream": true,
+          "FTPClient.connect": true,
+          "FTPClient.login": true,
+          "FTPClient.storeFile": true,
+          "FTPClient.logout": true,
+          "FTPClient.disconnect": true
+        },
+        "APIsProjects": {
+          "FTPClient.__init__": 8,
+          "ClassLoader.getResourceAsStream": 92,
+          "FTPClient.connect": 7,
+          "FTPClient.login": 8,
+          "FTPClient.storeFile": 6,
+          "FTPClient.logout": 6,
+          "FTPClient.disconnect": 6
+        },
+        "APIsFiles": {
+          "FTPClient.__init__": 10,
+          "ClassLoader.getResourceAsStream": 205,
+          "FTPClient.connect": 7,
+          "FTPClient.login": 9,
+          "FTPClient.storeFile": 6,
+          "FTPClient.logout": 8,
+          "FTPClient.disconnect": 9
+        },
+        "APIsSnippets": {
+          "FTPClient.__init__": 11,
+          "ClassLoader.getResourceAsStream": 266,
+          "FTPClient.connect": 7,
+          "FTPClient.login": 10,
+          "FTPClient.storeFile": 6,
+          "FTPClient.logout": 8,
+          "FTPClient.disconnect": 10
+        },
+        "APIsQualifiedNames": {
+          "FTPClient.__init__": "org.apache.commons.net.ftp.FTPClient.__init__",
+          "FTPClient.connect": "org.apache.commons.net.ftp.FTPClient.connect",
+          "FTPClient.login": "org.apache.commons.net.ftp.FTPClient.login",
+          "FTPClient.storeFile": "org.apache.commons.net.ftp.FTPClient.storeFile",
+          "FTPClient.logout": "org.apache.commons.net.ftp.FTPClient.logout",
+          "FTPClient.disconnect": "org.apache.commons.net.ftp.FTPClient.disconnect"
+        },
+        "API_Ratio": 1.0
+      },
+      {
+        "code": "FTPHTTPClient client = \n        new FTPHTTPClient(\"proxy.example.org\", 8080, \"username\", \"password\");\n",
+        "in_page_order": 4,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "FTPHTTPClient.__init__": false
+        },
+        "APIsProjects": {},
+        "APIsFiles": {},
+        "APIsSnippets": {},
+        "APIsQualifiedNames": {},
+        "API_Ratio": 0.0
+      }
+    ]
+  },
+  {
+    "query": "How to upload file to FTP",
+    "url": "http://www.zehon.com/FTP_tutorial.htm",
+    "url position": 25,
+    "segments": [
+      {
+        "code": "\r\n// upload an java.io.InputStream representing C:\\myfiles\\test.txt to \r\n//remote folder \\myftpFolder \r\n//with ftp server ftp.myhost.com, username ftp and password pass\r\n    \r\n\r\nInputStream is = null;\r\nString filePath = \"C:\\\\myfiles\\\\test.txt\";\r\nFile localFile = new File(filePath);        \r\ntry {\r\n\tis = new BufferedInputStream(new FileInputStream(localFile));\r\n} catch (FileNotFoundException e1) {\r\n\t// TODO Auto-generated catch block\r\n\te1.printStackTrace();\r\n}\r\nString destFolder = \"/myftpFolder\";\r\nString nameOfFile = \"testStream.txt\";\r\nint status = -1;\r\ntry {\r\n   \r\n\tstatus = FTP.sendFile(is, nameOfFile, destFolder, \r\n\t                            \"ftp.myhost.com\", \"ftp\", \"pass\" );\r\n} catch (FileTransferException e) {\r\n\te.printStackTrace();\r\n\t//or\r\n\t//ex.getCause().printStackTrace();  (\r\n\t//Depending on what version of JDK you use)\t\t\t\r\n}finally{\r\n\tif(is != null){try {is.close();} catch (IOException e) {}}\r\n}\r\n\r\n\r\n",
+        "in_page_order": 3,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "File.__init__": true,
+          "FileInputStream.__init__": true,
+          "InputStream.__init__": true,
+          "InputStream.close": true
+        },
+        "APIsProjects": {
+          "File.__init__": 591,
+          "FileInputStream.__init__": 443,
+          "InputStream.__init__": 350,
+          "InputStream.close": 441
+        },
+        "APIsFiles": {
+          "File.__init__": 13065,
+          "FileInputStream.__init__": 2808,
+          "InputStream.__init__": 1711,
+          "InputStream.close": 2481
+        },
+        "APIsSnippets": {
+          "File.__init__": 40468,
+          "FileInputStream.__init__": 4023,
+          "InputStream.__init__": 2609,
+          "InputStream.close": 3284
+        },
+        "APIsQualifiedNames": {
+          "File.__init__": "java.io.File.__init__",
+          "FileInputStream.__init__": "java.io.FileInputStream.__init__",
+          "InputStream.__init__": "java.io.InputStream.__init__",
+          "InputStream.close": "java.io.InputStream.close"
+        },
+        "API_Ratio": 1.0
+      },
+      {
+        "code": "\r\n// upload an java.io.InputStream representing C:\\myfiles\\test.txt to \r\n//remote folder \\myftpFolder \r\n//with ftp server ftp.myhost.com, username ftp and password pass\r\n    \r\nInputStream is = null;\r\nString filePath = \"C:\\\\myfiles\\\\test.txt\";\r\nFile localFile = new File(filePath);        \r\ntry {\r\n\tis = new BufferedInputStream(new FileInputStream(localFile));\r\n} catch (FileNotFoundException e1) {\r\n\te1.printStackTrace();\r\n}\r\nString destFolder = \"/myftpFolder\";\r\nString nameOfFile = \"testStream.txt\";\r\nint status = -1;\r\ntry {\r\n    FTPClient ftpClient = new FTPClient(\"ftp.myhost.com\", \"ftp\", \"pass\" );\r\n\tstatus = ftpClient.sendFile(is, nameOfFile, destFolder);\r\n} catch (FileTransferException e) {\r\n\te.printStackTrace();\r\n\t//or\r\n\t//ex.getCause().printStackTrace();  \r\n\t//(Depending on what version of JDK you use)\t\t\t\r\n}finally{\r\n\tif(is != null){try {is.close();} catch (IOException e) {}}\r\n}\r\n",
+        "in_page_order": 4,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "File.__init__": true,
+          "FileInputStream.__init__": true,
+          "InputStream.__init__": true,
+          "FTPClient.__init__": true,
+          "FTPClient.sendFile": false,
+          "InputStream.close": true
+        },
+        "APIsProjects": {
+          "File.__init__": 591,
+          "FileInputStream.__init__": 443,
+          "InputStream.__init__": 350,
+          "FTPClient.__init__": 8,
+          "InputStream.close": 441
+        },
+        "APIsFiles": {
+          "File.__init__": 13065,
+          "FileInputStream.__init__": 2808,
+          "InputStream.__init__": 1711,
+          "FTPClient.__init__": 10,
+          "InputStream.close": 2481
+        },
+        "APIsSnippets": {
+          "File.__init__": 40468,
+          "FileInputStream.__init__": 4023,
+          "InputStream.__init__": 2609,
+          "FTPClient.__init__": 11,
+          "InputStream.close": 3284
+        },
+        "APIsQualifiedNames": {
+          "File.__init__": "java.io.File.__init__",
+          "FileInputStream.__init__": "java.io.FileInputStream.__init__",
+          "InputStream.__init__": "java.io.InputStream.__init__",
+          "FTPClient.__init__": "org.apache.commons.net.ftp.FTPClient.__init__",
+          "InputStream.close": "java.io.InputStream.close"
+        },
+        "API_Ratio": 0.8333333333333334
+      },
+      {
+        "code": "\r\n// downloading testStream.txt from remote folder \\test\r\n//to local folder C:\\\\myfiles\\\\writeToFolder\r\n//with ftp server ftp.myhost.com, username ftp and password pass\r\n    \r\nString ftpFolder = \"/test\";\r\nString nameOfFile = \"testStream.txt\";\r\nString toLocalFolder = \"C:\\\\myfiles\\\\writeToFolder\";\r\nint status = -1;\r\ntry {\r\n    FTPClient ftpClient = new FTPClient(\"ftp.myhost.com\", \"ftp\", \"pass\");\r\n\tstatus = ftpClient.getFile(nameOfFile, ftpFolder, toLocalFolder);\r\n\t\r\n} catch (Exception e) {\r\n\te.printStackTrace();\r\n\t//or\r\n\t//ex.getCause().printStackTrace();  \r\n\t//(Depending on what version of JDK you use)\t\t\t\t\t\r\n}\r\n",
+        "in_page_order": 6,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "FTPClient.__init__": true,
+          "FTPClient.getFile": false
+        },
+        "APIsProjects": {
+          "FTPClient.__init__": 8
+        },
+        "APIsFiles": {
+          "FTPClient.__init__": 10
+        },
+        "APIsSnippets": {
+          "FTPClient.__init__": 11
+        },
+        "APIsQualifiedNames": {
+          "FTPClient.__init__": "org.apache.commons.net.ftp.FTPClient.__init__"
+        },
+        "API_Ratio": 0.5
+      },
+      {
+        "code": "\r\n// downloading testStream.txt from remote folder \\test\r\n//the result is java.io.InputStream\r\n//with ftp server ftp.myhost.com, username ftp and password pass\r\n    \r\n\r\nInputStream is = null;\t\t\r\nString destFolder = \"/test\";\r\nString nameOfFile = \"testStream.txt\";\r\ntry {\r\n\t\r\n\tis = FTP.getFileAsStream(nameOfFile, destFolder, \r\n\t                            \"ftp.myhost.com\", \"ftp\", \"pass\" );\r\n} catch (Exception e) {\r\n\te.printStackTrace();\t\t\t\r\n\t//or\r\n\t//ex.getCause().printStackTrace();  \r\n\t//(Depending on what version of JDK you use)\r\n}finally{\r\n\tif(is != null){try {is.close();} catch (IOException e) {}}\r\n}\r\n\r\n",
+        "in_page_order": 7,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "InputStream.close": true
+        },
+        "APIsProjects": {
+          "InputStream.close": 441
+        },
+        "APIsFiles": {
+          "InputStream.close": 2481
+        },
+        "APIsSnippets": {
+          "InputStream.close": 3284
+        },
+        "APIsQualifiedNames": {
+          "InputStream.close": "java.io.InputStream.close"
+        },
+        "API_Ratio": 1.0
+      },
+      {
+        "code": "\r\n// downloading testStream.txt from remote folder \\test\r\n//the result is java.io.InputStream\r\n//with ftp server ftp.myhost.com, username ftp and password pass\r\n    \r\nInputStream is = null;\t\t\r\nString destFolder = \"/test\";\r\nString nameOfFile = \"testStream.txt\";\r\ntry {\r\n\tFTPClient ftpClient = new FTPClient(\"ftp.myhost.com\", \"ftp\", \"pass\");\r\n\tis = ftpClient.getFileAsStream(nameOfFile, destFolder);\t\t\t\r\n} catch (Exception e) {\r\n\te.printStackTrace();\t\t\t\r\n\t//or\r\n\t//ex.getCause().printStackTrace();  \r\n\t//(Depending on what version of JDK you use)\r\n}finally{\r\n\tif(is != null){try {is.close();} catch (IOException e) {}}\r\n}\r\n",
+        "in_page_order": 8,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "FTPClient.__init__": true,
+          "FTPClient.getFileAsStream": false,
+          "InputStream.close": true
+        },
+        "APIsProjects": {
+          "FTPClient.__init__": 8,
+          "InputStream.close": 441
+        },
+        "APIsFiles": {
+          "FTPClient.__init__": 10,
+          "InputStream.close": 2481
+        },
+        "APIsSnippets": {
+          "FTPClient.__init__": 11,
+          "InputStream.close": 3284
+        },
+        "APIsQualifiedNames": {
+          "FTPClient.__init__": "org.apache.commons.net.ftp.FTPClient.__init__",
+          "InputStream.close": "java.io.InputStream.close"
+        },
+        "API_Ratio": 0.6666666666666666
+      }
+    ]
+  },
+  {
+    "query": "How to upload file to FTP",
+    "url": "http://www.oodlestechnologies.com/blogs/Download-files-from-FTP-Server-using-Java-Program",
+    "url position": 18,
+    "segments": [
+      {
+        "code": "\r\nimport java.io.BufferedOutputStream;\r\nimport java.io.File;\r\nimport java.io.FileInputStream;\r\nimport java.io.FileOutputStream;\r\nimport java.io.IOException;\r\nimport java.io.InputStream;\r\nimport java.io.OutputStream;\r\nimport org.apache.commons.net.ftp.FTP;\r\nimport org.apache.commons.net.ftp.FTPClient;\r\n\r\npublic class FtpFileDownload{\r\n \r\n    public static void main(String[] args) {\r\n        String serverAddress = \"www.ftpserveraddress.com\"; // ftp server address  \r\n        int port = 21; // ftp uses default port Number 21 \r\n        String username = \"xyz\";// username of ftp server\r\n        String password = \"xyz\"; // password of ftp server\r\n \r\n        FTPClient ftpClient = new FTPClient();\r\n        try {\r\n \r\n            ftpClient.connect(serverAddress, port);\r\n            ftpClient.login(username,password);\r\n\r\n            ftpClient.enterLocalPassiveMode();\r\n            ftpClient.setFileType(FTP.BINARY_FILE_TYPE/FTP.ASCII_FILE_TYPE);\r\n            String remoteFilePath = \"/filename.txt\";\r\n            File localfile = new File(\"E:/ftpServerFile.txt\");\r\n            OutputStream outputStream = new BufferedOutputStream(new FileOutputStream(localfile));\r\n            boolean success = ftpClient.retrieveFile(remoteFilePath, outputStream);\r\n            outputStream.close();\r\n \r\n            if (success) {\r\n                System.out.println(\"Ftp file successfully download.\");\r\n            }\r\n \r\n        } catch (IOException ex) {\r\n            System.out.println(\"Error occurs in downloading files from ftp Server : \" + ex.getMessage());\r\n        } finally {\r\n            try {\r\n                if (ftpClient.isConnected()) {\r\n                    ftpClient.logout();\r\n                    ftpClient.disconnect();\r\n                }\r\n            } catch (IOException ex) {\r\n                ex.printStackTrace();\r\n            }\r\n        }\r\n    }\r\n}\r\n\r\n",
+        "in_page_order": 1,
+        "first_in_page": true,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "FTPClient.__init__": true,
+          "FTPClient.connect": true,
+          "FTPClient.login": true,
+          "FTPClient.enterLocalPassiveMode": true,
+          "FTPClient.setFileType": true,
+          "File.__init__": true,
+          "FileOutputStream.__init__": true,
+          "OutputStream.__init__": true,
+          "FTPClient.retrieveFile": true,
+          "OutputStream.close": true,
+          "FTPClient.isConnected": true,
+          "FTPClient.logout": true,
+          "FTPClient.disconnect": true
+        },
+        "APIsProjects": {
+          "FTPClient.__init__": 8,
+          "FTPClient.connect": 7,
+          "FTPClient.login": 8,
+          "FTPClient.enterLocalPassiveMode": 5,
+          "FTPClient.setFileType": 6,
+          "File.__init__": 591,
+          "FileOutputStream.__init__": 430,
+          "OutputStream.__init__": 294,
+          "FTPClient.retrieveFile": 3,
+          "OutputStream.close": 308,
+          "FTPClient.isConnected": 5,
+          "FTPClient.logout": 6,
+          "FTPClient.disconnect": 6
+        },
+        "APIsFiles": {
+          "FTPClient.__init__": 10,
+          "FTPClient.connect": 7,
+          "FTPClient.login": 9,
+          "FTPClient.enterLocalPassiveMode": 5,
+          "FTPClient.setFileType": 6,
+          "File.__init__": 13065,
+          "FileOutputStream.__init__": 2603,
+          "OutputStream.__init__": 1021,
+          "FTPClient.retrieveFile": 4,
+          "OutputStream.close": 1330,
+          "FTPClient.isConnected": 8,
+          "FTPClient.logout": 8,
+          "FTPClient.disconnect": 9
+        },
+        "APIsSnippets": {
+          "FTPClient.__init__": 11,
+          "FTPClient.connect": 7,
+          "FTPClient.login": 10,
+          "FTPClient.enterLocalPassiveMode": 5,
+          "FTPClient.setFileType": 7,
+          "File.__init__": 40468,
+          "FileOutputStream.__init__": 3767,
+          "OutputStream.__init__": 1471,
+          "FTPClient.retrieveFile": 5,
+          "OutputStream.close": 1855,
+          "FTPClient.isConnected": 12,
+          "FTPClient.logout": 8,
+          "FTPClient.disconnect": 10
+        },
+        "APIsQualifiedNames": {
+          "FTPClient.__init__": "org.apache.commons.net.ftp.FTPClient.__init__",
+          "FTPClient.connect": "org.apache.commons.net.ftp.FTPClient.connect",
+          "FTPClient.login": "org.apache.commons.net.ftp.FTPClient.login",
+          "FTPClient.enterLocalPassiveMode": "org.apache.commons.net.ftp.FTPClient.enterLocalPassiveMode",
+          "FTPClient.setFileType": "org.apache.commons.net.ftp.FTPClient.setFileType",
+          "File.__init__": "java.io.File.__init__",
+          "FileOutputStream.__init__": "java.io.FileOutputStream.__init__",
+          "OutputStream.__init__": "java.io.OutputStream.__init__",
+          "FTPClient.retrieveFile": "org.apache.commons.net.ftp.FTPClient.retrieveFile",
+          "OutputStream.close": "java.io.OutputStream.close",
+          "FTPClient.isConnected": "org.apache.commons.net.ftp.FTPClient.isConnected",
+          "FTPClient.logout": "org.apache.commons.net.ftp.FTPClient.logout",
+          "FTPClient.disconnect": "org.apache.commons.net.ftp.FTPClient.disconnect"
+        },
+        "API_Ratio": 1.0
+      }
+    ]
+  },
+  {
+    "query": "How to upload file to FTP",
+    "url": "https://docs.spring.io/spring-integration/reference/html/ftp.html",
+    "url position": 43,
+    "segments": [
+      {
+        "code": "public class AdvancedFtpSessionFactory extends DefaultFtpSessionFactory {\n\n    protected void postProcessClientBeforeConnect(FTPClient ftpClient) throws IOException {\n       ftpClient.setActivePortRange(4000, 5000);\n    }\n}",
+        "in_page_order": 5,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "FTPClient.setActivePortRange": false
+        },
+        "APIsProjects": {},
+        "APIsFiles": {},
+        "APIsSnippets": {},
+        "APIsQualifiedNames": {},
+        "API_Ratio": 0.0
+      },
+      {
+        "code": "@Bean\npublic DefaultFtpsSessionFactory sf() {\n    DefaultFtpsSessionFactory sf = new DefaultFtpsSessionFactory() {\n\n        @Override\n        protected FTPSClient createClientInstance() {\n            return new SharedSSLFTPSClient();\n        }\n\n    };\n    sf.setHost(\"...\");\n    sf.setPort(21);\n    sf.setUsername(\"...\");\n    sf.setPassword(\"...\");\n    sf.setNeedClientAuth(true);\n    return sf;\n}\n\nprivate static final class SharedSSLFTPSClient extends FTPSClient {\n\n    @Override\n    protected void _prepareDataSocket_(final Socket socket) throws IOException {\n        if (socket instanceof SSLSocket) {\n            // Control socket is SSL\n            final SSLSession session = ((SSLSocket) _socket_).getSession();\n            final SSLSessionContext context = session.getSessionContext();\n            context.setSessionCacheSize(0); // you might want to limit the cache\n            try {\n                final Field sessionHostPortCache = context.getClass()\n                        .getDeclaredField(\"sessionHostPortCache\");\n                sessionHostPortCache.setAccessible(true);\n                final Object cache = sessionHostPortCache.get(context);\n                final Method method = cache.getClass().getDeclaredMethod(\"put\", Object.class,\n                        Object.class);\n                method.setAccessible(true);\n                String key = String.format(\"%s:%s\", socket.getInetAddress().getHostName(),\n                        String.valueOf(socket.getPort())).toLowerCase(Locale.ROOT);\n                method.invoke(cache, key, session);\n                key = String.format(\"%s:%s\", socket.getInetAddress().getHostAddress(),\n                        String.valueOf(socket.getPort())).toLowerCase(Locale.ROOT);\n                method.invoke(cache, key, session);\n            }\n            catch (NoSuchFieldException e) {\n                // Not running in expected JRE\n                logger.warn(\"No field sessionHostPortCache in SSLSessionContext\", e);\n            }\n            catch (Exception e) {\n                // Not running in expected JRE\n                logger.warn(e.getMessage());\n            }\n        }\n\n    }\n\n}",
+        "in_page_order": 6,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "SSLSession.getSessionContext": false,
+          "SSLSessionContext.setSessionCacheSize": true,
+          "SSLSessionContext.getClass": false,
+          "Field.setAccessible": true,
+          "Field.get": true,
+          "Object.getClass": true,
+          "Method.setAccessible": true,
+          "Socket.getPort": true,
+          "Socket.getInetAddress": true,
+          "Method.invoke": true
+        },
+        "APIsProjects": {
+          "SSLSessionContext.setSessionCacheSize": 3,
+          "Field.setAccessible": 251,
+          "Field.get": 253,
+          "Object.getClass": 495,
+          "Method.setAccessible": 181,
+          "Socket.getPort": 31,
+          "Socket.getInetAddress": 54,
+          "Method.invoke": 386
+        },
+        "APIsFiles": {
+          "SSLSessionContext.setSessionCacheSize": 5,
+          "Field.setAccessible": 904,
+          "Field.get": 882,
+          "Object.getClass": 9530,
+          "Method.setAccessible": 493,
+          "Socket.getPort": 46,
+          "Socket.getInetAddress": 89,
+          "Method.invoke": 2275
+        },
+        "APIsSnippets": {
+          "SSLSessionContext.setSessionCacheSize": 12,
+          "Field.setAccessible": 1576,
+          "Field.get": 1415,
+          "Object.getClass": 14483,
+          "Method.setAccessible": 757,
+          "Socket.getPort": 79,
+          "Socket.getInetAddress": 125,
+          "Method.invoke": 5618
+        },
+        "APIsQualifiedNames": {
+          "SSLSessionContext.setSessionCacheSize": "javax.net.ssl.SSLSessionContext.setSessionCacheSize",
+          "Field.setAccessible": "java.lang.reflect.Field.setAccessible",
+          "Field.get": "java.lang.reflect.Field.get",
+          "Object.getClass": "static org.apache.camel.component.jms.JmsMessageType.Object.getClass",
+          "Method.setAccessible": "java.lang.reflect.Method.setAccessible",
+          "Socket.getPort": "java.net.Socket.getPort",
+          "Socket.getInetAddress": "java.net.Socket.getInetAddress",
+          "Method.invoke": "java.lang.reflect.Method.invoke"
+        },
+        "API_Ratio": 0.8
+      },
+      {
+        "code": "@SpringBootApplication\npublic class FtpJavaApplication {\n\n    public static void main(String[] args) {\n        new SpringApplicationBuilder(FtpJavaApplication.class)\n            .web(false)\n            .run(args);\n    }\n\n    @Bean\n    public SessionFactory<FTPFile> ftpSessionFactory() {\n        DefaultFtpSessionFactory sf = new DefaultFtpSessionFactory();\n        sf.setHost(\"localhost\");\n        sf.setPort(port);\n        sf.setUsername(\"foo\");\n        sf.setPassword(\"foo\");\n        return new CachingSessionFactory<FTPFile>(sf);\n    }\n\n    @Bean\n    public FtpInboundFileSynchronizer ftpInboundFileSynchronizer() {\n        FtpInboundFileSynchronizer fileSynchronizer = new FtpInboundFileSynchronizer(ftpSessionFactory());\n        fileSynchronizer.setDeleteRemoteFiles(false);\n        fileSynchronizer.setRemoteDirectory(\"foo\");\n        fileSynchronizer.setFilter(new FtpSimplePatternFileListFilter(\"*.xml\"));\n        return fileSynchronizer;\n    }\n\n    @Bean\n    @InboundChannelAdapter(channel = \"ftpChannel\", poller = @Poller(fixedDelay = \"5000\"))\n    public MessageSource<File> ftpMessageSource() {\n        FtpInboundFileSynchronizingMessageSource source =\n                new FtpInboundFileSynchronizingMessageSource(ftpInboundFileSynchronizer());\n        source.setLocalDirectory(new File(\"ftp-inbound\"));\n        source.setAutoCreateLocalDirectory(true);\n        source.setLocalFilter(new AcceptOnceFileListFilter<File>());\n        source.setMaxFetchSize(1);\n        return source;\n    }\n\n    @Bean\n    @ServiceActivator(inputChannel = \"ftpChannel\")\n    public MessageHandler handler() {\n        return new MessageHandler() {\n\n            @Override\n            public void handleMessage(Message<?> message) throws MessagingException {\n                System.out.println(message.getPayload());\n            }\n\n        };\n    }\n\n}",
+        "in_page_order": 11,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "SpringApplicationBuilder.__init__": true,
+          "DefaultFtpSessionFactory.__init__": false,
+          "DefaultFtpSessionFactory.setHost": false,
+          "DefaultFtpSessionFactory.setPort": false,
+          "DefaultFtpSessionFactory.setUsername": false,
+          "DefaultFtpSessionFactory.setPassword": false,
+          "CachingSessionFactory.__init__": false,
+          "SessionFactory": true,
+          "FtpInboundFileSynchronizer.__init__": false,
+          "FtpInboundFileSynchronizer.setDeleteRemoteFiles": false,
+          "FtpInboundFileSynchronizer.setRemoteDirectory": false,
+          "FtpSimplePatternFileListFilter.__init__": false,
+          "FtpInboundFileSynchronizer.setFilter": false,
+          "FtpInboundFileSynchronizer": false,
+          "FtpInboundFileSynchronizingMessageSource.__init__": false,
+          "File.__init__": true,
+          "FtpInboundFileSynchronizingMessageSource.setLocalDirectory": false,
+          "FtpInboundFileSynchronizingMessageSource.setAutoCreateLocalDirectory": false,
+          "AcceptOnceFileListFilter.__init__": false,
+          "FtpInboundFileSynchronizingMessageSource.setLocalFilter": false,
+          "FtpInboundFileSynchronizingMessageSource.setMaxFetchSize": false,
+          "MessageHandler.__init__": true,
+          "Message.getPayload": true
+        },
+        "APIsProjects": {
+          "SpringApplicationBuilder.__init__": 3,
+          "SessionFactory": 8,
+          "File.__init__": 591,
+          "MessageHandler.__init__": 15,
+          "Message.getPayload": 12
+        },
+        "APIsFiles": {
+          "SpringApplicationBuilder.__init__": 19,
+          "SessionFactory": 25,
+          "File.__init__": 13065,
+          "MessageHandler.__init__": 73,
+          "Message.getPayload": 444
+        },
+        "APIsSnippets": {
+          "SpringApplicationBuilder.__init__": 37,
+          "SessionFactory": 87,
+          "File.__init__": 40468,
+          "MessageHandler.__init__": 162,
+          "Message.getPayload": 1677
+        },
+        "APIsQualifiedNames": {
+          "SpringApplicationBuilder.__init__": "org.springframework.boot.builder.SpringApplicationBuilder.__init__",
+          "SessionFactory": "org.hibernate.SessionFactory.SessionFactory",
+          "File.__init__": "java.io.File.__init__",
+          "MessageHandler.__init__": "org.springframework.integration.core.MessageHandler.__init__",
+          "Message.getPayload": "org.springframework.integration.Message.getPayload"
+        },
+        "API_Ratio": 0.21739130434782608
+      },
+      {
+        "code": "@SpringBootApplication\npublic class FtpJavaApplication {\n\n    public static void main(String[] args) {\n        new SpringApplicationBuilder(FtpJavaApplication.class)\n            .web(false)\n            .run(args);\n    }\n\n    @Bean\n    public IntegrationFlow ftpInboundFlow() {\n        return IntegrationFlows\n            .from(s -> s.ftp(this.ftpSessionFactory)\n                    .preserveTimestamp(true)\n                    .remoteDirectory(\"foo\")\n                    .regexFilter(\".*\\\\.txt$\")\n                    .localFilename(f -> f.toUpperCase() + \".a\")\n                    .localDirectory(new File(\"d:\\\\ftp_files\")),\n                e -> e.id(\"ftpInboundAdapter\")\n                    .autoStartup(true)\n                    .poller(Pollers.fixedDelay(5000)))\n            .handle(m -> System.out.println(m.getPayload()))\n            .get();\n    }\n}",
+        "in_page_order": 12,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "SpringApplicationBuilder.__init__": true,
+          "File.__init__": true
+        },
+        "APIsProjects": {
+          "SpringApplicationBuilder.__init__": 3,
+          "File.__init__": 591
+        },
+        "APIsFiles": {
+          "SpringApplicationBuilder.__init__": 19,
+          "File.__init__": 13065
+        },
+        "APIsSnippets": {
+          "SpringApplicationBuilder.__init__": 37,
+          "File.__init__": 40468
+        },
+        "APIsQualifiedNames": {
+          "SpringApplicationBuilder.__init__": "org.springframework.boot.builder.SpringApplicationBuilder.__init__",
+          "File.__init__": "java.io.File.__init__"
+        },
+        "API_Ratio": 1.0
+      },
+      {
+        "code": "@SpringBootApplication\npublic class FtpJavaApplication {\n\n    public static void main(String[] args) {\n        new SpringApplicationBuilder(FtpJavaApplication.class)\n            .web(false)\n            .run(args);\n    }\n\n    @Bean\n    @InboundChannelAdapter(channel = \"stream\")\n    public MessageSource<InputStream> ftpMessageSource() {\n        FtpStreamingMessageSource messageSource = new FtpStreamingMessageSource(template());\n        messageSource.setRemoteDirectory(\"ftpSource/\");\n        messageSource.setFilter(new AcceptAllFileListFilter<>());\n        messageSource.setMaxFetchSize(1);\n        return messageSource;\n    }\n\n    @Bean\n    @Transformer(inputChannel = \"stream\", outputChannel = \"data\")\n    public org.springframework.integration.transformer.Transformer transformer() {\n        return new StreamTransformer(\"UTF-8\");\n    }\n\n    @Bean\n    public FtpRemoteFileTemplate template() {\n        return new FtpRemoteFileTemplate(ftpSessionFactory());\n    }\n\n    @ServiceActivator(inputChannel = \"data\", adviceChain = \"after\")\n    @Bean\n    public MessageHandler handle() {\n        return System.out::println;\n    }\n\n    @Bean\n    public ExpressionEvaluatingRequestHandlerAdvice after() {\n        ExpressionEvaluatingRequestHandlerAdvice advice = new ExpressionEvaluatingRequestHandlerAdvice();\n        advice.setOnSuccessExpression(\n                \"@template.remove(headers['file_remoteDirectory'] + headers['file_remoteFile'])\");\n        advice.setPropagateEvaluationFailures(true);\n        return advice;\n    }\n\n}",
+        "in_page_order": 14,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "SpringApplicationBuilder.__init__": true,
+          "FtpRemoteFileTemplate": false,
+          "FtpStreamingMessageSource.__init__": false,
+          "FtpStreamingMessageSource.setRemoteDirectory": false,
+          "AcceptAllFileListFilter.__init__": false,
+          "FtpStreamingMessageSource.setFilter": false,
+          "FtpStreamingMessageSource.setMaxFetchSize": false,
+          "StreamTransformer.__init__": false,
+          "FtpRemoteFileTemplate.__init__": false,
+          "ExpressionEvaluatingRequestHandlerAdvice.__init__": false,
+          "ExpressionEvaluatingRequestHandlerAdvice.setOnSuccessExpression": false,
+          "ExpressionEvaluatingRequestHandlerAdvice.setPropagateEvaluationFailures": false
+        },
+        "APIsProjects": {
+          "SpringApplicationBuilder.__init__": 3
+        },
+        "APIsFiles": {
+          "SpringApplicationBuilder.__init__": 19
+        },
+        "APIsSnippets": {
+          "SpringApplicationBuilder.__init__": 37
+        },
+        "APIsQualifiedNames": {
+          "SpringApplicationBuilder.__init__": "org.springframework.boot.builder.SpringApplicationBuilder.__init__"
+        },
+        "API_Ratio": 0.08333333333333333
+      },
+      {
+        "code": "@SpringBootApplication\n@IntegrationComponentScan\npublic class FtpJavaApplication {\n\n    public static void main(String[] args) {\n        ConfigurableApplicationContext context =\n                    new SpringApplicationBuilder(FtpJavaApplication.class)\n                        .web(false)\n                        .run(args);\n        MyGateway gateway = context.getBean(MyGateway.class);\n        gateway.sendToFtp(new File(\"/foo/bar.txt\"));\n    }\n\n    @Bean\n    public SessionFactory<FTPFile> ftpSessionFactory() {\n        DefaultFtpSessionFactory sf = new DefaultFtpSessionFactory();\n        sf.setHost(\"localhost\");\n        sf.setPort(port);\n        sf.setUsername(\"foo\");\n        sf.setPassword(\"foo\");\n        return new CachingSessionFactory<FTPFile>(sf);\n    }\n\n    @Bean\n    @ServiceActivator(inputChannel = \"ftpChannel\")\n    public MessageHandler handler() {\n        FtpMessageHandler handler = new FtpMessageHandler(ftpSessionFactory());\n        handler.setRemoteDirectoryExpressionString(\"headers['remote-target-dir']\");\n        handler.setFileNameGenerator(new FileNameGenerator() {\n\n            @Override\n            public String generateFileName(Message<?> message) {\n                 return \"handlerContent.test\";\n            }\n\n        });\n        return handler;\n    }\n\n    @MessagingGateway\n    public interface MyGateway {\n\n         @Gateway(requestChannel = \"toFtpChannel\")\n         void sendToFtp(File file);\n\n    }\n}",
+        "in_page_order": 16,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "SpringApplicationBuilder.__init__": true,
+          "ConfigurableApplicationContext.getBean": true,
+          "File.__init__": true,
+          "MyGateway.sendToFtp": false,
+          "DefaultFtpSessionFactory.__init__": false,
+          "DefaultFtpSessionFactory.setHost": false,
+          "DefaultFtpSessionFactory.setPort": false,
+          "DefaultFtpSessionFactory.setUsername": false,
+          "DefaultFtpSessionFactory.setPassword": false,
+          "CachingSessionFactory.__init__": false,
+          "SessionFactory": true,
+          "FtpMessageHandler.__init__": false,
+          "FtpMessageHandler.setRemoteDirectoryExpressionString": false,
+          "FileNameGenerator.__init__": true,
+          "FtpMessageHandler.setFileNameGenerator": false
+        },
+        "APIsProjects": {
+          "SpringApplicationBuilder.__init__": 3,
+          "ConfigurableApplicationContext.getBean": 14,
+          "File.__init__": 591,
+          "SessionFactory": 8,
+          "FileNameGenerator.__init__": 4
+        },
+        "APIsFiles": {
+          "SpringApplicationBuilder.__init__": 19,
+          "ConfigurableApplicationContext.getBean": 94,
+          "File.__init__": 13065,
+          "SessionFactory": 25,
+          "FileNameGenerator.__init__": 8
+        },
+        "APIsSnippets": {
+          "SpringApplicationBuilder.__init__": 37,
+          "ConfigurableApplicationContext.getBean": 314,
+          "File.__init__": 40468,
+          "SessionFactory": 87,
+          "FileNameGenerator.__init__": 12
+        },
+        "APIsQualifiedNames": {
+          "SpringApplicationBuilder.__init__": "org.springframework.boot.builder.SpringApplicationBuilder.__init__",
+          "ConfigurableApplicationContext.getBean": "org.springframework.context.ConfigurableApplicationContext.getBean",
+          "File.__init__": "java.io.File.__init__",
+          "SessionFactory": "org.hibernate.SessionFactory.SessionFactory",
+          "FileNameGenerator.__init__": "org.springframework.integration.file.FileNameGenerator.__init__"
+        },
+        "API_Ratio": 0.3333333333333333
+      },
+      {
+        "code": "@SpringBootApplication\n@IntegrationComponentScan\npublic class FtpJavaApplication {\n\n    public static void main(String[] args) {\n        ConfigurableApplicationContext context =\n            new SpringApplicationBuilder(FtpJavaApplication.class)\n                .web(false)\n                .run(args);\n        MyGateway gateway = context.getBean(MyGateway.class);\n        gateway.sendToFtp(new File(\"/foo/bar.txt\"));\n    }\n\n    @Bean\n    public SessionFactory<FTPFile> ftpSessionFactory() {\n        DefaultFtpSessionFactory sf = new DefaultFtpSessionFactory();\n        sf.setHost(\"localhost\");\n        sf.setPort(port);\n        sf.setUsername(\"foo\");\n        sf.setPassword(\"foo\");\n        return new CachingSessionFactory<FTPFile>(sf);\n    }\n\n    @Bean\n    public IntegrationFlow ftpOutboundFlow() {\n        return IntegrationFlows.from(\"toFtpChannel\")\n                .handle(Ftp.outboundAdapter(ftpSessionFactory(), FileExistsMode.FAIL)\n                        .useTemporaryFileName(false)\n                        .fileNameExpression(\"headers['\" + FileHeaders.FILENAME + \"']\")\n                        .remoteDirectory(this.ftpServer.getTargetFtpDirectory().getName())\n                ).get();\n    }\n\n    @MessagingGateway\n    public interface MyGateway {\n\n         @Gateway(requestChannel = \"toFtpChannel\")\n         void sendToFtp(File file);\n\n    }\n\n}",
+        "in_page_order": 17,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "SpringApplicationBuilder.__init__": true,
+          "ConfigurableApplicationContext.getBean": true,
+          "File.__init__": true,
+          "MyGateway.sendToFtp": false,
+          "DefaultFtpSessionFactory.__init__": false,
+          "DefaultFtpSessionFactory.setHost": false,
+          "DefaultFtpSessionFactory.setPort": false,
+          "DefaultFtpSessionFactory.setUsername": false,
+          "DefaultFtpSessionFactory.setPassword": false,
+          "CachingSessionFactory.__init__": false,
+          "SessionFactory": true
+        },
+        "APIsProjects": {
+          "SpringApplicationBuilder.__init__": 3,
+          "ConfigurableApplicationContext.getBean": 14,
+          "File.__init__": 591,
+          "SessionFactory": 8
+        },
+        "APIsFiles": {
+          "SpringApplicationBuilder.__init__": 19,
+          "ConfigurableApplicationContext.getBean": 94,
+          "File.__init__": 13065,
+          "SessionFactory": 25
+        },
+        "APIsSnippets": {
+          "SpringApplicationBuilder.__init__": 37,
+          "ConfigurableApplicationContext.getBean": 314,
+          "File.__init__": 40468,
+          "SessionFactory": 87
+        },
+        "APIsQualifiedNames": {
+          "SpringApplicationBuilder.__init__": "org.springframework.boot.builder.SpringApplicationBuilder.__init__",
+          "ConfigurableApplicationContext.getBean": "org.springframework.context.ConfigurableApplicationContext.getBean",
+          "File.__init__": "java.io.File.__init__",
+          "SessionFactory": "org.hibernate.SessionFactory.SessionFactory"
+        },
+        "API_Ratio": 0.36363636363636365
+      },
+      {
+        "code": "Closeable closeable = new IntegrationMessageHeaderAccessor(message).getCloseableResource();\nif (closeable != null) {\n    closeable.close();\n}",
+        "in_page_order": 18,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "IntegrationMessageHeaderAccessor.__init__": false,
+          "Closeable.close": true
+        },
+        "APIsProjects": {
+          "Closeable.close": 119
+        },
+        "APIsFiles": {
+          "Closeable.close": 202
+        },
+        "APIsSnippets": {
+          "Closeable.close": 231
+        },
+        "APIsQualifiedNames": {
+          "Closeable.close": "java.io.Closeable.close"
+        },
+        "API_Ratio": 0.5
+      },
+      {
+        "code": "@SpringBootApplication\npublic class FtpJavaApplication {\n\n    public static void main(String[] args) {\n        new SpringApplicationBuilder(FtpJavaApplication.class)\n            .web(false)\n            .run(args);\n    }\n\n    @Bean\n    public SessionFactory<FTPFile> ftpSessionFactory() {\n        DefaultFtpSessionFactory sf = new DefaultFtpSessionFactory();\n        sf.setHost(\"localhost\");\n        sf.setPort(port);\n        sf.setUsername(\"foo\");\n        sf.setPassword(\"foo\");\n        return new CachingSessionFactory<FTPFile>(sf);\n    }\n\n    @Bean\n    @ServiceActivator(inputChannel = \"ftpChannel\")\n    public MessageHandler handler() {\n        FtpOutboundGateway ftpOutboundGateway =\n                          new FtpOutboundGateway(ftpSessionFactory(), \"ls\", \"'my_remote_dir/'\");\n        ftpOutboundGateway.setOutputChannelName(\"lsReplyChannel\");\n        return ftpOutboundGateway;\n    }\n\n}",
+        "in_page_order": 23,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "SpringApplicationBuilder.__init__": true,
+          "DefaultFtpSessionFactory.__init__": false,
+          "DefaultFtpSessionFactory.setHost": false,
+          "DefaultFtpSessionFactory.setPort": false,
+          "DefaultFtpSessionFactory.setUsername": false,
+          "DefaultFtpSessionFactory.setPassword": false,
+          "CachingSessionFactory.__init__": false,
+          "SessionFactory": true,
+          "FtpOutboundGateway.__init__": false,
+          "FtpOutboundGateway.setOutputChannelName": false
+        },
+        "APIsProjects": {
+          "SpringApplicationBuilder.__init__": 3,
+          "SessionFactory": 8
+        },
+        "APIsFiles": {
+          "SpringApplicationBuilder.__init__": 19,
+          "SessionFactory": 25
+        },
+        "APIsSnippets": {
+          "SpringApplicationBuilder.__init__": 37,
+          "SessionFactory": 87
+        },
+        "APIsQualifiedNames": {
+          "SpringApplicationBuilder.__init__": "org.springframework.boot.builder.SpringApplicationBuilder.__init__",
+          "SessionFactory": "org.hibernate.SessionFactory.SessionFactory"
+        },
+        "API_Ratio": 0.2
+      },
+      {
+        "code": "@SpringBootApplication\npublic class FtpJavaApplication {\n\n    public static void main(String[] args) {\n        new SpringApplicationBuilder(FtpJavaApplication.class)\n            .web(false)\n            .run(args);\n    }\n\n    @Bean\n    public SessionFactory<FTPFile> ftpSessionFactory() {\n        DefaultFtpSessionFactory sf = new DefaultFtpSessionFactory();\n        sf.setHost(\"localhost\");\n        sf.setPort(port);\n        sf.setUsername(\"foo\");\n        sf.setPassword(\"foo\");\n        return new CachingSessionFactory<FTPFile>(sf);\n    }\n\n    @Bean\n    public FtpOutboundGatewaySpec ftpOutboundGateway() {\n        return Ftp.outboundGateway(ftpSessionFactory(),\n            AbstractRemoteFileOutboundGateway.Command.MGET, \"payload\")\n            .options(AbstractRemoteFileOutboundGateway.Option.RECURSIVE)\n            .regexFileNameFilter(\"(subFtpSource|.*1.txt)\")\n            .localDirectoryExpression(\"'localDirectory/' + #remoteDirectory\")\n            .localFilenameExpression(\"#remoteFileName.replaceFirst('ftpSource', 'localTarget')\");\n    }\n\n    @Bean\n    public IntegrationFlow ftpMGetFlow(AbstractRemoteFileOutboundGateway<FTPFile> ftpOutboundGateway) {\n        return f -> f\n            .handle(ftpOutboundGateway)\n            .channel(c -> c.queue(\"remoteFileOutputChannel\"));\n    }\n\n}",
+        "in_page_order": 24,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "SpringApplicationBuilder.__init__": true,
+          "DefaultFtpSessionFactory.__init__": false,
+          "DefaultFtpSessionFactory.setHost": false,
+          "DefaultFtpSessionFactory.setPort": false,
+          "DefaultFtpSessionFactory.setUsername": false,
+          "DefaultFtpSessionFactory.setPassword": false,
+          "CachingSessionFactory.__init__": false,
+          "SessionFactory": true
+        },
+        "APIsProjects": {
+          "SpringApplicationBuilder.__init__": 3,
+          "SessionFactory": 8
+        },
+        "APIsFiles": {
+          "SpringApplicationBuilder.__init__": 19,
+          "SessionFactory": 25
+        },
+        "APIsSnippets": {
+          "SpringApplicationBuilder.__init__": 37,
+          "SessionFactory": 87
+        },
+        "APIsQualifiedNames": {
+          "SpringApplicationBuilder.__init__": "org.springframework.boot.builder.SpringApplicationBuilder.__init__",
+          "SessionFactory": "org.hibernate.SessionFactory.SessionFactory"
+        },
+        "API_Ratio": 0.25
+      },
+      {
+        "code": "@Bean\n@ServiceActivator(inputChannel = \"ftpChannel\")\npublic MessageHandler ftpOutboundGateway(SessionFactory<FTPFile> sessionFactory) {\n    return new FtpOutboundGateway(sessionFactory,\n         (session, requestMessage) -> session.list(requestMessage.getPayload()));\n}",
+        "in_page_order": 27,
+        "first_in_page": false,
+        "accepted_answer": false,
+        "answer_votes": 0,
+        "answer_stars": 0,
+        "length": true,
+        "semicolon": true,
+        "APIs": {
+          "FtpOutboundGateway.__init__": false
+        },
+        "APIsProjects": {},
+        "APIsFiles": {},
+        "APIsSnippets": {},
+        "APIsQualifiedNames": {},
+        "API_Ratio": 0.0
+      }
+    ]
+  }
+]

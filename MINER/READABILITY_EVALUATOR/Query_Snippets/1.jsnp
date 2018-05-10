@@ -1,0 +1,4 @@
+
+Path file = ...;
+byte[] fileArray;
+fileArray = Files.readAllBytes(file);

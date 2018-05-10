@@ -1,0 +1,8 @@
+Scanner in = new Scanner(new File("filename.txt"));
+
+while (in.hasNext()) { // Iterates each line in the file
+    String line = in.nextLine();
+    // Do something with line
+}
+
+in.close(); // Don't forget to close resource leaks

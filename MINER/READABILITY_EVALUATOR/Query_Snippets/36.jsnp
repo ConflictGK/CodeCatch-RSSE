@@ -1,0 +1,26 @@
+package com.vogella.eclipse.ide.first;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Optional;
+import java.util.stream.Stream;
+
+public class ReadMANIFESTFile {
+    public static void main(String[] args) throws IOException {
+        String versionString = readStreamOfLinesUsingFiles();
+        System.out.println(versionString);
+    }
+
+    private static String readStreamOfLinesUsingFiles() throws IOException {
+        StreamString lines = Files.lines(Paths.get("META-INF", "MANIFEST.MF"));
+        OptionalString versionString = lines.filter(s - s.contains("Bundle-Version:")).map(e- e.substring(15).trim()).findFirst();
+
+        lines.close();
+        if (versionString.isPresent())
+        {
+            return versionString.get();
+        }
+        return "";
+    }
+}

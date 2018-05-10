@@ -1,0 +1,4 @@
+import com.google.common.base.Charsets;
+import com.google.common.io.Files;
+
+String contents = Files.toString(filePath, Charsets.UTF_8);
